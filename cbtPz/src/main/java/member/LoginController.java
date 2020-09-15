@@ -33,7 +33,7 @@ public class LoginController implements Controller {
 			if (memberVo.getPw().equals(resultVo.getPw())) { // 로그인성공
 				request.getSession().setAttribute("login", resultVo);
 				request.getSession().setAttribute("id", resultVo.getId());
-				response.sendRedirect("sayingList.do");
+				response.sendRedirect("main.jsp");
 			} else { // 패스워드 불일치
 				request.setAttribute("errormsg", "패스워드 불일치");
 				page = "/login.jsp";
