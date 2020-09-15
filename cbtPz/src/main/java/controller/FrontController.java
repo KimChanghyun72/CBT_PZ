@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 /**
  * Servlet implementation class FrontController
  */
@@ -36,6 +37,7 @@ public class FrontController extends HttpServlet {
     	list = new HashMap<String, Controller>();
 	
     	//list.put 추가
+    	list.put("/login.do", new member.LoginController());
     	
 	}
 
