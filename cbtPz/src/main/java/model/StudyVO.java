@@ -3,7 +3,7 @@ package model;
 import lombok.Data;
 
 @Data
-public class SutdyVO {
+public class StudyVO {
 	
 	private String paperhead_id; 
 	private String paper_date;
