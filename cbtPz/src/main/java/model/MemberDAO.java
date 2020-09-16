@@ -36,21 +36,24 @@ public class MemberDAO {
 		ArrayList<MemberVo> list = new ArrayList<MemberVo>();
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "SELECT ID, PW, GENDER, JOB, REASON, MAILYN, HOBBY, REGDATE"
+			String sql = "SELECT MEMBER_ID, MEMBER_PW, MEMBER_NAME, MEMBER_AGE, MEMBER_JOB, STUDY_TERM, PHONE_NUMBER, IS_MAJOR, TESTED_NUM, IS_PAY, PAY_ENDDATE"
 						+ " FROM MEMBER "
-						+ " ORDER BY ID";
+						+ " ORDER BY MEMBER_ID";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while(rs.next()) { //list니까 while문 사용
 				resultVo = new MemberVo();
-				resultVo.setId((rs.getString("id")));
-				resultVo.setPw(rs.getString("pw"));
-				resultVo.setGender(rs.getString("gender"));
-				resultVo.setJob(rs.getString("job"));
-				resultVo.setReason(rs.getString("reason"));
-				resultVo.setMailyn(rs.getString("mailyn"));
-				resultVo.setHobby(rs.getString("hobby"));
-				resultVo.setRegdate(rs.getString("regdate"));
+				resultVo.setMember_id((rs.getString("member_id")));
+				resultVo.setMember_pw(rs.getString("member_pw"));
+				resultVo.setMember_name(rs.getString("member_name"));
+				resultVo.setMember_age(rs.getString("member_age"));
+				resultVo.setMember_job(rs.getString("member_job"));
+				resultVo.setStudy_term(rs.getString("study_term"));
+				resultVo.setPhone_number(rs.getString("phone_number"));
+				resultVo.setIs_major(rs.getString("is_major"));
+				resultVo.setTested_num(rs.getString("tested_num"));
+				resultVo.setIs_pay(rs.getString("is_pay"));
+				resultVo.setPay_enddate(rs.getString("pay_enddate"));
 				list.add(resultVo); //resultVo를 list에 담음
 			} 
 		} catch (Exception e) {
@@ -68,22 +71,25 @@ public class MemberDAO {
 		ResultSet rs = null;
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "SELECT ID, PW, GENDER, JOB, REASON, MAILYN, HOBBY, REGDATE"
+			String sql = "SELECT MEMBER_ID, MEMBER_PW, MEMBER_NAME, MEMBER_AGE, MEMBER_JOB, STUDY_TERM, PHONE_NUMBER, IS_MAJOR, TESTED_NUM, IS_PAY, PAY_ENDDATE"
 						+ " FROM MEMBER "
-						+ "WHERE ID=?";
+						+ "WHERE MEMBER_ID=?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, memberVo.getId());
+			pstmt.setString(1, memberVo.getMember_id());
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				resultVo = new MemberVo();
-				resultVo.setId((rs.getString("id")));
-				resultVo.setPw(rs.getString("pw"));
-				resultVo.setGender(rs.getString("gender"));
-				resultVo.setJob(rs.getString("job"));
-				resultVo.setReason(rs.getString("reason"));
-				resultVo.setMailyn(rs.getString("mailyn"));
-				resultVo.setHobby(rs.getString("hobby"));
-				resultVo.setRegdate(rs.getString("regdate"));
+				resultVo.setMember_id((rs.getString("member_id")));
+				resultVo.setMember_pw(rs.getString("member_pw"));
+				resultVo.setMember_name(rs.getString("member_name"));
+				resultVo.setMember_age(rs.getString("member_age"));
+				resultVo.setMember_job(rs.getString("member_job"));
+				resultVo.setStudy_term(rs.getString("study_term"));
+				resultVo.setPhone_number(rs.getString("phone_number"));
+				resultVo.setIs_major(rs.getString("is_major"));
+				resultVo.setTested_num(rs.getString("tested_num"));
+				resultVo.setIs_pay(rs.getString("is_pay"));
+				resultVo.setPay_enddate(rs.getString("pay_enddate"));
 			} else {
 				System.out.println("no data");
 			}
@@ -103,9 +109,9 @@ public class MemberDAO {
 		int r=0;
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "DELETE MEMBER WHERE ID=?";
+			String sql = "DELETE MEMBER WHERE MEMBER_ID=?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, memberVo.getId());
+			pstmt.setString(1, memberVo.getMember_id());
 			r = pstmt.executeUpdate();
 			System.out.println(r + "건이 수정됨");
 		} catch (Exception e) {
@@ -122,14 +128,19 @@ public class MemberDAO {
 		int r=0;
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "UPDATE MEMBER SET PW = ?, JOB = ?, REASON = ?, MAILYN = ?, HOBBY = ? WHERE ID=?";
+			String sql = "UPDATE MEMBER SET MEMBER_PW = ?, MEMBER_NAME = ?, MEMBER_AGE = ?, MEMBER_JOB = ?, "
+					+ " STUDY_TERM = ?, PHONE_NUMBER = ?, IS_MAJOR = ?, TESTED_NUM = ?, IS_PAY = ?, PAY_ENDDATE = ? WHERE MEMBER_ID=?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, memberVo.getPw()); //? 첫번째 자리 값
-			pstmt.setString(2, memberVo.getJob());
-			pstmt.setString(3, memberVo.getReason());
-			pstmt.setString(4, memberVo.getMailyn());
-			pstmt.setString(5, memberVo.getHobby());
-			pstmt.setString(6, memberVo.getId());
+			pstmt.setString(1, memberVo.getMember_pw()); //? 첫번째 자리 값
+			pstmt.setString(2, memberVo.getMember_name());
+			pstmt.setString(3, memberVo.getMember_age());
+			pstmt.setString(4, memberVo.getMember_job());
+			pstmt.setString(5, memberVo.getStudy_term());
+			pstmt.setString(6, memberVo.getPhone_number());
+			pstmt.setString(7, memberVo.getIs_major());
+			pstmt.setString(8, memberVo.getTested_num());
+			pstmt.setString(9, memberVo.getIs_pay());
+			pstmt.setString(10, memberVo.getPay_enddate());
 			r = pstmt.executeUpdate(); // 이때는 executeUpdate()에 sql안들어감.
 			System.out.println(r + "건이 수정됨");
 		} catch (Exception e) {
@@ -148,16 +159,18 @@ public class MemberDAO {
 			conn = ConnectionManager.getConnnect();
 			
 			// 2. sql 구문 실행
-			String sql = "insert into member(id, pw, job, reason, gender, mailyn, hobby, regdate)"
-					 	+ "values (?,?,?,?,?,?,?, sysdate)";
+			String sql = "insert into member(member_id, member_pw, member_name, member_age, member_job, study_term, phone_number, is_major, tested_num)"
+					 	+ "values (?,?,?,?,?,?,?,?,?,?,?, sysdate)";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, memberVo.getId());		
-			pstmt.setString(2, memberVo.getPw());		
-			pstmt.setString(3, memberVo.getJob());		
-			pstmt.setString(4, memberVo.getReason());		
-			pstmt.setString(5, memberVo.getGender());		
-			pstmt.setString(6, memberVo.getMailyn());		
-			pstmt.setString(7, memberVo.getHobby());		
+			pstmt.setString(1, memberVo.getMember_id());		
+			pstmt.setString(2, memberVo.getMember_pw());		
+			pstmt.setString(3, memberVo.getMember_name());		
+			pstmt.setString(4, memberVo.getMember_age());		
+			pstmt.setString(5, memberVo.getMember_job());		
+			pstmt.setString(6, memberVo.getStudy_term());		
+			pstmt.setString(7, memberVo.getPhone_number());
+			pstmt.setString(8, memberVo.getIs_major());
+			pstmt.setString(9, memberVo.getTested_num());
 					
 			r = pstmt.executeUpdate();
 

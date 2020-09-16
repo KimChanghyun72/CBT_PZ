@@ -114,15 +114,21 @@ $(function() {
 
     $('#login-form-link').click(function(e) {
 		$("#login-form").delay(100).fadeIn(100);
+		$("#userRegister").delay(100).fadeIn(100);
  		$("#login2-form").fadeOut(100);
 		$('#login2-form-link').removeClass('active');
+ 		$("#user2Register").fadeOut(100);
+		$('#user2Register-link').removeClass('active');
 		$(this).addClass('active');
 		e.preventDefault();
 	});
 	$('#login2-form-link').click(function(e) {
 		$("#login2-form").delay(100).fadeIn(100);
+		$("#user2Register").delay(100).fadeIn(100);
  		$("#login-form").fadeOut(100);
 		$('#login-form-link').removeClass('active');
+ 		$("#userRegister").fadeOut(100);
+		$('#userRegister-link').removeClass('active');
 		$(this).addClass('active');
 		e.preventDefault();
 	});
@@ -171,7 +177,9 @@ $(function() {
 											</div>
 										</div>
 									</div>
+								</form>
 									<!-- 가입버튼 -->
+									<form id="userRegister" action="${pageContext.request.contextPath}/main.jsp">
 									<div class="form-group">
 										<div class="row">
 											<div class="col-sm-6 col-sm-offset-3">
@@ -179,17 +187,9 @@ $(function() {
 											</div>
 										</div>
 									</div>
+									</form>
 									
-									<div class="form-group">
-										<div class="row">
-											<div class="col-lg-12">
-												<div class="text-center">
-													<a href="https://phpoll.com/recover" tabindex="5" class="forgot-password">Forgot Password?</a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</form>
+
 								
 								
 								<form id="login2-form" action="https://phpoll.com/login/process" method="post" role="form" style="display: none;">
@@ -210,6 +210,9 @@ $(function() {
 											</div>
 										</div>
 									</div>
+								</form>
+									
+									<form id="user2Register" action="${pageContext.request.contextPath}/main.jsp" style="display: none;">
 									<div class="form-group">
 										<div class="row">
 											<div class="col-sm-6 col-sm-offset-3">
@@ -217,16 +220,22 @@ $(function() {
 											</div>
 										</div>
 									</div>
-									<div class="form-group">
-										<div class="row">
-											<div class="col-lg-12">
-												<div class="text-center">
-													<a href="https://phpoll.com/recover" tabindex="5" class="forgot-password">Forgot Password?</a>
-												</div>
+									</form>
+
+
+								<div class="form-group">
+									<div class="row">
+										<div class="col-lg-12">
+											<div class="text-center">
+												<a href="https://phpoll.com/recover" tabindex="5"
+													class="forgot-password">Forgot Password?</a>
 											</div>
 										</div>
 									</div>
-								</form>
+								</div>
+
+
+
 							</div>
 						</div>
 					</div>
