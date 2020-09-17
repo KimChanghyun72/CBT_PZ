@@ -8,7 +8,9 @@
 </head>
 <body>
 	<div style="height: 100px;; background-color: navy; color: white; font-size: 3.0em; text-align: center;">관리자 페이지</div>
-<form>
+<form method="post" name="frm" id="frm" 
+   	  action="${pageContext.request.contextPath}/problemInsert.do"
+   	  onsubmit = "return inputCheck()">
 	<select name="subject">
 		<option value="1" selected>과목</option>
 		<option value="2" >1과목</option>
