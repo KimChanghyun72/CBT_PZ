@@ -10,6 +10,16 @@
 
 <title>/member/memInsert.jsp</title>
 
+
+<script>
+$(function(){
+	if("${errorcode}"=="2"){
+		alert("${errormsg}");		
+	}
+})
+</script>
+
+
 </head>
 
 <body>

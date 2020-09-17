@@ -111,7 +111,7 @@ body {
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script>
 $(function() {
-
+	
     $('#login-form-link').click(function(e) {
 		$("#login-form").delay(100).fadeIn(100);
 		$("#userRegister").delay(100).fadeIn(100);
@@ -134,6 +134,16 @@ $(function() {
 	});
 
 });
+
+
+
+
+$(function(){
+	if("${errorcode}" > 0 && "${errorcode}" < 5 ){
+		alert("${errormsg}");		
+	}
+});
+
 
 </script>
 </head>
@@ -192,12 +202,12 @@ $(function() {
 
 								
 								
-								<form id="login2-form" action="${pageContext.request.contextPath}/login.do" method="post" role="form" style="display: none;">
+								<form id="login2-form" action="${pageContext.request.contextPath}/teacherlogin.do" method="post" role="form" style="display: none;">
 									<div class="form-group">
-										<input type="text" name="member_id" id="username" tabindex="1" class="form-control" placeholder="Username" value="" required="required">
+										<input type="text" name="teacher_id" id="username" tabindex="1" class="form-control" placeholder="Username" value="" required="required">
 									</div>
 									<div class="form-group">
-										<input type="password" name="member_pw" id="password" tabindex="2" class="form-control" placeholder="Password" required="required">
+										<input type="password" name="teacher_password" id="password" tabindex="2" class="form-control" placeholder="Password" required="required">
 									</div>
 									
 									<div class="form-group text-center">
