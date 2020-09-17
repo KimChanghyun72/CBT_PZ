@@ -138,7 +138,7 @@ $(function() {
 </script>
 </head>
 <body>
-<%=request.getAttribute("errormsg") %>
+<%--=request.getAttribute("errormsg") --%>
 	<div class="container">
     	<div class="row">
 			<div class="col-md-6 col-md-offset-3">
@@ -159,14 +159,14 @@ $(function() {
 							<div class="col-lg-12">
 								<form id="login-form" action="${pageContext.request.contextPath}/login.do" method="post" role="form" style="display: block;">
 									<div class="form-group">
-										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
+										<input type="text" name="member_id" id="username" tabindex="1" class="form-control" placeholder="Username" value="" required="required">
 									</div>
 									<div class="form-group">
-										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+										<input type="password" name="member_pw" id="password" tabindex="2" class="form-control" placeholder="Password" required="required">
 									</div>
 									<div class="form-group text-center">
 										<input type="checkbox" tabindex="3" class="" name="remember" id="remember">
-										<label for="remember"> Remember Me</label>
+										<label for="remember"> Admin</label>
 									</div>
 									
 									<!-- 로그인 버튼 -->
@@ -179,7 +179,7 @@ $(function() {
 									</div>
 								</form>
 									<!-- 가입버튼 -->
-									<form id="userRegister" action="${pageContext.request.contextPath}/main.jsp">
+									<form id="userRegister" action="${pageContext.request.contextPath}/member/memInsert.jsp">
 									<div class="form-group">
 										<div class="row">
 											<div class="col-sm-6 col-sm-offset-3">
@@ -192,17 +192,19 @@ $(function() {
 
 								
 								
-								<form id="login2-form" action="https://phpoll.com/login/process" method="post" role="form" style="display: none;">
+								<form id="login2-form" action="${pageContext.request.contextPath}/login.do" method="post" role="form" style="display: none;">
 									<div class="form-group">
-										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
+										<input type="text" name="member_id" id="username" tabindex="1" class="form-control" placeholder="Username" value="" required="required">
 									</div>
 									<div class="form-group">
-										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+										<input type="password" name="member_pw" id="password" tabindex="2" class="form-control" placeholder="Password" required="required">
 									</div>
+									
 									<div class="form-group text-center">
 										<input type="checkbox" tabindex="3" class="" name="remember" id="remember">
-										<label for="remember"> Remember Me</label>
+										<label for="remember"> Admin</label>
 									</div>
+									
 									<div class="form-group">
 										<div class="row">
 											<div class="col-sm-6 col-sm-offset-3">
@@ -212,7 +214,7 @@ $(function() {
 									</div>
 								</form>
 									
-									<form id="user2Register" action="${pageContext.request.contextPath}/main.jsp" style="display: none;">
+									<form id="user2Register" action="${pageContext.request.contextPath}/member/profInsert.jsp" style="display: none;">
 									<div class="form-group">
 										<div class="row">
 											<div class="col-sm-6 col-sm-offset-3">
@@ -221,7 +223,7 @@ $(function() {
 										</div>
 									</div>
 									</form>
-
+									
 
 								<div class="form-group">
 									<div class="row">
@@ -234,8 +236,15 @@ $(function() {
 									</div>
 								</div>
 
-
-
+									<form id="user2Register" action="${pageContext.request.contextPath}/main.jsp" style="display: block;">
+									<div class="form-group">
+										<div class="row">
+											<div class="col-sm-6 col-sm-offset-3">
+												<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="취소">
+											</div>
+										</div>
+									</div>
+									</form>
 							</div>
 						</div>
 					</div>

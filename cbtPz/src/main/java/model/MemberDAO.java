@@ -159,8 +159,8 @@ public class MemberDAO {
 			conn = ConnectionManager.getConnnect();
 			
 			// 2. sql 구문 실행
-			String sql = "insert into member(member_id, member_pw, member_name, member_age, member_job, study_term, phone_number, is_major, tested_num)"
-					 	+ "values (?,?,?,?,?,?,?,?,?,?,?, sysdate)";
+			String sql = "insert into member(member_id, member_pw, member_name, member_age, member_job, study_term, phone_number, is_major, tested_num, IS_PAY, PAY_ENDDATE)"
+					 	+ "values (?,?,?,?,?,?,?,?,?,null,null)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, memberVo.getMember_id());		
 			pstmt.setString(2, memberVo.getMember_pw());		

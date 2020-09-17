@@ -16,8 +16,8 @@ public class LoginController implements Controller {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1. 파라미터 VO
 		MemberVo memberVo = new MemberVo();
-		memberVo.setId(request.getParameter("username"));
-		memberVo.setPw(request.getParameter("password"));
+		memberVo.setMember_id(request.getParameter("member_id"));
+		memberVo.setMember_pw(request.getParameter("member_pw"));
 
 		// 2. 서비스 처리(DB)
 		MemberVo resultVo = MemberDAO.getInstance().selectOne(memberVo);
@@ -26,17 +26,17 @@ public class LoginController implements Controller {
 		String page = "";
 		if (resultVo == null) { // id가 없음
 			request.setAttribute("errormsg", "해당 ID가 없습니다.");
-			page = "/login.jsp";
+			page = "/member/login.jsp";
 			System.out.println(page);
 			request.getRequestDispatcher(page).forward(request, response);
 		} else { // 있으면 패스워드 일치 확인
-			if (memberVo.getPw().equals(resultVo.getPw())) { // 로그인성공
+			if (memberVo.getMember_pw().equals(resultVo.getMember_pw())) { // 로그인성공
 				request.getSession().setAttribute("login", resultVo);
-				request.getSession().setAttribute("id", resultVo.getId());
+				request.getSession().setAttribute("name", resultVo.getMember_name());
 				response.sendRedirect("main.jsp");
 			} else { // 패스워드 불일치
 				request.setAttribute("errormsg", "패스워드 불일치");
-				page = "/login.jsp";
+				page = "/member/login.jsp";
 				request.getRequestDispatcher(page).forward(request, response);
 			}
 		}
