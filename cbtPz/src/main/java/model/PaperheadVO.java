@@ -8,3 +8,4 @@ public class PaperheadVO {
 	private String paper_type_cd;
 	private String paper_round;
 }
+

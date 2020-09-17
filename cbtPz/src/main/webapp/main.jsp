@@ -30,6 +30,8 @@
     
     
 
+    
+
 </head>
 
 <body>
@@ -109,11 +111,11 @@
 
                             <!-- Register / Login -->
                             <div class="register-login-area">
-                                <c:if test="${not empty sessionScope.id}">
-	                                ${sessionScope.id}님  
+                                <c:if test="${not empty sessionScope.name}">
+	                                ${sessionScope.name}님  
 	                                <a href="${pageContext.request.contextPath}/logout.do" class="btn active">Logout</a>
                                 </c:if>
-	                            <c:if test="${ empty sessionScope.id}">   
+	                            <c:if test="${ empty sessionScope.name}">   
 	                                <a href="${pageContext.request.contextPath}/login.do" class="btn active">Login</a>
                                 </c:if>
                             </div>
