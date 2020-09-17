@@ -39,7 +39,7 @@ import common.ConnectionManager;
 			while(rs.next()) {
 				
 				resultVO = new BoardVO();
-				resultVO.setBoard_id(rs.getString(1));
+				resultVO.setBoard_id(rs.getInt(1));
 				resultVO.setTitle(rs.getString(2));
 				resultVO.setContents(rs.getString(3));
 				resultVO.setMember_id(rs.getString(4));
@@ -67,13 +67,13 @@ import common.ConnectionManager;
 				conn = ConnectionManager.getConnnect();
 				String sql = "SELECT BOARD_ID,TITLE,CONTENTS,MEMBER_ID,BOARD_DATE,VIEWS FROM BOARD WHERE BOARD_ID = ?";
 				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, boardVo.getBoard_id());
+				pstmt.setInt(1, boardVo.getBoard_id());
 				rs = pstmt.executeQuery();
 				
 				if(rs.next()) {
 					
 					resultVO = new BoardVO();
-					resultVO.setBoard_id(rs.getString("BOARD_ID"));
+					resultVO.setBoard_id(rs.getInt("BOARD_ID"));
 					resultVO.setTitle(rs.getString("TITLE"));
 					resultVO.setContents(rs.getString("CONTENTS"));
 					resultVO.setMember_id(rs.getString("MEMBER_ID"));
@@ -92,29 +92,32 @@ import common.ConnectionManager;
 		
 		
 		//###입력###
-		public BoardVO insert(BoardVO boardVo) {
-			
+		public int insert(BoardVO boardVo) {
+			int r = 0;
 			try {
 				conn = ConnectionManager.getConnnect();
 				
-				String sql = "INSERT INTO BOARD (BOARD_ID,TITLE,CONTENTS,MEMBER_ID,BOARD_DATE,VIEWS)"
-							 + " VALUES(?,?,?,?,sysdate,?)";
+				String sql = "INSERT INTO BOARD (BOARD_ID,TITLE,MEMBER_ID,CONTENTS,BOARD_DATE,VIEWS) "
+						+ "VALUES(board_id_seq.NEXTVAL,?,?,?,sysdate,0)";
 				
 				PreparedStatement pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, boardVo.getBoard_id());
-				pstmt.setString(2, boardVo.getTitle());
+				
+				pstmt.setString(1, boardVo.getTitle());
+				pstmt.setString(2, boardVo.getMember_id());
 				pstmt.setString(3, boardVo.getContents());
-				pstmt.setString(4, boardVo.getMember_id());
-				pstmt.setString(5, boardVo.getBoard_date());
-				pstmt.setInt(6, boardVo.getViews());
-				pstmt.executeUpdate();
+				
 			
+				r = pstmt.executeUpdate();
+			
+				if(r==1) {
+					System.out.println(r + "건이 처리됨");
+				}
 			}catch(Exception e) {
 				e.printStackTrace();
 			}finally {
 				ConnectionManager.close(null,pstmt,conn);
 			}
-			return boardVo;
+			return r;
 		}//###입력###
 		
 		//###삭제###
@@ -125,7 +128,7 @@ import common.ConnectionManager;
 				conn = ConnectionManager.getConnnect();
 				String sql = "DELETE MEMBER WHERE BOARD_ID = ?";
 				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, boardVo.getBoard_id());
+				pstmt.setInt(1, boardVo.getBoard_id());
 				pstmt.executeUpdate();
 			
 			
@@ -149,7 +152,7 @@ import common.ConnectionManager;
 				pstmt.setString(3, boardVo.getMember_id());
 				pstmt.setString(4, boardVo.getBoard_date());
 				pstmt.setInt(5, boardVo.getViews());
-				pstmt.setString(6, boardVo.getBoard_id());
+				pstmt.setInt(6, boardVo.getBoard_id());
 				pstmt.executeUpdate();
 			
 			}catch(Exception e) {
