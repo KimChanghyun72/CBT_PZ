@@ -11,6 +11,15 @@
 
 <title>/member/profInsert.jsp</title>
 
+<script>
+$(function(){
+	if("${errorcode}"=="2"){
+		alert("${errormsg}");		
+	}
+})
+</script>
+
+
 </head>
 
 <body>
@@ -45,7 +54,7 @@
 						<label class="col-md-4 control-label" for="confirm_password">Confirm
 							Password</label>
 						<div class="col-md-5">
-							<input id="confirm_password" name="confirm_password"
+							<input id="confirm_password" 
 								type="password" placeholder="Re-type password"
 								class="form-control input-md" required="required">
 
