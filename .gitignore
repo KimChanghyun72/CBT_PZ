@@ -1,4 +1,6 @@
-.setting/*
+Dev/*
+bin/*
+.settings/*
 .classpath
 .project
 /target/*
