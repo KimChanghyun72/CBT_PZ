@@ -42,7 +42,84 @@ public class FrontController extends HttpServlet {
     	
     	
     	
-    	//list.put 추가
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	//김창현
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	//정유정
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	//양수동
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	//철희
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	//한민영
     	list.put("/login.do", new member.LoginController());
     	list.put("/logout.do", new member.LogoutController());
     	list.put("/memInsert.do", new member.MemInsertCtrl());
