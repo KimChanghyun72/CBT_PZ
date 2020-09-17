@@ -22,7 +22,7 @@ public class BoardInsertCtrl implements Controller {
 		String board_date = request.getParameter("board_date");
 		String views = request.getParameter("views");
 		
-		
+		  
 		
 		BoardVO board = new BoardVO();
 		board.setBoard_id(board_id);
