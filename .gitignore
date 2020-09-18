@@ -2,6 +2,7 @@
 .classpath
 .project
 /target/*
+/cbtPz/bin/*
 
 # Compiled class file
 *.class
