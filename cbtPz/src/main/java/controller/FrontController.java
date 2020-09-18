@@ -67,7 +67,8 @@ public class FrontController extends HttpServlet {
     	
     	
     	//정유정
-    	
+    	list.put("/myInfo.do", new member.MemberSearchctrl());
+    	list.put("/MemberUpdate.do", new member.MemberUpdateController());
     	
     	
     	
@@ -103,7 +104,7 @@ public class FrontController extends HttpServlet {
     	
     	
     	
-    	//이철희
+    	//철희
     	list.put("/problemInsert.do", new admin.ProblemInsertCtrl());
     	
     	
