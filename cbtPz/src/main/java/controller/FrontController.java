@@ -104,7 +104,7 @@ public class FrontController extends HttpServlet {
     	
     	
     	//철희
-    	
+    	list.put("/problemInsert.do", new admin.ProblemInsertCtrl());
     	
     	
     	

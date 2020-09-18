@@ -1,4 +1,4 @@
-package common;
+package admin;
 
 import java.io.IOException;
 
@@ -10,7 +10,7 @@ import controller.Controller;
 import problem.ProblemDAO;
 import problem.ProblemVO;
 
-public class ProblemInsertController implements Controller {
+public class ProblemInsertCtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

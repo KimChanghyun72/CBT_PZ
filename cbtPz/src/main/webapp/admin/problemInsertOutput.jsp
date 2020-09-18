@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-hi
+<script>
+	window.alert("등록완료");
+	history.go(-1);
+</script>
 </body>
 </html>

@@ -91,21 +91,22 @@ public class ProblemDAO {
 	public void insert(ProblemVO problemVO) {
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "INSERT INTO Problem (PROBLEM_ID, SUBJECT, HAESEOL, PROBLEM_TEXT, ANS_1, ANS_2, "
-					+ "ANS_3, ANS_4, ANS_CORRECT, PAPERHEAD_ID, PROBLEM_IMAGE) "
-					+ "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO PROBLEM (SUBJECT, HAESEOL, PROBLEM_TEXT, ANS_1, ANS_2,ANS_3, ANS_4, ANS_CORRECT)"
+					+ "VALUES (?,?,?,?,?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, problemVO.getProblem_id());
-			pstmt.setString(2, problemVO.getSubject());
-			pstmt.setString(3, problemVO.getHaeseol());
-			pstmt.setString(4, problemVO.getProblem_text());
-			pstmt.setString(5, problemVO.getAns_1());
-			pstmt.setString(6, problemVO.getAns_2());
-			pstmt.setString(7, problemVO.getAns_3());
-			pstmt.setString(8, problemVO.getAns_4());
-			pstmt.setInt(9, problemVO.getAns_correct());
-			pstmt.setString(10, problemVO.getPaperhead_id());
-			pstmt.setString(11, problemVO.getProblem_image());
+			pstmt.setString(1, problemVO.getSubject());
+			pstmt.setString(2, problemVO.getHaeseol());
+			pstmt.setString(3, problemVO.getProblem_text());
+			pstmt.setString(4, problemVO.getAns_1());
+			pstmt.setString(5, problemVO.getAns_2());
+			pstmt.setString(6, problemVO.getAns_3());
+			pstmt.setString(7, problemVO.getAns_4());
+			pstmt.setInt(8, problemVO.getAns_correct());
+			/*
+			 * pstmt.setString(1, problemVO.getProblem_id()); pstmt.setString(10,
+			 * problemVO.getPaperhead_id()); pstmt.setString(11,
+			 * problemVO.getProblem_image());
+			 */
 		
 			int r = pstmt.executeUpdate();
 			System.out.println(r + "건이 입력됨");

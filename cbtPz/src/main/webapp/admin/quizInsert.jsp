@@ -19,7 +19,7 @@
 		<option value="5" >4과목</option>
 		<option value="6" >5과목</option>
 	</select>
-	<select>
+<!-- 	<select>
 		<option value="1" selected>연도회차</option>
 		<option value="2" >2019 1회차</option>
 		<option value="3" >2019 2회차</option>
@@ -43,7 +43,7 @@
 			<option value="네트워크"></option>
 		</datalist>
 		<p></p>
-	</label>
+	</label> -->
 </form>
 <form action="/cbtPz/common/ProblemInsert">
 	<label>문제</label>
