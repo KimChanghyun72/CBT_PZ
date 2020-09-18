@@ -3,6 +3,7 @@
 .project
 /target/*
 /cbtPz/bin/*
+/cbtPz/Dev/*
 
 # Compiled class file
 *.class
