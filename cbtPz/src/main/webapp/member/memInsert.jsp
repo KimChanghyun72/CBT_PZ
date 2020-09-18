@@ -18,6 +18,18 @@ $(function(){
 		alert("${errormsg}");		
 	}
 })
+
+
+$(document).ready(function(){
+	$('#confirm_password').focusout(function(){
+		if($('#member_pw').val() != $('#confirm_password').val()){
+			$('#pw2_check').removeClass('hidden');
+		} else $('#pw2_check').addClass('hidden');
+	});
+});
+
+
+
 </script>
 
 
@@ -58,7 +70,7 @@ $(function(){
 							<input id="confirm_password" name="confirm_password"
 								type="password" placeholder="Re-type password"
 								class="form-control input-md" required="required">
-
+							<span id="pw2_check" class="hidden"> 비밀번호가 일치하지않습니다.</span>
 						</div>
 					</div>
 
@@ -118,6 +130,13 @@ $(function(){
 										<option value="03">3월</option>
 										<option value="04">4월</option>
 										<option value="05">5월</option>
+										<option value="06">6월</option>
+										<option value="07">7월</option>
+										<option value="08">8월</option>
+										<option value="09">9월</option>
+										<option value="10">10월</option>
+										<option value="11">11월</option>
+										<option value="12">12월</option>
 									</select>
 								</div>
 								<div class="col-md-4">
@@ -246,6 +265,12 @@ $(function(){
 						</div>
 					</div>   -->
 
+
+				</fieldset>
+			</form>
+				
+			<form>
+				<fieldset>
 					<!-- Button -->
 					<div class="form-group">
 						<label class="col-md-4 control-label" for="submit"></label>
