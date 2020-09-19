@@ -31,7 +31,7 @@ public class PaperheadDAO {
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = "SELECT PAPERHEAD_ID, PAPER_TYPE_CD, PAPER_ROUND "
-						+ " FROM CBT.PAPERHEAD "
+						+ " FROM PAPERHEAD "
 						+ " WHERE PAPER_TYPE_CD = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, paperheadVO.getPaper_type_cd());
@@ -58,7 +58,7 @@ public class PaperheadDAO {
 			conn = ConnectionManager.getConnnect();
 			String sql = "select h.PAPER_TYPE_CD, h.PAPER_ROUND, p.PROBLEM_ID, p.SUBJECT, HAESEOL, p.PROBLEM_TEXT, " 
 						+" p.ANS_1, p.ANS_2, p.ANS_3, p.ANS_4, p.ANS_CORRECT, p.PROBLEM_IMAGE " 
-						+" from cbt.PROBLEM p, cbt.PAPERHEAD h" 
+						+" from PROBLEM p, PAPERHEAD h" 
 						+" where p.PAPERHEAD_ID = h.PAPERHEAD_ID " 						
 						+" and h.PAPERHEAD_ID = ? ";
 			pstmt = conn.prepareStatement(sql);
@@ -88,36 +88,5 @@ public class PaperheadDAO {
 		}
 		return list;
 	}
-	
-	/*
-	public List<Map<String,Object>> selectDeptSal(){
-		List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
-		try {
-			conn = ConnectionManager.getConnnect();	
-			String sql = "select a.department_id, department_name,"
-					+ " sum(salary) sal, count(*) cnt, avg(salary) avgsal " + 
-					" from departments a, employees b" + 
-					" where a.department_id = b.department_id" + 
-					" group by a.department_id, department_name";
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				Map<String,Object> map = new HashMap<String,Object>();
-				map.put("department_id", rs.getString("department_id"));
-				map.put("department_name", rs.getString("department_name"));
-				map.put("salary", rs.getString("sal"));
-				map.put("cnt", rs.getString("cnt"));
-				map.put("avgsal", rs.getString("avgsal"));
-				list.add(map);
-			}
-		}catch(Exception e) {
-			e.printStackTrace();
-		} finally {
-			common.ConnectionManager.close(conn);
-		}	
-		return list;
-	}
-	*/
-
 
 }
