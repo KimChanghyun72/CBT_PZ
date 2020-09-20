@@ -5,8 +5,6 @@ import java.util.HashMap;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebInitParam;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -88,7 +86,7 @@ public class FrontController extends HttpServlet {
     	//양수동
     	list.put("/haederSearch.do", new study.HeaderSelectCtrl());
     	list.put("/problemSearch.do", new study.ProblemSelectCtrl());
-    	
+    	list.put("/subjectSearch.do", new study.SubjectSelectCtrl());
     	
     	
     	
