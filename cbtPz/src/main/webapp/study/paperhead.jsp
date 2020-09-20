@@ -8,7 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<c:forEach items="${headlist}" var="headlist">			
+
+	<c:forEach items="${headlist}" var="headlist">			
 	<input type="hidden" ${headlist.paperhead_id} />
 	${headlist.paper_type_cd}        
 	${headlist.paper_round}<br>
@@ -16,9 +17,6 @@
 	<button type="submit" name="paperhead_id" value="${headlist.paperhead_id}">풀기</button>
 	</form>
 	<br>
-</c:forEach>
-
-
-
+	</c:forEach>
 </body>
 </html>

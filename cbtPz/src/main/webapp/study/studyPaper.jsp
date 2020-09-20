@@ -116,7 +116,7 @@ body {
 
 <div class="header">
   <h1>Header</h1>
-	<h2>${headproblem[0].paper_type_cd} 문제	</h2>
+	<h2>${headproblem[0].paper_type_cd} ${sub[0].subject}	문제	</h2>
   	<h2>${headproblem[0].paper_round}	</h2>
 </div>
 
@@ -129,6 +129,15 @@ body {
 			보기:${headproblem.ans_1} 보기2${headproblem.ans_2} 보기3${headproblem.ans_3} 보기4${headproblem.ans_4}
 			정답:${headproblem.ans_correct}<br>        
 			해설:${headproblem.haeseol}<br>
+			<br><br>
+		</c:forEach>
+		<c:forEach items="${sub}" var="sub">	
+					
+			문제:${sub.problem_text} <br>	
+			보기:${sub.ans_1} 보기2${sub.ans_2} 보기3${sub.ans_3} 보기4${sub.ans_4}
+			정답:${sub.ans_correct}<br>        
+			해설:${sub.haeseol}<br>
+			<br><br>
 		</c:forEach>
     </div>
   </div>

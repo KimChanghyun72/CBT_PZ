@@ -9,16 +9,12 @@
 </head>
 <body>
 <form action = "${pageContext.request.contextPath}/haederSearch.do">
-<table border="1">
-	<tr>
-		<td width="150px" height="150px"><button name="paper_type_cd" value="모의">모의고사</button></td>
-		<td width="150px" height="150px"><button name="paper_type_cd" value="기출">기출문제</button></td>
-	</tr>
-	<tr>
-		<td width="150px" height="150px"><button name="paper_type_cd" value="태그">태그별</button></td>
-		<td width="150px" height="150px"><button name="paper_type_cd" value="과목">과목별</button></td>
-	</tr>
-</table>
+		<div><button name="paper_type_cd" value="모의">모의고사</button></div>
+		<div><button name="paper_type_cd" value="기출">기출문제</button></div>
 </form>
+		<div><button name="paper_type_cd" value="태그">태그별</button></div>
+<form action ="${pageContext.request.contextPath}/subjectSearch.do"> 		
+		<div><button name="subject" value="subject">과목별</button></div>
+</form>		
 </body>
 </html>
