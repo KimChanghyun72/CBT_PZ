@@ -141,6 +141,7 @@ public class MemberDAO {
 			pstmt.setString(8, memberVo.getTested_num());
 			pstmt.setString(9, memberVo.getIs_pay());
 			pstmt.setString(10, memberVo.getPay_enddate());
+			pstmt.setString(11, memberVo.getMember_id());
 			r = pstmt.executeUpdate(); // 이때는 executeUpdate()에 sql안들어감.
 			System.out.println(r + "건이 수정됨");
 		} catch (Exception e) {
