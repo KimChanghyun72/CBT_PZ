@@ -26,8 +26,8 @@ public class TeacherDAO {
 		try {
 			conn = ConnectionManager.getConnnect();
 			
-			String sql = "insert into TEACHER_MEMBER(TEACHER_ID, TEACHER_PASSWORD, TEACHER_RECORD, TEACHER_PICTURE, TEACHER_NAME, TEACHER_CERTIFICATE) "
-				 	+ " values(?,?,?,?,?,?)";
+			String sql = "insert into TEACHER_MEMBER(TEACHER_ID, TEACHER_PASSWORD, TEACHER_RECORD, TEACHER_PICTURE, TEACHER_NAME, TEACHER_CERTIFICATE, teacher_email) "
+				 	+ " values(?,?,?,?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, teacherVO.getTeacher_id());		
 			pstmt.setString(2, teacherVO.getTeacher_password());		
@@ -35,6 +35,7 @@ public class TeacherDAO {
 			pstmt.setString(4, teacherVO.getTeacher_picture());		
 			pstmt.setString(5, teacherVO.getTeacher_name());		
 			pstmt.setString(6, teacherVO.getTeacher_certificate());		
+			pstmt.setString(7, teacherVO.getTeacher_email());		
 
 				
 			r = pstmt.executeUpdate();
@@ -61,7 +62,7 @@ public class TeacherDAO {
 		
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "SELECT TEACHER_ID, TEACHER_PASSWORD, TEACHER_RECORD, TEACHER_PICTURE, TEACHER_NAME, TEACHER_CERTIFICATE"
+			String sql = "SELECT TEACHER_ID, TEACHER_PASSWORD, TEACHER_RECORD, TEACHER_PICTURE, TEACHER_NAME, TEACHER_CERTIFICATE, teacher_email"
 						+ " FROM TEACHER_MEMBER "
 						+ "WHERE TEACHER_ID=?";
 			pstmt = conn.prepareStatement(sql);
@@ -75,6 +76,7 @@ public class TeacherDAO {
 				resultVo.setTeacher_picture(rs.getString("teacher_picture"));
 				resultVo.setTeacher_name(rs.getString("teacher_name"));
 				resultVo.setTeacher_certificate(rs.getString("teacher_certificate"));
+				resultVo.setTeacher_email(rs.getString("teacher_email"));
 			} else {
 				System.out.println("no data");
 			}

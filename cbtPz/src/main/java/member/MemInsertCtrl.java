@@ -26,6 +26,7 @@ public class MemInsertCtrl implements Controller {
 		String phone_number = request.getParameter("phone_number");
 		String is_major = request.getParameter("is_major");
 		String tested_num = request.getParameter("tested_num");
+		String email = request.getParameter("email");
 		
 		String member_age = (member_age1 + member_age2 + member_age3);
 		
@@ -40,6 +41,7 @@ public class MemInsertCtrl implements Controller {
 		memberVo.setPhone_number(phone_number);
 		memberVo.setIs_major(is_major);
 		memberVo.setTested_num(tested_num);
+		memberVo.setEmail(email);
 		
 		int r = MemberDAO.getInstance().insert(memberVo);
 		
@@ -53,15 +55,15 @@ public class MemInsertCtrl implements Controller {
 		} else {
 			request.setAttribute("errormsg", "가입에 실패했습니다.");
 			request.setAttribute("errorcode", "2");
-			page = "/member/profInsert.jsp";
+			page = "/member/memInsert.jsp";
 			request.getRequestDispatcher(page).forward(request, response);
 			
 		};
 		
 		
-		request.setAttribute("cnt", r);
+		//request.setAttribute("cnt", r);
 		
-		request.getRequestDispatcher("/member/login.jsp").forward(request, response);
+		//request.getRequestDispatcher("/member/login.jsp").forward(request, response);
 		
 	}
 

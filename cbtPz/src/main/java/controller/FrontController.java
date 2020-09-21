@@ -120,12 +120,15 @@ public class FrontController extends HttpServlet {
     	
     	
     	
-    	//한민영
+    	//민영
     	list.put("/login.do", new member.LoginController());
     	list.put("/logout.do", new member.LogoutController());
     	list.put("/memInsert.do", new member.MemInsertCtrl());
     	list.put("/profInsert.do", new teacher.ProfInsertCtrl());
-    	list.put("/teacherlogin.do", new teacher.PofLoginCtrl());
+    	list.put("/teacherlogin.do", new teacher.ProfLoginCtrl());
+    	list.put("/memIdCheck.do", new member.MemIdCheckCtrl()); //login.jsp
+    	list.put("/profIdCheck.do", new teacher.ProfIdCheckCtrl()); //login.jsp
+    	list.put("/memIdFind.do", new member.MemIdFindCtrl()); //findId.jsp
     	
 	}
 
