@@ -62,17 +62,16 @@ $(document).ready(function(){
 	$('#frmsubmit').on("click", function(){
 		var cnt = 0;
 		$('#frm').find("input").each(function(){
-			
-			if($(this).val() == null){
+			if($(this).val() == ""){
 				cnt++;
 			}
+		console.log(cnt);
 		});
-		
-		if(cnt == 5) {
-			$('#frm').submit();
-		} else {
+ 		if(cnt >=1 && cnt <= 8) {
 			alert("모든 값을 입력하세요");
-		}
+		} else {
+			$('#frm').submit();
+		} 
 		
 	});
 	
