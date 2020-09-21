@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>login.jsp</title>
+<title>findId.jsp</title>
 <style>
 body {
     padding-top: 90px;
@@ -106,11 +106,19 @@ body {
 	background-color: #1CA347;
 	border-color: #1CA347;
 }
+	
+.form-group-cate {
+	text-align:center;
+}
+	
+
 </style>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 <script>
+
 $(function() {
 	
     $('#login-form-link').click(function(e) {
@@ -134,22 +142,59 @@ $(function() {
 		e.preventDefault();
 	});
 
-});
+
+	$('#find-submit').on("click", function(){
+		var idf = "";
+		if($('input:checkbox[id="member"]').is(":checked") == true){
+			idf = 0;
+			
+		} else if ($('input:checkbox[id="teacher"]').is(":checked") == true) {
+			idf = 1;
+		} else {
+			alert("카테고리를 선택해주세요");
+			return;
+		}
+
+		var username = $('#username').val();
+		var email = $('#email').val();
+		console.log(email);
+		$.ajax({
+			type:"POST",
+	        url:"${pageContext.request.contextPath}/memIdFind.do",
+	        data : {idfind : idf,name : username, em : email},
+	        dataType : "json",
+	        success: function(data){
+	        	if(data != null){
+		        	console.log(data);
+		    		$('#myModal').modal();
+		    		$('#findmyidmodal').text("회원가입시 사용한 아이디는 " + data.member_id + " 입니다.");
+	        	} else {
+		    		$('#myModal').modal();
+		    		$('#findmyidmodal').text("해당하는 아이디가 없습니다.");
+	        	}
+	        }
+			
+		});
+	});
+	
+	
+
+}); //func End
+
+//pw, 교사꺼 만들어주고
+//회원가입에서 일반유저가 교사로 가입못하게 이메일로 다른테이블에 중복 유무 확인해주기
 
 
-
-
-$(function(){
-	if("${errorcode}" > 0 && "${errorcode}" < 5 ){
-		alert("${errormsg}");		
-	}
-});
+	
+	
 
 
 </script>
+
+
 </head>
 <body>
-<%--=request.getAttribute("errormsg") --%>
+
 	<div class="container">
     	<div class="row">
 			<div class="col-md-6 col-md-offset-3">
@@ -157,10 +202,10 @@ $(function(){
 					<div class="panel-heading">
 						<div class="row">
 							<div class="col-xs-6">
-								<a href="#" class="active" id="login-form-link">일반회원</a>
+								<a href="#" class="active" id="login-form-link">id찾기</a>
 							</div>
 							<div class="col-xs-6">
-								<a href="#" id="login2-form-link">강사회원</a>
+								<a href="#" id="login2-form-link">pw찾기</a>
 							</div>
 						</div>
 						<hr>
@@ -168,28 +213,50 @@ $(function(){
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-lg-12">
-								<form id="login-form" action="${pageContext.request.contextPath}/login.do" method="post" role="form" style="display: block;">
+								<%-- <form id="IdFind-frm" action="${pageContext.request.contextPath}/login.do" method="post" role="form" style="display: block;"> --%>
+									
+									<div class="form-group-cate">
+										<div class="col-xs-3"></div>
+										<div class="col-xs-3">
+											<input type="checkbox" tabindex="3" class="category" name="idfind" id="member" value="0">
+											<label for="remember">일반회원</label>
+										</div>
+										
+										<div class="col-xs-3">
+											<input type="checkbox" tabindex="3" class="category" name="idfind" id="teacher" value="1">
+											<label for="remember">강사회원</label>
+										</div>
+										<div class="col-xs-3"></div>
+									</div>
+
+									<script>
+										$('.category').on('change', function() {
+											$('.category').not(this).prop('checked', false);
+										});
+									</script>
+
+
 									<div class="form-group">
-										<input type="text" name="member_id" id="username" tabindex="1" class="form-control" placeholder="Username" value="" required="required">
+										<input type="text" name="member_name" id="username" tabindex="1" class="form-control" placeholder="Username" value="" required="required">
 									</div>
 									<div class="form-group">
-										<input type="password" name="member_pw" id="password" tabindex="2" class="form-control" placeholder="Password" required="required">
+										<input type="text" name="email" id="email" tabindex="2" class="form-control" placeholder="Email" required="required">
 									</div>
-									<div class="form-group text-center">
+<!-- 									<div class="form-group text-center">
 										<input type="checkbox" tabindex="3" class="" name="admin" id="remember" value="admin">
 										<label for="remember"> Admin</label>
-									</div>
+									</div> -->
 									
-									<!-- 로그인 버튼 -->
+									<!-- 찾기 버튼 -->
 									<div class="form-group">
 										<div class="row">
-											<div class="col-sm-6 col-sm-offset-3">
-												<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
+											<div class="col-sm-6 col-sm-offset-3" >
+												<button type="button" id="find-submit" class="form-control btn btn-login">찾기</button>
 											</div>
 										</div>
 									</div>
-								</form>
-									<!-- 가입버튼 -->
+								<!-- </form> -->
+<%-- 									<!-- 가입버튼 -->
 									<form id="userRegister" action="${pageContext.request.contextPath}/member/memInsert.jsp">
 									<div class="form-group">
 										<div class="row">
@@ -198,34 +265,48 @@ $(function(){
 											</div>
 										</div>
 									</div>
-									</form>
+									</form> --%>
 									
 
 								
 								
 								<form id="login2-form" action="${pageContext.request.contextPath}/teacherlogin.do" method="post" role="form" style="display: none;">
-									<div class="form-group">
-										<input type="text" name="teacher_id" id="teacher_id" tabindex="1" class="form-control" placeholder="Username" value="" required="required">
-									</div>
-									<div class="form-group">
-										<input type="password" name="teacher_password" id="teacher_password" tabindex="2" class="form-control" placeholder="Password" required="required">
+									<div class="form-group-cate">
+										<div class="col-xs-3"></div>
+										<div class="col-xs-3">
+											<input type="checkbox" tabindex="3" class="category" name="remember" id="member" value="0">
+											<label for="remember">일반회원</label>
+										</div>
+										
+										<div class="col-xs-3">
+											<input type="checkbox" tabindex="3" class="category" name="remember" id="teacher" value="1">
+											<label for="remember">강사회원</label>
+										</div>
+										<div class="col-xs-3"></div>
 									</div>
 									
-									<div class="form-group text-center">
+									<div class="form-group">
+										<input type="text" name="teacher_id" id="teacher_id" tabindex="1" class="form-control" placeholder="UserId" required="required">
+									</div>
+									<div class="form-group">
+										<input type="password" name="teacher_email" id="teacher_email" tabindex="2" class="form-control" placeholder="Email" required="required">
+									</div>
+									
+<!-- 									<div class="form-group text-center">
 										<input type="checkbox" tabindex="3" class="" name="remember" id="remembert">
 										<label for="remember"> Admin</label>
-									</div>
+									</div> -->
 									
 									<div class="form-group">
 										<div class="row">
 											<div class="col-sm-6 col-sm-offset-3">
-												<input type="submit" name="login-submit" id="tin-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
+												<input type="submit" name="login-submit" id="tin-submit" tabindex="4" class="form-control btn btn-login" value="찾기">
 											</div>
 										</div>
 									</div>
 								</form>
 									
-									<form id="user2Register" action="${pageContext.request.contextPath}/member/profInsert.jsp" style="display: none;">
+						<%-- 			<form id="user2Register" action="${pageContext.request.contextPath}/member/profInsert.jsp" style="display: none;">
 									<div class="form-group">
 										<div class="row">
 											<div class="col-sm-6 col-sm-offset-3">
@@ -233,21 +314,21 @@ $(function(){
 											</div>
 										</div>
 									</div>
-									</form>
+									</form> --%>
 									
 
-								<div class="form-group">
+					<!-- 			<div class="form-group">
 									<div class="row">
 										<div class="col-lg-12">
 											<div class="text-center">
-												<a href="${pageContext.request.contextPath}/member/findId.jsp" tabindex="5"
-													class="forgot-password">Forgot Id / Password?</a>
+												<a href="https://phpoll.com/recover" tabindex="5"
+													class="forgot-password">Forgot Password?</a>
 											</div>
 										</div>
 									</div>
-								</div>
+								</div> -->
 
-									<form id="user2Register2" action="${pageContext.request.contextPath}/main.jsp" style="display: block;">
+ 									<form id="user2Register2" action="${pageContext.request.contextPath}/member/login.jsp" style="display: block;">
 									<div class="form-group">
 										<div class="row">
 											<div class="col-sm-6 col-sm-offset-3">
@@ -263,5 +344,37 @@ $(function(){
 			</div>
 		</div>
 	</div>
+	
+	
+	
+	
+	  <!-- The Modal -->
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Modal Heading</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          	<div id="dialog-message" title="ID검색" >
+ 				<span id="findmyidmodal"></span>
+			</div>
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+	
+	
 </body>
 </html>

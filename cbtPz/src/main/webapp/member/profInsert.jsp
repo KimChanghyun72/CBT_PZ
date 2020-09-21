@@ -18,6 +18,83 @@ $(function(){
 		alert("${errormsg}");		
 	}
 })
+
+
+$(document).ready(function(){
+	$('#confirm_password').focusout(function(){
+		if($('#teacher_password').val() != $('#confirm_password').val()){
+			$('#pw2_check').removeClass('hidden');
+			$('#pw2_check').css('color', 'red');
+			$('#confirm_password').val("");
+		} else $('#pw2_check').addClass('hidden');
+	});
+	
+	
+	$('#teacher_id').on("focusout", function(){
+		var memid = $('#teacher_id').val();
+		$.ajax({
+	        type:"POST",
+	        url:"${pageContext.request.contextPath}/profIdCheck.do",
+	        data : {id : memid},
+	        dataType : "json",
+	        success: function(data){
+	            if(data != null){
+	    			$('#id_check').css('color', 'red');
+	    			$('#id_check').text('아이디 사용 불가');
+	    		} 
+	            else if(data == null && $('#teacher_id').val()==""){
+	            	$('#id_check').css('color', 'red');
+	        		$('#id_check').text('아이디를 입력하세요');
+	            } else {
+	            	$('#id_check').css('color', 'gray');
+	    			$('#id_check').text('아이디 사용 가능');
+	    		}
+	        }
+	    });
+	
+	});
+	
+	
+	$('#frmsubmit').on("click", function(){
+		var cnt = 0;
+		$('#frm').find("input").each(function(){
+			
+			if($(this).val() == null){
+				cnt++;
+			}
+		});
+		
+		if(cnt == 2) {
+			$('#frm').submit();
+		} else {
+			alert("모든 값을 입력하세요");
+		}
+		
+	});
+	
+	$('#teacher_password').on("focusout", function(){
+		var leng = $('#teacher_password').val();
+		if (leng.length > 16){
+			alert("비밀번호 최대 16자리입니다");
+			$(this).val("");
+		}
+	});
+	
+	
+	$('#email').on("focusout", function(){
+		var regex=/^[-A-Za-z0-9_]+[-A-Za-z0-9_.]*[@]{1}[-A-Za-z0-9_]+[-A-Za-z0-9_.]*[.]{1}[A-Za-z]{1,5}$/;
+		var v = $(this).val();
+		if( !regex.test(v) ) {
+			alert("정확한 email을 입력하세요");
+			$(this).val("");
+		};
+	});
+	
+	
+});
+
+
+
 </script>
 
 
@@ -35,8 +112,9 @@ $(function(){
 					<div class="form-group">
 						<label class="col-md-4 control-label" for="Name">ID</label>
 						<div class="col-md-5">
-							<input id="Name" name="teacher_id" type="text" placeholder="username"
+							<input id="teacher_id" name="teacher_id" type="text" placeholder="username"
 								class="form-control input-md" required="required">
+							<span id="id_check" class="help-block"></span>
 						</div>
 					</div>
 
@@ -44,7 +122,7 @@ $(function(){
 					<div class="form-group">
 						<label class="col-md-4 control-label" for="passwordinput">Password</label>
 						<div class="col-md-5">
-							<input id="passwordinput" name="teacher_password" type="password"
+							<input id="teacher_password" name="teacher_password" type="password"
 								placeholder="" class="form-control input-md" required="required">
 							<span class="help-block">max 16 characters</span>
 						</div>
@@ -58,6 +136,7 @@ $(function(){
 							<input id="confirm_password" 
 								type="password" placeholder="Re-type password"
 								class="form-control input-md" required="required">
+							<span id="pw2_check" class="hidden"> 비밀번호가 일치하지 않습니다.</span>
 
 						</div>
 					</div>
@@ -68,6 +147,17 @@ $(function(){
 						<div class="col-md-5">
 							<input id="Name" name="teacher_name" type="text" placeholder="username"
 								class="form-control input-md" required="required">
+						</div>
+					</div>
+
+
+					<!-- Email Text input-->
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="emial">Email</label>
+						<div class="col-md-5">
+							<input id="email" name="teacher_email" type="text"
+								placeholder="Email" class="form-control input-md"
+								required="required">
 						</div>
 					</div>
 
@@ -93,24 +183,25 @@ $(function(){
 					
 					<!-- Textarea -->
 					<div class="form-group">
-						<label class="col-md-4 control-label" for="address">보유자격증</label>
+						<label class="col-md-4 control-label" for="teacher_certificate">보유자격증</label>
 						<div class="col-md-4">
-							<textarea class="form-control" id="address" name="teacher_certificate">default text</textarea>
+							<textarea class="form-control" id="teacher_certificate" name="teacher_certificate">default text</textarea>
 						</div>
 					</div>
 					
-
+				</fieldset>
+			</form>
+				<fieldset>
 					<!-- Button -->
 					<div class="form-group">
 						<label class="col-md-4 control-label" for="submit"></label>
 						<div class="col-md-4">
-							<button id="submit" name="submit" class="btn btn-success">Submit</button>
+							<button type="button" id="frmsubmit" name="submit" class="btn btn-success">Submit</button>
 							<a href="${pageContext.request.contextPath}/member/login.jsp"><input value="취소" class="btn"></a>
 						</div>
 					</div>
-
 				</fieldset>
-			</form>
+
 		</div>
 	</div>
 </body>

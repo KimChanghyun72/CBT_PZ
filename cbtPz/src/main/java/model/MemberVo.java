@@ -15,5 +15,6 @@ public class MemberVo {
 	private String tested_num;
 	private String is_pay;
 	private String pay_enddate;
+	private String email;
 
 }
