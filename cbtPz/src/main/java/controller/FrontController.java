@@ -67,6 +67,7 @@ public class FrontController extends HttpServlet {
     	//정유정
     	list.put("/myInfo.do", new member.MemberSearchctrl());
     	list.put("/memberUpdate.do", new member.MemberUpdateController());
+    	list.put("/memberDelete.do", new member.MemberDelController());
     	
     	
     	

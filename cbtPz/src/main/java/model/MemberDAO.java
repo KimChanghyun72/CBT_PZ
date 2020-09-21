@@ -131,7 +131,7 @@ public class MemberDAO {
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = "UPDATE MEMBER SET MEMBER_PW = ?, MEMBER_NAME = ?, MEMBER_AGE = ?, MEMBER_JOB = ?, "
-					+ " STUDY_TERM = ?, PHONE_NUMBER = ?, IS_MAJOR = ?, TESTED_NUM = ?, IS_PAY = ?, PAY_ENDDATE = ? WHERE MEMBER_ID=?";
+					+ " STUDY_TERM = ?, PHONE_NUMBER = ?, IS_MAJOR = ?, TESTED_NUM = ?, IS_PAY = ?, PAY_ENDDATE = ?, email = ? WHERE MEMBER_ID=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, memberVo.getMember_pw()); //? 첫번째 자리 값
 			pstmt.setString(2, memberVo.getMember_name());
@@ -143,7 +143,8 @@ public class MemberDAO {
 			pstmt.setString(8, memberVo.getTested_num());
 			pstmt.setString(9, memberVo.getIs_pay());
 			pstmt.setString(10, memberVo.getPay_enddate());
-			pstmt.setString(11, memberVo.getMember_id());
+			pstmt.setString(11, memberVo.getEmail()); //
+			pstmt.setString(12, memberVo.getMember_id());
 			r = pstmt.executeUpdate(); // 이때는 executeUpdate()에 sql안들어감.
 			System.out.println(r + "건이 수정됨");
 		} catch (Exception e) {

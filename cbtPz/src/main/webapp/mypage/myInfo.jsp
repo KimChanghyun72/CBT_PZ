@@ -75,9 +75,17 @@
 					id="tested_num" name="tested_num" value="${member.tested_num }">
 			</div>
 			<div>
+				<label for="email">이메일</label> <input type="text"
+					id="email" name="email" value="${member.email }">
+			</div>
+			<div>
 				<button type="reset">초기화</button>
 				<button>등록</button>
 			</div>
+		</form>
+		<form action="memberDelete.do" method="post">
+			<input type="hidden" name="member_id" value="${member.member_id }" />
+			<button>회원 탈퇴</button>
 		</form>
 	</div>
 </body>
