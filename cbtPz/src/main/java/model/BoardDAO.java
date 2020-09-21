@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import common.ConnectionManager;
 
+
 	public class BoardDAO {
 		
 		Connection conn;
@@ -32,19 +33,37 @@ import common.ConnectionManager;
 			try {
 				
 				conn = ConnectionManager.getConnnect();
-				String sql = "SELECT BOARD_ID,TITLE,CONTENTS,MEMBER_ID,BOARD_DATE,VIEWS FROM BOARD";
+				String where =" where 1 = 1";
+				if(boardVo.getBoard_title() != null) {
+					where += " and title like '%' || ? || '%'";
+				}
+				//String sql = "SELECT BOARD_ID,TITLE,CONTENTS,MEMBER_ID,BOARD_DATE,VIEWS FROM BOARD";
 			
+				String sql = "select a.* from(select rownum rn,b.* from( "
+						+ " SELECT BOARD_ID,BOARD_TITLE,BOARD_CONTENTS,MEMBER_ID,BOARD_DATE,BOARD_VIEWS,BOARD_FILE"
+						+ " FROM BOARD"
+						+ where
+						+ " ORDER BY BOARD_ID DESC"
+						+ " )b ) a where rn between ? and ? ";
 			pstmt = conn.prepareStatement(sql);
+			
+			int pos = 1;
+			if(boardVo.getBoard_title() != null) {
+				pstmt.setString(pos++, boardVo.getBoard_title());
+			}
+			pstmt.setInt(pos++, boardVo.getFirst());
+			pstmt.setInt(pos++, boardVo.getLast());
+		
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				
 				resultVO = new BoardVO();
-				resultVO.setBoard_id(rs.getInt(1));
-				resultVO.setTitle(rs.getString(2));
-				resultVO.setContents(rs.getString(3));
-				resultVO.setMember_id(rs.getString(4));
-				resultVO.setBoard_date(rs.getString(5));
-				resultVO.setViews(rs.getInt(6));
+				resultVO.setBoard_id(rs.getInt(2));
+				resultVO.setBoard_title(rs.getString(3));
+				resultVO.setBoard_contents(rs.getString(4));
+				resultVO.setMember_id(rs.getString(5));
+				resultVO.setBoard_date(rs.getString(6));
+				resultVO.setBoard_views(rs.getInt(7));
 				list.add(resultVO);
 				
 			}	
@@ -65,7 +84,7 @@ import common.ConnectionManager;
 			
 			try {
 				conn = ConnectionManager.getConnnect();
-				String sql = "SELECT BOARD_ID,TITLE,CONTENTS,MEMBER_ID,BOARD_DATE,VIEWS FROM BOARD WHERE BOARD_ID = ?";
+				String sql = "SELECT BOARD_ID,BOARD_TITLE,BOARD_CONTENTS,MEMBER_ID,BOARD_DATE,BOARD_VIEWS,BOARD_FILE FROM BOARD WHERE BOARD_ID = ?";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, boardVo.getBoard_id());
 				rs = pstmt.executeQuery();
@@ -74,12 +93,12 @@ import common.ConnectionManager;
 					
 					resultVO = new BoardVO();
 					resultVO.setBoard_id(rs.getInt("BOARD_ID"));
-					resultVO.setTitle(rs.getString("TITLE"));
-					resultVO.setContents(rs.getString("CONTENTS"));
+					resultVO.setBoard_title(rs.getString("BOARD_TITLE"));
+					resultVO.setBoard_contents(rs.getString("BOARD_CONTENTS"));
 					resultVO.setMember_id(rs.getString("MEMBER_ID"));
 					resultVO.setBoard_date(rs.getString("BOARD_DATE"));
-					resultVO.setViews(rs.getInt("VIEWS"));
-					
+					resultVO.setBoard_views(rs.getInt("BOARD_VIEWS"));
+					resultVO.setBoard_file(rs.getString("BOARD_FILE"));
 			
 				}			
 			}catch(Exception e){
@@ -97,15 +116,15 @@ import common.ConnectionManager;
 			try {
 				conn = ConnectionManager.getConnnect();
 				
-				String sql = "INSERT INTO BOARD (BOARD_ID,TITLE,MEMBER_ID,CONTENTS,BOARD_DATE,VIEWS) "
-						+ "VALUES(board_id_seq.NEXTVAL,?,?,?,sysdate,0)";
+				String sql = "INSERT INTO BOARD (BOARD_ID,BOARD_TITLE,MEMBER_ID,BOARD_CONTENTS,BOARD_DATE,BOARD_VIEWS,BOARD_FILE) "
+						+ "VALUES(board_id_seq.NEXTVAL,?,?,?,sysdate,0,?)";
 				
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 				
-				pstmt.setString(1, boardVo.getTitle());
+				pstmt.setString(1, boardVo.getBoard_title());
 				pstmt.setString(2, boardVo.getMember_id());
-				pstmt.setString(3, boardVo.getContents());
-				
+				pstmt.setString(3, boardVo.getBoard_contents());
+				pstmt.setString(4, boardVo.getBoard_file());
 			
 				r = pstmt.executeUpdate();
 			
@@ -126,7 +145,7 @@ import common.ConnectionManager;
 			try {
 			
 				conn = ConnectionManager.getConnnect();
-				String sql = "DELETE MEMBER WHERE BOARD_ID = ?";
+				String sql = "DELETE Board WHERE BOARD_ID = ?";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, boardVo.getBoard_id());
 				pstmt.executeUpdate();
@@ -145,14 +164,14 @@ import common.ConnectionManager;
 			
 			try {
 				conn = ConnectionManager.getConnnect();
-				String sql = "UPDATE BOARD SET TITLE = ?,CONTENTS = ?,MEMBER_ID = ?,BOARD_DATE = ?,VIEWS = ? WHERE BOARD_ID=?";
+				String sql = "UPDATE BOARD SET BOARD_TITLE = ?,BOARD_CONTENTS = ?,MEMBER_ID = ?,BOARD_DATE = sysdate,BOARD_FILE = ? WHERE BOARD_ID = ?";
 				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, boardVo.getTitle());
-				pstmt.setString(2, boardVo.getContents());
+				pstmt.setString(1, boardVo.getBoard_title());
+				pstmt.setString(2, boardVo.getBoard_contents());
 				pstmt.setString(3, boardVo.getMember_id());
-				pstmt.setString(4, boardVo.getBoard_date());
-				pstmt.setInt(5, boardVo.getViews());
-				pstmt.setInt(6, boardVo.getBoard_id());
+				
+				pstmt.setString(4, boardVo.getBoard_file());
+				pstmt.setInt(5, boardVo.getBoard_id());		
 				pstmt.executeUpdate();
 			
 			}catch(Exception e) {
@@ -161,6 +180,35 @@ import common.ConnectionManager;
 				ConnectionManager.close(null, pstmt, conn);
 			}
 		}//###갱신###
+		
+		
+		//###페이징 카운터###
+		public int count(BoardVO boardVo) {
+			int cnt = 0;
+			try {
+				conn = ConnectionManager.getConnnect();
+				String where =" where 1 = 1";
+				if(boardVo.getBoard_title() != null) {
+					where += " and TITLE like '%' || ? || '%'";
+				}
+				String sql = "select count(*) from board" + where;
+				pstmt = conn.prepareStatement(sql);
+				int pos = 1;
+				if(boardVo.getBoard_title() != null) {
+					pstmt.setString(pos++, boardVo.getBoard_title());
+				}
+				
+				ResultSet rs = pstmt.executeQuery();
+				rs.next();
+				cnt = rs.getInt(1);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				ConnectionManager.close(conn);
+			}
+			return cnt;
+		}
+		//###페이징 카운터###
 		
 	}
 	
