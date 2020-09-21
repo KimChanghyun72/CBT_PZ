@@ -58,17 +58,17 @@ $(document).ready(function(){
 	$('#frmsubmit').on("click", function(){
 		var cnt = 0;
 		$('#frm').find("input").each(function(){
-			
-			if($(this).val() == null){
+			if($(this).val() == ""){
 				cnt++;
 			}
+			console.log(cnt);
 		});
 		
-		if(cnt == 2) {
-			$('#frm').submit();
-		} else {
+	 	if(cnt>=1 && cnt <= 6) {
 			alert("모든 값을 입력하세요");
-		}
+		} else {
+			$('#frm').submit();
+		} 
 		
 	});
 	
@@ -87,9 +87,26 @@ $(document).ready(function(){
 		if( !regex.test(v) ) {
 			alert("정확한 email을 입력하세요");
 			$(this).val("");
-		};
+		} else {
+		
+			$.ajax({
+		        type:"POST",
+		        url:"${pageContext.request.contextPath}/memEmailCheck.do",
+		        data : {teacher_email : v},
+		        dataType : "json",
+		        success: function(data){
+		        	console.log(data);
+		            if(data == 1){
+		    			$('#em_check').css('color', 'red');
+		    			$('#em_check').text('가입한 이력이 있습니다.');
+		    			$('#email').val("");
+		    		}else{
+		    			$('#em_check').text('사용 가능한 이메일입니다.');
+		    		}
+		        }
+		    });
+		}
 	});
-	
 	
 });
 
@@ -158,6 +175,7 @@ $(document).ready(function(){
 							<input id="email" name="teacher_email" type="text"
 								placeholder="Email" class="form-control input-md"
 								required="required">
+							<span id="em_check" class="help-block"></span>
 						</div>
 					</div>
 

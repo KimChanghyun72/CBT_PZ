@@ -65,7 +65,6 @@ $(document).ready(function(){
 			if($(this).val() == ""){
 				cnt++;
 			}
-		console.log(cnt);
 		});
  		if(cnt >=1 && cnt <= 8) {
 			alert("모든 값을 입력하세요");
@@ -126,9 +125,25 @@ $(document).ready(function(){
 		if( !regex.test(v) ) {
 			alert("정확한 email을 입력하세요");
 			$(this).val("");
+		}else {
+			$.ajax({
+		        type:"POST",
+		        url:"${pageContext.request.contextPath}/memEmailCheck.do",
+		        data : {email : v},
+		        dataType : "json",
+		        success: function(data){
+		        	console.log(data);
+		            if(data == 1){
+		    			$('#em_check').css('color', 'red');
+		    			$('#em_check').text('가입한 이력이 있습니다.');
+		    			$('#email').val("");
+		    		}else if(data == 0){
+		    			$('#em_check').text('사용 가능한 이메일입니다.');
+		    		}
+		        }
+		    });
 		};
 	});
-	
 	
 });
 
@@ -235,11 +250,12 @@ $(document).ready(function(){
 					
 					<!-- Email Text input-->
 					<div class="form-group">
-						<label class="col-md-4 control-label" for="emial">Email</label>
+						<label class="col-md-4 control-label" for="email">Email</label>
 						<div class="col-md-5">
 							<input id="email" name="email" type="text"
 								placeholder="Email" class="form-control input-md"
 								required="required">
+							<span id="em_check" class="help-block"></span>
 						</div>
 					</div>
 					

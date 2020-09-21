@@ -122,22 +122,16 @@ body {
 $(function() {
 	
     $('#login-form-link').click(function(e) {
-		$("#login-form").delay(100).fadeIn(100);
-		$("#userRegister").delay(100).fadeIn(100);
+		$("#IdFind-frm").delay(100).fadeIn(100);
  		$("#login2-form").fadeOut(100);
 		$('#login2-form-link').removeClass('active');
- 		$("#user2Register").fadeOut(100);
-		$('#user2Register-link').removeClass('active');
 		$(this).addClass('active');
 		e.preventDefault();
 	});
 	$('#login2-form-link').click(function(e) {
 		$("#login2-form").delay(100).fadeIn(100);
-		$("#user2Register").delay(100).fadeIn(100);
- 		$("#login-form").fadeOut(100);
+ 		$("#IdFind-frm").fadeOut(100);
 		$('#login-form-link').removeClass('active');
- 		$("#userRegister").fadeOut(100);
-		$('#userRegister-link').removeClass('active');
 		$(this).addClass('active');
 		e.preventDefault();
 	});
@@ -147,7 +141,6 @@ $(function() {
 		var idf = "";
 		if($('input:checkbox[id="member"]').is(":checked") == true){
 			idf = 0;
-			
 		} else if ($('input:checkbox[id="teacher"]').is(":checked") == true) {
 			idf = 1;
 		} else {
@@ -161,28 +154,73 @@ $(function() {
 		$.ajax({
 			type:"POST",
 	        url:"${pageContext.request.contextPath}/memIdFind.do",
-	        data : {idfind : idf,name : username, em : email},
+	        data : {idfind : idf, name : username, em : email},
 	        dataType : "json",
 	        success: function(data){
 	        	if(data != null){
-		        	console.log(data);
-		    		$('#myModal').modal();
-		    		$('#findmyidmodal').text("회원가입시 사용한 아이디는 " + data.member_id + " 입니다.");
+	        		if(data.member_id != null){
+			    		$('#findmyidmodal').text("회원가입시 사용한 아이디는 " + data.member_id + " 입니다.");
+	        		} else if(data.teacher_id != null) {
+			    		$('#findmyidmodal').text("회원가입시 사용한 아이디는 " + data.teacher_id + " 입니다.");
+	        		}
 	        	} else {
-		    		$('#myModal').modal();
 		    		$('#findmyidmodal').text("해당하는 아이디가 없습니다.");
 	        	}
+			    	$('#myModal').modal();
+			    	$('#username').val("");
+			    	$('#email').val("");
+			    	$('.category').prop('checked', false);
+			    	
 	        }
 			
 		});
-	});
+	});  //id find func end
+	
+	
+	$('#pwfind-submit').on("click", function(){
+		var idf = "";
+		if($('input:checkbox[id="member"]').is(":checked") == true){
+			idf = 0;
+		} else if ($('input:checkbox[id="teacher"]').is(":checked") == true) {
+			idf = 1;
+		} else {
+			alert("카테고리를 선택해주세요");
+			return;
+		}
+
+		var userid = $('#userid').val();
+		var pemail = $('#pemail').val();
+		//console.log(email);
+		$.ajax({
+			type:"POST",
+	        url:"${pageContext.request.contextPath}/memPwFind.do",
+	        data : {idfind : idf, id : userid, em : pemail},
+	        dataType : "json",
+	        success: function(data){
+	        	if(data != null){
+	        		if(data.member_pw != null){
+			    		$('#findmyidmodal').text("회원가입시 사용한 비밀번호는 " + data.member_pw + " 입니다.");
+	        		} else if(data.teacher_password != null) {
+			    		$('#findmyidmodal').text("회원가입시 사용한 비밀번호는 " + data.teacher_password + " 입니다.");
+	        		}
+	        	} else {
+		    		//$('#myModal').modal();
+		    		$('#findmyidmodal').text("해당하는 유저가 없습니다.");
+	        	}
+			    	$('#myModal').modal();
+			    	$('#userid').val("");
+			    	$('#pemail').val("");
+	        }
+			
+		});
+	}); // pw find func end
+	
+	
+	
 	
 	
 
 }); //func End
-
-//pw, 교사꺼 만들어주고
-//회원가입에서 일반유저가 교사로 가입못하게 이메일로 다른테이블에 중복 유무 확인해주기
 
 
 	
@@ -213,21 +251,21 @@ $(function() {
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-lg-12">
-								<%-- <form id="IdFind-frm" action="${pageContext.request.contextPath}/login.do" method="post" role="form" style="display: block;"> --%>
-									
-									<div class="form-group-cate">
-										<div class="col-xs-3"></div>
-										<div class="col-xs-3">
-											<input type="checkbox" tabindex="3" class="category" name="idfind" id="member" value="0">
-											<label for="remember">일반회원</label>
-										</div>
-										
-										<div class="col-xs-3">
-											<input type="checkbox" tabindex="3" class="category" name="idfind" id="teacher" value="1">
-											<label for="remember">강사회원</label>
-										</div>
-										<div class="col-xs-3"></div>
+								<div class="form-group-cate">
+									<div class="col-xs-3"></div>
+									<div class="col-xs-3">
+										<input type="checkbox" tabindex="3" class="category" name="idfind" id="member" value="0">
+										<label for="remember">일반회원</label>
 									</div>
+									
+									<div class="col-xs-3">
+										<input type="checkbox" tabindex="3" class="category" name="idfind" id="teacher" value="1">
+										<label for="remember">강사회원</label>
+									</div>
+									<div class="col-xs-3"></div>
+								</div>
+								
+								<form id="IdFind-frm" method="post" role="form" style="display: block;">
 
 									<script>
 										$('.category').on('change', function() {
@@ -255,7 +293,7 @@ $(function() {
 											</div>
 										</div>
 									</div>
-								<!-- </form> -->
+								</form>
 <%-- 									<!-- 가입버튼 -->
 									<form id="userRegister" action="${pageContext.request.contextPath}/member/memInsert.jsp">
 									<div class="form-group">
@@ -269,9 +307,9 @@ $(function() {
 									
 
 								
-								
-								<form id="login2-form" action="${pageContext.request.contextPath}/teacherlogin.do" method="post" role="form" style="display: none;">
-									<div class="form-group-cate">
+								<!-- pw찾기~~~~~ -->
+								<form id="login2-form" method="post" role="form" style="display: none;">
+<!-- 									<div class="form-group-cate">
 										<div class="col-xs-3"></div>
 										<div class="col-xs-3">
 											<input type="checkbox" tabindex="3" class="category" name="remember" id="member" value="0">
@@ -283,13 +321,13 @@ $(function() {
 											<label for="remember">강사회원</label>
 										</div>
 										<div class="col-xs-3"></div>
-									</div>
+									</div> -->
 									
 									<div class="form-group">
-										<input type="text" name="teacher_id" id="teacher_id" tabindex="1" class="form-control" placeholder="UserId" required="required">
+										<input type="text" name="userid" id="userid" tabindex="1" class="form-control" placeholder="UserId" required="required">
 									</div>
 									<div class="form-group">
-										<input type="password" name="teacher_email" id="teacher_email" tabindex="2" class="form-control" placeholder="Email" required="required">
+										<input type="text" name="pemail" id="pemail" tabindex="2" class="form-control" placeholder="Email" required="required">
 									</div>
 									
 <!-- 									<div class="form-group text-center">
@@ -300,7 +338,7 @@ $(function() {
 									<div class="form-group">
 										<div class="row">
 											<div class="col-sm-6 col-sm-offset-3">
-												<input type="submit" name="login-submit" id="tin-submit" tabindex="4" class="form-control btn btn-login" value="찾기">
+												<input type="button" name="pwfind-submit" id="pwfind-submit" tabindex="4" class="form-control btn btn-login" value="찾기">
 											</div>
 										</div>
 									</div>

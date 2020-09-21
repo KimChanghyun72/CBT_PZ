@@ -126,8 +126,10 @@ public class FrontController extends HttpServlet {
     	list.put("/profInsert.do", new teacher.ProfInsertCtrl());
     	list.put("/teacherlogin.do", new teacher.ProfLoginCtrl());
     	list.put("/memIdCheck.do", new member.MemIdCheckCtrl()); //login.jsp
+    	list.put("/memEmailCheck.do", new member.MemEmailCheckCtrl());
     	list.put("/profIdCheck.do", new teacher.ProfIdCheckCtrl()); //login.jsp
     	list.put("/memIdFind.do", new member.MemIdFindCtrl()); //findId.jsp
+    	list.put("/memPwFind.do", new member.MemPwFindCtrl()); //findId.jsp
     	
 	}
 
