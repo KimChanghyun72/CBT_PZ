@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -116,20 +116,36 @@ body {
 
 <div class="header">
   <h1>Header</h1>
-  
+	<h2>${headproblem[0].paper_type_cd} ${sub[0].subject}	문제	</h2>
+  	<h2>${headproblem[0].paper_round}	</h2>
 </div>
 
 <div class="row">
   <div class="leftcolumn">
     <div class="card">
-		<c:forEach items="${problemList}" var="list">
-			<div>${list.problem_text}</div>
-			<div><input type="radio" name="prob">${list.ans_1}</div>
-			<div><input type="radio">${list.ans_2}</div>
-			<div><input type="radio">${list.ans_3}</div>
-			<div><input type="radio">${list.ans_4}</div>
-			<div>${list.haeseol}</div>
+		<c:forEach items="${headproblem}" var="headproblem">	
+					
+			문제:${headproblem.problem_text} <br>	
+			${headproblem.ans_1}<br>
+			${headproblem.ans_2}<br> 
+			${headproblem.ans_3}<br> 
+			${headproblem.ans_4}<br>
+			정답:${headproblem.ans_correct}<br>        
+			해설:${headproblem.haeseol}<br>
+			<br><br>
 		</c:forEach>
+		<c:forEach items="${sub}" var="sub">	
+					
+			문제 : ${sub.problem_text} <br>	
+			${sub.ans_1}<br>
+			${sub.ans_2}<br>
+			${sub.ans_3}<br>
+			${sub.ans_4}<br>
+			정답:${sub.ans_correct}<br>        
+			해설:${sub.haeseol}<br>
+			<br><br>
+		</c:forEach>
+		
     </div>
   </div>
   <div class="rightcolumn">

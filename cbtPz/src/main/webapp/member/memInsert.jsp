@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" isELIgnored="false"%>
+    pageEncoding="UTF-8" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -12,10 +12,11 @@
 <title>/member/memInsert.jsp</title>
 
 
+
 <script>
 $(function(){
 	if("${errorcode}"=="2"){
-		alert("${errormsg}");		
+		alert("${errormsg}");
 	}
 })
 
@@ -24,8 +25,164 @@ $(document).ready(function(){
 	$('#confirm_password').focusout(function(){
 		if($('#member_pw').val() != $('#confirm_password').val()){
 			$('#pw2_check').removeClass('hidden');
+			$('#pw2_check').css('color', 'red');
+			$('#confirm_password').val("");
 		} else $('#pw2_check').addClass('hidden');
 	});
+	
+	
+	
+	$('#member_id').on("focusout", function(){
+		var memid = $('#member_id').val();
+		$.ajax({
+	        type:"POST",
+	        url:"${pageContext.request.contextPath}/memIdCheck.do",
+	        data : {id : memid},
+	        dataType : "json",
+	        success: function(data){
+	        	console.log(data);
+	            if(data == 1){
+	    			$('#id_check').css('color', 'red');
+	    			$('#id_check').text('아이디 사용 불가');
+	    			$('#member_id').val("");
+	    		}else if(data == 0 && $('#member_id').val()==""){
+	            	$('#id_check').css('color', 'red');
+	        		$('#id_check').text('아이디를 입력하세요');
+	    			
+	    		}else{
+	    			$('#id_check').css('color', 'gray');
+	    			$('#id_check').text('사용 가능한 아이디입니다.');
+	    		}
+	        }
+	    });
+	}); //아이디체크
+	
+	
+
+	
+	
+	
+	$('#frmsubmit').on("click", function(){
+		var cnt = 0;
+		$('#frm').find("input").each(function(){
+			if($(this).val() == ""){
+				cnt++;
+			}
+		});
+ 		if(cnt >=1 && cnt <= 8) {
+			alert("모든 값을 입력하세요");
+		} else {
+			$('#frm').submit();
+		} 
+		
+	});
+	
+	
+	   $('#member_age1').on({
+		      keyup : function(){
+		         var regexp = /^[0-9]*$/
+		         var v = $(this).val();
+		            if( !regexp.test(v) ) {
+		               alert("숫자만 입력하세요");
+		               $(this).val("");
+		            };
+		      },
+		      focusout: function(){
+		         var leng = $('#member_age1').val();
+		         var today = new Date();
+		         var yearNow = today.getFullYear();
+		         console.log(yearNow);
+		         if (leng.length != 4){
+		            var regexp = /^[0-9]*$/
+		            if(!regexp.test(leng)){
+		               alert("숫자만 입력하세요");
+		               $('#member_age1').val("");
+		            } else if(parseInt(leng) > yearNow){
+		               alert("정확한 연도를 입력하세요");
+		               $('#member_age1').val("");
+		            }
+		         }
+		         if (leng.length == 4){
+		            if(parseInt(leng) < 1900){
+		               alert("정확한 연도를 입력하세요");
+		               $('#member_age1').val("");
+		            }
+		         }
+		      }
+		   }); //생년월일 연도 체크
+		      
+		   
+		   
+		   $('#member_age3').on({
+		      keyup : function(){
+		         var regexp = /^[0-9]*$/
+		         var v = $(this).val();
+		            if( !regexp.test(v) ) {
+		               alert("숫자만 입력하세요");
+		               $(this).val("");
+		            };
+		      },
+		      focusout: function(){
+		         var leng = $('#member_age3').val();
+		         if (leng.length != 2){
+		            var regexp = /^[0-9]*$/
+		            if(!regexp.test(leng)){
+		               alert("숫자만 입력하세요");
+		               $('#member_age3').val("");
+		            } else if(parseInt(leng) < 9){
+		               alert("2자리의 날짜로 입력하세요");
+		               $('#member_age3').val("");
+		            }
+		         }
+		         if (leng.length == 2){
+		            if(parseInt(leng) > 31){
+		               alert("정확한 날짜를 입력하세요");
+		               $('#member_age3').val("");
+		            }
+		         }
+		      }
+		   }); //생년월일 일 체크
+	
+	
+	
+	
+	
+	
+	$('#member_pw').on("focusout", function(){
+		var leng = $('#member_pw').val();
+		if (leng.length > 16){
+			alert("비밀번호 최대 16자리입니다");
+			$(this).val("");
+		}
+	});
+	
+	
+	$('#email').on("focusout", function(){
+		var regex=/^[-A-Za-z0-9_]+[-A-Za-z0-9_.]*[@]{1}[-A-Za-z0-9_]+[-A-Za-z0-9_.]*[.]{1}[A-Za-z]{1,5}$/;
+		var v = $(this).val();
+		if( !regex.test(v) ) {
+			alert("정확한 email을 입력하세요");
+			$(this).val("");
+		}else {
+			$.ajax({
+		        type:"POST",
+		        url:"${pageContext.request.contextPath}/memEmailCheck.do",
+		        data : {email : v},
+		        dataType : "json",
+		        success: function(data){
+		        	console.log(data);
+		            if(data == 1){
+		    			$('#em_check').css('color', 'red');
+		    			$('#em_check').text('가입한 이력이 있습니다.');
+		    			$('#email').val("");
+		    		}else if(data == 0){
+		    			$('#em_check').text('사용 가능한 이메일입니다.');
+		    		}
+		        }
+		    });
+		};
+	});
+	
 });
 
 
@@ -49,6 +206,7 @@ $(document).ready(function(){
 						<div class="col-md-5">
 							<input id="member_id" name="member_id" type="text" placeholder="username"
 								class="form-control input-md" required="required">
+							<span id="id_check" class="help-block"></span>
 						</div>
 					</div>
 
@@ -70,7 +228,7 @@ $(document).ready(function(){
 							<input id="confirm_password" name="confirm_password"
 								type="password" placeholder="Re-type password"
 								class="form-control input-md" required="required">
-							<span id="pw2_check" class="hidden"> 비밀번호가 일치하지않습니다.</span>
+							<span id="pw2_check" class="hidden"> 비밀번호가 일치하지 않습니다.</span>
 						</div>
 					</div>
 
@@ -78,53 +236,22 @@ $(document).ready(function(){
 					<div class="form-group">
 						<label class="col-md-4 control-label" for="Name">Name</label>
 						<div class="col-md-5">
-							<input id="Name" name="member_name" type="text" placeholder="username"
+							<input id="member_name" name="member_name" type="text" placeholder="username"
 								class="form-control input-md" required="required">
 						</div>
 					</div>
 
-					<!-- Textarea 
-					<div class="form-group">
-						<label class="col-md-4 control-label" for="address">Address</label>
-						<div class="col-md-4">
-							<textarea class="form-control" id="address" name="address">default text</textarea>
-						</div>
-					</div> -->
-					
 					
 					<!-- age -->
-					
-					
-					<!-- <div class="row">					
-						<div class="col">
-							<label class="col-md-4 control-label">생년월일</label>
-						</div>
-						<div class="col">
-							<input type="text" class="form-control input-sm" placeholder="년(4자)">
-						</div>
-						<div class="col">
-							<select id="member_job" name="member_job" class="form-control">
-								<option value="1">1월</option>
-								<option value="2">2월</option>
-								<option value="3">3월</option>
-								<option value="4">4월</option>
-							</select>
-						</div>
-						<div class="col">
-							<input type="text" class="form-control input-sm" placeholder="일">
-						</div>
-					</div> -->
-
-					<!-- Text input-->
 					<div class="form-group">
-						<label class="col-md-4 control-label" for="Name">생년월일</label>
+						<label class="col-md-4 control-label" for="member_age">생년월일</label>
 						<div class="col-md-5">
 							<div class="form-row">
 								<div class="col-md-4">
-									<input type="text" class="form-control input-sm" placeholder="년(4자)" name="member_age1">
+									<input type="text" class="form-control input-sm" placeholder="년(4자)" name="member_age1" id="member_age1">
 								</div>
 								<div class="col-md-4">
-									<select id="member_job" name="member_age2" class="form-control">
+									<select id="member_age2" name="member_age2" class="form-control" >
 										<option value="01">1월</option>
 										<option value="02">2월</option>
 										<option value="03">3월</option>
@@ -140,7 +267,7 @@ $(document).ready(function(){
 									</select>
 								</div>
 								<div class="col-md-4">
-									<input type="text" class="form-control input-sm" placeholder="일" name="member_age3">
+									<input type="text" class="form-control input-sm" placeholder="일" name="member_age3" id="member_age3">
 								</div>
 							</div>
 						</div>
@@ -155,9 +282,21 @@ $(document).ready(function(){
 							<input id="phone_number" name="phone_number" type="text"
 								placeholder="Phone Number" class="form-control input-md"
 								required="required">
-
 						</div>
 					</div>
+					
+					
+					<!-- Email Text input-->
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="email">Email</label>
+						<div class="col-md-5">
+							<input id="email" name="email" type="text"
+								placeholder="Email" class="form-control input-md"
+								required="required">
+							<span id="em_check" class="help-block"></span>
+						</div>
+					</div>
+					
 
 					<!-- Select Basic job -->
 					<div class="form-group">
@@ -172,14 +311,16 @@ $(document).ready(function(){
 					</div>
 
 
-					<!-- Select Basic job -->
+					<!-- Multiple Radios (inline) --> 
 					<div class="form-group">
-						<label class="col-md-4 control-label" for="is_major">전공</label>
+						<label class="col-md-4 control-label" for="is_major">전공확인</label>
 						<div class="col-md-5">
-							<select id="is_major" name="is_major" class="form-control">
-								<option value="학생">컴공</option>
-								<option value="취준생">예체능</option>
-							</select>
+							<label class="radio-inline" for="is_major-0">
+								<input type="radio" name="is_major" id="gender-0" value="Y" checked="checked"> 예
+							</label> 
+							<label class="radio-inline" for="is_major-1">
+								<input type="radio" name="is_major" id="gender-1" value="N">아니오
+							</label>
 						</div>
 					</div>
 
@@ -189,16 +330,16 @@ $(document).ready(function(){
 						<label class="col-md-4 control-label" for="study_term">공부기간</label>
 						<div class="col-md-5">
 							<label class="radio-inline" for="gender-0"> 
-								<input type="radio" name="study_term" id="gender-0" value="1일" checked="checked"> 1일-1개월
+								<input type="radio" name="study_term" id="study_term-0" value="1일" checked="checked"> 1일-1개월
 							</label> 
 							<label class="radio-inline" for="gender-1">
-								<input type="radio" name="study_term" id="gender-1" value="2개월-6개월">2개월-6개월
+								<input type="radio" name="study_term" id="study_term-1" value="2개월-6개월">2개월-6개월
 							</label>
 							<label class="radio-inline" for="gender-1">
-								<input type="radio" name="study_term" id="gender-1" value="6개월-1년">6개월-1년
+								<input type="radio" name="study_term" id="study_term-2" value="6개월-1년">6개월-1년
 							</label>
 							<label class="radio-inline" for="gender-1">
-								<input type="radio" name="study_term" id="gender-1" value="1년이상">1년 이상
+								<input type="radio" name="study_term" id="study_term-3" value="1년이상">1년 이상
 							</label>
 						</div>
 					</div>
@@ -208,80 +349,35 @@ $(document).ready(function(){
 						<label class="col-md-4 control-label" for="tested_num">시험횟수</label>
 						<div class="col-md-5">
 							<label class="radio-inline" for="gender-0"> 
-								<input type="radio" name="tested_num" id="gender-0" value="0" checked="checked"> 0회
+								<input type="radio" name="tested_num" id="tested_num-0" value="0" checked="checked"> 0회
 							</label> 
 							<label class="radio-inline" for="gender-1">
-								<input type="radio" name="tested_num" id="gender-1" value="1">1회
+								<input type="radio" name="tested_num" id="tested_num-1" value="1">1회
 							</label>
 							<label class="radio-inline" for="gender-1">
-								<input type="radio" name="tested_num" id="gender-1" value="2">2회
+								<input type="radio" name="tested_num" id="tested_num-2" value="2">2회
 							</label>
 							<label class="radio-inline" for="gender-1">
-								<input type="radio" name="tested_num" id="gender-1" value="3">3회 이상
+								<input type="radio" name="tested_num" id="tested_num-3" value="3">3회 이상
 							</label>
 						</div>
 					</div>
-
-
-					<!-- Text input
-					<div class="form-group">
-						<label class="col-md-4 control-label" for="emailId">Email
-							Id</label>
-						<div class="col-md-6">
-							<input id="emailId" name="emailId" type="text"
-								placeholder="user@domain.com" class="form-control input-md"
-								required="">
-
-						</div>
-					</div> -->
-
-					<!-- Select Multiple -->
-					<!-- <div class="form-group">
-						<label class="col-md-4 control-label" for="languages">Languages
-							Known</label>
-						<div class="col-md-5">
-							<select id="languages" name="languages" class="form-control"
-								multiple="multiple">
-								<option value="English">English</option>
-								<option value="Hindi">Hindi</option>
-								<option value="Malayalam">Malayalam</option>
-								<option value="Others">Others</option>
-							</select>
-						</div>
-					</div> -->
-
-					<!-- Prepended checkbox -->
-					<!-- <div class="form-group">
-						<label class="col-md-4 control-label" for="check_critiria">Check
-							the box</label>
-						<div class="col-md-6">
-							<div class="input-group">
-								<span class="input-group-addon"> <input type="checkbox">
-								</span> <input id="check_critiria" name="check_critiria"
-									class="form-control" type="text"
-									placeholder="I accept the criteria" required="">
-							</div>
-
-						</div>
-					</div>   -->
 
 
 				</fieldset>
 			</form>
 				
-			<form>
 				<fieldset>
 					<!-- Button -->
 					<div class="form-group">
 						<label class="col-md-4 control-label" for="submit"></label>
 						<div class="col-md-4">
-							<button id="submit" name="submit" class="btn btn-success">Submit</button>
+							<button type="button" id="frmsubmit" class="btn btn-success">Submit</button>
 							<a href="${pageContext.request.contextPath}/member/login.jsp"><input value="취소" class="btn"></a>
 						</div>
 					</div>
 
 				</fieldset>
-			</form>
 		</div>
 	</div>
 </body>

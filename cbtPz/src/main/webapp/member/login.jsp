@@ -176,7 +176,7 @@ $(function(){
 										<input type="password" name="member_pw" id="password" tabindex="2" class="form-control" placeholder="Password" required="required">
 									</div>
 									<div class="form-group text-center">
-										<input type="checkbox" tabindex="3" class="" name="remember" id="remember">
+										<input type="checkbox" tabindex="3" class="" name="admin" id="remember" value="admin">
 										<label for="remember"> Admin</label>
 									</div>
 									
@@ -194,7 +194,7 @@ $(function(){
 									<div class="form-group">
 										<div class="row">
 											<div class="col-sm-6 col-sm-offset-3">
-												<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Register">
+												<input type="submit" name="login-submit" id="in-submit" tabindex="4" class="form-control btn btn-login" value="Register">
 											</div>
 										</div>
 									</div>
@@ -205,21 +205,21 @@ $(function(){
 								
 								<form id="login2-form" action="${pageContext.request.contextPath}/teacherlogin.do" method="post" role="form" style="display: none;">
 									<div class="form-group">
-										<input type="text" name="teacher_id" id="username" tabindex="1" class="form-control" placeholder="Username" value="" required="required">
+										<input type="text" name="teacher_id" id="teacher_id" tabindex="1" class="form-control" placeholder="Username" value="" required="required">
 									</div>
 									<div class="form-group">
-										<input type="password" name="teacher_password" id="password" tabindex="2" class="form-control" placeholder="Password" required="required">
+										<input type="password" name="teacher_password" id="teacher_password" tabindex="2" class="form-control" placeholder="Password" required="required">
 									</div>
 									
 									<div class="form-group text-center">
-										<input type="checkbox" tabindex="3" class="" name="remember" id="remember">
+										<input type="checkbox" tabindex="3" class="" name="remember" id="remembert">
 										<label for="remember"> Admin</label>
 									</div>
 									
 									<div class="form-group">
 										<div class="row">
 											<div class="col-sm-6 col-sm-offset-3">
-												<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
+												<input type="submit" name="login-submit" id="tin-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
 											</div>
 										</div>
 									</div>
@@ -229,7 +229,7 @@ $(function(){
 									<div class="form-group">
 										<div class="row">
 											<div class="col-sm-6 col-sm-offset-3">
-												<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Register">
+												<input type="submit" name="login-submit" id="tlogin-submit" tabindex="4" class="form-control btn btn-login" value="Register">
 											</div>
 										</div>
 									</div>
@@ -240,18 +240,18 @@ $(function(){
 									<div class="row">
 										<div class="col-lg-12">
 											<div class="text-center">
-												<a href="https://phpoll.com/recover" tabindex="5"
-													class="forgot-password">Forgot Password?</a>
+												<a href="${pageContext.request.contextPath}/member/findId.jsp" tabindex="5"
+													class="forgot-password">Forgot Id / Password?</a>
 											</div>
 										</div>
 									</div>
 								</div>
 
-									<form id="user2Register" action="${pageContext.request.contextPath}/main.jsp" style="display: block;">
+									<form id="user2Register2" action="${pageContext.request.contextPath}/main.jsp" style="display: block;">
 									<div class="form-group">
 										<div class="row">
 											<div class="col-sm-6 col-sm-offset-3">
-												<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="취소">
+												<input type="submit" name="login-submit" id="tlogin-submitc" tabindex="4" class="form-control btn btn-login" value="취소">
 											</div>
 										</div>
 									</div>

@@ -5,8 +5,7 @@ import java.util.HashMap;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebInitParam;
-import javax.servlet.annotation.WebServlet;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,6 +25,7 @@ import admin.ExcelInsertCtrl;
 					@WebInitParam(name = "charset", value = "UTF-8")
 			})  //여기적거나 web-int에 web.xml 파일에 적거나. 책550p
 */
+@MultipartConfig(location = "E:/upload", maxRequestSize = 1024 * 1024 * 10)
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
@@ -41,10 +41,11 @@ public class FrontController extends HttpServlet {
     	
     	//김민기
     	list.put("/boardInsert.do", new board.BoardInsertCtrl());
-    	list.put("/boradSelect.do", new board.BoardSelectCtrl());
-    	
-    	
-    	
+    	list.put("/boardSelect.do", new board.BoardSelectCtrl());
+    	list.put("/boardList.do", new board.BoardListCtrl());
+    	list.put("/boardUpdate.do", new board.BoardUpdateCtrl());
+    	list.put("/boardUpdateForm.do", new board.BoardUpdateFormCtrl());
+    	list.put("/boardDelete.do", new board.BoardDeleteCtrl());    	
     	
     	
     	
@@ -70,7 +71,8 @@ public class FrontController extends HttpServlet {
     	
     	//정유정
     	list.put("/myInfo.do", new member.MemberSearchctrl());
-    	list.put("/MemberUpdate.do", new member.MemberUpdateController());
+    	list.put("/memberUpdate.do", new member.MemberUpdateController());
+    	list.put("/memberDelete.do", new member.MemberDelController());
     	
     	
     	
@@ -88,8 +90,10 @@ public class FrontController extends HttpServlet {
     	
     	
     	//양수동
-    	
-    	
+    	list.put("/haederSearch.do", new study.HeaderSelectCtrl());
+    	list.put("/problemSearch.do", new study.ProblemSelectCtrl());
+    	list.put("/subjectSearch.do", new study.SubjectSelectCtrl());
+    	list.put("/hashtagSearch.do", new study.HashSelectCtrl());
     	
     	
     	
@@ -122,12 +126,17 @@ public class FrontController extends HttpServlet {
     	
     	
     	
-    	//한민영
+    	//민영
     	list.put("/login.do", new member.LoginController());
     	list.put("/logout.do", new member.LogoutController());
     	list.put("/memInsert.do", new member.MemInsertCtrl());
     	list.put("/profInsert.do", new teacher.ProfInsertCtrl());
-    	list.put("/teacherlogin.do", new teacher.PofLoginCtrl());
+    	list.put("/teacherlogin.do", new teacher.ProfLoginCtrl());
+    	list.put("/memIdCheck.do", new member.MemIdCheckCtrl()); //login.jsp
+    	list.put("/memEmailCheck.do", new member.MemEmailCheckCtrl());
+    	list.put("/profIdCheck.do", new teacher.ProfIdCheckCtrl()); //login.jsp
+    	list.put("/memIdFind.do", new member.MemIdFindCtrl()); //findId.jsp
+    	list.put("/memPwFind.do", new member.MemPwFindCtrl()); //findId.jsp
     	
 	}
 
