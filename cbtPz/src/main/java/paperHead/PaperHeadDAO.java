@@ -72,12 +72,13 @@ public class PaperHeadDAO {
 	public void insert(PaperHeadVO paperHeadVO) {
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "INSERT INTO paperhead (PAPERHEAD_ID, PAPER_TYPE_CD, PAPER_ROUND) "
-					+ "VALUES (?,?,?)";
+			String sql = "INSERT INTO PAPERHEAD (PAPERHEAD_ID, PAPER_TYPE_CD, PAPER_ROUND, EXCEL_FILE) "
+					+ "VALUES (?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, paperHeadVO.getPaperhead_id());
 			pstmt.setString(2, paperHeadVO.getPaper_type_cd());
 			pstmt.setString(3, paperHeadVO.getPaper_round());
+			pstmt.setString(4, paperHeadVO.getExcel_file());
 			
 			int r = pstmt.executeUpdate();
 			System.out.println(r + "건이 입력됨");
