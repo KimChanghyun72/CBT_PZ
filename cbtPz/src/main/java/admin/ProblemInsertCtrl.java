@@ -22,6 +22,7 @@ public class ProblemInsertCtrl implements Controller {
 		String ans_2 = request.getParameter("ans_2");
 		String ans_3 = request.getParameter("ans_3");
 		String ans_4 = request.getParameter("ans_4");
+		String paperhead_id = request.getParameter("paperhead_id");
 		String ans_correct = request.getParameter("ans_correct"); 
 		System.out.println(subject);
 
@@ -34,6 +35,7 @@ public class ProblemInsertCtrl implements Controller {
 		problem.setAns_2(ans_2);
 		problem.setAns_3(ans_3);
 		problem.setAns_4(ans_4);
+		problem.setPaperhead_id(paperhead_id);
 		problem.setAns_correct(ans_correct);
 		
 		ProblemDAO.getInstance().insert(problem);

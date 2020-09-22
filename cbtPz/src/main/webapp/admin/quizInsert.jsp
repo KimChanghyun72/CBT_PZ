@@ -11,6 +11,7 @@
 <form method="post" name="frm" id="frm" 
    	  action="${pageContext.request.contextPath}/problemInsert.do"
    	  onsubmit = "return inputCheck()">
+   	<input type="text" id="problem_id" name="problem_id"/>
 	<select name="subject" id="subject">
 		<option value="0" selected>과목</option>
 		<option value="1" >1과목</option>
@@ -55,6 +56,7 @@
 	</ol>
 	<label>해설</label>
 		<p><textarea cols="50" rows="10" placeholder="해설를 입력하세요." name="haeseol" id="haeseol"></textarea></p>
+		<input type="text" id="paperhead_id" name="paperhead_id"/>
 	<button>등록</button>
 	<button>초기화</button>
 </form>

@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import admin.ExcelInsertCtrl;
+
 
 /**
  * Servlet implementation class FrontController
@@ -67,7 +69,8 @@ public class FrontController extends HttpServlet {
     	
     	
     	//정유정
-    	
+    	list.put("/myInfo.do", new member.MemberSearchctrl());
+    	list.put("/MemberUpdate.do", new member.MemberUpdateController());
     	
     	
     	
@@ -105,8 +108,8 @@ public class FrontController extends HttpServlet {
     	
     	//철희
     	list.put("/problemInsert.do", new admin.ProblemInsertCtrl());
-    	
-    	
+    	list.put("/excelInsert.do", new admin.ExcelInsertCtrl());
+    	list.put("/hashInsert.do", new admin.HashInsertCtrl());
     	
     	
     	
