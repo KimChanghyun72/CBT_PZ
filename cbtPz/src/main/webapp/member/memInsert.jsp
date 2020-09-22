@@ -74,41 +74,76 @@ $(document).ready(function(){
 		
 	});
 	
-	$('#member_age1').on({
-		keyup : function(){
-			var regexp = /^[0-9]*$/
-			var v = $(this).val();
-				if( !regexp.test(v) ) {
-					alert("숫자만 입력하세요");
-					$(this).val("");
-				};
-		},
-		focusout: function(){
-			var leng = $('#member_age1').val();
-			if (leng.length != 4){
-				alert("4자리를 입력하세요");
-				$(this).val("");
-			}
-		}
-	});
 	
-	$('#member_age3').on({
-		keyup : function(){
-			var regexp = /^[0-9]*$/
-			var v = $(this).val();
-				if( !regexp.test(v) ) {
-					alert("숫자만 입력하세요");
-					$(this).val("");
-				};
-		},
-		focusout: function(){
-			var leng = $('#member_age3').val();
-			if (leng.length != 2){
-				alert("2자리를 입력하세요");
-				$(this).val("");
-			}
-		}
-	});
+	   $('#member_age1').on({
+		      keyup : function(){
+		         var regexp = /^[0-9]*$/
+		         var v = $(this).val();
+		            if( !regexp.test(v) ) {
+		               alert("숫자만 입력하세요");
+		               $(this).val("");
+		            };
+		      },
+		      focusout: function(){
+		         var leng = $('#member_age1').val();
+		         var today = new Date();
+		         var yearNow = today.getFullYear();
+		         console.log(yearNow);
+		         if (leng.length != 4){
+		            var regexp = /^[0-9]*$/
+		            if(!regexp.test(leng)){
+		               alert("숫자만 입력하세요");
+		               $('#member_age1').val("");
+		            } else if(parseInt(leng) > yearNow){
+		               alert("정확한 연도를 입력하세요");
+		               $('#member_age1').val("");
+		            }
+		         }
+		         if (leng.length == 4){
+		            if(parseInt(leng) < 1900){
+		               alert("정확한 연도를 입력하세요");
+		               $('#member_age1').val("");
+		            }
+		         }
+		      }
+		   }); //생년월일 연도 체크
+		      
+		   
+		   
+		   $('#member_age3').on({
+		      keyup : function(){
+		         var regexp = /^[0-9]*$/
+		         var v = $(this).val();
+		            if( !regexp.test(v) ) {
+		               alert("숫자만 입력하세요");
+		               $(this).val("");
+		            };
+		      },
+		      focusout: function(){
+		         var leng = $('#member_age3').val();
+		         if (leng.length != 2){
+		            var regexp = /^[0-9]*$/
+		            if(!regexp.test(leng)){
+		               alert("숫자만 입력하세요");
+		               $('#member_age3').val("");
+		            } else if(parseInt(leng) < 9){
+		               alert("2자리의 날짜로 입력하세요");
+		               $('#member_age3').val("");
+		            }
+		         }
+		         if (leng.length == 2){
+		            if(parseInt(leng) > 31){
+		               alert("정확한 날짜를 입력하세요");
+		               $('#member_age3').val("");
+		            }
+		         }
+		      }
+		   }); //생년월일 일 체크
+	
+	
+	
+	
+	
 	
 	$('#member_pw').on("focusout", function(){
 		var leng = $('#member_pw').val();
