@@ -51,7 +51,7 @@ public class FrontController extends HttpServlet {
     	
     	
     	//김창현
-    	
+    	//list.put("/memberPayUpdate.do", new member.MemberUpdateController());
     	
     	
     	

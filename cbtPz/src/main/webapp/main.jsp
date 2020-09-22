@@ -105,7 +105,7 @@
                                         <li><a href="instructors.html">태그별</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="blog.html">멤버쉽</a></li>
+                                <li><a href="payment/payment.jsp">멤버쉽</a></li>
                             </ul>
 
 
