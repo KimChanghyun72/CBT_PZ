@@ -38,21 +38,24 @@ $(document).ready(function(){
 	        data : {id : memid},
 	        dataType : "json",
 	        success: function(data){
-	            if(data != null){
+	        	console.log(data);
+	            if(data == 1){
 	    			$('#id_check').css('color', 'red');
 	    			$('#id_check').text('아이디 사용 불가');
-	    		} 
-	            else if(data == null && $('#teacher_id').val()==""){
+	    			$('#teacher_id').val("");
+	    		}else if(data == 0 && $('#teacher_id').val()==""){
 	            	$('#id_check').css('color', 'red');
 	        		$('#id_check').text('아이디를 입력하세요');
-	            } else {
-	            	$('#id_check').css('color', 'gray');
-	    			$('#id_check').text('아이디 사용 가능');
+	    			
+	    		}else{
+	    			$('#id_check').css('color', 'gray');
+	    			$('#id_check').text('사용 가능한 아이디입니다.');
 	    		}
 	        }
 	    });
+	}); //강사아이디체크
 	
-	});
+	
 	
 	
 	$('#frmsubmit').on("click", function(){

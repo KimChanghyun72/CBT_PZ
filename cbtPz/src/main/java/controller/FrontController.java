@@ -91,6 +91,7 @@ public class FrontController extends HttpServlet {
     	list.put("/haederSearch.do", new study.HeaderSelectCtrl());
     	list.put("/problemSearch.do", new study.ProblemSelectCtrl());
     	list.put("/subjectSearch.do", new study.SubjectSelectCtrl());
+    	list.put("/hashtagSearch.do", new study.HashSelectCtrl());
     	
     	
     	
