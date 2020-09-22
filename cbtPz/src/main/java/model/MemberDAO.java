@@ -104,6 +104,46 @@ public class MemberDAO {
 	} //selectOne
 	
 	
+	//email 중복 체크
+	public MemberVo selectEmailOne(MemberVo memberVo) {
+		MemberVo resultVo = null;
+		ResultSet rs = null;
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "SELECT MEMBER_ID, MEMBER_PW, MEMBER_NAME, MEMBER_AGE, MEMBER_JOB, STUDY_TERM, PHONE_NUMBER, IS_MAJOR, TESTED_NUM, IS_PAY, PAY_ENDDATE, email"
+						+ " FROM MEMBER "
+						+ "WHERE EMAIL=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberVo.getEmail());
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				resultVo = new MemberVo();
+				resultVo.setMember_id((rs.getString("member_id")));
+				resultVo.setMember_pw(rs.getString("member_pw"));
+				resultVo.setMember_name(rs.getString("member_name"));
+				resultVo.setMember_age(rs.getString("member_age"));
+				resultVo.setMember_job(rs.getString("member_job"));
+				resultVo.setStudy_term(rs.getString("study_term"));
+				resultVo.setPhone_number(rs.getString("phone_number"));
+				resultVo.setIs_major(rs.getString("is_major"));
+				resultVo.setTested_num(rs.getString("tested_num"));
+				resultVo.setIs_pay(rs.getString("is_pay"));
+				resultVo.setPay_enddate(rs.getString("pay_enddate"));
+				resultVo.setEmail(rs.getString("email"));
+			} else {
+				System.out.println("no data");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return resultVo; // 리턴값 필요!
+	} //selectEmailOne
+	
+	
+	
+	
 	
 	
 	
@@ -131,7 +171,7 @@ public class MemberDAO {
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = "UPDATE MEMBER SET MEMBER_PW = ?, MEMBER_NAME = ?, MEMBER_AGE = ?, MEMBER_JOB = ?, "
-					+ " STUDY_TERM = ?, PHONE_NUMBER = ?, IS_MAJOR = ?, TESTED_NUM = ?, IS_PAY = ?, PAY_ENDDATE = ? WHERE MEMBER_ID=?";
+					+ " STUDY_TERM = ?, PHONE_NUMBER = ?, IS_MAJOR = ?, TESTED_NUM = ?, IS_PAY = ?, PAY_ENDDATE = ?, email = ? WHERE MEMBER_ID=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, memberVo.getMember_pw()); //? 첫번째 자리 값
 			pstmt.setString(2, memberVo.getMember_name());
@@ -143,6 +183,8 @@ public class MemberDAO {
 			pstmt.setString(8, memberVo.getTested_num());
 			pstmt.setString(9, memberVo.getIs_pay());
 			pstmt.setString(10, memberVo.getPay_enddate());
+			pstmt.setString(11, memberVo.getEmail()); //
+			pstmt.setString(12, memberVo.getMember_id());
 			r = pstmt.executeUpdate(); // 이때는 executeUpdate()에 sql안들어감.
 			System.out.println(r + "건이 수정됨");
 		} catch (Exception e) {
@@ -218,6 +260,36 @@ public class MemberDAO {
 		}
 		return resultVo; // 리턴값 필요!
 	} //selectIdOne   memId찾기
+	
+	
+	
+	
+	//memPw찾기
+		public MemberVo selectPwOne(MemberVo memberVo) {
+			MemberVo resultVo = null;
+			ResultSet rs = null;
+			try {
+				conn = ConnectionManager.getConnnect();
+				String sql = "SELECT MEMBER_PW"
+							+ " FROM MEMBER"
+							+ " WHERE MEMBER_ID = ? AND EMAIL = ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, memberVo.getMember_id());
+				pstmt.setString(2, memberVo.getEmail());
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					resultVo = new MemberVo();
+					resultVo.setMember_pw((rs.getString("member_pw")));
+				} else {
+					System.out.println("memPW no data");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				ConnectionManager.close(rs, pstmt, conn);
+			}
+			return resultVo; // 리턴값 필요!
+		} //selectPwOne   memPw찾기
 	
 	
 	

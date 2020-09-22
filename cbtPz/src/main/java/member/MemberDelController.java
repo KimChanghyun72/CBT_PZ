@@ -1,4 +1,4 @@
-package study;
+package member;
 
 import java.io.IOException;
 
@@ -7,15 +7,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
+import model.MemberDAO;
+import model.MemberVo;
 
-public class SubjectSelectCtrl implements Controller {
+public class MemberDelController implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("과목검색");
-		String path = "subjectList.jsp";
+		String member_id = request.getParameter("member_id");
 		
-		request.getRequestDispatcher("/study/"+path).forward(request, response);
+		MemberVo membervo = new MemberVo();
+		membervo.setMember_id(member_id);
+		MemberDAO dao = MemberDAO.getInstance();
+		dao.delete(membervo);
+
 	}
 
 }

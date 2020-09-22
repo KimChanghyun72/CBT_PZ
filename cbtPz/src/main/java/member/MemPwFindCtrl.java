@@ -13,22 +13,19 @@ import model.TeacherDAO;
 import model.TeacherVO;
 import net.sf.json.JSONObject;
 
-public class MemIdFindCtrl implements Controller {
+public class MemPwFindCtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String idfind = request.getParameter("idfind");
-		String name = request.getParameter("name");
+		String userid = request.getParameter("id");
 		String email = request.getParameter("em");
 		
-		
-		//System.out.println(idfind);
-		//System.out.println(name + " , " + email);
 		if(Integer.parseInt(idfind) == 0) {
 			MemberVo memberVo = new MemberVo();
-			memberVo.setMember_name(name);
+			memberVo.setMember_id(userid);
 			memberVo.setEmail(email);
-			memberVo = MemberDAO.getInstance().selectIdOne(memberVo);
+			memberVo = MemberDAO.getInstance().selectPwOne(memberVo);
 			String memberJVo = JSONObject.fromObject(memberVo).toString();
 			
 			response.getWriter().print(memberJVo);
@@ -36,13 +33,13 @@ public class MemIdFindCtrl implements Controller {
 		
 		if(Integer.parseInt(idfind) == 1) {
 			TeacherVO teacherVO = new TeacherVO();
-			teacherVO.setTeacher_name(name);
+			teacherVO.setTeacher_id(userid);
 			teacherVO.setTeacher_email(email);
-			teacherVO = TeacherDAO.getInstance().selectIdOne(teacherVO);
+			teacherVO = TeacherDAO.getInstance().selectPwOne(teacherVO);
 			String teacherJVO = JSONObject.fromObject(teacherVO).toString();
 			response.getWriter().print(teacherJVO);
-			//System.out.println("교사 아이디찾기컨트롤");
 		}
+		
 
 	}
 

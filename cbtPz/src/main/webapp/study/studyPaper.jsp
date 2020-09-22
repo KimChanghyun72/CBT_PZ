@@ -126,19 +126,26 @@ body {
 		<c:forEach items="${headproblem}" var="headproblem">	
 					
 			문제:${headproblem.problem_text} <br>	
-			보기:${headproblem.ans_1} 보기2${headproblem.ans_2} 보기3${headproblem.ans_3} 보기4${headproblem.ans_4}
+			${headproblem.ans_1}<br>
+			${headproblem.ans_2}<br> 
+			${headproblem.ans_3}<br> 
+			${headproblem.ans_4}<br>
 			정답:${headproblem.ans_correct}<br>        
 			해설:${headproblem.haeseol}<br>
 			<br><br>
 		</c:forEach>
 		<c:forEach items="${sub}" var="sub">	
 					
-			문제:${sub.problem_text} <br>	
-			보기:${sub.ans_1} 보기2${sub.ans_2} 보기3${sub.ans_3} 보기4${sub.ans_4}
+			문제 : ${sub.problem_text} <br>	
+			${sub.ans_1}<br>
+			${sub.ans_2}<br>
+			${sub.ans_3}<br>
+			${sub.ans_4}<br>
 			정답:${sub.ans_correct}<br>        
 			해설:${sub.haeseol}<br>
 			<br><br>
 		</c:forEach>
+		
     </div>
   </div>
   <div class="rightcolumn">

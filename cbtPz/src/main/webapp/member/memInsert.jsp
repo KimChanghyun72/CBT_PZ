@@ -65,7 +65,6 @@ $(document).ready(function(){
 			if($(this).val() == ""){
 				cnt++;
 			}
-		console.log(cnt);
 		});
  		if(cnt >=1 && cnt <= 8) {
 			alert("모든 값을 입력하세요");
@@ -75,41 +74,76 @@ $(document).ready(function(){
 		
 	});
 	
-	$('#member_age1').on({
-		keyup : function(){
-			var regexp = /^[0-9]*$/
-			var v = $(this).val();
-				if( !regexp.test(v) ) {
-					alert("숫자만 입력하세요");
-					$(this).val("");
-				};
-		},
-		focusout: function(){
-			var leng = $('#member_age1').val();
-			if (leng.length != 4){
-				alert("4자리를 입력하세요");
-				$(this).val("");
-			}
-		}
-	});
 	
-	$('#member_age3').on({
-		keyup : function(){
-			var regexp = /^[0-9]*$/
-			var v = $(this).val();
-				if( !regexp.test(v) ) {
-					alert("숫자만 입력하세요");
-					$(this).val("");
-				};
-		},
-		focusout: function(){
-			var leng = $('#member_age3').val();
-			if (leng.length != 2){
-				alert("2자리를 입력하세요");
-				$(this).val("");
-			}
-		}
-	});
+	   $('#member_age1').on({
+		      keyup : function(){
+		         var regexp = /^[0-9]*$/
+		         var v = $(this).val();
+		            if( !regexp.test(v) ) {
+		               alert("숫자만 입력하세요");
+		               $(this).val("");
+		            };
+		      },
+		      focusout: function(){
+		         var leng = $('#member_age1').val();
+		         var today = new Date();
+		         var yearNow = today.getFullYear();
+		         console.log(yearNow);
+		         if (leng.length != 4){
+		            var regexp = /^[0-9]*$/
+		            if(!regexp.test(leng)){
+		               alert("숫자만 입력하세요");
+		               $('#member_age1').val("");
+		            } else if(parseInt(leng) > yearNow){
+		               alert("정확한 연도를 입력하세요");
+		               $('#member_age1').val("");
+		            }
+		         }
+		         if (leng.length == 4){
+		            if(parseInt(leng) < 1900){
+		               alert("정확한 연도를 입력하세요");
+		               $('#member_age1').val("");
+		            }
+		         }
+		      }
+		   }); //생년월일 연도 체크
+		      
+		   
+		   
+		   $('#member_age3').on({
+		      keyup : function(){
+		         var regexp = /^[0-9]*$/
+		         var v = $(this).val();
+		            if( !regexp.test(v) ) {
+		               alert("숫자만 입력하세요");
+		               $(this).val("");
+		            };
+		      },
+		      focusout: function(){
+		         var leng = $('#member_age3').val();
+		         if (leng.length != 2){
+		            var regexp = /^[0-9]*$/
+		            if(!regexp.test(leng)){
+		               alert("숫자만 입력하세요");
+		               $('#member_age3').val("");
+		            } else if(parseInt(leng) < 9){
+		               alert("2자리의 날짜로 입력하세요");
+		               $('#member_age3').val("");
+		            }
+		         }
+		         if (leng.length == 2){
+		            if(parseInt(leng) > 31){
+		               alert("정확한 날짜를 입력하세요");
+		               $('#member_age3').val("");
+		            }
+		         }
+		      }
+		   }); //생년월일 일 체크
+	
+	
+	
+	
+	
 	
 	$('#member_pw').on("focusout", function(){
 		var leng = $('#member_pw').val();
@@ -126,9 +160,25 @@ $(document).ready(function(){
 		if( !regex.test(v) ) {
 			alert("정확한 email을 입력하세요");
 			$(this).val("");
+		}else {
+			$.ajax({
+		        type:"POST",
+		        url:"${pageContext.request.contextPath}/memEmailCheck.do",
+		        data : {email : v},
+		        dataType : "json",
+		        success: function(data){
+		        	console.log(data);
+		            if(data == 1){
+		    			$('#em_check').css('color', 'red');
+		    			$('#em_check').text('가입한 이력이 있습니다.');
+		    			$('#email').val("");
+		    		}else if(data == 0){
+		    			$('#em_check').text('사용 가능한 이메일입니다.');
+		    		}
+		        }
+		    });
 		};
 	});
-	
 	
 });
 
@@ -235,11 +285,12 @@ $(document).ready(function(){
 					
 					<!-- Email Text input-->
 					<div class="form-group">
-						<label class="col-md-4 control-label" for="emial">Email</label>
+						<label class="col-md-4 control-label" for="email">Email</label>
 						<div class="col-md-5">
 							<input id="email" name="email" type="text"
 								placeholder="Email" class="form-control input-md"
 								required="required">
+							<span id="em_check" class="help-block"></span>
 						</div>
 					</div>
 					

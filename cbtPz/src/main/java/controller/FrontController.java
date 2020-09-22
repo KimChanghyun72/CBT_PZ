@@ -37,10 +37,11 @@ public class FrontController extends HttpServlet {
     	
     	//김민기
     	list.put("/boardInsert.do", new board.BoardInsertCtrl());
-    	list.put("/boradSelect.do", new board.BoardSelectCtrl());
-    	
-    	
-    	
+    	list.put("/boardSelect.do", new board.BoardSelectCtrl());
+    	list.put("/boardList.do", new board.BoardListCtrl());
+    	list.put("/boardUpdate.do", new board.BoardUpdateCtrl());
+    	list.put("/boardUpdateForm.do", new board.BoardUpdateFormCtrl());
+    	list.put("/boardDelete.do", new board.BoardDeleteCtrl());    	
     	
     	
     	
@@ -66,7 +67,8 @@ public class FrontController extends HttpServlet {
     	
     	//정유정
     	list.put("/myInfo.do", new member.MemberSearchctrl());
-    	list.put("/MemberUpdate.do", new member.MemberUpdateController());
+    	list.put("/memberUpdate.do", new member.MemberUpdateController());
+    	list.put("/memberDelete.do", new member.MemberDelController());
     	
     	
     	
@@ -87,6 +89,7 @@ public class FrontController extends HttpServlet {
     	list.put("/haederSearch.do", new study.HeaderSelectCtrl());
     	list.put("/problemSearch.do", new study.ProblemSelectCtrl());
     	list.put("/subjectSearch.do", new study.SubjectSelectCtrl());
+    	list.put("/hashtagSearch.do", new study.HashSelectCtrl());
     	
     	
     	
@@ -126,8 +129,10 @@ public class FrontController extends HttpServlet {
     	list.put("/profInsert.do", new teacher.ProfInsertCtrl());
     	list.put("/teacherlogin.do", new teacher.ProfLoginCtrl());
     	list.put("/memIdCheck.do", new member.MemIdCheckCtrl()); //login.jsp
+    	list.put("/memEmailCheck.do", new member.MemEmailCheckCtrl());
     	list.put("/profIdCheck.do", new teacher.ProfIdCheckCtrl()); //login.jsp
     	list.put("/memIdFind.do", new member.MemIdFindCtrl()); //findId.jsp
+    	list.put("/memPwFind.do", new member.MemPwFindCtrl()); //findId.jsp
     	
 	}
 
