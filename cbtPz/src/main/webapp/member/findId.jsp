@@ -110,9 +110,10 @@ body {
 .form-group-cate {
 	text-align:center;
 }
-	
+
 
 </style>
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -240,10 +241,10 @@ $(function() {
 					<div class="panel-heading">
 						<div class="row">
 							<div class="col-xs-6">
-								<a href="#" class="active" id="login-form-link">id찾기</a>
+								<a href="#" class="active" id="login-form-link">아이디 찾기</a>
 							</div>
 							<div class="col-xs-6">
-								<a href="#" id="login2-form-link">pw찾기</a>
+								<a href="#" id="login2-form-link">비밀번호 찾기</a>
 							</div>
 						</div>
 						<hr>
@@ -393,14 +394,14 @@ $(function() {
       
         <!-- Modal Header -->
         <div class="modal-header">
-          <h4 class="modal-title">Modal Heading</h4>
+          <h4 class="modal-title">찾기</h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         
         <!-- Modal body -->
         <div class="modal-body">
           	<div id="dialog-message" title="ID검색" >
- 				<span id="findmyidmodal"></span>
+ 				<span id="findmyidmodal" class="findmyidmodal_span"></span>
 			</div>
         </div>
         

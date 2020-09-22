@@ -23,25 +23,31 @@ public class MemEmailCheckCtrl implements Controller {
 		//mem회원가입시
 		if (email != null) {
 			boolean mememJVo = true;
+			boolean mememNVo = true;
+			
 			if (mememJVo) {
+		
 				MemberVo memberVo = new MemberVo();
 				memberVo.setEmail(email);
 				memberVo = MemberDAO.getInstance().selectEmailOne(memberVo);
 
 				if (memberVo == null) {
 					mememJVo = false;
+					System.out.println("null임");
 				}
-			} 
-			if(!mememJVo){
+			}
+			
+			if(mememNVo){
 				TeacherVO teacherVO = new TeacherVO();
 				teacherVO.setTeacher_email(email);
 				teacherVO = TeacherDAO.getInstance().selectEmailOne(teacherVO);
 				if (teacherVO == null) {
-					mememJVo = false;
+					System.out.println("이거됨?");
+					mememNVo = false;
 				}
 			}
 
-			if (mememJVo) {
+			if (mememJVo || mememNVo) {
 				response.getWriter().print(1);
 			} else {
 				response.getWriter().print(0);
@@ -51,6 +57,8 @@ public class MemEmailCheckCtrl implements Controller {
 		//강사 회원가입시
 		if (teacher_email != null) {
 			boolean mememJVo = true;
+			boolean mememNVo = true;
+			
 			if (mememJVo) {
 				TeacherVO teacherVO = new TeacherVO();
 				teacherVO.setTeacher_email(teacher_email);
@@ -60,16 +68,16 @@ public class MemEmailCheckCtrl implements Controller {
 					mememJVo = false;
 				}
 			} 
-			if(!mememJVo){
+			if(mememNVo){
 				MemberVo memberVo = new MemberVo();
 				memberVo.setEmail(teacher_email);
 				memberVo = MemberDAO.getInstance().selectEmailOne(memberVo);
 				if (memberVo == null) {
-					mememJVo = false;
+					mememNVo = false;
 				}
 			}
 
-			if (mememJVo) {
+			if (mememJVo || mememNVo) {
 				response.getWriter().print(1);
 			} else {
 				response.getWriter().print(0);
