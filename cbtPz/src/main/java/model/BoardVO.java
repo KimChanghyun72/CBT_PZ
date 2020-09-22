@@ -5,9 +5,12 @@ import lombok.Data;
 @Data
 public class BoardVO {
 	private Integer board_id;
-	private String title;
-	private String contents;
+	private String board_title;
+	private String board_contents;
 	private String member_id;
 	private String board_date;
-	private Integer views;
+	private Integer board_views;
+	private Integer first;
+	private Integer last;
+	private String board_file;
 }

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" isELIgnored="false"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,13 +11,14 @@
 <form method="post" name="frm" id="frm" 
    	  action="${pageContext.request.contextPath}/problemInsert.do"
    	  onsubmit = "return inputCheck()">
-	<select name="subject">
-		<option value="1" selected>과목</option>
-		<option value="2" >1과목</option>
-		<option value="3" >2과목</option>
-		<option value="4" >3과목</option>
-		<option value="5" >4과목</option>
-		<option value="6" >5과목</option>
+   	<input type="text" id="problem_id" name="problem_id"/>
+	<select name="subject" id="subject">
+		<option value="0" selected>과목</option>
+		<option value="1" >1과목</option>
+		<option value="2" >2과목</option>
+		<option value="3" >3과목</option>
+		<option value="4" >4과목</option>
+		<option value="5" >5과목</option>
 	</select>
 <!-- 	<select>
 		<option value="1" selected>연도회차</option>
@@ -42,21 +43,20 @@
 			<option value="운영체제"></option>
 			<option value="네트워크"></option>
 		</datalist>
-		<p></p>
 	</label> -->
-</form>
-<form action="/cbtPz/common/ProblemInsert">
+		<p></p>
 	<label>문제</label>
-		<p><textarea cols="50" rows="10" placeholder="문제를 입력하세요."></textarea></p>
+		<p><textarea cols="50" rows="10" placeholder="문제를 입력하세요." name="problem_text" id="problem_text"></textarea></p>
 	<label>정답</label>
 	<ol list-style-type:decimal;>
-		<li><input placeholder="내용을 입력해주세요."><input type="checkbox">
-		<li><input placeholder="내용을 입력해주세요."><input type="checkbox">
-		<li><input placeholder="내용을 입력해주세요."><input type="checkbox">
-		<li><input placeholder="내용을 입력해주세요."><input type="checkbox">
+		<li><input placeholder="내용을 입력해주세요." name="ans_1" id="ans_1"><input type="checkbox" name="ans_correct" id="ans_correct" value="1">
+		<li><input placeholder="내용을 입력해주세요." name="ans_2" id="ans_2"><input type="checkbox" name="ans_correct" id="ans_correct" value="2">
+		<li><input placeholder="내용을 입력해주세요." name="ans_3" id="ans_3"><input type="checkbox" name="ans_correct" id="ans_correct" value="3">
+		<li><input placeholder="내용을 입력해주세요." name="ans_4" id="ans_4"><input type="checkbox" name="ans_correct" id="ans_correct" value="4">
 	</ol>
 	<label>해설</label>
-		<p><textarea cols="50" rows="10" placeholder="해설를 입력하세요."></textarea></p>
+		<p><textarea cols="50" rows="10" placeholder="해설를 입력하세요." name="haeseol" id="haeseol"></textarea></p>
+		<input type="text" id="paperhead_id" name="paperhead_id"/>
 	<button>등록</button>
 	<button>초기화</button>
 </form>

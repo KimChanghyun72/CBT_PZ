@@ -18,7 +18,7 @@ public class MemberSearchctrl implements Controller {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// Parameter 추출
-		String member_id = request.getParameter("ID");
+		String member_id = request.getParameter("member_id");
 		
 		MemberVo membervo = new MemberVo(); //
 		membervo.setMember_id(member_id); //

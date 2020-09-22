@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="euc-kr" ?>
+
+<decorators defaultdir="/decorator">
+
+	<decorator name="admin" page="adminlayout.jsp">
+		<pattern>/admin/*</pattern>
+	</decorator>
+	
+	<decorator name="user" page="layout.jsp">
+		<pattern>/*</pattern>
+	</decorator>
+
+	<!-- <excludes>
+		<pattern>/board/*</pattern>
+		<pattern>/member/memberInsert.jsp</pattern>
+	</excludes>
+	
+	<excludes>
+		<pattern>/ajax/*</pattern>
+		<pattern>/member/memberInsert.jsp</pattern>
+	</excludes> -->
+	<excludes>
+		<pattern>/ajax/*</pattern>
+		<pattern>/study/hashSelect.jsp</pattern>
+	</excludes>
+	
+</decorators>

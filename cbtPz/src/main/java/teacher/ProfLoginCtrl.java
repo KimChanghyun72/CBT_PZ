@@ -10,7 +10,7 @@ import controller.Controller;
 import model.TeacherDAO;
 import model.TeacherVO;
 
-public class PofLoginCtrl implements Controller {
+public class ProfLoginCtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
