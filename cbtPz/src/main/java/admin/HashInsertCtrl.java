@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
-import model.HashTagDAO;
-import model.HashTagVO;
+import model.HashtagDAO;
+import model.HashtagVO;
 
 public class HashInsertCtrl implements Controller {
 
@@ -17,11 +17,11 @@ public class HashInsertCtrl implements Controller {
 		String hashtag_id = request.getParameter("hashtag_id");
 		String classify_code_cd = request.getParameter("classify_code_cd"); 
 		
-		HashTagVO hashTag = new HashTagVO();
+		HashtagVO hashTag = new HashtagVO();
 		hashTag.setHashtag_id(hashtag_id);
 		hashTag.setClassify_code_cd(classify_code_cd);
 		
-		HashTagDAO.getInstance().insert(hashTag);
+		HashtagDAO.getInstance().insert(hashTag);
 		
 		request.getRequestDispatcher("/admin/excelInsertOutput.jsp").forward(request, response);
 		

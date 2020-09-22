@@ -19,4 +19,9 @@
 		<pattern>/ajax/*</pattern>
 		<pattern>/member/memberInsert.jsp</pattern>
 	</excludes> -->
+	<excludes>
+		<pattern>/ajax/*</pattern>
+		<pattern>/study/hashSelect.jsp</pattern>
+	</excludes>
+	
 </decorators>

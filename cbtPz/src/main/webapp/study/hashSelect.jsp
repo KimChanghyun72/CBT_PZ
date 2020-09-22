@@ -22,16 +22,20 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-    
 <script>
+
+</script>
+    
+<script>  
+
 $(function(){
 	$("#testInput").autocomplete({
 		source : function(request, response) {
 			$.ajax({
-				url : "${pageContext.request.contextPath}/hashtagSearch.do",
+				url : "${pageContext.request.contextPath}/hashtagAutoSearch.do",
 				type : "GET",
 				dataType : "json",
-				data : {data : $("#testInput").val()},	 // 검색 키워드
+				data : {hashtag_name : $("#testInput").val()},	 // 검색 키워드
 				success : function(data) { // 성공
 					response($.map(data, function(item) {
 							return {
@@ -58,11 +62,16 @@ $(function(){
 		close : function(evt) {
 		}
 	});
+	
+	/* $("#testInput").keypress({
+		$("#testInput").value().appendTo("#hashlist")
+	}); */
+	
 });
 </script>
 </head>
 <style>    
-	.header {
+	.center {
 	  padding: 30px;
 	  text-align: center;
 	  background: white;
@@ -75,18 +84,16 @@ $(function(){
 <body>
  <section class="cool-facts-area section-padding-100-0">
         <div class="container">
-			<div class="header"><h1>HashTag</h1></div>
+			<div class="center"><h1>HashTag</h1></div>
             <div class="row">
                 <!-- Single Cool Facts Area -->
                 <div class="col-12 col-sm-6 col-lg-3">
                     <div class="single-cool-facts-area text-center mb-100 wow fadeInUp" data-wow-delay="250ms">
 	                    <!-- Search Button -->
 	                    <div class="search-area">
-	                        <form action="${pageContext.request.contextPath}/hashtagSearch.do">
-	                            <input type="text"  id="testInput"  placeholder="Search" />  
-	  	                        <!-- <input type="search" name="hashtag_name" id="testInput"  placeholder="Search">-->
-	                            <!-- value="${param.hashtag_name} -->
-	                            <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+	                       	<form action="${pageContext.request.contextPath}/hashtagSelect.do">
+	  	                        <input type="text" name="hashtag_name"  id="testInput"  placeholder="Search" >
+	                            <button type="submit" onclick="add()"><i class="fa fa-search" aria-hidden="true"></i></button>
 	                        </form>
 	                    </div>
                     </div>
@@ -94,15 +101,7 @@ $(function(){
             </div>
         </div>
     </section>
-    <c:forEach items="${hashSelect}" var="hashSelect">	
-			문제:${hashSelect.problem_text} <br>	
-			${hashSelect.ans_1}<br>
-			${hashSelect.ans_2}<br> 
-			${hashSelect.ans_3}<br> 
-			${hashSelect.ans_4}<br>
-			정답:${hashSelect.ans_correct}<br>        
-			해설:${hashSelect.haeseol}<br>
-			<br><br> 
-	</c:forEach>
+    <div class="center"><label id="hashlist"></label></div>
+    
 </body>
 </html>
