@@ -5,9 +5,12 @@ import java.util.HashMap;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import admin.ExcelInsertCtrl;
 
 
 /**
@@ -22,6 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 					@WebInitParam(name = "charset", value = "UTF-8")
 			})  //여기적거나 web-int에 web.xml 파일에 적거나. 책550p
 */
+@MultipartConfig(location = "E:/upload", maxRequestSize = 1024 * 1024 * 10)
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
@@ -108,8 +112,8 @@ public class FrontController extends HttpServlet {
     	
     	//철희
     	list.put("/problemInsert.do", new admin.ProblemInsertCtrl());
-    	
-    	
+    	list.put("/excelInsert.do", new admin.ExcelInsertCtrl());
+    	list.put("/hashInsert.do", new admin.HashInsertCtrl());
     	
     	
     	
@@ -145,7 +149,6 @@ public class FrontController extends HttpServlet {
 		Controller subController = list.get(path);
 		subController.execute(request, response);
 	}
-	
 	
 
 }

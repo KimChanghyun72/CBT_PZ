@@ -7,4 +7,5 @@ public class PaperHeadVO {
 	private String paperhead_id;
 	private String paper_type_cd;
 	private String paper_round;
+	private String excel_file;
 }
