@@ -48,15 +48,17 @@ body {
 	
 		<div class="container" role="main">
 			<h2 align="right" onclick="location.href='../boardList.do'">자유게시판</h2>
-			<form id="frm" name="frm" id="frm" onsubmit="return inputCheck()" method="post" action="${pageContext.request.contextPath}/boardInsert.do" enctype="multipart/form-data">
+			<form id="frm" name="frm" id="frm" onsubmit="return inputCheck()" method="post" action="${pageContext.request.contextPath}/boardUpdate.do" enctype="multipart/form-data">
+			<input  type="hidden" name="board_file" value="${board.board_file}"> 
+			<input  type="hidden" name="board_id" value="${board.board_id}"> 
 				<div class="mb-3">
-					<input  class="form-control" type="text" name="board_title" id="board_title" placeholder="제목"> 
-					<input  class="form-control" type="text" name="member_id" id="member_id" placeholder="작성자"> 
-					<input type="file" id="board_file" name="board_file">
+					<input  class="form-control" type="text" name="board_title" id="board_title" value="${board.board_title}" placeholder="제목"> 
+					<input  class="form-control" type="text" name="member_id" id="member_id" value="${board.member_id}" placeholder="작성자"> 
+					<input type="file" id="file" name="file">
 				</div>
 
 				<div class="mb-3">
-					<textarea class="form-control" rows="10" name="board_contents" id="board_contents" placeholder="내용을 입력하세요"></textarea>
+					<textarea class="form-control" rows="10" name="board_contents" id="board_contents" placeholder="내용을 입력하세요">${board.board_contents}</textarea>
 				</div>
 				<div class="mb-3">
 					<input class="form-control" type="password" name="pw" id="pw" placeholder="비밀번호를 입력하세요">
