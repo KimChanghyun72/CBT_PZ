@@ -15,5 +15,7 @@
 		<pattern>/member/memberInsert.jsp</pattern>
 		<pattern>/ajax/*</pattern>
 		<pattern>/member/memberInsert.jsp</pattern>
+
 	</excludes>
+
 </decorators>
