@@ -10,7 +10,7 @@ import common.ConnectionManager;
 	public class CommentDAO {
 
 		
-
+ 
 		Connection conn;
 		PreparedStatement pstmt;
 
@@ -36,9 +36,11 @@ import common.ConnectionManager;
 			try {
 				
 				conn = ConnectionManager.getConnnect();
-				String sql = "SELECT COMMENT_ID,BOARD_ID,COMMENT_DATE,COMMENT_CONTENTS,POSTER, FROM COMMENTs";
+				String sql = "SELECT COMMENT_ID,BOARD_ID,COMMENT_DATE,COMMENT_CONTENTS,COMMENT_POSTER FROM COMMENTS "
+								+ "WHERE BOARD_ID = ? ORDER BY COMMENT_ID";
 			
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, commentVo.getBoard_id());
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				
@@ -47,7 +49,7 @@ import common.ConnectionManager;
 				resultVO.setBoard_id(rs.getString(2));
 				resultVO.setComment_date(rs.getString(3));
 				resultVO.setComment_contents(rs.getString(4));
-				resultVO.setPoster(rs.getString(5));
+				resultVO.setComment_poster(rs.getString(5));
 				list.add(resultVO);
 				
 			}		
@@ -68,7 +70,7 @@ import common.ConnectionManager;
 				
 				try {
 					conn = ConnectionManager.getConnnect();
-					String sql = "SELECT COMMENT_ID,BOARD_ID,COMMENT_DATE,COMMENT_CONTENTS,POSTER FROM COMMENTS WHERE = COMMENT_ID ?";
+					String sql = "SELECT COMMENT_ID,BOARD_ID,COMMENT_DATE,COMMENT_CONTENTS,COMMENT_POSTER FROM COMMENTS WHERE COMMENT_ID = ?";
 					pstmt = conn.prepareStatement(sql);
 					pstmt.setString(1, commentVo.getComment_id());
 					rs = pstmt.executeQuery();
@@ -80,7 +82,7 @@ import common.ConnectionManager;
 						resultVO.setBoard_id(rs.getString("board_id"));
 						resultVO.setComment_date(rs.getString("comment_date"));
 						resultVO.setComment_contents(rs.getString("comment_contents"));
-						resultVO.setPoster(rs.getString("poster"));
+						resultVO.setComment_poster(rs.getString("comment_poster"));
 						
 					}			
 				}catch(Exception e){
@@ -98,15 +100,13 @@ import common.ConnectionManager;
 				try {
 					conn = ConnectionManager.getConnnect();
 					
-					String sql = "INSERT INTO Comments (COMMENT_ID,BOARD_ID,COMMENT_DATE,COMMENT_CONTENTS,POSTER)"
-								 + " VALUES(?,?,?,?,?)";
+					String sql = "INSERT INTO Comments (COMMENT_ID,BOARD_ID,COMMENT_DATE,COMMENT_CONTENTS,COMMENT_POSTER)"
+								 + " VALUES(comment_id_seq.NEXTVAL,?,sysdate,?,?)";
 					
 					PreparedStatement pstmt = conn.prepareStatement(sql);
-					pstmt.setString(1, commentVo.getComment_id());
-					pstmt.setString(2, commentVo.getBoard_id());
-					pstmt.setString(3, commentVo.getComment_date());
-					pstmt.setString(4, commentVo.getComment_contents());
-					pstmt.setString(5, commentVo.getPoster());
+					pstmt.setString(1, commentVo.getBoard_id());
+					pstmt.setString(2, commentVo.getComment_contents());
+					pstmt.setString(3, commentVo.getComment_poster());
 					pstmt.executeUpdate();
 				
 				}catch(Exception e) {
@@ -143,12 +143,12 @@ import common.ConnectionManager;
 				
 				try {
 					conn = ConnectionManager.getConnnect();
-					String sql = "UPDATE COMMENTS SET BOARD_ID = ?,COMMENT_DATE = ?,COMMENT_CONTENTS = ?,POSTER = ? WHERE COMMENT_ID=?";
+					String sql = "UPDATE COMMENTS SET BOARD_ID = ?,COMMENT_DATE = ?,COMMENT_CONTENTS = ?,COMMENT_POSTER = ? WHERE COMMENT_ID=?";
 					pstmt = conn.prepareStatement(sql);
 					pstmt.setString(2, commentVo.getBoard_id());
 					pstmt.setString(3, commentVo.getComment_date());
 					pstmt.setString(4, commentVo.getComment_contents());
-					pstmt.setString(5, commentVo.getPoster());
+					pstmt.setString(5, commentVo.getComment_poster());
 					pstmt.setString(1, commentVo.getComment_id());
 					pstmt.executeUpdate();
 				

@@ -46,9 +46,9 @@ public class FrontController extends HttpServlet {
     	list.put("/boardUpdate.do", new board.BoardUpdateCtrl());
     	list.put("/boardUpdateForm.do", new board.BoardUpdateFormCtrl());
     	list.put("/boardDelete.do", new board.BoardDeleteCtrl());    	
-    	
-    	
-    	
+    	list.put("/commentList.do", new board.CommentListCtrl());
+    	list.put("/commentInsert.do",new board.CommentInsertCtrl());
+    	list.put("/commentDelete.do", new board.CommentDeleteCtrl());
     	
     	
     	
@@ -142,6 +142,7 @@ public class FrontController extends HttpServlet {
 
     //요청시마다 service()
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html; charset=UTF-8");
 		request.setCharacterEncoding(charset);
 		String uri = request.getRequestURI();   			//   frontWeb/memberInsert.do
 		String contextPath = request.getContextPath();      //	 frontWeb 이뒤를 잘라야하니까

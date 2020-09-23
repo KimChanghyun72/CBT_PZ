@@ -28,9 +28,8 @@
 		return true;
 	}
 </script> 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
 
@@ -68,8 +67,9 @@ body {
 			</p>
 			</div>
 			</form>
-		</div>
-	
+		
+		</div>	
+
 </body>
 
 </html>
