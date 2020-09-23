@@ -56,7 +56,7 @@ public class FrontController extends HttpServlet {
     	
     	
     	//김창현
-    	
+    	//list.put("/memberPayUpdate.do", new member.MemberUpdateController());
     	
     	
     	
@@ -96,7 +96,9 @@ public class FrontController extends HttpServlet {
     	list.put("/haederSearch.do", new study.HeaderSelectCtrl());
     	list.put("/problemSearch.do", new study.ProblemSelectCtrl());
     	list.put("/subjectSearch.do", new study.SubjectSelectCtrl());
-    	list.put("/hashtagSearch.do", new study.HashSelectCtrl());
+    	list.put("/hashtagPage.do", new study.HashPageCtrl());
+    	list.put("/hashtagSelect.do", new study.HashSelectCtrl());
+    	list.put("/hashtagAutoSearch.do", new study.HashAutoSearchCtrl());
     	
     	
     	
