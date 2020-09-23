@@ -3,25 +3,9 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-  <display-name>cbtPz</display-name>
-  <servlet>
-  	<servlet-name>front</servlet-name>
-  	<servlet-class>controller.FrontController</servlet-class>
-  	<init-param>
-  		<param-name>charset</param-name>
-  		<param-value>UTF-8</param-value>
-  	</init-param>
-  </servlet>
-  <servlet-mapping>
-  	<servlet-name>front</servlet-name>
-  	<url-pattern>*.do</url-pattern>
-  </servlet-mapping>
-<welcome-file-list>
-    <welcome-file>main.jsp</welcome-file>
-  </welcome-file-list>
-  
+	<display-name>cbtPz</display-name>
 
-  <filter>
+	<filter>
 		<filter-name>sitemesh</filter-name>
 		<filter-class>com.opensymphony.sitemesh.webapp.SiteMeshFilter</filter-class>
 	</filter>
@@ -30,7 +14,24 @@
 		<filter-name>sitemesh</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-  
+
+	<servlet>
+		<servlet-name>front</servlet-name>
+		<servlet-class>controller.FrontController</servlet-class>
+		<init-param>
+			<param-name>charset</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>front</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+	<welcome-file-list>
+		<welcome-file>main.jsp</welcome-file>
+	</welcome-file-list>
+
+
 
 
 </web-app>

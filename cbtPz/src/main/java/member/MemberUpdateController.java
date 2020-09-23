@@ -29,30 +29,30 @@ public class MemberUpdateController implements Controller {
 
 		if (payCheck.equals("pay")) {
 			MemberDAO dao = new MemberDAO();
-			String is_pay = "YES";
+			String is_pay = "YES"; //유료회원 판단 문자
 			System.out.println();
-			if(is_pay.equals(pay_member.getIs_pay())) {
+			if(is_pay.equals(pay_member.getIs_pay())) { //유료회원의 경우
 				Calendar cal = Calendar.getInstance();
-				String day = pay_member.getPay_enddate();// 형식을 지켜야 함
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-				Date date;
+
+				String day = pay_member.getPay_enddate(); //유료회원의 만기일자 불러옴
+				day = day.substring(0,10).replace("-", "/"); //포맷 변경
+				DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
 				try {
-					date = sdf.parse(day);
+					Date date = df.parse(day);
 					cal.setTime(date);
 				} catch (ParseException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
-				cal.add(Calendar.DATE, term);
+				cal.add(Calendar.DATE, term); //기간 연장
 				pay_member.setPay_enddate(df.format(cal.getTime()));
 				dao.update(pay_member);
 			
-			} else {
+			} else {									//유료회원 아닌 경우
 				Calendar cal = Calendar.getInstance();
-				pay_member.setIs_pay(is_pay);
+				pay_member.setIs_pay(is_pay);		//유료회원으로 전환
 				 cal.setTime(new Date());
-				 DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+				 DateFormat df = new SimpleDateFormat("yyyy/MM/dd"); 
 				 cal.add(Calendar.DATE, term);
 				pay_member.setPay_enddate(df.format(cal.getTime()));
 				dao.update(pay_member);
