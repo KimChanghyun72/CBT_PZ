@@ -2,6 +2,7 @@ package member;
 
 import java.io.IOException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -33,9 +34,15 @@ public class MemberUpdateController implements Controller {
 			if(is_pay.equals(pay_member.getIs_pay())) {
 				Calendar cal = Calendar.getInstance();
 				String day = pay_member.getPay_enddate();// 형식을 지켜야 함
-				day.substring(1,10);
-				Date d = Date.(day);
-				cal.setTime(d);
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+				Date date;
+				try {
+					date = sdf.parse(day);
+					cal.setTime(date);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
 				cal.add(Calendar.DATE, term);
 				pay_member.setPay_enddate(df.format(cal.getTime()));
