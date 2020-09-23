@@ -154,7 +154,7 @@ $(function() {
 		console.log(email);
 		$.ajax({
 			type:"POST",
-	        url:"${pageContext.request.contextPath}/memIdFind.do",
+	        url:"${pageContext.request.contextPath}/ajax/memIdFind.do",
 	        data : {idfind : idf, name : username, em : email},
 	        dataType : "json",
 	        success: function(data){
@@ -194,7 +194,7 @@ $(function() {
 		//console.log(email);
 		$.ajax({
 			type:"POST",
-	        url:"${pageContext.request.contextPath}/memPwFind.do",
+	        url:"${pageContext.request.contextPath}/ajax/memPwFind.do",
 	        data : {idfind : idf, id : userid, em : pemail},
 	        dataType : "json",
 	        success: function(data){

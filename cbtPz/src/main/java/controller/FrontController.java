@@ -132,17 +132,19 @@ public class FrontController extends HttpServlet {
     	
     	
     	//민영
-    	list.put("/login.do", new member.LoginController());
+    	list.put("/nostms/login.do", new member.LoginController());
     	list.put("/logout.do", new member.LogoutController());
-    	list.put("/memInsert.do", new member.MemInsertCtrl());
-    	list.put("/profInsert.do", new teacher.ProfInsertCtrl());
-    	list.put("/teacherlogin.do", new teacher.ProfLoginCtrl());
-    	list.put("/memIdCheck.do", new member.MemIdCheckCtrl()); //login.jsp
-    	list.put("/memEmailCheck.do", new member.MemEmailCheckCtrl());
-    	list.put("/profIdCheck.do", new teacher.ProfIdCheckCtrl()); //login.jsp
-    	list.put("/memIdFind.do", new member.MemIdFindCtrl()); //findId.jsp
-    	list.put("/memPwFind.do", new member.MemPwFindCtrl()); //findId.jsp
+    	list.put("/nostms/memInsert.do", new member.MemInsertCtrl());
+    	list.put("/nostms/profInsert.do", new teacher.ProfInsertCtrl());
+    	list.put("/nostms/teacherlogin.do", new teacher.ProfLoginCtrl());
+    	list.put("/ajax/memIdCheck.do", new member.MemIdCheckCtrl()); //login.jsp
+    	list.put("/ajax/memEmailCheck.do", new member.MemEmailCheckCtrl());
+    	list.put("/ajax/profIdCheck.do", new teacher.ProfIdCheckCtrl()); //login.jsp
+    	list.put("/ajax/memIdFind.do", new member.MemIdFindCtrl()); //findId.jsp
+    	list.put("/ajax/memPwFind.do", new member.MemPwFindCtrl()); //findId.jsp
     	
+    	
+    	list.put("/mainCtrl.do", new common.MainCtrl()); // main.jsp 구동하는 서블릿 (indexx.jsp)
 	}
 
     //요청시마다 service()

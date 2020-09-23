@@ -168,7 +168,7 @@ $(function(){
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-lg-12">
-								<form id="login-form" action="${pageContext.request.contextPath}/login.do" method="post" role="form" style="display: block;">
+								<form id="login-form" action="${pageContext.request.contextPath}/nostms/login.do" method="post" role="form" style="display: block;">
 									<div class="form-group">
 										<input type="text" name="member_id" id="username" tabindex="1" class="form-control" placeholder="Username" value="" required="required">
 									</div>
@@ -203,7 +203,7 @@ $(function(){
 
 								
 								
-								<form id="login2-form" action="${pageContext.request.contextPath}/teacherlogin.do" method="post" role="form" style="display: none;">
+								<form id="login2-form" action="${pageContext.request.contextPath}/nostms/teacherlogin.do" method="post" role="form" style="display: none;">
 									<div class="form-group">
 										<input type="text" name="teacher_id" id="teacher_id" tabindex="1" class="form-control" placeholder="Username" value="" required="required">
 									</div>

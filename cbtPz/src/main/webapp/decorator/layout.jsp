@@ -16,20 +16,21 @@
     <title><decorator:title/></title>
 
 	<!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet1" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+	<%-- <link href="${pageContext.request.contextPath}/vender/bootstrap/css/bootstrap.min.css" rel="stylesheet"> --%>
 
-  <!-- Custom styles for this template -->
-  <link href="css/modern-business.css" rel="stylesheet">
+  	<!-- Custom styles for this template -->
+  	<link href="${pageContext.request.contextPath}/css/modern-business.css" rel="stylesheet">
 
     <!-- Favicon -->
-    <link rel="icon" href="img/core-img/favicon.ico">
+    <link rel="icon" href="${pageContext.request.contextPath}/img/core-img/favicon.ico">
 
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">
     
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     
  <decorator:head/>   
 
@@ -56,7 +57,7 @@
                 <nav class="classy-navbar justify-content-between" id="cleverNav">
 
                     <!-- Logo -->
-                    <a class="nav-brand" href="index.jsp"><img src="img/core-img/logo.png" alt=""></a>
+                    <a class="nav-brand" href="${pageContext.request.contextPath}/index.jsp"><img src="${pageContext.request.contextPath}/img/core-img/logo.png" alt=""></a>
 
                     <!-- Navbar Toggler -->
                     <div class="classy-navbar-toggler">
@@ -119,7 +120,7 @@
 	                                <a href="${pageContext.request.contextPath}/logout.do" class="btn active">Logout</a>
                                 </c:if>
 	                            <c:if test="${ empty sessionScope.name}">   
-	                                <a href="${pageContext.request.contextPath}/login.do" class="btn active">Login</a>
+	                                <a href="${pageContext.request.contextPath}/nostms/login.do" class="btn active">Login</a>
                                 </c:if>
                             </div>
 
@@ -142,9 +143,9 @@
 
 
     <!-- All Plugins js -->
-    <script src="js/plugins/plugins.js"></script>
+    <script src="${pageContext.request.contextPath}/js/plugins/plugins.js"></script>
     <!-- Active js -->
-    <script src="js/active.js"></script>    
+    <script src="${pageContext.request.contextPath}/js/active.js"></script>    
 </body>
 
 </html>
