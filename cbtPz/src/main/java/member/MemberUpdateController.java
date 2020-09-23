@@ -33,6 +33,7 @@ public class MemberUpdateController implements Controller {
 			System.out.println();
 			if(is_pay.equals(pay_member.getIs_pay())) { //유료회원의 경우
 				Calendar cal = Calendar.getInstance();
+
 				String day = pay_member.getPay_enddate(); //유료회원의 만기일자 불러옴
 				day = day.substring(0,10).replace("-", "/"); //포맷 변경
 				DateFormat df = new SimpleDateFormat("yyyy/MM/dd");

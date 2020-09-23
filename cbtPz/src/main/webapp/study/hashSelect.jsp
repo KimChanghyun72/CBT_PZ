@@ -32,7 +32,7 @@ $(function(){
 	$("#testInput").autocomplete({
 		source : function(request, response) {
 			$.ajax({
-				url : "${pageContext.request.contextPath}/hashtagAutoSearch.do",
+				url : "${pageContext.request.contextPath}/ajax/hashtagAutoSearch.do",
 				type : "GET",
 				dataType : "json",
 				data : {hashtag_name : $("#testInput").val()},	 // 검색 키워드

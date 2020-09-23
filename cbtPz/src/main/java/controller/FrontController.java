@@ -25,7 +25,8 @@ import admin.ExcelInsertCtrl;
 					@WebInitParam(name = "charset", value = "UTF-8")
 			})  //여기적거나 web-int에 web.xml 파일에 적거나. 책550p
 */
-@MultipartConfig(location = "E:/upload", maxRequestSize = 1024 * 1024 * 10)
+//@MultipartConfig(location = "E:/upload", maxRequestSize = 1024 * 1024 * 10)
+@MultipartConfig(location = "D:/upload", maxRequestSize = 1024 * 1024 * 10)
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
@@ -70,9 +71,11 @@ public class FrontController extends HttpServlet {
     	
     	
     	//정유정
-    	list.put("/myInfo.do", new member.MemberSearchctrl());
-    	list.put("/memberUpdate.do", new member.MemberUpdateController());
-    	list.put("/memberDelete.do", new member.MemberDelController());
+    	list.put("/myInfo.do", new member.MemberSearchctrl());					// 개인 정보 수정 페이지로 이동
+    	list.put("/memberUpdate.do", new member.MemberUpdateController());		// 개인 정보 수정 처리
+    	list.put("/memberDelete.do", new member.MemberDelController());			// 개인 정보 삭제 처리
+    	list.put("/insertLecture.do", new teacher.LectureInsertCtrl());			// 강의 등록 처리
+    	list.put("/insertLecForm.do", new teacher.insertLecFormCtl());			// 강의 등록 페이지로 이동
     	
     	
     	
@@ -95,7 +98,7 @@ public class FrontController extends HttpServlet {
     	list.put("/subjectSearch.do", new study.SubjectSelectCtrl());
     	list.put("/hashtagPage.do", new study.HashPageCtrl());
     	list.put("/hashtagSelect.do", new study.HashSelectCtrl());
-    	list.put("/hashtagAutoSearch.do", new study.HashAutoSearchCtrl());
+    	list.put("/ajax/hashtagAutoSearch.do", new study.HashAutoSearchCtrl());
     	
     	
     	
