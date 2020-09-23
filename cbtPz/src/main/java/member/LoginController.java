@@ -33,7 +33,7 @@ public class LoginController implements Controller {
 			} 
 			request.getSession().setAttribute("login", resultaVO);
 			request.getSession().setAttribute("name", resultaVO.getAdmin_name());
-			response.sendRedirect("main.jsp");
+			response.sendRedirect("indexx.jsp");
 			
 		} else {
 			//null이면 일반회원. 
@@ -60,7 +60,7 @@ public class LoginController implements Controller {
 				if (memberVo.getMember_pw().equals(resultVo.getMember_pw())) { // 로그인성공
 					request.getSession().setAttribute("login", resultVo);
 					request.getSession().setAttribute("name", resultVo.getMember_name());
-					response.sendRedirect("main.jsp");
+					response.sendRedirect("indexx.jsp");
 				} else { // 패스워드 불일치
 					request.setAttribute("errormsg", "아이디나 패스워드가 일치하지 않습니다.");
 					request.setAttribute("errorcode", "3");
