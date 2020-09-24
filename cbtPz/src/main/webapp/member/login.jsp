@@ -251,7 +251,7 @@ $(function(){
 									<div class="form-group">
 										<div class="row">
 											<div class="col-sm-6 col-sm-offset-3">
-												<input type="submit" name="login-submit" id="tlogin-submitc" tabindex="4" class="form-control btn btn-login" value="취소">
+												<input type="submit" name="login-submit" id="tlogin-submitc" tabindex="4" class="form-control btn btn-login" value="메인페이지로">
 											</div>
 										</div>
 									</div>
