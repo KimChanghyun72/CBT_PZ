@@ -25,7 +25,7 @@ import admin.ExcelInsertCtrl;
 					@WebInitParam(name = "charset", value = "UTF-8")
 			})  //여기적거나 web-int에 web.xml 파일에 적거나. 책550p
 */
-@MultipartConfig(location = "E:/upload", maxRequestSize = 1024 * 1024 * 10)
+@MultipartConfig(location = "C:/upload", maxRequestSize = 1024 * 1024 * 10)
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
@@ -114,7 +114,7 @@ public class FrontController extends HttpServlet {
     	list.put("/problemInsert.do", new admin.ProblemInsertCtrl());
     	list.put("/excelInsert.do", new admin.ExcelInsertCtrl());
     	list.put("/hashInsert.do", new admin.HashInsertCtrl());
-    	
+    	list.put("/ajax/studyChart.do", new admin.StudyTermChartCtrl());
     	
     	
     	
