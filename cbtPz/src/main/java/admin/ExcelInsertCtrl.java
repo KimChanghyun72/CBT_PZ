@@ -22,7 +22,7 @@ public class ExcelInsertCtrl implements Controller {
 		String paper_type_cd = request.getParameter("paper_type_cd");
 		String paper_round = request.getParameter("paper_round");
 		String excel_file = request.getParameter("excel_file");
-		String path = "D:/upload";
+		String path = ":/upload";
 		
 		PaperHeadVO paper = new PaperHeadVO();
 		paper.setPaperhead_id(paperhead_id);

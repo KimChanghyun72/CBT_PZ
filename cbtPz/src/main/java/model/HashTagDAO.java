@@ -17,17 +17,19 @@ public class HashTagDAO {
 			return instance;
 	}
 	
-	public int insert(HashTagVO HashTagVo) {
+	public int insert(HashtagVO HashTagVo) {
 		int r =0;
 		try {
 			// 1. DB연결
 			conn = ConnectionManager.getConnnect();
 			
 			// 2. sql 구문 실행
-			String sql = "INSERT INTO HASHTAG(HASHTAG_ID, CLASSIFY_CODE_CD)"
-					 	+ "VALUES (?,?)";
+			String sql = "INSERT INTO HASHTAG(HASHTAG_ID, CLASSIFY_CODE_CD, hashcode_name)"
+					 	+ "VALUES (?,?,?)";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, HashTagVo.getHashtag_id());	
+			pstmt.setString(1, HashTagVo.getHashtag_id());
+			pstmt.setString(2, HashTagVo.getClassify_code_cd());
+			pstmt.setString(3, HashTagVo.getHashcode_name());
 			r = pstmt.executeUpdate();
 
 			// 3. 결과 처리
