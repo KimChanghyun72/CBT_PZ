@@ -9,6 +9,6 @@ public class CommentVO {
 	private String board_id;
 	private String comment_date;
 	private String comment_contents;
-	private String poster;
+	private String comment_poster;
 	
 }

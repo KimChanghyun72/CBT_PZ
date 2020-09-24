@@ -1,15 +1,19 @@
+<%@page import="model.BoardDAO"%>
+<%@page import="model.BoardVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="my" tagdir="/WEB-INF/tags"%> 
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+
 <!-- Bootstrap CSS -->
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
 <!-- Bootstrap CSS -->
 <title>boardList.jsp</title>
 <!--style CSS -->
@@ -18,6 +22,7 @@ body {
 	padding-top: 70px;
 	padding-bottom: 30px;
 }
+
 </style>
 <!--style CSS -->
 </head>
@@ -35,7 +40,7 @@ body {
 						<col style="width: 10%;" />
 					</colgroup>
 					<thead>
-						<tr>
+						<tr align="center">
 							<th>NO</th>
 							<th>글제목</th>
 							<th>작성자</th>
@@ -43,7 +48,7 @@ body {
 							<th>작성일</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody align="center">
 						<c:choose>
 							<c:when test="${empty list}">
 								<tr>
@@ -71,13 +76,14 @@ body {
 					onclick="location.href='board/boardInsert.jsp'">글쓰기</button>
 				<button class="btn btn-sm btn-primary">삭제</button>
 				</p>
-	<!-- 페이징 처리 영역 -->
-	<p align="center">
-    <c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="i">
-    <button class="btn btn-sm btn-primary" onclick="location.href='boardList.do?p=${i}'">${i}</button>
-	<!-- <a href="boardList.do?p=${i}">${i}</a> -->
-	</c:forEach>
- 	</p>
+	<!-- 페이징 처리 영역 -->	
+   <my:paging paging="${paging}" jsfunc="gopage"/>
+    	<script>
+    	function gopage(p){
+    		location.href="boardList.do?p="+ p;
+    	}
+    	</script>	
+ 		
 	<!-- 페이징 처리 영역 -->
 			</div>
 		</div>

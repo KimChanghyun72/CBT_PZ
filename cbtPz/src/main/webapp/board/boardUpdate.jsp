@@ -28,9 +28,7 @@
 		return true;
 	}
 </script> 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
 
@@ -47,7 +45,7 @@ body {
 <body>
 	
 		<div class="container" role="main">
-			<h2 align="right" onclick="location.href='../boardList.do'">자유게시판</h2>
+			<h2 align="right" onclick="location.href='./boardList.do'">자유게시판</h2>
 			<form id="frm" name="frm" id="frm" onsubmit="return inputCheck()" method="post" action="${pageContext.request.contextPath}/boardUpdate.do" enctype="multipart/form-data">
 			<input  type="hidden" name="board_file" value="${board.board_file}"> 
 			<input  type="hidden" name="board_id" value="${board.board_id}"> 

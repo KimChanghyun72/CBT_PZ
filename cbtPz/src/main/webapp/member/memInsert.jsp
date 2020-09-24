@@ -36,7 +36,7 @@ $(document).ready(function(){
 		var memid = $('#member_id').val();
 		$.ajax({
 	        type:"POST",
-	        url:"${pageContext.request.contextPath}/memIdCheck.do",
+	        url:"${pageContext.request.contextPath}/ajax/memIdCheck.do",
 	        data : {id : memid},
 	        dataType : "json",
 	        success: function(data){
@@ -166,7 +166,7 @@ $(document).ready(function(){
 		}else {
 			$.ajax({
 		        type:"POST",
-		        url:"${pageContext.request.contextPath}/memEmailCheck.do",
+		        url:"${pageContext.request.contextPath}/ajax/memEmailCheck.do",
 		        data : {email : v},
 		        dataType : "json",
 		        success: function(data){
@@ -196,7 +196,7 @@ $(document).ready(function(){
 	<div class="container">
 		<div class="row">
 			<form class="form-horizontal" name="frm" method="post" id="frm" 
-					action="${pageContext.request.contextPath}/memInsert.do">
+					action="${pageContext.request.contextPath}/nostms/memInsert.do">
 				<fieldset>
 					<br>
 					<h3>회원가입</h3>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="euc-kr" ?>
+
+<decorators defaultdir="/decorator">
+
+	<decorator name="admin" page="adminlayout.jsp">
+		<pattern>/admin/*</pattern>
+	</decorator>
+	
+	<decorator name="user" page="layout.jsp">
+		<pattern>/*</pattern>
+	</decorator>
+
+	<excludes>
+		
+		<pattern>/ajax/*</pattern>
+		<pattern>/nostms/*</pattern>
+		<pattern>/member/*</pattern>
+
+	</excludes>
+
+</decorators>

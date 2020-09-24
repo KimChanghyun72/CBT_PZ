@@ -26,6 +26,7 @@ public class BoardSelectCtrl implements Controller {
 			request.getRequestDispatcher("/board/"+path).forward(request, response);
 			return;
 		}
+		dao.updateBoardCnt(board);
 		board = dao.selectOne(board);
 		request.setAttribute("board", board);
 		

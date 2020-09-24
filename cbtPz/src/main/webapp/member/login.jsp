@@ -168,7 +168,7 @@ $(function(){
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-lg-12">
-								<form id="login-form" action="${pageContext.request.contextPath}/login.do" method="post" role="form" style="display: block;">
+								<form id="login-form" action="${pageContext.request.contextPath}/nostms/login.do" method="post" role="form" style="display: block;">
 									<div class="form-group">
 										<input type="text" name="member_id" id="username" tabindex="1" class="form-control" placeholder="Username" value="" required="required">
 									</div>
@@ -203,7 +203,7 @@ $(function(){
 
 								
 								
-								<form id="login2-form" action="${pageContext.request.contextPath}/teacherlogin.do" method="post" role="form" style="display: none;">
+								<form id="login2-form" action="${pageContext.request.contextPath}/nostms/teacherlogin.do" method="post" role="form" style="display: none;">
 									<div class="form-group">
 										<input type="text" name="teacher_id" id="teacher_id" tabindex="1" class="form-control" placeholder="Username" value="" required="required">
 									</div>
@@ -251,7 +251,7 @@ $(function(){
 									<div class="form-group">
 										<div class="row">
 											<div class="col-sm-6 col-sm-offset-3">
-												<input type="submit" name="login-submit" id="tlogin-submitc" tabindex="4" class="form-control btn btn-login" value="취소">
+												<input type="submit" name="login-submit" id="tlogin-submitc" tabindex="4" class="form-control btn btn-login" value="메인페이지로">
 											</div>
 										</div>
 									</div>

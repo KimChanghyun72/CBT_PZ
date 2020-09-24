@@ -1,4 +1,4 @@
-package controller;
+ package controller;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -25,7 +25,8 @@ import admin.ExcelInsertCtrl;
 					@WebInitParam(name = "charset", value = "UTF-8")
 			})  //여기적거나 web-int에 web.xml 파일에 적거나. 책550p
 */
-@MultipartConfig(location = "C:/upload", maxRequestSize = 1024 * 1024 * 10)
+//@MultipartConfig(location = "E:/upload", maxRequestSize = 1024 * 1024 * 10)
+@MultipartConfig(location = "D:/upload", maxRequestSize = 1024 * 1024 * 10)
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
@@ -46,16 +47,16 @@ public class FrontController extends HttpServlet {
     	list.put("/boardUpdate.do", new board.BoardUpdateCtrl());
     	list.put("/boardUpdateForm.do", new board.BoardUpdateFormCtrl());
     	list.put("/boardDelete.do", new board.BoardDeleteCtrl());    	
-    	
-    	
-    	
+    	list.put("/commentList.do", new board.CommentListCtrl());
+    	list.put("/commentInsert.do",new board.CommentInsertCtrl());
+    	list.put("/commentDelete.do", new board.CommentDeleteCtrl());
     	
     	
     	
     	
     	
     	//김창현
-    	
+    	//list.put("/memberPayUpdate.do", new member.MemberUpdateController());
     	
     	
     	
@@ -70,9 +71,11 @@ public class FrontController extends HttpServlet {
     	
     	
     	//정유정
-    	list.put("/myInfo.do", new member.MemberSearchctrl());
-    	list.put("/memberUpdate.do", new member.MemberUpdateController());
-    	list.put("/memberDelete.do", new member.MemberDelController());
+    	list.put("/myInfo.do", new member.MemberSearchctrl());					// 개인 정보 수정 페이지로 이동
+    	list.put("/memberUpdate.do", new member.MemberUpdateController());		// 개인 정보 수정 처리
+    	list.put("/memberDelete.do", new member.MemberDelController());			// 개인 정보 삭제 처리
+    	list.put("/insertLecture.do", new teacher.LectureInsertCtrl());			// 강의 등록 처리
+    	list.put("/insertLecForm.do", new teacher.insertLecFormCtl());			// 강의 등록 페이지로 이동
     	
     	
     	
@@ -93,7 +96,9 @@ public class FrontController extends HttpServlet {
     	list.put("/haederSearch.do", new study.HeaderSelectCtrl());
     	list.put("/problemSearch.do", new study.ProblemSelectCtrl());
     	list.put("/subjectSearch.do", new study.SubjectSelectCtrl());
-    	list.put("/hashtagSearch.do", new study.HashSelectCtrl());
+    	list.put("/hashtagPage.do", new study.HashPageCtrl());
+    	list.put("/hashtagSelect.do", new study.HashSelectCtrl());
+    	list.put("/ajax/hashtagAutoSearch.do", new study.HashAutoSearchCtrl());
     	
     	
     	
@@ -114,7 +119,7 @@ public class FrontController extends HttpServlet {
     	list.put("/problemInsert.do", new admin.ProblemInsertCtrl());
     	list.put("/excelInsert.do", new admin.ExcelInsertCtrl());
     	list.put("/hashInsert.do", new admin.HashInsertCtrl());
-    	list.put("/ajax/studyChart.do", new admin.StudyTermChartCtrl());
+    	
     	
     	
     	
@@ -127,21 +132,24 @@ public class FrontController extends HttpServlet {
     	
     	
     	//민영
-    	list.put("/login.do", new member.LoginController());
+    	list.put("/nostms/login.do", new member.LoginController());
     	list.put("/logout.do", new member.LogoutController());
-    	list.put("/memInsert.do", new member.MemInsertCtrl());
-    	list.put("/profInsert.do", new teacher.ProfInsertCtrl());
-    	list.put("/teacherlogin.do", new teacher.ProfLoginCtrl());
-    	list.put("/memIdCheck.do", new member.MemIdCheckCtrl()); //login.jsp
-    	list.put("/memEmailCheck.do", new member.MemEmailCheckCtrl());
-    	list.put("/profIdCheck.do", new teacher.ProfIdCheckCtrl()); //login.jsp
-    	list.put("/memIdFind.do", new member.MemIdFindCtrl()); //findId.jsp
-    	list.put("/memPwFind.do", new member.MemPwFindCtrl()); //findId.jsp
+    	list.put("/nostms/memInsert.do", new member.MemInsertCtrl());
+    	list.put("/nostms/profInsert.do", new teacher.ProfInsertCtrl());
+    	list.put("/nostms/teacherlogin.do", new teacher.ProfLoginCtrl());
+    	list.put("/ajax/memIdCheck.do", new member.MemIdCheckCtrl()); //login.jsp
+    	list.put("/ajax/memEmailCheck.do", new member.MemEmailCheckCtrl());
+    	list.put("/ajax/profIdCheck.do", new teacher.ProfIdCheckCtrl()); //login.jsp
+    	list.put("/ajax/memIdFind.do", new member.MemIdFindCtrl()); //findId.jsp
+    	list.put("/ajax/memPwFind.do", new member.MemPwFindCtrl()); //findId.jsp
     	
+    	
+    	list.put("/mainCtrl.do", new common.MainCtrl()); // main.jsp 구동하는 서블릿 (indexx.jsp)
 	}
 
     //요청시마다 service()
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html; charset=UTF-8");
 		request.setCharacterEncoding(charset);
 		String uri = request.getRequestURI();   			//   frontWeb/memberInsert.do
 		String contextPath = request.getContextPath();      //	 frontWeb 이뒤를 잘라야하니까

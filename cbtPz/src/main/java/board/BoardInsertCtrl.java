@@ -37,19 +37,18 @@ public class BoardInsertCtrl implements Controller {
 
 		System.out.println(board_file);
 
-		if (board_file.isEmpty()) {
-			board.setBoard_id(null);
-		} else {
+		if (board_file != null && !board_file.isEmpty()) {
 			File renameFile = FileRenamePolicy.rename(new File(path,board_file));
 			part.write(renameFile.getName());
 			board.setBoard_file(path+"/"+renameFile.getName());
+			
 			
 		}
 		BoardDAO dao = new BoardDAO();
 		dao.insert(board);
 
 		request.getRequestDispatcher("/board/boardInsertOutput.jsp").forward(request, response);
-
+		System.out.println(path);
 	}
 
 	private String getFileName(Part part) throws UnsupportedEncodingException {

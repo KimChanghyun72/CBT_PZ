@@ -17,9 +17,9 @@ import common.ConnectionManager;
 		public static BoardDAO getInstance() {
 		
 			if (instance == null) {
-				instance = new BoardDAO();
+			instance = new BoardDAO();
 			}
-			return instance;
+		return instance;
 
 		}//###싱글톤###
 		
@@ -210,6 +210,22 @@ import common.ConnectionManager;
 		}
 		//###페이징 카운터###
 		
-	}
+		//###조회수 카운터###
+		public void updateBoardCnt(BoardVO vo) {
+			
+			System.out.println("jdbc기능처리");
+			try {
+				conn = ConnectionManager.getConnnect();
+				String sql ="UPDATE BOARD SET BOARD_VIEWS = BOARD_VIEWS + 1 WHERE BOARD_ID = ? ";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, vo.getBoard_id());
+				pstmt.executeUpdate();
+			}catch(Exception e){
+				e.printStackTrace();
+			}finally {
+				ConnectionManager.close(conn);
+		}
+		
+	}//###조회수 카운터 ###
 	
-
+	}
