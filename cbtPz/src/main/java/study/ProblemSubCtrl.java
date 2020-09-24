@@ -9,34 +9,28 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
-import model.HashtagVO;
 import model.PaperHeadDAO;
+import model.ProblemVO;
 
-public class HashSelectCtrl implements Controller {
+public class ProblemSubCtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("해쉬검색");
-		String path = "hashSelect.jsp";
+		String path = "studyPaper.jsp";
 		
+		ProblemVO subVO = new ProblemVO();
 		
-		//파라미터 변수에 저장
-		String hashtag_name = request.getParameter("hashtag_name");
+		String subject = request.getParameter("subject");
 		
-		//VO에 담기
-		HashtagVO hash = new HashtagVO();
-		hash.setHashtag_name(hashtag_name);
+		subVO.setSubject(subject);
 		
-		//서비스		
 		PaperHeadDAO dao = new PaperHeadDAO();
-		List<Map<String, Object>> hashSelect = dao.selectHash(hash);
 		
+		List<Map<String, Object>> sub = dao.selectSubjectType(subVO);
 		
-		//조회결과를 저장후에 결과페이지로 포워드
-		request.setAttribute("hashSelect", hashSelect);
+		request.setAttribute("problemList", sub);
 		
 		request.getRequestDispatcher("/study/"+path).forward(request, response);
-		
 	}
 
 }
