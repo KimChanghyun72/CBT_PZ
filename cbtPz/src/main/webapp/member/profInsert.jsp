@@ -83,6 +83,22 @@ $(document).ready(function(){
 		}
 	});
 	
+	$('#teacher_record').on("focusout", function(){
+		var leng = $('#teacher_record').val();
+		if (leng.length > 1000){
+			alert("이력란은 최대 1000자리입니다");
+			$(this).val(""); //trim 으로 잘라낼수있는가? 
+		}
+	});
+	
+	$('#teacher_certificate').on("focusout", function(){
+		var leng = $('#teacher_certificate').val();
+		if (leng.length > 400){
+			alert("자격증란은 최대 400자리입니다");
+			$(this).val("");
+		}
+	});
+	
 	
 	$('#email').on("focusout", function(){
 		var regex=/^[-A-Za-z0-9_]+[-A-Za-z0-9_.]*[@]{1}[-A-Za-z0-9_]+[-A-Za-z0-9_.]*[.]{1}[A-Za-z]{1,5}$/;
@@ -124,7 +140,7 @@ $(document).ready(function(){
 	<div class="container">
 		<div class="row">
 			<form class="form-horizontal" name="frm" method="post" id="frm" 
-					action="${pageContext.request.contextPath}/nostms/profInsert.do">
+					action="${pageContext.request.contextPath}/nostms/profInsert.do" enctype="multipart/form-data">
 				<fieldset>
 					<br>
 					<h3>교사 회원가입</h3>
@@ -195,9 +211,10 @@ $(document).ready(function(){
 
 					<!-- Textarea -->
 					<div class="form-group">
-						<label class="col-md-4 control-label" for="address">이력</label>
-						<div class="col-md-4">
-							<textarea class="form-control" id="address" name="teacher_record">default text</textarea>
+						<label class="col-md-4 control-label" for="teacher_record">이력</label>
+						<div class="col-md-5">
+							<textarea class="form-control" id="teacher_record" name="teacher_record" >default text</textarea>
+							<span class="help-block">max 1000 characters</span>
 						</div>
 					</div>
 					
@@ -205,8 +222,9 @@ $(document).ready(function(){
 					<!-- Textarea -->
 					<div class="form-group">
 						<label class="col-md-4 control-label" for="teacher_certificate">보유자격증</label>
-						<div class="col-md-4">
+						<div class="col-md-5">
 							<textarea class="form-control" id="teacher_certificate" name="teacher_certificate">default text</textarea>
+							<span class="help-block">max 400 characters</span>
 						</div>
 					</div>
 					

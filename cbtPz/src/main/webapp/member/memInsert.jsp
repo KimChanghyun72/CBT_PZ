@@ -21,7 +21,10 @@ $(function(){
 })
 
 
+
+
 $(document).ready(function(){
+	
 	$('#confirm_password').focusout(function(){
 		if($('#member_pw').val() != $('#confirm_password').val()){
 			$('#pw2_check').removeClass('hidden');
@@ -88,25 +91,87 @@ $(document).ready(function(){
 		            };
 		      },
 		      focusout: function(){
+			         var leng3 = $('#member_age3').val();
+			         var age2 = $('#member_age2').val();
+			         
+			         
+			         var age3day = 0;
+			         var yy = 0;
 		         var leng = $('#member_age1').val();
 		         var today = new Date();
 		         var yearNow = today.getFullYear();
-		         console.log(yearNow);
+		         
+		         
 		         if (leng.length != 4){
 		            var regexp = /^[0-9]*$/
 		            if(!regexp.test(leng)){
 		               alert("숫자만 입력하세요");
 		               $('#member_age1').val("");
-		            } else if(parseInt(leng) > yearNow){
+		            } else if(parseInt(leng) > yearNow || parseInt(leng) < 1900){
 		               alert("정확한 연도를 입력하세요");
 		               $('#member_age1').val("");
 		            }
 		         }
 		         if (leng.length == 4){
-		            if(parseInt(leng) < 1900){
+		            if(parseInt(leng) < 1900 || parseInt(leng) > yearNow){
 		               alert("정확한 연도를 입력하세요");
 		               $('#member_age1').val("");
 		            }
+		            
+		            
+		            
+		            if (leng3 != null){
+			        	 age3day = 0;
+			        	 
+			        	if(leng % 4 == 0 && leng % 100 != 0 || leng % 400 == 0) {
+			        		yy = 1;
+			        	} else {
+			        		yy = 0;
+			        	}; //윤달+ 체크
+			        	
+			        	if(age2 == 01){
+			        		age3day = 31;
+			        	}else if(age2 == 03){
+			        		age3day = 31;
+			        	}else if(age2 == 05){
+			        		age3day = 31;
+			        	}else if(age2 == 07){
+			        		age3day = 31;
+			        	}else if(age2 == 08){
+			        		age3day = 31;
+			        	}else if(age2 == 10){
+			        		age3day = 31;
+			        	}else if(age2 == 12){
+			        		age3day = 31;
+			        	}else if(age2 == 04){
+			        		age3day = 30;
+			        	}else if(age2 == 06){
+			        		age3day = 30;
+			        	}else if(age2 == 09){
+			        		age3day = 30;
+			        	}else if(age2 == 11){
+			        		age3day = 31;
+			        	}else {
+			        		age3day = 28 + yy;
+			        	}//한달에 몇일 있는지 계산
+			            
+			        	console.log(age3day);
+					
+			            
+			         		
+
+			      	if (leng3.length == 2){
+				            if(leng3 > age3day){
+				               alert("정확한 날짜를 입력하세요");
+				               $('#member_age3').val("");
+				               console.log(age3day);
+				            }
+				         }
+		            
+			      	}//일자가 있으면 계산
+		            
+		            
+		            
 		         }
 		      }
 		   }); //생년월일 연도 체크
@@ -124,6 +189,12 @@ $(document).ready(function(){
 		      },
 		      focusout: function(){
 		         var leng = $('#member_age3').val();
+		         var age2 = $('#member_age2').val();
+		         var age1 = $('#member_age1').val();
+		         
+		         var age3day = 0;
+		         var yy = 0;
+		         
 		         if (leng.length != 2){
 		            var regexp = /^[0-9]*$/
 		            if(!regexp.test(leng)){
@@ -133,18 +204,133 @@ $(document).ready(function(){
 		               alert("2자리의 날짜로 입력하세요");
 		               $('#member_age3').val("");
 		            }
-		         }
+		         }//2자리 아니면 알림
+		         
+		         
+		         
+		         if (age1 != null){
+		        	 age3day = 0;
+		        	 
+		        	if(age1 % 4 == 0 && age1 % 100 != 0 || age1 % 400 == 0) {
+		        		yy = 1;
+		        	} else {
+		        		yy = 0;
+		        	}; //윤달+ 체크
+		        	
+		        	if(age2 == 01){
+		        		age3day = 31;
+		        	}else if(age2 == 03){
+		        		age3day = 31;
+		        	}else if(age2 == 05){
+		        		age3day = 31;
+		        	}else if(age2 == 07){
+		        		age3day = 31;
+		        	}else if(age2 == 08){
+		        		age3day = 31;
+		        	}else if(age2 == 10){
+		        		age3day = 31;
+		        	}else if(age2 == 12){
+		        		age3day = 31;
+		        	}else if(age2 == 04){
+		        		age3day = 30;
+		        	}else if(age2 == 06){
+		        		age3day = 30;
+		        	}else if(age2 == 09){
+		        		age3day = 30;
+		        	}else if(age2 == 11){
+		        		age3day = 31;
+		        	}else {
+		        		age3day = 28 + yy;
+		        	}//한달에 몇일 있는지 계산
+		            
+		        	console.log(age3day);
+				
+		            
+		         		
+		      	}//연도가 있으면 계산
+		        
+		         	
+		        
+		      	
+		      	
 		         if (leng.length == 2){
-		            if(parseInt(leng) > 31){
-		               alert("정확한 날짜를 입력하세요");
-		               $('#member_age3').val("");
-		            }
-		         }
+			            if(leng > age3day){
+			               alert("정확한 날짜를 입력하세요");
+			               $('#member_age3').val("");
+			               console.log(age3day);
+			            }
+			         } //2자리인데 31일 넘기면 알림
+		      	
+		      	
+		         
 		      }
 		   }); //생년월일 일 체크
 	
 	
 	
+		   
+		   $('#member_age2').on({
+			      focusout: function(){
+			         var leng = $('#member_age3').val();
+			         var age2 = $('#member_age2').val();
+			         var age1 = $('#member_age1').val();
+			         
+			         var age3day = 0;
+			         var yy = 0;			         
+			         
+			         if (age1 != null ){
+			        	 age3day = 0;
+			        	 
+			        	if(age1 % 4 == 0 && age1 % 100 != 0 || age1 % 400 == 0) {
+			        		yy = 1;
+			        	} else {
+			        		yy = 0;
+			        	}; //윤달+ 체크
+			        	
+			        	if(age2 == 01){
+			        		age3day = 31;
+			        	}else if(age2 == 03){
+			        		age3day = 31;
+			        	}else if(age2 == 05){
+			        		age3day = 31;
+			        	}else if(age2 == 07){
+			        		age3day = 31;
+			        	}else if(age2 == 08){
+			        		age3day = 31;
+			        	}else if(age2 == 10){
+			        		age3day = 31;
+			        	}else if(age2 == 12){
+			        		age3day = 31;
+			        	}else if(age2 == 04){
+			        		age3day = 30;
+			        	}else if(age2 == 06){
+			        		age3day = 30;
+			        	}else if(age2 == 09){
+			        		age3day = 30;
+			        	}else if(age2 == 11){
+			        		age3day = 31;
+			        	}else {
+			        		age3day = 28 + yy;
+			        	}//한달에 몇일 있는지 계산
+			            
+			        	console.log(age3day);
+			         		
+			      	}//연도가 있으면 계산
+			        
+			      	
+			         if (leng.length == 2){
+				            if(leng > age3day){
+				               alert("정확한 날짜를 입력하세요");
+				               $('#member_age3').val("");
+				               console.log(age3day);
+				            }
+				         } //2자리인데 31일 넘기면 알림
+			      	
+			         
+			      }
+			   });	   
+	
+		   
 	
 	
 	
@@ -182,6 +368,7 @@ $(document).ready(function(){
 		    });
 		};
 	});
+	
 	
 });
 
@@ -271,6 +458,13 @@ $(document).ready(function(){
 								</div>
 							</div>
 						</div>
+						
+					
+<!-- 						<label class="col-md-4 control-label" for="passwordinput"></label>
+						<div class="col-md-5">
+							<span id="birth_check" class="help-block">dd</span>
+						</div> -->
+						
 					</div>
 
 
@@ -330,17 +524,17 @@ $(document).ready(function(){
 						<label class="col-md-4 control-label" for="study_term">공부기간</label>
 						<div class="col-md-5">
 							<label class="radio-inline" for="gender-0"> 
-								<input type="radio" name="study_term" id="study_term-0" value="1일" checked="checked"> 1일-1개월
+								<input type="radio" name="study_term" id="study_term-0" value="1개월 미만" checked="checked">1개월 미만
 							</label> 
 							<label class="radio-inline" for="gender-1">
-								<input type="radio" name="study_term" id="study_term-1" value="2개월-6개월">2개월-6개월
+								<input type="radio" name="study_term" id="study_term-1" value="1~3개월 미만">1~3개월 미만
 							</label>
 							<label class="radio-inline" for="gender-1">
-								<input type="radio" name="study_term" id="study_term-2" value="6개월-1년">6개월-1년
+								<input type="radio" name="study_term" id="study_term-2" value="3개월 이상">3개월 이상
 							</label>
-							<label class="radio-inline" for="gender-1">
+							<!-- <label class="radio-inline" for="gender-1">
 								<input type="radio" name="study_term" id="study_term-3" value="1년이상">1년 이상
-							</label>
+							</label> -->
 						</div>
 					</div>
 
