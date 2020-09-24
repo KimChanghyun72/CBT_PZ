@@ -40,7 +40,7 @@ body {
 						<col style="width: 10%;" />
 					</colgroup>
 					<thead>
-						<tr>
+						<tr align="center">
 							<th>NO</th>
 							<th>글제목</th>
 							<th>작성자</th>
@@ -48,7 +48,7 @@ body {
 							<th>작성일</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody align="center">
 						<c:choose>
 							<c:when test="${empty list}">
 								<tr>

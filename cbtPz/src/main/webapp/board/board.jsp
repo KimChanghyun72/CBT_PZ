@@ -20,8 +20,8 @@ $(function(){
 			data:{board_id : "${board.board_id}"},
 			success : function(datas){
 				for(i=0; i<datas.length; i++){
-					$("<div>")
-							.append(datas[i].comment_poster).append($("<br>"))
+					$("<div>").append($("<b>").append(datas[i].comment_poster))
+							.append($("<br>"))
 							.append(datas[i].comment_contents)
 							.data("comment_id", datas[i].comment_id)
 							.append($("<a href='javascript:void(0)'>").html("삭제").addClass("btnDel"))
@@ -53,8 +53,8 @@ $(function(){
 					dataType:"json",
 					data : $("form").serialize(),
 					success : function(data){
-						$("<div>")
-						.append(data.comment_poster).append($("<br>"))
+						$("<div>").append($("<b>").append(data.comment_poster))
+						.append($("<br>"))
 						.append(data.comment_contents)
 						.data("comment_id", data.comment_id)
 						.append($("<a href='javascript:void(0)'>").html("삭제").addClass("btnDel"))
@@ -136,7 +136,8 @@ body {
 				</div>
 				
 				<div class="board_content">${board.board_contents}</div>
-
+				<div class="board_file"><img src="${board.board_file}" style="width:50px"/></div>
+					
 				</div>
 			<div style="margin-top : 20px">
 			 <p align="right">	
