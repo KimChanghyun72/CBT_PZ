@@ -46,15 +46,9 @@
    	  action="${pageContext.request.contextPath}/hashInsert.do"
    	  onsubmit = "return inputCheck()">
 <h3>해쉬태그 등록</h3>
-<label>#해쉬태그
-		<input type="text" list="hashlist" name="hash">
-		<datalist id="classify_code_cd"  >
-			<option value="요구공학"></option>
-			<option value="운영체제"></option>
-			<option value="네트워크"></option>
-		</datalist>
-	</label>
-	<input type="text" name="examInput" placeholder="키워드를 입력하세요."/>&nbsp;&nbsp;
+id   : <input type="text" name="hashtag_id" id="hashtag_id"/><br>
+name : <input type="text" name="hashcode_name" id="hashcode_name"/><br>
+code : <input type="text" name="classify_code_cd" id="classify_code_cd"/>
 	<button>등록</button>
 </form>
 </body>
