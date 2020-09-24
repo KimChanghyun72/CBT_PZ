@@ -123,8 +123,8 @@ body {
 <div class="row">
   <div class="leftcolumn">
     <div class="card">
+    	<!-- 모의/기출별 -->
 		<c:forEach items="${headproblem}" var="headproblem">	
-					
 			문제:${headproblem.problem_text} <br>	
 			${headproblem.ans_1}<br>
 			${headproblem.ans_2}<br> 
@@ -134,8 +134,8 @@ body {
 			해설:${headproblem.haeseol}<br>
 			<br><br>
 		</c:forEach>
+		<!-- 과목별 -->
 		<c:forEach items="${sub}" var="sub">	
-					
 			문제 : ${sub.problem_text} <br>	
 			${sub.ans_1}<br>
 			${sub.ans_2}<br>
@@ -145,7 +145,17 @@ body {
 			해설:${sub.haeseol}<br>
 			<br><br>
 		</c:forEach>
-		
+		<!-- hash별 -->
+		 <c:forEach items="${hashSelect}" var="hashSelect">	
+			문제:${hashSelect.problem_text} <br>	
+			${hashSelect.ans_1}<br>
+			${hashSelect.ans_2}<br> 
+			${hashSelect.ans_3}<br> 
+			${hashSelect.ans_4}<br>
+			정답:${hashSelect.ans_correct}<br>        
+			해설:${hashSelect.haeseol}<br>
+			<br><br> 
+	</c:forEach>
     </div>
   </div>
   <div class="rightcolumn">

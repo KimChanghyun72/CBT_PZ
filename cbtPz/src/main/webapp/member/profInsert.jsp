@@ -34,7 +34,7 @@ $(document).ready(function(){
 		var memid = $('#teacher_id').val();
 		$.ajax({
 	        type:"POST",
-	        url:"${pageContext.request.contextPath}/profIdCheck.do",
+	        url:"${pageContext.request.contextPath}/ajax/profIdCheck.do",
 	        data : {id : memid},
 	        dataType : "json",
 	        success: function(data){
@@ -94,7 +94,7 @@ $(document).ready(function(){
 		
 			$.ajax({
 		        type:"POST",
-		        url:"${pageContext.request.contextPath}/memEmailCheck.do",
+		        url:"${pageContext.request.contextPath}/ajax/memEmailCheck.do",
 		        data : {teacher_email : v},
 		        dataType : "json",
 		        success: function(data){
@@ -124,7 +124,7 @@ $(document).ready(function(){
 	<div class="container">
 		<div class="row">
 			<form class="form-horizontal" name="frm" method="post" id="frm" 
-					action="${pageContext.request.contextPath}/profInsert.do">
+					action="${pageContext.request.contextPath}/nostms/profInsert.do">
 				<fieldset>
 					<br>
 					<h3>교사 회원가입</h3>
