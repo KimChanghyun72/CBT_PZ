@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
-import model.PaperheadDAO;
+import model.PaperHeadDAO;
 import model.PaperheadVO;
 
 public class HeaderSelectCtrl implements Controller {
@@ -31,7 +31,7 @@ public class HeaderSelectCtrl implements Controller {
 		problem.setPaperhead_id(paperhead_id);
 		
 		//서비스		
-		PaperheadDAO dao = new PaperheadDAO();
+		PaperHeadDAO dao = new PaperHeadDAO();
 		ArrayList<PaperheadVO> headlist = dao.selectPaper_type(type);
 		List<Map<String, Object>> headproblem = dao.selectOne(problem);	
 		

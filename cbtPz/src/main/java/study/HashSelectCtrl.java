@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
 import model.HashtagVO;
-import model.PaperheadDAO;
+import model.PaperHeadDAO;
 
 public class HashSelectCtrl implements Controller {
 
@@ -28,7 +28,7 @@ public class HashSelectCtrl implements Controller {
 		hash.setHashtag_name(hashtag_name);
 		
 		//서비스		
-		PaperheadDAO dao = new PaperheadDAO();
+		PaperHeadDAO dao = new PaperHeadDAO();
 		List<Map<String, Object>> hashSelect = dao.selectHash(hash);
 		
 		
