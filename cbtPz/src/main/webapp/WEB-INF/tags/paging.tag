@@ -1,4 +1,4 @@
-<%@ tag language="java" pageEncoding="UTF-8"%>
+<%@ tag language="java" pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ attribute name="paging" type="common.Paging" %>
 <%@ attribute name="jsfunc" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
