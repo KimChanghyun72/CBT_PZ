@@ -23,44 +23,43 @@ public class PaperHeadDAO {
 	}
 	
 	//과목별 문제검색
-		public ArrayList<ProblemVO> selectSubjectType(ProblemVO problemVO) {
-			ArrayList<ProblemVO> list = new ArrayList<ProblemVO>();
+	public List<Map<String,Object>> selectSubjectType(ProblemVO problemVO) {
+		List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
+		
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "SELECT PROBLEM_ID, SUBJECT, HAESEOL, PROBLEM_TEXT, ANS_1, ANS_2, ANS_3,"
+					+ " ANS_4, ANS_CORRECT, PAPERHEAD_ID, PROBLEM_IMAGE "
+					+ " FROM problem "
+					+ " where subject = ? "; 
 			
-			try {
-				conn = ConnectionManager.getConnnect();
-				String sql = "SELECT PROBLEM_ID, SUBJECT, HAESEOL, PROBLEM_TEXT, ANS_1, ANS_2, ANS_3,"
-						+ " ANS_4, ANS_CORRECT, PAPERHEAD_ID, PROBLEM_IMAGE "
-						+ " FROM problem "
-						+ " where subject = ? "; 
-				
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1,problemVO.getSubject());
-				
-				rs = pstmt.executeQuery();
-				while(rs.next()) {
-					ProblemVO resultVO = new ProblemVO();
-					resultVO = new ProblemVO();
-					resultVO.setProblem_id(rs.getString(1));
-					resultVO.setSubject(rs.getString(2));
-					resultVO.setHaeseol(rs.getString(3));
-					resultVO.setProblem_text(rs.getString(4));
-					resultVO.setAns_1(rs.getString(5));
-					resultVO.setAns_2(rs.getString(6));
-					resultVO.setAns_3(rs.getString(7));
-					resultVO.setAns_4(rs.getString(8));
-					resultVO.setAns_correct(rs.getString(9));
-					resultVO.setPaperhead_id(rs.getString(10));
-					resultVO.setProblem_image(rs.getString(11));
-					list.add(resultVO);
-				}
-				
-			} catch(Exception e) {
-				e.printStackTrace();
-			} finally {
-				ConnectionManager.close(rs, pstmt, conn);
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,problemVO.getSubject());
+			
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Map<String,Object> map = new HashMap<String,Object>();
+				map.put("problem_id", rs.getString(1));
+				map.put("subject", rs.getString(2));
+				map.put("haeseol", rs.getString(3));
+				map.put("problem_text", rs.getString(4));
+				map.put("ans_1", rs.getString(5));
+				map.put("ans_2", rs.getString(6));
+				map.put("ans_3", rs.getString(7));
+				map.put("ans_4", rs.getString(8));
+				map.put("ans_correct", rs.getString(9));
+				map.put("paperhead_id", rs.getString(10));
+				map.put("problem_image", rs.getString(11));
+				list.add(map);
 			}
-			return list;
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
 		}
+		return list;
+	}
 				
 		// 모의/기출 검색
 		public ArrayList<PaperheadVO> selectPaper_type(PaperheadVO paperheadVO) {

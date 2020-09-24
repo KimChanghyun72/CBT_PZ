@@ -8,7 +8,7 @@
 </head>
 <body>
 	
-	<form action="problemSearch.do">	
+	<form action="problemSubject.do">	
 	1과목<button type="submit" name="subject" value="1과목">풀기</button><br>
 	2과목<button type="submit" name="subject" value="2과목">풀기</button><br>
 	3과목<button type="submit" name="subject" value="3과목">풀기</button><br>
