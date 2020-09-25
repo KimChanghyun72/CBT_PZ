@@ -16,5 +16,5 @@ public class MemberVo {
 	private String is_pay;
 	private String pay_enddate;
 	private String email;
-
+	private String cnt;
 }
