@@ -31,7 +31,8 @@ public class ProbScoringCtrl implements Controller {
 			ansCorrect = (String)headproblem.get(i).get("ans_correct");
 			System.out.println(problemId);
 			System.out.println(ansCorrect);
-			ans.put(problemId, ansCorrect);
+			ans.put("problem_id", problemId);
+			ans.put("ans_correct", ansCorrect);
 			System.out.println(ans);
 			ansList.add(i, ans);
 			System.out.println(ansList);

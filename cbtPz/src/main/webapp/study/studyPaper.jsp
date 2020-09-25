@@ -59,13 +59,13 @@ body {
 /* Left column */
 .leftcolumn {
 	float: left;
-	width: 55%;
+	width: 60%;
 }
 
 /* Right column */
 .rightcolumn {
 	float: right;
-	width: 25%;
+	width: 40%;
 	background-color: #f1f1f1;
 	padding-left: 20px;
 }
@@ -87,8 +87,8 @@ body {
 /* Clear floats after the columns */
 .row:after {
 	content: "";
-	display: table;
-	clear: both;
+	/* display: table;  */
+	clear: both; 
 }
 
 /* Footer */
@@ -100,7 +100,7 @@ body {
 }
 
 /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1500px) {
 	.leftcolumn, .rightcolumn {
 		width: 100%;
 		padding: 0;
@@ -113,6 +113,9 @@ body {
 		float: none;
 		width: 100%;
 	}
+}
+.row {
+	width : 1000px;
 }
 
 .haeseol {
@@ -138,10 +141,12 @@ int probNum;  //문제 번호
 int ansNum;  //오른쪽 문제번호
 int probSize = problemList.size();
 %>
+
 var size = <%=probSize%>;
 
 $(function(){
 	 $("#foo-table").DataTable();
+	 $("div.row").eq(3).css("width","600px");
 })
 $(function(){ //for문은 번호를 설정해주는 역할만 하고 이벤트시에는 안 먹음.
 	for(var i=0; i<size; i++){
@@ -156,31 +161,45 @@ $(function(){ //for문은 번호를 설정해주는 역할만 하고 이벤트�
 		var j= $(this).attr('name').substring(6);
 		var v =$(this).val();
 		
-		$('input:radio[name=problem'+j+']').val([v]);
+		$('input:radio[name=problem'+j+']').val([v]); 
 	})
 	}
+	var cnt = 0; //문제 맞춘 갯수
 	//ajax로 답지 불러오는 함수.
 	function submitFunc(){
 		$.ajax("${pageContext.request.contextPath}/ajax/probScoringCtrl.do", {
 			dataType : "json",
 			success : function(datas){
 				for(i=0; i<datas.length; i++){
-					console.log(datas.length)
-					$("p").append(datas[i]).appendTo($(".ans_correct"));
-				}
+					console.log(datas.length)       //데이터 길이 콘솔
+					if(datas[i].ans_correct == $('input[name=problem'+i+']:checked').val()){
+						$('input[name=problem'+i+']').closest("td").prev().append("<div>O</div>");
+						cnt = cnt+1;
+						console.log(cnt);
+					}else{
+						$('input[name=problem'+i+']').closest("td").prev()
+								.append("<div>X</div><div>정답 : "+datas[i].ans_correct+"</div>");
+					}
+				};
 			}
 		})
 	}
 	
 	
-	//문제 제출하면 ajax로 답지 불러옴.
+	//문제 제출하면 ajax로 답지 불러오고 제출버튼 삭제.
 	$(".btnScore").on("click", function(){
 		var is_submit = confirm("제출하시겠습니까?");
 		if(is_submit){
 			submitFunc();
+			$(this).remove();
+			$(".rightcolumn").append("<button class='btnFinish'>확인</button>");
 			}
-	})
+	});
 	
+	$(document).on("click", ".btnFinish", function(){
+		console.log(cnt);
+		//$("#testResult").submit();
+	})
 	
 	
 });
@@ -227,7 +246,7 @@ window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };
 					<div><input type="radio" name="problem<%=probNum%>" value="2"><%=problemList.get(probNum).get("ans_2") %></div>
 					<div><input type="radio" name="problem<%=probNum%>" value="3"><%=problemList.get(probNum).get("ans_3") %></div>
 					<div><input type="radio" name="problem<%=probNum%>" value="4"><%=problemList.get(probNum).get("ans_4") %></div>
-					<div class="haeseol<%=probNum %>"></div>
+					<div class="haeseol<%=problemList.get(probNum).get("problem_id") %>"></div>
 				</td>
 			</tr>
 			<% } %>
@@ -259,6 +278,9 @@ window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };
 					</table>
 					<button class="btnScore">제출</button>
 					<div class="ans_correct"></div>
+					<form id="testResult" name="testResult" action="ScoreInsert.do">
+						<input type="hidden" name="testScore">
+					</form>
 				</div>
 			</div>
 		</div>
