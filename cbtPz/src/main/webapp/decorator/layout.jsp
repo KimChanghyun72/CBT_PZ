@@ -15,6 +15,7 @@
     <!-- Title -->
     <title><decorator:title/></title>
 
+    <script src="js/jquery/jquery-2.2.4.min.js"></script>
 	<!-- Bootstrap core CSS -->
 	<!-- <link rel="stylesheet1" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"> -->
 	<link href="${pageContext.request.contextPath}/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -31,7 +32,6 @@
     
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
-    <script src="js/jquery/jquery-2.2.4.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="js/bootstrap/bootstrap.min.js"></script>
 
@@ -97,6 +97,7 @@
                                         <li><a href="instructors.html">태그별</a></li>
                                     </ul>
                                 </li>
+                              <c:if test="${not empty sessionScope.check && sessionScope.check != 'A'}">
                                 <li><a href="instructors.html" >마이페이지</a>
                                 	<ul class="dropdown">
                                         <li><a href="index.jsp">기출문제</a></li>
@@ -105,6 +106,8 @@
                                         <li><a href="instructors.html">태그별</a></li>
                                     </ul>
                                 </li>
+                              </c:if>
+                              <c:if test="${not empty sessionScope.check && sessionScope.check == 'A'}">
                                 <li><a href="instructors.html">관리자메뉴</a>
                                 	<ul class="dropdown">
                                         <li><a href="index.jsp">기출문제</a></li>
@@ -114,6 +117,7 @@
                                     </ul>
                                 </li>
                                 <li><a href="${pageContext.request.contextPath}/payment/payment.jsp">멤버쉽</a></li>
+                              </c:if>
                             </ul>
 
 

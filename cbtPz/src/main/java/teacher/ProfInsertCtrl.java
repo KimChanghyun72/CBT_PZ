@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
@@ -16,12 +17,29 @@ import controller.Controller;
 import model.TeacherDAO;
 import model.TeacherVO;
 
+
 public class ProfInsertCtrl implements Controller {
 
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("교사회원등록");
 		
-		String path = "D:/upload/profupload";
+		String path = "c:/upload/profupload";
+		File Folder = new File(path);
+
+		// 해당 디렉토리가 없을경우 디렉토리를 생성합니다.
+		if (!Folder.exists()) {
+			try{
+			    Folder.mkdir(); //폴더 생성합니다.
+			    System.out.println("폴더가 생성되었습니다.");
+		        } 
+		        catch(Exception e){
+			    e.getStackTrace();
+			}        
+	         }else {
+			System.out.println("이미 폴더가 생성되어 있습니다.");
+		}
+		
+		
 		TeacherVO teacher = new TeacherVO();
 		
 		try {
@@ -30,7 +48,8 @@ public class ProfInsertCtrl implements Controller {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		
+		String tname = teacher.getTeacher_name();
 		
 		Part part = request.getPart("teacher_picture");
 		String teacher_picture = getFileName(part);
@@ -39,8 +58,8 @@ public class ProfInsertCtrl implements Controller {
 
 		if (teacher_picture != null && !teacher_picture.isEmpty()) {
 			File renameFile = FileRenamePolicy.rename(new File(path,teacher_picture));
-			part.write(renameFile.getName());
-			teacher.setTeacher_picture(path+"/"+renameFile.getName());
+			part.write(path + "/" + tname + "_" + renameFile.getName());
+			teacher.setTeacher_picture(tname + "_" +renameFile.getName());
 		}
 		
 		int r = TeacherDAO.getInstance().insert(teacher);
