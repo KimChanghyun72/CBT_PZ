@@ -18,7 +18,7 @@
     <script src="js/jquery/jquery-2.2.4.min.js"></script>
 	<!-- Bootstrap core CSS -->
 	<!-- <link rel="stylesheet1" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"> -->
-	<link href="/cbtPz/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	
 	
   	<!-- Custom styles for this template -->
@@ -116,8 +116,8 @@
                                         <li><a href="instructors.html">태그별</a></li>
                                     </ul>
                                 </li>
+                                <li><a href="${pageContext.request.contextPath}/payment/payment.jsp">멤버쉽</a></li>
                               </c:if>
-                                <li><a href="blog.html">멤버쉽</a></li>
                             </ul>
 
 

@@ -24,13 +24,15 @@ public class MemberUpdateController implements Controller {
 		//유료 결제에 대한 정보 받기
 		String payCheck = request.getParameter("payCheck");
 		System.out.println(payCheck);
-		int term = Integer.parseInt(request.getParameter("term"));
+		String term = request.getParameter("term");
 		MemberVo pay_member = (MemberVo) request.getSession().getAttribute("login");
 
 		if (payCheck.equals("pay")) {
 			MemberDAO dao = new MemberDAO();
 			String is_pay = "YES"; //유료회원 판단 문자
-			System.out.println();
+			System.out.println(pay_member.getIs_pay());
+			int term2 = Integer.parseInt(term); //string term을 int 값으로 변환. 위치 if문 밖이면 유저정보 업데이트시에 null값 때문에 문제 발생함.
+			
 			if(is_pay.equals(pay_member.getIs_pay())) { //유료회원의 경우
 				Calendar cal = Calendar.getInstance();
 
@@ -44,7 +46,7 @@ public class MemberUpdateController implements Controller {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				cal.add(Calendar.DATE, term); //기간 연장
+				cal.add(Calendar.DATE, term2); //기간 연장
 				pay_member.setPay_enddate(df.format(cal.getTime()));
 				dao.update(pay_member);
 			
@@ -53,7 +55,7 @@ public class MemberUpdateController implements Controller {
 				pay_member.setIs_pay(is_pay);		//유료회원으로 전환
 				 cal.setTime(new Date());
 				 DateFormat df = new SimpleDateFormat("yyyy/MM/dd"); 
-				 cal.add(Calendar.DATE, term);
+				 cal.add(Calendar.DATE, term2);
 				pay_member.setPay_enddate(df.format(cal.getTime()));
 				dao.update(pay_member);
 			}

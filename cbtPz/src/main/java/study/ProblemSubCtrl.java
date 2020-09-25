@@ -28,7 +28,7 @@ public class ProblemSubCtrl implements Controller {
 		
 		List<Map<String, Object>> sub = dao.selectSubjectType(subVO);
 		
-		request.setAttribute("problemList", sub);
+		request.getSession().setAttribute("problemList", sub);
 		
 		request.getRequestDispatcher("/study/"+path).forward(request, response);
 	}
