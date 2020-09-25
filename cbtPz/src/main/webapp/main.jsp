@@ -54,8 +54,45 @@
         <span class="sr-only">Next</span>
       </a>
     </div>
+	<section class="popular-courses-area section-padding-100-0">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="section-heading">
+						<h3>Popular Online Courses</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="popular-courses-area section-padding-100-0">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="section-heading">
+						<h3>Popular Online Courses</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="popular-courses-area section-padding-100-0">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="section-heading">
+						<h3>Popular Online Courses</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
     </section>
     <!-- ##### Hero Area End ##### -->
+
+
+
+
 
     <!-- ##### Cool Facts Area Start ##### -->
     <section class="cool-facts-area section-padding-100-0">
@@ -63,7 +100,7 @@
             <div class="row">
                 <!-- Single Cool Facts Area -->
                 <div class="col-12 col-sm-6 col-lg-3">
-                    
+                    dfdfdf
                 </div>
             </div>
         </div>
