@@ -13,6 +13,8 @@
 <title>/member/profInsert.jsp</title>
 
 <script>
+
+
 $(function(){
 	if("${errorcode}"=="2"){
 		alert("${errormsg}");		
@@ -83,21 +85,40 @@ $(document).ready(function(){
 		}
 	});
 	
-	$('#teacher_record').on("focusout", function(){
-		var leng = $('#teacher_record').val();
-		if (leng.length > 1000){
-			alert("이력란은 최대 1000자리입니다");
-			$(this).val(""); //trim 으로 잘라낼수있는가? 
+	
+	$('#teacher_record').on({
+/* 		focusout : function(){
+			var leng = $('#teacher_record').val();
+			if (leng.length > 1000){
+				alert("이력란은 최대 1000자리입니다");
+				$(this).val(""); // 
+			}
+		}, */
+		keypress : function(){
+ 			var t = event.target.value;
+			  console.log(t.length);
+			  if( t.length > 1000){
+				  //alert("이력란은 최대 1000자리입니다");
+				  event.preventDefault();
+				  event.returnValue=false;
+				  return false;
+			}
 		}
+			
 	});
 	
-	$('#teacher_certificate').on("focusout", function(){
-		var leng = $('#teacher_certificate').val();
-		if (leng.length > 400){
-			alert("자격증란은 최대 400자리입니다");
-			$(this).val("");
-		}
-	});
+	
+	
+	$('#teacher_certificate').on("keypress", function(){
+			var t = event.target.value;
+			  console.log(t.length);
+			  if( t.length > 400){
+				  event.preventDefault();
+				  event.returnValue=false;
+				  return false;
+			}
+	}); //자격증
+	
 	
 	
 	$('#email').on("focusout", function(){
