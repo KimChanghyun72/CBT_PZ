@@ -22,13 +22,58 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript" src="fancymetags.jQuery.js"></script>
+<style>    
+	.center {
+	  padding: 30px;
+	  text-align: center;
+	  background: white;
+	}
+	
+	.header h1 {
+	  font-size: 50px;
+	}    
+	
+	ul {
+        padding: 16px 0;
+    }
 
-<script>
+    ul li {
+        display: inline-block;
+        margin: 0 5px;
+        font-size: 14px;
+        letter-spacing: -.5px;
+    }
+    
+    form {
+        padding-top: 16px;
+    }
 
-</script>
+    ul li.tag-item {
+        padding: 4px 8px;
+        background-color: #777;
+        color: #000;
+    }
+
+    .tag-item:hover {
+        background-color: #262626;
+        color: #fff;
+    }
+
+    .del-btn {
+        font-size: 12px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-left: 8px;
+    }
+	
+</style>
+
     
 <script>  
-
+$(document).on("click", ".del-btn", function (e) {
+    var index = $(this).attr("idx");    
+    $(this).parent().remove();
+});
 $(function(){
 	$("#testInput").autocomplete({
 		source : function(request, response) {
@@ -53,6 +98,7 @@ $(function(){
 		minLength : 1,
 		autoFocus : false,
 		select : function(evt, ui) {
+			$("#tag-list").append("<li class='tag-item'>"+ui.item.value+"<span class='del-btn' idx='"+ui.item.idx+"'>x</span></li>");
 			console.log("전체 data: " + JSON.stringify(ui));
 			console.log("db Index : " + ui.item.idx);
 			console.log("검색 데이터 : " + ui.item.value);
@@ -71,17 +117,7 @@ $(function(){
 });
 </script>
 </head>
-<style>    
-	.center {
-	  padding: 30px;
-	  text-align: center;
-	  background: white;
-	}
-	
-	.header h1 {
-	  font-size: 50px;
-	}    
-</style>
+
 <body>
  <section class="cool-facts-area section-padding-100-0">
         <div class="container">
@@ -102,7 +138,12 @@ $(function(){
             </div>
         </div>
     </section>
-    <div class="center"><label id="hashlist"></label></div>
+     <div class="center">
+    <form action="${pageContext.request.contextPath}/hashtagSelect.do">
+    </form>
+		 <ul id="tag-list">
+        </ul>
+	</div>
     
 </body>
 </html>

@@ -11,8 +11,8 @@ import javax.servlet.http.Part;
 
 import common.FileRenamePolicy;
 import controller.Controller;
-import paperHead.PaperHeadDAO;
-import paperHead.PaperHeadVO;
+import model.PaperHeadDAO;
+import model.PaperheadVO;
 
 public class ExcelInsertCtrl implements Controller {
 
@@ -24,7 +24,7 @@ public class ExcelInsertCtrl implements Controller {
 		String excel_file = request.getParameter("excel_file");
 		String path = ":/upload";
 		
-		PaperHeadVO paper = new PaperHeadVO();
+		PaperheadVO paper = new PaperheadVO();
 		paper.setPaperhead_id(paperhead_id);
 		paper.setPaper_type_cd(paper_type_cd);
 		paper.setPaper_round(paper_round);
