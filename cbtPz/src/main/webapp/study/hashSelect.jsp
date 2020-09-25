@@ -75,15 +75,8 @@ $(document).on("click", ".del-btn", function (e) {
     $(this).parent().remove();
 });
 
-/* $("#testInput").on('keypress', function keypress({
-	if(keycode == 13){
-		$("#testInput").val("");
-	}
-})) */
 
 $(function(){
-	
-	
 	$(document).on("click", "#hashbtn", function () {
 		var list = $(".tag-item")
 		var listAry = "";
