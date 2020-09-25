@@ -50,12 +50,12 @@
 
     ul li.tag-item {
         padding: 4px 8px;
-        background-color: #777;
-        color: #000;
+        background-color: #5F8AF8;
+        color: #fff;
     }
 
     .tag-item:hover {
-        background-color: #262626;
+        background-color: #70E0F1;
         color: #fff;
     }
 

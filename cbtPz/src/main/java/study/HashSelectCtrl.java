@@ -36,8 +36,8 @@ public class HashSelectCtrl implements Controller {
 		System.out.println("hashtag_name = " + hashtag_name);
 
 		//조회결과를 저장후에 결과페이지로 포워드
-		request.setAttribute("problemList", hashSelect);
-		
+		request.getSession().setAttribute("problemList", hashSelect);
+							 
 		request.getRequestDispatcher("/study/"+path).forward(request, response);
 		
 	}
