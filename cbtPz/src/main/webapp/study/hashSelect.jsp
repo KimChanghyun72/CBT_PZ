@@ -118,7 +118,7 @@ $(function(){
 		minLength : 1,
 		autoFocus : false,
 		select : function(evt, ui) {
-			$("#testInput").val("");
+			
 			$("#tag-list").append("<li class='tag-item'><span class='hashtext'>"+ui.item.value+"</span><span class='del-btn' idx='"+ui.item.idx+"'>x</span></li>");
 			console.log("전체 data: " + JSON.stringify(ui));
 			console.log("db Index : " + ui.item.idx);
@@ -128,6 +128,7 @@ $(function(){
 		return false;
 		},
 		close : function(evt) {
+			$("#testInput").val("");
 		}
 	});
 
