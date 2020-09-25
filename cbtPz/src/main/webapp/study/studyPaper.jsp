@@ -3,7 +3,7 @@
 <%@page import="model.ProblemVO"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,12 +59,12 @@ body {
 /* Left column */
 .leftcolumn {
 	float: left;
-	width: 75%;
+	width: 55%;
 }
 
 /* Right column */
 .rightcolumn {
-	float: left;
+	float: right;
 	width: 25%;
 	background-color: #f1f1f1;
 	padding-left: 20px;
@@ -133,7 +133,7 @@ body {
 <script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
 <script>
 <%
-List<Map<String, Object>> problemList = (List<Map<String, Object>>)request.getAttribute("problemList");
+List<Map<String, Object>> problemList = (List<Map<String, Object>>)request.getSession().getAttribute("problemList");
 int probNum;  //문제 번호
 int ansNum;  //오른쪽 문제번호
 int probSize = problemList.size();
@@ -145,21 +145,44 @@ $(function(){
 })
 $(function(){ //for문은 번호를 설정해주는 역할만 하고 이벤트시에는 안 먹음.
 	for(var i=0; i<size; i++){
-	$('input[name=problem'+i+']').on("change", function(){
+	$(document).on("change",'input[name=problem'+i+']', function(){
 		var j= $(this).attr('name').substring(7);
 		var v =$(this).val();
 		
 		$('input:radio[name=answer'+j+']').val([v]);
 	})
 	
-	$('input[name=answer'+i+']').on("change", function(){
+	$(document).on("change",'input[name=answer'+i+']', function(){
 		var j= $(this).attr('name').substring(6);
 		var v =$(this).val();
 		
 		$('input:radio[name=problem'+j+']').val([v]);
 	})
-	
 	}
+	//ajax로 답지 불러오는 함수.
+	function submitFunc(){
+		$.ajax("${pageContext.request.contextPath}/ajax/probScoringCtrl.do", {
+			dataType : "json",
+			success : function(datas){
+				for(i=0; i<datas.length; i++){
+					console.log(datas.length)
+					$("p").append(datas[i]).appendTo($(".ans_correct"));
+				}
+			}
+		})
+	}
+	
+	
+	//문제 제출하면 ajax로 답지 불러옴.
+	$(".btnScore").on("click", function(){
+		var is_submit = confirm("제출하시겠습니까?");
+		if(is_submit){
+			submitFunc();
+			}
+	})
+	
+	
+	
 });
 	
 
@@ -217,11 +240,9 @@ window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };
 		<div class="rightcolumn">
 			<div class="card">
 				<h3>정답확인</h3>
-				<form class="scoreFrm" action=""> <!-- 답지 제출 폼 -->
 				<div class="fakeimg">
 					<table>
 						<tbody>
-						
 							<% 
 								for(ansNum=0; ansNum<problemList.size();ansNum++){
 							%>
@@ -234,12 +255,11 @@ window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };
 							</tr>
 							
 							<% } %>
-							
 						</tbody>
 					</table>
-					<input type="submit" class="Scoring" value="제출">
+					<button class="btnScore">제출</button>
+					<div class="ans_correct"></div>
 				</div>
-			</form>				
 			</div>
 		</div>
 	</div>
