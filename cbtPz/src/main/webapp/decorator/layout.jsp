@@ -133,8 +133,10 @@
                             <!-- Register / Login -->
                             <div class="register-login-area">
                                 <c:if test="${not empty sessionScope.name}">
+                                <c:if test="${sessionScope.check=='M'}">
                                 	<c:if test="${sessionScope.login.is_pay == 'Y' }">
                                 		<span class="badge badge-pill badge-warning">VIP</span>
+                                	</c:if>
                                 	</c:if>
 	                                ${sessionScope.name}님  
 	                                <a href="${pageContext.request.contextPath}/logout.do" class="btn active">Logout</a>
