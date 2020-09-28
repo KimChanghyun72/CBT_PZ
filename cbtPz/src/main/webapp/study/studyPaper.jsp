@@ -143,6 +143,7 @@ int probSize = problemList.size();
 %>
 
 var size = <%=probSize%>;
+var is_submit=0;
 
 $(function(){
 	 $("#foo-table").DataTable();
@@ -181,22 +182,27 @@ $(function(){ //for문은 번호를 설정해주는 역할만 하고 이벤트�
 								.append("<div>X</div><div>정답 : "+datas[i].ans_correct+"</div>");
 					}
 				};
+				$("[name=testNum]").val(datas.length); //문제 갯수 입력
+				$("[name=testScore]").val(cnt); //성적 폼태그에 입력
 			}
 		})
 	}
 	
 	
 	//문제 제출하면 ajax로 답지 불러오고 제출버튼 삭제.
-	$(".btnScore").on("click", function(){
-		var is_submit = confirm("제출하시겠습니까?");
+	$(document).on("click",".btnScore", function(){
+		is_submit = confirm("제출하시겠습니까?");
 		if(is_submit){
 			submitFunc();
 			$(this).remove();
 			$(".rightcolumn").append("<button class='btnFinish'>확인</button>");
+			//타이머 시간 고정.
+			
 			}
 	});
 	
 	$(document).on("click", ".btnFinish", function(){
+	
 		console.log(cnt);
 		//$("#testResult").submit();
 	})
@@ -206,19 +212,22 @@ $(function(){ //for문은 번호를 설정해주는 역할만 하고 이벤트�
 	
 
 //수정중 삭제파트 1.
-</script>
-<script>
 //카운트 시간 표시.
-var SetTime = 1800;		// 최초 설정 시간(기본 : 초)
+var SetTime = 0;		// 최초 설정 시간(기본 : 0초)
 function msg_time() {	// 1초씩 카운트
 	var m = Math.floor(SetTime / 60) + "분 " + (SetTime % 60) + "초";	// 남은 시간 계산
-	var msg = "현재 남은 시간은 <font color='red'>" + m + "</font> 입니다.";
+	var msg = "현재 경과된 시간은 <font color='red'>" + m + "</font> 입니다.";
 	document.all.ViewTimer.innerHTML = msg;		// div 영역에 보여줌 
-	SetTime--;					// 1초씩 감소
-	if (SetTime < 0) {			// 시간이 종료 되었으면..
-		clearInterval(tid);		// 타이머 해제
-		alert("종료");
+	 if(is_submit != true){// 제출되지 않았다면 1초씩 증가
+		SetTime++;		
+	} else{
+		var timeCnt = SetTime;
+		$("[name=testTime]").val(timeCnt);  //form에 걸린 시간 전송
+		console.log(timeCnt.toFixed(0)); //콘솔에 걸린 시간 표시 (초단위)
+		
+		clearInterval(tid); //타이머 해제
 	}
+
 }
 window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };
 
@@ -279,7 +288,9 @@ window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };
 					<button class="btnScore">제출</button>
 					<div class="ans_correct"></div>
 					<form id="testResult" name="testResult" action="ScoreInsert.do">
-						<input type="hidden" name="testScore">
+						<input type="text" name="testTime"> <!-- 테스트에 걸린 시간 -->
+						<input type="text" name="testScore"> <!-- 테스트 성적 -->
+						<input type="text" name="testNum">
 					</form>
 				</div>
 			</div>
