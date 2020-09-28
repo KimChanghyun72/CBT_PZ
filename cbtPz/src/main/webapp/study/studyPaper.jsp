@@ -235,7 +235,10 @@ window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };
 </head>
 <body>
 	<div class="header">
-		<h1>Header</h1>
+		<h1>${problemList[0].paper_type_cd} ${problemList[0].paper_round}</h1>
+ 		<h1>${problemList[0].subject}</h1>
+		<c:if test="">
+		</c:if>
 			<div id="ViewTimer"></div>
 	</div>
 <div class="leftcolumn">
@@ -285,8 +288,15 @@ window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };
 							<% } %>
 						</tbody>
 					</table>
+					<form action="${pageContext.request.contextPath}/solveInsert.do">
+					<input type="hidden" name="member_id" value="${sessionScope.member_id}">		
+					<input type="hidden" name="solve_type_cd" value="${problemList[0].paper_type_cd} ${problemList[0].paper_round}">
+					
 					<button class="btnScore">제출</button>
+					</form>
+					
 					<div class="ans_correct"></div>
+					
 					<form id="testResult" name="testResult" action="ScoreInsert.do">
 						<input type="text" name="testTime"> <!-- 테스트에 걸린 시간 -->
 						<input type="text" name="testScore"> <!-- 테스트 성적 -->
