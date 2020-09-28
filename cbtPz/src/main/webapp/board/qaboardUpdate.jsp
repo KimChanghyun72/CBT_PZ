@@ -9,9 +9,9 @@
 	<script>
 	function inputCheck() {
 
-		if (frm.board_title.value == "") {
+		if (frm.qaboard_title.value == "") {
 			window.alert("제목 입력하세요");
-			frm.board_title.focus();
+			frm.qaboard_title.focus();
 			return false;
 		}
 		if (frm.member_id.value == "") {
@@ -19,9 +19,9 @@
 			frm.member_id.focus();
 			return false;
 		}
-		if (frm.board_contents.value == "") {
+		if (frm.qaboard_contents.value == "") {
 			window.alert("내용을 입력하세요");
-			frm.board_contents.focus();
+			frm.qaboard_contents.focus();
 			return false;
 		}
 	
@@ -29,7 +29,6 @@
 	}
 </script> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
 
@@ -39,23 +38,25 @@ body {
 	padding-top: 170px;
 	padding-bottom: 30px;
 }
-</style>
+</style> 
 
 
 </head>
 <body>
 	
 		<div class="container" role="main">
-			<h2 align="right" onclick="location.href='../boardList.do'">자유게시판</h2>
-			<form id="frm" name="frm" id="frm" onsubmit="return inputCheck()" method="post" action="${pageContext.request.contextPath}/boardInsert.do" enctype="multipart/form-data">
+			<h2 align="right" onclick="location.href='${pageContext.request.contextPath}/board/qaboardList.do'">Q&A</h2>
+			<form id="frm" name="frm" id="frm" onsubmit="return inputCheck()" method="post" action="${pageContext.request.contextPath}/board/qaboardUpdate.do">
+		 
+			<input  type="hidden" name="qaboard_id" value="${qaboard.qaboard_id}"> 
 				<div class="mb-3">
-					<input  class="form-control" type="text" name="board_title" id="board_title" placeholder="제목"> 
-					<input  class="form-control" type="text" name="member_id" id="member_id" placeholder="작성자"> 
-					<input type="file" id="board_file" name="board_file">
+					<input  class="form-control" type="text" name="qaboard_title" id="qaboard_title" value="${qaboard.qaboard_title}" placeholder="제목"> 
+					<input  class="form-control" type="text" name="member_id" id="member_id" value="${qaboard.member_id}" placeholder="작성자"> 
+					
 				</div>
 
 				<div class="mb-3">
-					<textarea class="form-control" rows="10" name="board_contents" id="board_contents" placeholder="내용을 입력하세요"></textarea>
+					<textarea class="form-control" rows="10" name="qaboard_contents" id="qaboard_contents" placeholder="내용을 입력하세요">${qaboard.qaboard_contents}</textarea>
 				</div>
 				<div class="mb-3">
 					<input class="form-control" type="password" name="pw" id="pw" placeholder="비밀번호를 입력하세요">
@@ -67,9 +68,8 @@ body {
 			</p>
 			</div>
 			</form>
-		
-		</div>	
-
+		</div>
+	
 </body>
 
 </html>
