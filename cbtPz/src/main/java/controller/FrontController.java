@@ -43,7 +43,7 @@ public class FrontController extends HttpServlet {
     	//김민기
     	list.put("/boardInsert.do", new board.BoardInsertCtrl());
     	list.put("/boardSelect.do", new board.BoardSelectCtrl());
-    	list.put("/boardList.do", new board.BoardListCtrl());
+    	list.put("/board/boardList.do", new board.BoardListCtrl());
     	list.put("/boardUpdate.do", new board.BoardUpdateCtrl());
     	list.put("/boardUpdateForm.do", new board.BoardUpdateFormCtrl());
     	list.put("/boardDelete.do", new board.BoardDeleteCtrl());    	
