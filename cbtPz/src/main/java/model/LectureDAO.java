@@ -29,6 +29,8 @@ public class LectureDAO {
 			// 2.sql 구문 실행
 			String sql = "insert into lecture (lecture_id, lecture_name, lecture_info, lecture_link, lecture_image, teacher_id)"
 					+ "values (lecture_seq.nextval, ?, ?, ?, ?, ?)";
+			// 			String sql = "insert into lecture (lecture_id, lecture_name, lecture_info, lecture_link, lecture_image, teacher_id)"
+			// + "values (lecture_seq.nextval, ?, ?, ?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, lectureVO.getLecture_name());
 			pstmt.setString(2, lectureVO.getLecture_info());
@@ -63,9 +65,12 @@ public class LectureDAO {
 			ArrayList<LectureVO> list = new ArrayList<LectureVO>();
 			try {
 				conn = ConnectionManager.getConnnect();
-				String sql = "SELECT LECTURE_ID, TEACHER_id, LECTURE_NAME, LECTURE_INFO, LECTURE_LINK, LECTURE_IMAGE,"
-						+ " LECTURE_LEVEL, LECTURE_SUBJECT"
-						+ " FROM LECTURE WHERE TEACHER_id = ?"; // sql문 + 앞에 " " 공백
+
+				String sql = "SELECT LECTURE_ID, teacher_id, LECTURE_NAME, LECTURE_INFO, LECTURE_LINK, LECTURE_IMAGE,"
+							+ " LECTURE_LEVEL, LECTURE_SUBJECT"
+
+						+ " FROM LECTURE WHERE teacher_id = ?"; // sql문 + 앞에 " " 공백
+
 				pstmt = conn.prepareStatement(sql);
 				
 				pstmt.setString(1, lectureVO.getTeacher_id());
