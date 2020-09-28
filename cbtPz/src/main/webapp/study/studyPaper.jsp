@@ -172,14 +172,17 @@ $(function(){ //for문은 번호를 설정해주는 역할만 하고 이벤트�
 			dataType : "json",
 			success : function(datas){
 				for(i=0; i<datas.length; i++){
-					console.log(datas.length)       //데이터 길이 콘솔
+					console.log(datas.length)       //데이터 길이 콘솔출력
+					$(".haeseol"+i).html(datas[i].haeseol); //헤설 출력
 					if(datas[i].ans_correct == $('input[name=problem'+i+']:checked').val()){
 						$('input[name=problem'+i+']').closest("td").prev().append("<div>O</div>");
-						cnt = cnt+1;
-						console.log(cnt);
+						$("input[name=is_correct"+i+"]").val("Y");
+						cnt = cnt+1; //정답 갯수 ++
+						console.log(cnt);//정답 개수 콘솔
 					}else{
 						$('input[name=problem'+i+']').closest("td").prev()
 								.append("<div>X</div><div>정답 : "+datas[i].ans_correct+"</div>");
+						$("input[name=is_correct"+i+"]").val("N");
 					}
 				};
 				$("[name=testNum]").val(datas.length); //문제 갯수 입력
@@ -206,7 +209,6 @@ $(function(){ //for문은 번호를 설정해주는 역할만 하고 이벤트�
 		console.log(cnt);
 		//$("#testResult").submit();
 	})
-	
 	
 });
 	
@@ -239,6 +241,7 @@ window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };
 			<div id="ViewTimer"></div>
 	</div>
 <div class="leftcolumn">
+	<form id="testResult" name="testResult" action="ScoreInsert.do">
 <table id="foo-table" class="table table-bordered">
 	
 		<thead>
@@ -250,17 +253,22 @@ window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };
 				<td><%=problemList.get(probNum).get("subject") %>
 				<td class="probNum<%=probNum %>"><%=probNum+1 %>번</td>
 				<td>
-					<div><%=problemList.get(probNum).get("problem_text") %>&nbsp;&nbsp;<input type="checkbox"  class="probChk"></div>
+					<div><%=problemList.get(probNum).get("problem_text") %>&nbsp;&nbsp;<input type="checkbox"  name="probChk<%=probNum%>"></div>
 					<div><input type="radio" name="problem<%=probNum%>" value="1"><%=problemList.get(probNum).get("ans_1") %></div>
 					<div><input type="radio" name="problem<%=probNum%>" value="2"><%=problemList.get(probNum).get("ans_2") %></div>
 					<div><input type="radio" name="problem<%=probNum%>" value="3"><%=problemList.get(probNum).get("ans_3") %></div>
 					<div><input type="radio" name="problem<%=probNum%>" value="4"><%=problemList.get(probNum).get("ans_4") %></div>
-					<div class="haeseol<%=problemList.get(probNum).get("problem_id") %>"></div>
+					<input type="text" name="is_correct<%=probNum%>">
+					<div class="haeseol<%=probNum %>"></div>
 				</td>
 			</tr>
 			<% } %>
 		</tbody>
     </table>
+				<input type="text" name="testTime"> <!-- 테스트에 걸린 시간 -->
+				<input type="text" name="testScore"> <!-- 테스트 성적 -->
+				<input type="text" name="testNum"> <!-- 문제 갯수 -->
+		</form>
     
 </div>
 
@@ -287,11 +295,7 @@ window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };
 					</table>
 					<button class="btnScore">제출</button>
 					<div class="ans_correct"></div>
-					<form id="testResult" name="testResult" action="ScoreInsert.do">
-						<input type="text" name="testTime"> <!-- 테스트에 걸린 시간 -->
-						<input type="text" name="testScore"> <!-- 테스트 성적 -->
-						<input type="text" name="testNum">
-					</form>
+					
 				</div>
 			</div>
 		</div>
