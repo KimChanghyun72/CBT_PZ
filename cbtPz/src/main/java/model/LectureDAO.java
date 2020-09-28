@@ -27,14 +27,14 @@ public class LectureDAO {
 			conn = ConnectionManager.getConnnect();
 
 			// 2.sql 구문 실행
-			String sql = "insert into lecture (lecture_id, lecture_name, lecture_info, lecture_link, lecture_image, teacher_num)"
+			String sql = "insert into lecture (lecture_id, lecture_name, lecture_info, lecture_link, lecture_image, teacher_id)"
 					+ "values (lecture_seq.nextval, ?, ?, ?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, lectureVO.getLecture_name());
 			pstmt.setString(2, lectureVO.getLecture_info());
 			pstmt.setString(3, lectureVO.getLecture_link());
 			pstmt.setString(4, lectureVO.getLecture_image());
-			pstmt.setString(5, lectureVO.getTeacher_num());
+			pstmt.setString(5, lectureVO.getTeacher_id());
 			// create sequence lecture_seq;
 			// 
 
@@ -63,19 +63,19 @@ public class LectureDAO {
 			ArrayList<LectureVO> list = new ArrayList<LectureVO>();
 			try {
 				conn = ConnectionManager.getConnnect();
-				String sql = "SELECT LECTURE_ID, TEACHER_NUM, LECTURE_NAME, LECTURE_INFO, LECTURE_LINK, LECTURE_IMAGE,"
+				String sql = "SELECT LECTURE_ID, TEACHER_id, LECTURE_NAME, LECTURE_INFO, LECTURE_LINK, LECTURE_IMAGE,"
 						+ " LECTURE_LEVEL, LECTURE_SUBJECT"
-						+ " FROM LECTURE WHERE TEACHER_NUM = ?"; // sql문 + 앞에 " " 공백
+						+ " FROM LECTURE WHERE TEACHER_id = ?"; // sql문 + 앞에 " " 공백
 				pstmt = conn.prepareStatement(sql);
 				
-				pstmt.setString(1, lectureVO.getTeacher_num());
+				pstmt.setString(1, lectureVO.getTeacher_id());
 				
 				rs = pstmt.executeQuery();
 				
 				while(rs.next()) { //list니까 while문 사용
 					resultVO = new LectureVO();
 					resultVO.setLecture_id(rs.getString("lecture_id"));
-					resultVO.setTeacher_num(rs.getString("teacher_num"));
+					resultVO.setTeacher_id(rs.getString("teacher_id"));
 					resultVO.setLecture_name(rs.getString("lecture_name"));
 					resultVO.setLecture_info(rs.getString("lecture_info"));
 					resultVO.setLecture_link(rs.getString("lecture_link"));
