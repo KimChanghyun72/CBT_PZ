@@ -19,8 +19,8 @@ public class myLectureCtrl implements Controller {
 		// Parameter 추출
 		String teacher_id = request.getParameter("teacher_id");
 		
-		/* teacher_num을 기준으로 조회
-		   http://localhost:81/cbtPz/myLecture.do?teacher_num=
+		/* teacher_id을 기준으로 조회
+		   http://localhost:81/cbtPz/myLecture.do?teacher_id=
 		*/
 
 		LectureVO lecturevo = new LectureVO();
