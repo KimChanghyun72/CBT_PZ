@@ -217,7 +217,7 @@ $(function(){ //for문은 번호를 설정해주는 역할만 하고 이벤트�
 //카운트 시간 표시.
 var SetTime = 0;		// 최초 설정 시간(기본 : 0초)
 function msg_time() {	// 1초씩 카운트
-	var m = Math.floor(SetTime / 60) + "분 " + (SetTime % 60) + "초";	// 남은 시간 계산
+	var m = Math.floor(SetTime / 60) + "분 " + (SetTime % 60) + "초";	//남은 시간 계산
 	var msg = "현재 경과된 시간은 <font color='red'>" + m + "</font> 입니다.";
 	document.all.ViewTimer.innerHTML = msg;		// div 영역에 보여줌 
 	 if(is_submit != true){// 제출되지 않았다면 1초씩 증가
@@ -237,7 +237,10 @@ window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };
 </head>
 <body>
 	<div class="header">
-		<h1>Header</h1>
+		<h1>${problemList[0].paper_type_cd} ${problemList[0].paper_round}</h1>
+ 		<h1>${problemList[0].subject}</h1>
+		<c:if test="">
+		</c:if>
 			<div id="ViewTimer"></div>
 	</div>
 <div class="leftcolumn">
@@ -293,9 +296,20 @@ window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };
 							<% } %>
 						</tbody>
 					</table>
+					<form action="${pageContext.request.contextPath}/solveInsert.do">
+					<input type="hidden" name="member_id" value="${sessionScope.member_id}">		
+					<input type="hidden" name="solve_type_cd" value="${problemList[0].paper_type_cd} ${problemList[0].paper_round}">
+					
 					<button class="btnScore">제출</button>
+					</form>
+					
 					<div class="ans_correct"></div>
 					
+					<form id="testResult" name="testResult" action="ScoreInsert.do">
+						<input type="text" name="testTime"> <!-- 테스트에 걸린 시간 -->
+						<input type="text" name="testScore"> <!-- 테스트 성적 -->
+						<input type="text" name="testNum">
+					</form>
 				</div>
 			</div>
 		</div>
