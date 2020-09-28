@@ -98,7 +98,7 @@
                               <c:if test="${not empty sessionScope.check && sessionScope.check != 'A'}">
                                 <li><a href="instructors.html" >마이페이지</a>
                                 	<ul class="dropdown">
-                                        <li><a href="index.jsp">기출문제</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/memberUpdate.do">개인정보수정</a></li>
                                         <li><a href="courses.html">모의고사</a></li>
                                         <li><a href="single-course.html">과목별</a></li>
                                         <li><a href="instructors.html">태그별</a></li>
@@ -114,8 +114,8 @@
                                         <li><a href="instructors.html">태그별</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="${pageContext.request.contextPath}/payment/payment.jsp">멤버쉽</a></li>
                               </c:if>
+                                <li><a href="${pageContext.request.contextPath}/payment/payment.jsp">멤버쉽</a></li>
                             </ul>
 
 
