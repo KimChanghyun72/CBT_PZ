@@ -66,7 +66,7 @@
    <my:paging paging="${paging}" jsfunc="gopage"/>
     	<script>
     	function gopage(p){
-    		location.href="boardList.do?p="+ p;
+    		location.href="board/boardList.do?p="+ p;
     	}
     	</script>	
  		

@@ -77,7 +77,7 @@
                         <!-- Nav Start -->
                         <div class="classynav">
                             <ul>
-                                <li><a href="${pageContext.request.contextPath}/indexx.jsp">Home</a></li>
+                                <li><a href="indexx.jsp">Home</a></li>
                                 <li><a href="index.jsp">공지사항</a></li>
                                 <li><a href="#">학습하기</a>
                                     <ul class="dropdown">
@@ -87,8 +87,7 @@
                                         <li><a href="instructors.html">태그별</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="lecture/lecture.jsp">동영상강의</a></li>
-                                <li><a href="board/boardList.do">게시판</a>
+                                <li><a href="boardList.do">게시판</a>
                                 	<ul class="dropdown">
                                         <li><a href="index.jsp">기출문제</a></li>
                                         <li><a href="courses.html">모의고사</a></li>
@@ -99,7 +98,7 @@
                               <c:if test="${not empty sessionScope.check && sessionScope.check != 'A'}">
                                 <li><a href="instructors.html" >마이페이지</a>
                                 	<ul class="dropdown">
-                                        <li><a href="${pageContext.request.contextPath}/memberUpdate.do">개인정보수정</a></li>
+                                        <li><a href="index.jsp">기출문제</a></li>
                                         <li><a href="courses.html">모의고사</a></li>
                                         <li><a href="single-course.html">과목별</a></li>
                                         <li><a href="instructors.html">태그별</a></li>
@@ -115,17 +114,14 @@
                                         <li><a href="instructors.html">태그별</a></li>
                                     </ul>
                                 </li>
-                              </c:if>
                                 <li><a href="${pageContext.request.contextPath}/payment/payment.jsp">멤버쉽</a></li>
+                              </c:if>
                             </ul>
 
 
                             <!-- Register / Login -->
                             <div class="register-login-area">
                                 <c:if test="${not empty sessionScope.name}">
-                                	<c:if test="${sessionScope.login.is_pay == 'Y' }">
-                                		<span class="badge badge-pill badge-warning">VIP</span>
-                                	</c:if>
 	                                ${sessionScope.name}님  
 	                                <a href="${pageContext.request.contextPath}/logout.do" class="btn active">Logout</a>
                                 </c:if>
@@ -143,10 +139,12 @@
     </header>
     <!-- ##### Header Area End ##### -->
 
-<decorator:body/>
 
-
+	<div class="clever-catagory bg-img d-flex align-items-center justify-content-center p-3" >
+        <h3>Art &amp; Design</h3>
+    </div>
    
+<decorator:body/>
    
    
     <!-- ##### All Javascript Script ##### -->

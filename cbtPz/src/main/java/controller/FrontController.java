@@ -26,7 +26,7 @@ import admin.ExcelInsertCtrl;
 			})  //여기적거나 web-int에 web.xml 파일에 적거나. 책550p
 */
 //@MultipartConfig(location = "E:/upload", maxRequestSize = 1024 * 1024 * 10)
-@MultipartConfig(location = "c:/upload", maxRequestSize = 1024 * 1024 * 10)
+@MultipartConfig(location = "D:/upload", maxRequestSize = 1024 * 1024 * 10)
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
@@ -43,7 +43,7 @@ public class FrontController extends HttpServlet {
     	//김민기
     	list.put("/boardInsert.do", new board.BoardInsertCtrl());
     	list.put("/boardSelect.do", new board.BoardSelectCtrl());
-    	list.put("/boardList.do", new board.BoardListCtrl());
+    	list.put("/board/boardList.do", new board.BoardListCtrl());
     	list.put("/boardUpdate.do", new board.BoardUpdateCtrl());
     	list.put("/boardUpdateForm.do", new board.BoardUpdateFormCtrl());
     	list.put("/boardDelete.do", new board.BoardDeleteCtrl());    	
@@ -144,6 +144,8 @@ public class FrontController extends HttpServlet {
     	list.put("/ajax/profIdCheck.do", new teacher.ProfIdCheckCtrl()); //login.jsp
     	list.put("/ajax/memIdFind.do", new member.MemIdFindCtrl()); //findId.jsp
     	list.put("/ajax/memPwFind.do", new member.MemPwFindCtrl()); //findId.jsp
+    	
+    	//list.put("/lecturePage.do", new lecture.LecturePageCtrl()); //강의 페이지 
     	
     	
     	list.put("/mainCtrl.do", new common.MainCtrl()); // main.jsp 구동하는 서블릿 (indexx.jsp)
