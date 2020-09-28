@@ -146,6 +146,7 @@ public class FrontController extends HttpServlet {
     	list.put("/ajax/memPwFind.do", new member.MemPwFindCtrl()); //findId.jsp
     	
     	list.put("/lecturePage.do", new lecture.LecturePageCtrl()); //강의 전체리스트 메인 페이지 
+    	list.put("/ajax/lectureCategorySelect.do", new lecture.LectureCategorySelectCtrl()); //강의 전체리스트 메인 페이지  (카테별 부여주는 서블릿) 
     	
     	
     	list.put("/mainCtrl.do", new common.MainCtrl()); // main.jsp 구동하는 서블릿 (indexx.jsp)

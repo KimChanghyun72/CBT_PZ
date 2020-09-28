@@ -141,17 +141,17 @@ public class LectureDAO {
 		
 		
 		//민영
-		//강의페이지 강의전체리스트
+		//강의페이지 subject 카테 추출
 		public ArrayList<String> selectCateDISTINCT(){
 			ResultSet rs = null;
 			ArrayList<String> list = new ArrayList<String>();
 			try {
 				conn = ConnectionManager.getConnnect();
-				String sql = "select DISTINCT category from sayings";
+				String sql = "select DISTINCT lecture_subject from lecture order by 1";
 				pstmt = conn.prepareStatement(sql);
 				rs = pstmt.executeQuery();
 				while(rs.next()) { //list니까 while문 사용
-					list.add(rs.getString("category"));
+					list.add(rs.getString("lecture_subject"));
 				} 
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -163,22 +163,23 @@ public class LectureDAO {
 		
 		
 		
-		//전체조회
+		//강의페이지 강의전체리스트
 		public ArrayList<LectureVO> selectLectureAll(){
 			LectureVO resultVO = null;
 			ResultSet rs = null;
 			ArrayList<LectureVO> list = new ArrayList<LectureVO>();
 			try {
 				conn = ConnectionManager.getConnnect();
-				String sql = "SELECT LECTURE_ID, teacher_id, LECTURE_NAME, LECTURE_INFO, LECTURE_LINK, LECTURE_IMAGE,"
-							+ " LECTURE_LEVEL, LECTURE_SUBJECT"
-							+ " FROM LECTURE ";
+				String sql = "SELECT LECTURE_ID, LECTURE_NAME, LECTURE_INFO, LECTURE_LINK, LECTURE_IMAGE,"
+							+ " LECTURE_LEVEL, LECTURE_SUBJECT, teacher_name"
+							+ " FROM LECTURE, teacher_member"
+							+ " WHERE lecture.teacher_id = teacher_member.teacher_id";
 				pstmt = conn.prepareStatement(sql);
 				rs = pstmt.executeQuery();
 				while(rs.next()) { //list니까 while문 사용
 					resultVO = new LectureVO();
 					resultVO.setLecture_id(rs.getString("lecture_id"));
-					resultVO.setTeacher_id(rs.getString("teacher_id"));
+					resultVO.setTeacher_name(rs.getString("teacher_name"));
 					resultVO.setLecture_name(rs.getString("lecture_name"));
 					resultVO.setLecture_info(rs.getString("lecture_info"));
 					resultVO.setLecture_link(rs.getString("lecture_link"));
@@ -197,23 +198,25 @@ public class LectureDAO {
 		
 		
 		
-		//카테조회
+		//강의 카테별 조회
 			public ArrayList<LectureVO> selectCate(LectureVO lectureVO){
 				LectureVO resultVO = null;
 				ResultSet rs = null;
 				ArrayList<LectureVO> list = new ArrayList<LectureVO>();
 				try {
 					conn = ConnectionManager.getConnnect();
-					String sql = "SELECT LECTURE_ID, teacher_id, LECTURE_NAME, LECTURE_INFO, LECTURE_LINK, LECTURE_IMAGE,"
-								+ " LECTURE_LEVEL, LECTURE_SUBJECT"
-								+ " FROM LECTURE WHERE LECTURE_SUBJECT = ?"; 
+					String sql = "SELECT LECTURE_ID, LECTURE_NAME, LECTURE_INFO, LECTURE_LINK, LECTURE_IMAGE,"
+								+ " LECTURE_LEVEL, LECTURE_SUBJECT, teacher_name"
+								+ " FROM LECTURE, teacher_member"
+								+ " WHERE lecture.teacher_id = teacher_member.teacher_id"
+								+ " AND LECTURE.LECTURE_SUBJECT = ?"; 
 					pstmt = conn.prepareStatement(sql);
 					pstmt.setString(1, lectureVO.getLecture_subject());
 					rs = pstmt.executeQuery();
 					while(rs.next()) { //list니까 while문 사용
 						resultVO = new LectureVO();
 						resultVO.setLecture_id(rs.getString("lecture_id"));
-						resultVO.setTeacher_id(rs.getString("teacher_id"));
+						resultVO.setTeacher_name(rs.getString("teacher_name"));
 						resultVO.setLecture_name(rs.getString("lecture_name"));
 						resultVO.setLecture_info(rs.getString("lecture_info"));
 						resultVO.setLecture_link(rs.getString("lecture_link"));
@@ -231,5 +234,7 @@ public class LectureDAO {
 			}//selectCate
 		
 		
+			
+			
 		
 }
