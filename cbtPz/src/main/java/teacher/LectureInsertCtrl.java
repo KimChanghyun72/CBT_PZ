@@ -33,8 +33,8 @@ public class LectureInsertCtrl implements Controller {
 		lecture.setLecture_name(lecture_name);
 		lecture.setLecture_info(lecture_info);
 		lecture.setLecture_link(lecture_link);
-		lecture.setTeacher_num(teacher_id); // teacher_member table teacher_id column에서 가져옴
-
+		lecture.setTeacher_id(teacher_id); // teacher_member table teacher_id column에서 가져옴
+		//teacher_num -> teacher_id 변경
 		Part part = request.getPart("lecture_image");
 		String lecture_image = getFileName(part);
 
