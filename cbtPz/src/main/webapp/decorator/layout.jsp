@@ -103,6 +103,7 @@
                                         <li><a href="courses.html">모의고사</a></li>
                                         <li><a href="single-course.html">과목별</a></li>
                                         <li><a href="instructors.html">태그별</a></li>
+                                        <li><a href="mylecture.jsp">나의 강의</a></li>
                                     </ul>
                                 </li>
                               </c:if>
