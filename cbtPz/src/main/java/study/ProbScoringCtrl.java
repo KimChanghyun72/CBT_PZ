@@ -32,16 +32,16 @@ public class ProbScoringCtrl implements Controller {
 			ansCorrect = (String)headproblem.get(i).get("ans_correct");
 			haeseol = (String)headproblem.get(i).get("haeseol");
 			
-			System.out.println(problemId);
-			System.out.println(ansCorrect);
-			System.out.println(haeseol);
+//			System.out.println(problemId);
+//			System.out.println(ansCorrect);
+//			System.out.println(haeseol);
 			
 			ans.put("problem_id", problemId);
 			ans.put("ans_correct", ansCorrect);
 			ans.put("haeseol", haeseol);
-			System.out.println(ans);
+//			System.out.println(ans);
 			ansList.add(i, ans);
-			System.out.println(ansList);
+//			System.out.println(ansList);
 			}
 		String result = JSONArray.fromObject(ansList).toString();
 		response.getWriter().print(result);

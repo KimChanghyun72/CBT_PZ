@@ -14,20 +14,22 @@ public class SolveInsertCtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String path = "";
-		
-		String member_id = request.getParameter("member_id");
-		String solve_type_cd = request.getParameter("solve_type_cd");
-		
-		SolveVO solve = new SolveVO();
+		request.setCharacterEncoding("UTF-8");
+		String path = "study_result.jsp";
+				
+		SolveVO solveVO = new SolveVO();
 
-		solve.setMember_id(member_id);
-		solve.setSolve_type_cd(solve_type_cd);
+		solveVO.setSolve_score(request.getParameter("testScore"));
+		solveVO.setMember_id(request.getParameter("member_id"));
+		solveVO.setSolve_time(request.getParameter("testTime"));
+		solveVO.setSolve_type_cd(request.getParameter("solve_type_cd"));
+		solveVO.setSolve_cnt(request.getParameter("testNum"));
 		
+				
 		SolveDAO dao = new SolveDAO();
-		dao.insertSolve(solve);;
+		dao.insertSolve(solveVO);
 
-		request.getRequestDispatcher(""+path).forward(request, response);
+		//response.sendRedirect("/study/"+path);
 
 	}
 
