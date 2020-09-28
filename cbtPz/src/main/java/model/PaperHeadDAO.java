@@ -3,6 +3,7 @@ package model;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -137,10 +138,9 @@ public class PaperHeadDAO {
 							+" FROM PROBLEM P , HASHTAG H , PROBLEM_HASHTAG A "
 							+" WHERE H.HASHTAG_ID = A.HASHTAG_ID " 
 							+" AND P.PROBLEM_ID = A.PROBLEM_ID " 
-							+" AND HASHTAG_NAME = ? ";
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1,hashtagVO.getHashtag_name());
-				rs = pstmt.executeQuery();
+							+" AND HASHTAG_NAME IN (" + hashtagVO.getHashtag_name() + ")";
+				Statement stmt = conn.createStatement();
+				rs = stmt.executeQuery(sql);
 				while(rs.next()) {
 					Map<String,Object> map = new HashMap<String,Object>();
 					map.put("problem_id",rs.getString(1));

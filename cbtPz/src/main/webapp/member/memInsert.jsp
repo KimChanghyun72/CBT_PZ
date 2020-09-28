@@ -370,7 +370,21 @@ $(document).ready(function(){
 	});
 	
 	
+	$('#phone_number').on("focusout", nCheck);
+	
+	
+	
+	
 });
+
+
+function nCheck(){
+    var numCheck = $(this).val();
+    if(/[^0123456789]/g.test(numCheck)){
+        alert("번호는 숫자만 입력이 가능합니다.");
+        $(this).val("");
+    }
+}
 
 
 

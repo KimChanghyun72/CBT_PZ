@@ -17,11 +17,13 @@ public class HashSelectCtrl implements Controller {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("해쉬검색");
-		String path = "hashSelect.jsp";
+		String path = "studyPaper.jsp";
 		
 		
 		//파라미터 변수에 저장
 		String hashtag_name = request.getParameter("hashtag_name");
+		
+		hashtag_name = hashtag_name.substring(0,hashtag_name.length()-1);
 		
 		//VO에 담기
 		HashtagVO hash = new HashtagVO();
@@ -30,11 +32,12 @@ public class HashSelectCtrl implements Controller {
 		//서비스		
 		PaperHeadDAO dao = new PaperHeadDAO();
 		List<Map<String, Object>> hashSelect = dao.selectHash(hash);
-		
-		
+		System.out.println("hash = " + hash);
+		System.out.println("hashtag_name = " + hashtag_name);
+
 		//조회결과를 저장후에 결과페이지로 포워드
-		request.setAttribute("hashSelect", hashSelect);
-		
+		request.getSession().setAttribute("problemList", hashSelect);
+							 
 		request.getRequestDispatcher("/study/"+path).forward(request, response);
 		
 	}

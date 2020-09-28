@@ -50,12 +50,12 @@
 
     ul li.tag-item {
         padding: 4px 8px;
-        background-color: #777;
-        color: #000;
+        background-color: #5F8AF8;
+        color: #fff;
     }
 
     .tag-item:hover {
-        background-color: #262626;
+        background-color: #70E0F1;
         color: #fff;
     }
 
@@ -74,7 +74,20 @@ $(document).on("click", ".del-btn", function (e) {
     var index = $(this).attr("idx");    
     $(this).parent().remove();
 });
+
+
 $(function(){
+	$(document).on("click", "#hashbtn", function () {
+		var list = $(".tag-item")
+		var listAry = "";
+		for(i=0; i<list.length; i++) {
+			listAry += "\'"+ $(list[i]).find(".hashtext").html()+"\',";
+			$("#hashlist").val(listAry);
+		}
+		console.log(listAry);
+		$("#hash").submit();
+	});
+	
 	$("#testInput").autocomplete({
 		source : function(request, response) {
 			$.ajax({
@@ -98,7 +111,8 @@ $(function(){
 		minLength : 1,
 		autoFocus : false,
 		select : function(evt, ui) {
-			$("#tag-list").append("<li class='tag-item'>"+ui.item.value+"<span class='del-btn' idx='"+ui.item.idx+"'>x</span></li>");
+			
+			$("#tag-list").append("<li class='tag-item'><span class='hashtext'>"+ui.item.value+"</span><span class='del-btn' idx='"+ui.item.idx+"'>x</span></li>");
 			console.log("전체 data: " + JSON.stringify(ui));
 			console.log("db Index : " + ui.item.idx);
 			console.log("검색 데이터 : " + ui.item.value);
@@ -107,14 +121,15 @@ $(function(){
 		return false;
 		},
 		close : function(evt) {
+			$("#testInput").val("");
 		}
 	});
-	
-	/* $("#testInput").keypress({
-		$("#testInput").value().appendTo("#hashlist")
-	}); */
-	
+
 });
+
+</script>
+<script>
+
 </script>
 </head>
 
@@ -128,9 +143,9 @@ $(function(){
                     <div class="single-cool-facts-area text-center mb-100 wow fadeInUp" data-wow-delay="250ms">
 	                    <!-- Search Button -->
 	                    <div class="search-area">
-	                       	<form action="${pageContext.request.contextPath}/hashtagSelect.do">
-	  	                        <input type="text" name="hashtag_name"  id="testInput"  placeholder="Search" >
-	                            <button type="submit" onclick="add()"><i class="fa fa-search" aria-hidden="true"></i></button>
+	                       	<form>
+	  	                        <input type="text" id="testInput"  placeholder="Search" >
+	                            <button type="button"><i class="fa fa-search" aria-hidden="true"></i></button>
 	                        </form>
 	                    </div>
                     </div>
@@ -138,12 +153,13 @@ $(function(){
             </div>
         </div>
     </section>
-     <div class="center">
-    <form action="${pageContext.request.contextPath}/hashtagSelect.do">
+     
+    <div class="center">
+    <ul id="tag-list"></ul>
+    <form id="hash" action="${pageContext.request.contextPath}/hashtagSelect.do">
+	    <input type="hidden" id="hashlist" name="hashtag_name">
+	    <input type="button" value="제출" id="hashbtn">
     </form>
-		 <ul id="tag-list">
-        </ul>
 	</div>
-    
 </body>
 </html>

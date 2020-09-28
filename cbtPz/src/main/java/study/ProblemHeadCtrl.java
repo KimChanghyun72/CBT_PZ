@@ -30,9 +30,8 @@ public class ProblemHeadCtrl implements Controller {
 		PaperHeadDAO dao = new PaperHeadDAO();
 		List<Map<String, Object>> headproblem = dao.selectOne(problem);	
 		
-		
 		//조회결과를 저장후에 결과페이지로 포워드
-		request.setAttribute("problemList", headproblem);
+		request.getSession().setAttribute("problemList", headproblem);
 		
 		request.getRequestDispatcher("/study/"+path).forward(request, response);
 	}

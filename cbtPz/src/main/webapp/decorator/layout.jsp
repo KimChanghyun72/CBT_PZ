@@ -15,25 +15,23 @@
     <!-- Title -->
     <title><decorator:title/></title>
 
-    <script src="js/jquery/jquery-2.2.4.min.js"></script>
+
 	<!-- Bootstrap core CSS -->
 	<!-- <link rel="stylesheet1" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"> -->
-	<link href="/cbtPz/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	
 	
   	<!-- Custom styles for this template -->
-  	<link href="css/modern-business.css" rel="stylesheet">
+  	<link href="${pageContext.request.contextPath}/css/modern-business.css" rel="stylesheet">
 
     <!-- Favicon -->
     <link rel="icon" href="${pageContext.request.contextPath}/img/core-img/favicon.ico">
-
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">
-    
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">    
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
+    
+    <script src="${pageContext.request.contextPath}/js/jquery/jquery-2.2.4.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.min.js"></script>
 
     
  <decorator:head/>   
@@ -89,7 +87,7 @@
                                         <li><a href="instructors.html">태그별</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="courses.html">게시판</a>
+                                <li><a href="boardList.do">게시판</a>
                                 	<ul class="dropdown">
                                         <li><a href="index.jsp">기출문제</a></li>
                                         <li><a href="courses.html">모의고사</a></li>
@@ -116,8 +114,8 @@
                                         <li><a href="instructors.html">태그별</a></li>
                                     </ul>
                                 </li>
+                                <li><a href="${pageContext.request.contextPath}/payment/payment.jsp">멤버쉽</a></li>
                               </c:if>
-                                <li><a href="blog.html">멤버쉽</a></li>
                             </ul>
 
 

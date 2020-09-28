@@ -54,7 +54,12 @@
 			</div>
 			<div>
 				<label for="member_job">직업</label> <input type="text"
-					name="member_job" value="${member.member_job }">
+					name="member_job" value="${member.member_job}">
+					<select id="member_job" name="member_job" class="form-control" value="${member.member_job}">
+								<option value="학생">학생</option>
+								<option value="취준생">취준생</option>
+								<option value="직장인">직장인</option>
+					</select>
 			</div>
 			<div>
 				<label for="study_term">공부기간</label> <input type="text"
