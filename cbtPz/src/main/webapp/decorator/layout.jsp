@@ -99,12 +99,18 @@
                               <c:if test="${not empty sessionScope.check && sessionScope.check != 'A'}">
                                 <li><a href="instructors.html" >마이페이지</a>
                                 	<ul class="dropdown">
-                                        <li><a href="index.jsp">기출문제</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/memberUpdate.do">개인정보수정</a></li>
                                         <li><a href="courses.html">모의고사</a></li>
                                         <li><a href="single-course.html">과목별</a></li>
                                         <li><a href="instructors.html">태그별</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/myLecture.do">나의 강의</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/insertLecForm.do">강의 등록</a></li>
+                                        <li><a href="courses.html">오답노트</a></li>
+                                        <li><a href="single-course.html">개인성적</a></li>
+                                        <li><a href="instructors.html">즐겨찾기문제</a></li>
                                     </ul>
                                 </li>
+                                <li><a href="${pageContext.request.contextPath}/payment/payment.jsp">멤버쉽</a></li>
                               </c:if>
                               <c:if test="${not empty sessionScope.check && sessionScope.check == 'A'}">
                                 <li><a href="instructors.html">관리자메뉴</a>
@@ -115,7 +121,6 @@
                                         <li><a href="instructors.html">태그별</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="${pageContext.request.contextPath}/payment/payment.jsp">멤버쉽</a></li>
                               </c:if>
                             </ul>
 

@@ -30,10 +30,10 @@ public class MemberUpdateController implements Controller {
 		System.out.println(payCheck);
 		String term = request.getParameter("term");
 		MemberVo pay_member = (MemberVo) request.getSession().getAttribute("login");
-
+		
 		if (pay.equals(payCheck)) {
 			MemberDAO dao = new MemberDAO();
-			String is_pay = "YES"; //유료회원 판단 문자
+			String is_pay = "Y"; //유료회원 판단 문자
 			System.out.println();
 			int term2 = Integer.parseInt(term);
 			
@@ -67,16 +67,17 @@ public class MemberUpdateController implements Controller {
 		} else {
 
 		// Parameter 추출
-		String member_id = request.getParameter("member_id");
-		String member_pw = request.getParameter("member_pw");
-		String member_name = request.getParameter("member_name");
-		String member_age = request.getParameter("member_age");
-		String member_job = request.getParameter("member_job");
-		String study_term = request.getParameter("study_term");
-		String phone_number = request.getParameter("phone_number");
-		String is_major = request.getParameter("is_major");
-		String tested_num = request.getParameter("tested_num");
-		String email = request.getParameter("email");
+		String member_id = pay_member.getMember_id();//request.getParameter("member_id");
+		String member_pw = pay_member.getMember_pw();//request.getParameter("member_pw");
+		String member_name = pay_member.getMember_name();//request.getParameter("member_name");
+		String member_age = pay_member.getMember_age();//request.getParameter("member_age");
+		String member_job = pay_member.getMember_job();//request.getParameter("member_job");
+		String study_term = pay_member.getStudy_term();//request.getParameter("study_term");
+		String phone_number = pay_member.getPhone_number();//request.getParameter("phone_number");
+		String is_major = pay_member.getIs_major();//request.getParameter("is_major");
+		String tested_num = pay_member.getTested_num();//request.getParameter("tested_num");
+		String email = pay_member.getEmail();//request.getParameter("email");
+		System.out.println("멤버pw"+member_pw);
 		// 유효성 체크
 		if (member_id.isEmpty() || member_pw.isEmpty() || member_name.isEmpty() || member_age.isEmpty()
 				|| member_job.isEmpty() || study_term.isEmpty() || phone_number.isEmpty()
