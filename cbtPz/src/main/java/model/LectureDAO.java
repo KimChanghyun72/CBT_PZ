@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+
 import common.ConnectionManager;
 
 public class LectureDAO {
@@ -130,4 +131,105 @@ public class LectureDAO {
 		return resultVO;
 	}
 */
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		//민영
+		//강의페이지 강의전체리스트
+		public ArrayList<String> selectCateDISTINCT(){
+			ResultSet rs = null;
+			ArrayList<String> list = new ArrayList<String>();
+			try {
+				conn = ConnectionManager.getConnnect();
+				String sql = "select DISTINCT category from sayings";
+				pstmt = conn.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				while(rs.next()) { //list니까 while문 사용
+					list.add(rs.getString("category"));
+				} 
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				ConnectionManager.close(rs, pstmt, conn);
+			}
+			return list;
+		}
+		
+		
+		
+		//전체조회
+		public ArrayList<LectureVO> selectLectureAll(){
+			LectureVO resultVO = null;
+			ResultSet rs = null;
+			ArrayList<LectureVO> list = new ArrayList<LectureVO>();
+			try {
+				conn = ConnectionManager.getConnnect();
+				String sql = "SELECT LECTURE_ID, teacher_id, LECTURE_NAME, LECTURE_INFO, LECTURE_LINK, LECTURE_IMAGE,"
+							+ " LECTURE_LEVEL, LECTURE_SUBJECT"
+							+ " FROM LECTURE ";
+				pstmt = conn.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				while(rs.next()) { //list니까 while문 사용
+					resultVO = new LectureVO();
+					resultVO.setLecture_id(rs.getString("lecture_id"));
+					resultVO.setTeacher_id(rs.getString("teacher_id"));
+					resultVO.setLecture_name(rs.getString("lecture_name"));
+					resultVO.setLecture_info(rs.getString("lecture_info"));
+					resultVO.setLecture_link(rs.getString("lecture_link"));
+					resultVO.setLecture_image(rs.getString("lecture_image"));
+					resultVO.setLecture_level(rs.getString("lecture_level"));
+					resultVO.setLecture_subject(rs.getString("lecture_subject"));
+					list.add(resultVO); //resultVo를 list에 담음
+				} 
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				ConnectionManager.close(rs, pstmt, conn);
+			}
+			return list;  //담은 list를 리턴.
+		}//selectAll
+		
+		
+		
+		//카테조회
+			public ArrayList<LectureVO> selectCate(LectureVO lectureVO){
+				LectureVO resultVO = null;
+				ResultSet rs = null;
+				ArrayList<LectureVO> list = new ArrayList<LectureVO>();
+				try {
+					conn = ConnectionManager.getConnnect();
+					String sql = "SELECT LECTURE_ID, teacher_id, LECTURE_NAME, LECTURE_INFO, LECTURE_LINK, LECTURE_IMAGE,"
+								+ " LECTURE_LEVEL, LECTURE_SUBJECT"
+								+ " FROM LECTURE WHERE LECTURE_SUBJECT = ?"; 
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, lectureVO.getLecture_subject());
+					rs = pstmt.executeQuery();
+					while(rs.next()) { //list니까 while문 사용
+						resultVO = new LectureVO();
+						resultVO.setLecture_id(rs.getString("lecture_id"));
+						resultVO.setTeacher_id(rs.getString("teacher_id"));
+						resultVO.setLecture_name(rs.getString("lecture_name"));
+						resultVO.setLecture_info(rs.getString("lecture_info"));
+						resultVO.setLecture_link(rs.getString("lecture_link"));
+						resultVO.setLecture_image(rs.getString("lecture_image"));
+						resultVO.setLecture_level(rs.getString("lecture_level"));
+						resultVO.setLecture_subject(rs.getString("lecture_subject"));
+						list.add(resultVO);
+					} 
+				} catch (Exception e) {
+					e.printStackTrace();
+				} finally {
+					ConnectionManager.close(rs, pstmt, conn);
+				}
+				return list;  //담은 list를 리턴.
+			}//selectCate
+		
+		
+		
 }
