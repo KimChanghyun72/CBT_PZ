@@ -78,6 +78,7 @@ public class FrontController extends HttpServlet {
     	list.put("/insertLecForm.do", new teacher.insertLecFormCtl());			// 강의 등록 페이지로 이동
     	list.put("/myLecture.do", new teacher.myLectureCtrl());					// 강사) 강의 조회 페이지
     	list.put("/lectureSelect.do", new teacher.LectureSelectCtrl());			// 이미지 불러오기
+    	list.put("/memLecture.do", new member.MemLectureCtrl());				// 회원) 강의 조회 페이지
     	
     	
     	
@@ -146,6 +147,7 @@ public class FrontController extends HttpServlet {
     	list.put("/ajax/memPwFind.do", new member.MemPwFindCtrl()); //findId.jsp
     	
     	list.put("/lecturePage.do", new lecture.LecturePageCtrl()); //강의 전체리스트 메인 페이지 
+    	list.put("/ajax/lectureCategorySelect.do", new lecture.LectureCategorySelectCtrl()); //강의 전체리스트 메인 페이지  (카테별 부여주는 서블릿) 
     	
     	
     	list.put("/mainCtrl.do", new common.MainCtrl()); // main.jsp 구동하는 서블릿 (indexx.jsp)

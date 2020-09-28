@@ -11,13 +11,16 @@ import common.HttpUtil;
 import controller.Controller;
 import model.LectureDAO;
 import model.LectureVO;
+import model.MemberVo;
+import model.TeacherVO;
 
 public class myLectureCtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Parameter 추출
-		String teacher_id = request.getParameter("teacher_id");
+		TeacherVO teacher = (TeacherVO) request.getSession().getAttribute("login");
+		String teacher_id = teacher.getTeacher_id();
 		
 		/* teacher_id을 기준으로 조회
 		   http://localhost:81/cbtPz/myLecture.do?teacher_id=
