@@ -11,7 +11,7 @@
 <head>
 <meta charset="UTF-8">
 <title>boardList.jsp</title>
-<<<<<<< HEAD
+
 <!--style CSS -->
 <script>
 
@@ -19,7 +19,7 @@
 function check(){
         		if($("input:checkbox[name='ck']").length > 0) {
         			
-         			location.href="${pageContext.request.contextPath}/boardDelete.do?board_id="+$("input:checkbox[id='ck']").val();
+         			location.href="${pageContext.request.contextPath}/board/boardDelete.do?board_id="+$("input:checkbox[id='ck']").val();
  
                 }        
 }      
@@ -34,8 +34,7 @@ body {
 
 </style>
 <!--style CSS -->
-=======
->>>>>>> branch 'master' of https://github.com/KimChanghyun72/CBT_PZ.git
+
 </head>
 <body>
 	<article>
@@ -74,7 +73,7 @@ body {
 								<c:forEach var="board" items="${list}">
 										<tr>
 										<td>${board.board_id}</td>
-									<td><a href="boardSelect.do?board_id=${board.board_id}">${board.board_title}</a></td>
+									<td><a href="${pageContext.request.contextPath}/ajax/boardSelect.do?board_id=${board.board_id}">${board.board_title}</a></td>
 										<td>${board.member_id}</td>
 										<td>${board.board_views}</td>
 										<td>${board.board_date}</td>
@@ -91,20 +90,18 @@ body {
 				</table>
 				<p align="right">
 				<button class="btn btn-sm btn-primary"
-					onclick="location.href='board/boardInsert.jsp'">글쓰기</button>
+					onclick="location.href='${pageContext.request.contextPath}/board/boardInsert.jsp'">글쓰기</button>
 				<button id="del" class="btn btn-sm btn-primary" onclick="check()">삭제</button>
 				</p>
 	<!-- 페이징 처리 영역 -->	
    <my:paging paging="${paging}" jsfunc="gopage"/>
     	<script>
     	function gopage(p){
-<<<<<<< HEAD
-    		location.href="boardList.do?p="+ p;
+
+    		location.href="${pageContext.request.contextPath}/board/boardList.do?p="+ p;
+    	
     	};
-=======
-    		location.href="board/boardList.do?p="+ p;
-    	}
->>>>>>> branch 'master' of https://github.com/KimChanghyun72/CBT_PZ.git
+
     	</script>	
  		
 	<!-- 페이징 처리 영역 -->

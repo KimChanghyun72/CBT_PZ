@@ -23,7 +23,7 @@ public class BoardInsertCtrl implements Controller {
 		String board_title = request.getParameter("board_title");
 		String board_contents = request.getParameter("board_contents");
 		String member_id = request.getParameter("member_id");
-		String path = "E:/upload";
+		String path = "C:/upload";
 		// String views = request.getParameter("views");	
 		System.out.println(path);
 		BoardVO board = new BoardVO();

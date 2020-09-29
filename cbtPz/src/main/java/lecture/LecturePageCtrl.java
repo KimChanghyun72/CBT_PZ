@@ -18,8 +18,14 @@ public class LecturePageCtrl implements Controller {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//강의 전체 리스트
 		List<LectureVO> lecturelist = new ArrayList<LectureVO>();
-
-		lecturelist = LectureDAO.getInstance().selectLectureAll(); //강의전체
+		String subject = request.getParameter("subject");
+		if(subject == null || subject.equals("전체")) {			
+			lecturelist = LectureDAO.getInstance().selectLectureAll(); //강의전체
+		} else {
+			LectureVO lectureVO = new LectureVO();
+			lectureVO.setLecture_subject(subject);
+			lecturelist = LectureDAO.getInstance().selectCate(lectureVO);  //카테별로 강의 전체
+		}
 
 		List<String>clist = new ArrayList<String>();
 		clist = LectureDAO.getInstance().selectCateDISTINCT(); //강의 카테subject
