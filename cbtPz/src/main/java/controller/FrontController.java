@@ -50,10 +50,12 @@ public class FrontController extends HttpServlet {
     	list.put("/commentList.do", new board.CommentListCtrl());
     	list.put("/commentInsert.do",new board.CommentInsertCtrl());
     	list.put("/commentDelete.do", new board.CommentDeleteCtrl());
-    	
-    	
-    	
-    	
+    	list.put("/board/qaboardList.do", new board.QaBoardListCtrl());
+    	list.put("/board/qaboardSelect.do", new board.QaBoardSelectCtrl());
+    	list.put("/board/qaboardInsert.do", new board.QaBoardInsertCtrl());
+    	list.put("/board/qaboardDelete.do", new board.QaBoardDeleteCtrl());
+    	list.put("/board/qaboardUpdate.do", new board.QaBoardUpdateCtrl());
+    	list.put("/board/qaboardUpdateForm.do", new board.QaBoardUpdateFormCtrl());
     	
     	//김창현
     	//list.put("/memberPayUpdate.do", new member.MemberUpdateController());
@@ -104,6 +106,10 @@ public class FrontController extends HttpServlet {
     	list.put("/ajax/hashtagAutoSearch.do", new study.HashAutoSearchCtrl());
     	
     	list.put("/solveInsert.do", new study.SolveInsertCtrl());
+<<<<<<< HEAD
+    	
+=======
+>>>>>>> branch 'master' of https://github.com/KimChanghyun72/CBT_PZ.git
     	
     	
     	

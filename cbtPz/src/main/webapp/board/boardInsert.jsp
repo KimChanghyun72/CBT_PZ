@@ -9,19 +9,19 @@
 	<script>
 	function inputCheck() {
 
-		if (frm.title.value == "") {
+		if (frm.board_title.value == "") {
 			window.alert("제목 입력하세요");
-			frm.title.focus();
+			frm.board_title.focus();
 			return false;
 		}
-		if (frm.id.value == "") {
+		if (frm.member_id.value == "") {
 			window.alert("작성자를 입력하세요");
-			frm.contents.focus();
+			frm.member_id.focus();
 			return false;
 		}
-		if (frm.contexts.value == "") {
+		if (frm.board_contents.value == "") {
 			window.alert("내용을 입력하세요");
-			frm.title.focus();
+			frm.board_contents.focus();
 			return false;
 		}
 	

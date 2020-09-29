@@ -138,27 +138,7 @@ import common.ConnectionManager;
 			}//###삭제###
 			
 			
-			//###수정###
-			public void update(CommentVO commentVo) {
-				
-				try {
-					conn = ConnectionManager.getConnnect();
-					String sql = "UPDATE COMMENTS SET BOARD_ID = ?,COMMENT_DATE = ?,COMMENT_CONTENTS = ?,COMMENT_POSTER = ? WHERE COMMENT_ID=?";
-					pstmt = conn.prepareStatement(sql);
-					pstmt.setString(2, commentVo.getBoard_id());
-					pstmt.setString(3, commentVo.getComment_date());
-					pstmt.setString(4, commentVo.getComment_contents());
-					pstmt.setString(5, commentVo.getComment_poster());
-					pstmt.setString(1, commentVo.getComment_id());
-					pstmt.executeUpdate();
-				
-				}catch(Exception e) {
-					e.printStackTrace();
-				}finally {
-					ConnectionManager.close(null, pstmt, conn);
-				}
-			}//###수정###
-			
+		
 			
 			
 			

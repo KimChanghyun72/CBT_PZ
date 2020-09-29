@@ -14,7 +14,6 @@
 </script>
 </head>
 <body>
-${param.board_id}=====
-ggggggg
+
 </body>
 </html>
