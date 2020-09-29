@@ -79,7 +79,7 @@
                             <ul>
                                 <li><a href="${pageContext.request.contextPath}/indexx.jsp">Home</a></li>
                                 <li><a href="index.jsp">공지사항</a></li>
-                                <li><a href="#">학습하기</a>
+                                <li><a href="${pageContext.request.contextPath}/study/studymain.jsp">학습하기</a>
                                     <ul class="dropdown">
                                         <li><a href="${pageContext.request.contextPath}/haederSearch.do?paper_type_cd=기출">기출문제</a></li>
                                         <li><a href="${pageContext.request.contextPath}/haederSearch.do?paper_type_cd=모의">모의고사</a></li>

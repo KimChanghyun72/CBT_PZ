@@ -13,7 +13,7 @@ import model.HashtagVO;
 import model.PaperHeadDAO;
 
 public class HashSelectCtrl implements Controller {
-
+	/**해쉬태그 문제 불러오기**/
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("해쉬검색");

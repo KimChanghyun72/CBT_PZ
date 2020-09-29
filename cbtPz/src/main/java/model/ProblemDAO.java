@@ -6,8 +6,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import common.ConnectionManager;
-import model.ProblemVO;
-import model.ProblemDAO;
 
 public class ProblemDAO {
 	Connection conn;
