@@ -13,20 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import admin.ExcelInsertCtrl;
 
 
-/**
- * Servlet implementation class FrontController
- */
 
-/*
-@WebServlet(name = "front", 
-			urlPatterns = "*.do", 
-			initParams = 
-			{
-					@WebInitParam(name = "charset", value = "UTF-8")
-			})  //여기적거나 web-int에 web.xml 파일에 적거나. 책550p
-*/
-//@MultipartConfig(location = "E:/upload", maxRequestSize = 1024 * 1024 * 10)
-@MultipartConfig(location = "D:/upload", maxRequestSize = 1024 * 1024 * 10)
+@MultipartConfig(location = "C:/upload", maxRequestSize = 1024 * 1024 * 10)
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
@@ -41,21 +29,22 @@ public class FrontController extends HttpServlet {
 
     	
     	//김민기
-    	list.put("/boardInsert.do", new board.BoardInsertCtrl());
-    	list.put("/boardSelect.do", new board.BoardSelectCtrl());
+    	list.put("/board/boardInsert.do", new board.BoardInsertCtrl());
+    	list.put("/ajax/boardSelect.do", new board.BoardSelectCtrl());
     	list.put("/board/boardList.do", new board.BoardListCtrl());
-    	list.put("/boardUpdate.do", new board.BoardUpdateCtrl());
-    	list.put("/boardUpdateForm.do", new board.BoardUpdateFormCtrl());
-    	list.put("/boardDelete.do", new board.BoardDeleteCtrl());    	
-    	list.put("/commentList.do", new board.CommentListCtrl());
-    	list.put("/commentInsert.do",new board.CommentInsertCtrl());
-    	list.put("/commentDelete.do", new board.CommentDeleteCtrl());
+    	list.put("/board/boardUpdate.do", new board.BoardUpdateCtrl());
+    	list.put("/board/boardUpdateForm.do", new board.BoardUpdateFormCtrl());
+    	list.put("/board/boardDelete.do", new board.BoardDeleteCtrl());    	
+    	list.put("/ajax/commentList.do", new board.CommentListCtrl());
+    	list.put("/ajax/commentInsert.do",new board.CommentInsertCtrl());
+    	list.put("/ajax/commentDelete.do", new board.CommentDeleteCtrl());
     	list.put("/board/qaboardList.do", new board.QaBoardListCtrl());
     	list.put("/board/qaboardSelect.do", new board.QaBoardSelectCtrl());
     	list.put("/board/qaboardInsert.do", new board.QaBoardInsertCtrl());
     	list.put("/board/qaboardDelete.do", new board.QaBoardDeleteCtrl());
     	list.put("/board/qaboardUpdate.do", new board.QaBoardUpdateCtrl());
     	list.put("/board/qaboardUpdateForm.do", new board.QaBoardUpdateFormCtrl());
+    	list.put("/filenameDownload.do", new board.FilenameDownloadCtrl());
     	
     	//김창현
     	//list.put("/memberPayUpdate.do", new member.MemberUpdateController());

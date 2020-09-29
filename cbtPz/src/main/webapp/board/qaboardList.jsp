@@ -49,8 +49,8 @@ body {
 						<col style="width: 30%;" />
 						<col style="width: 15%;" />
 						<col style="width: 10%;" />
-						<col style="width: 10%;" />
-						<col style="width: 10%;" />
+						<col style="width: 11%;" />
+						<col style="width: 15%;" />
 					</colgroup>
 					<thead>
 						<tr align="center">
@@ -59,7 +59,6 @@ body {
 							<th>작성자</th>
 							<th>조회수</th>
 							<th>작성일</th>
-							<th>답변</th>
 							<th>질문유형</th>
 							<c:if test="${list[0].member_id!='s'}">									  
 							<th>관리자</th>
@@ -81,7 +80,6 @@ body {
 										<td>${qaboard.member_id}</td>
 										<td>${qaboard.qaboard_views}</td>
 										<td>${qaboard.qaboard_date}</td>
-										<td>${qaboard.qaboard_ans}</td>
 										<td>${qaboard.qaboard_type_cd}</td>
 										<c:if test="${list[0].member_id!='s'}">			<!-- "${sessionScope.check=='A'} --> 						  
 										<td><input id="ck" name="ck" type="checkbox" value="${qaboard.qaboard_id}"></td>

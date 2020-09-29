@@ -94,14 +94,30 @@ body {
 				<button type="button" onclick="location.href='${pageContext.request.contextPath}/board/qaboardList.do'" class="btn btn-sm btn-primary" id="btnList">목록</button>
 			</p>
 			</div>
-
+<!---------------------댓글 입력폼------------------------->
+<c:if test="${sessionScope.check=='A'}">								  						
+<div class="my-3 p-3 bg-white rounded shadow-sm" style="padding-top: 10px">
+<form>
+<div class="row">
+<div class="col-sm-10">
+<textarea class="form-control" rows="3" placeholder="댓글을 입력해 주세요" name="comment_contents"></textarea>
+</div>
+<div class="col-sm-2">
+	<input type="text" class="form-control" name="comment_poster" placeholder="작성자"/>
+	<input type="hidden" name="board_id" value="${board.board_id}"/>
+	<button type="button" class="btn btn-sm btn-primary" name="btnSave" style="width: 100%; margin-top: 10px" id="btnSave">저장</button>
+</div>
+</div>
+</form>
+</div>
+</c:if>
 <!--------------------댓글 리스트------------------------>
 	<div class="my-3 p-3 bg-white rounded shadow-sm" style="padding-top: 10px">			
 	<h6 class="border-bottom pb-2 mb-0" align='center'>Answer</h6>
 	<div id="list"></div>
 	</div>
 <!--------------------댓글 리스트------------------------>			
-
+</div>
 	</article>
 </body>
 </html>
