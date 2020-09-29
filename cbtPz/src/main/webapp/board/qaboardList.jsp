@@ -20,9 +20,9 @@
 
 
 function check(){
-        		if($("input:checkbox[name='ck']").length > 0) {
+        		if($("input:checkbox[name='ck']:checked").length > 0) {
         			
-         			location.href="${pageContext.request.contextPath}/board/qaboardDelete.do?qaboard_id="+$("input:checkbox[id='ck']").val();
+         			location.href="${pageContext.request.contextPath}/board/qaboardDelete.do?qaboard_id="+$("input:checkbox[id='ck']:checked").val();
  
                 }        
 }      
@@ -76,16 +76,15 @@ body {
 								<c:forEach var="qaboard" items="${list}">
 										<tr>
 										<td>${qaboard.qaboard_id}</td>
-									<td><a href="${pageContext.request.contextPath}/board/qaboardSelect.do?qaboard_id=${qaboard.qaboard_id}">${qaboard.qaboard_title}</a></td>
+									<td><a href="${pageContext.request.contextPath}/ajax/qaboardSelect.do?qaboard_id=${qaboard.qaboard_id}">${qaboard.qaboard_title}</a></td>
 										<td>${qaboard.member_id}</td>
 										<td>${qaboard.qaboard_views}</td>
 										<td>${qaboard.qaboard_date}</td>
 										<td>${qaboard.qaboard_type_cd}</td>
-										<c:if test="${list[0].member_id!='s'}">			<!-- "${sessionScope.check=='A'} --> 						  
+										<c:if test="${sessionScope.check!='A'}">							  
 										<td><input id="ck" name="ck" type="checkbox" value="${qaboard.qaboard_id}"></td>
 									  	</c:if>
 									  </tr>
-									
 								</c:forEach>
 							</c:when>
 						</c:choose>

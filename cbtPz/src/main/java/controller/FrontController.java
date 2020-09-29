@@ -39,12 +39,17 @@ public class FrontController extends HttpServlet {
     	list.put("/ajax/commentInsert.do",new board.CommentInsertCtrl());
     	list.put("/ajax/commentDelete.do", new board.CommentDeleteCtrl());
     	list.put("/board/qaboardList.do", new board.QaBoardListCtrl());
-    	list.put("/board/qaboardSelect.do", new board.QaBoardSelectCtrl());
+    	list.put("/ajax/qaboardSelect.do", new board.QaBoardSelectCtrl());
     	list.put("/board/qaboardInsert.do", new board.QaBoardInsertCtrl());
     	list.put("/board/qaboardDelete.do", new board.QaBoardDeleteCtrl());
     	list.put("/board/qaboardUpdate.do", new board.QaBoardUpdateCtrl());
     	list.put("/board/qaboardUpdateForm.do", new board.QaBoardUpdateFormCtrl());
     	list.put("/filenameDownload.do", new board.FilenameDownloadCtrl());
+    	list.put("/ajax/qacommentUpdate.do", new board.QaCommentUpdateCtrl());
+    	list.put("/ajax/qacommentList.do", new board.QaCommentListCtrl());
+    	list.put("/board/noticeList.do", new board.noticeListCtrl());
+    	list.put("/board/noticeInsert.do", new board.noticeInsertCtrl());
+    	
     	
     	//김창현
     	//list.put("/memberPayUpdate.do", new member.MemberUpdateController());

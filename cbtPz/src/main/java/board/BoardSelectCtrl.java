@@ -19,7 +19,7 @@ public class BoardSelectCtrl implements Controller {
 		String board_file=request.getParameter("board_file");
 		String board_id = request.getParameter("board_id");
 		BoardVO board = new BoardVO();
-		board.setBoard_id(Integer.parseInt(board_id));
+		board.setBoard_id(board_id);
 		board.setBoard_file(board_file);
 		if(board_id.isEmpty()) {
 			

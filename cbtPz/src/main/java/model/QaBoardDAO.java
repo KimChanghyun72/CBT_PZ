@@ -174,7 +174,6 @@ public class QaBoardDAO {
 				
 				pstmt.setString(1, qaboardVo.getQaboard_title());
 				pstmt.setString(2, qaboardVo.getQaboard_contents());
-		//		pstmt.setString(5, qaboardVo.getQaboard_type_cd());
 				pstmt.setString(3, qaboardVo.getMember_id());
 				pstmt.setInt(4, qaboardVo.getQaboard_id());
 				pstmt.executeUpdate();
@@ -231,5 +230,62 @@ public class QaBoardDAO {
 				}
 				
 			}//###조회수 카운터 ###
+				
+				//###답글 달기 ###
+				public void replyawser(QaBoardVO qaboardVo) {
+					
+					try {
+						conn = ConnectionManager.getConnnect();
+						String sql = "UPDATE QABOARD SET QABOARD_ANS= ? WHERE QABOARD_ID=?";
+						pstmt = conn.prepareStatement(sql);
+						
+						
+						pstmt.setString(1, qaboardVo.getQaboard_ans());
+						pstmt.setInt(2, qaboardVo.getQaboard_id());
+						pstmt.executeUpdate();
+						
+						
+						
+					}catch(Exception e) {
+						e.printStackTrace();
+					}finally {
+						ConnectionManager.close(null, pstmt, conn);
+					}
+				}//###답글 달기 ###
+				
+				//###답글 조회 ###
+				public ArrayList<QaBoardVO> replyselectAll(QaBoardVO qaboardVO){
+					
+					QaBoardVO resultVO = null;
+					ResultSet rs = null;
+					
+					ArrayList<QaBoardVO> list = new ArrayList<QaBoardVO>();
+					try {
+						
+						conn = ConnectionManager.getConnnect();
+						String sql = "SELECT QABOARD_ANS FROM QABOARD "
+										+ "WHERE QABOARD_ID = ?";
+					
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setInt(1, qaboardVO.getQaboard_id());
+					rs = pstmt.executeQuery();
+					while(rs.next()) {
+						
+						resultVO = new QaBoardVO();
+						resultVO.setQaboard_ans(rs.getString(1));
+						
+						list.add(resultVO);
+						
+					}		
+					}catch(Exception e){		
+						e.printStackTrace();			
+					}finally{		
+						ConnectionManager.close(rs, pstmt, conn); 
+					} 		
+					return list;
+					}//###답글 조회 ###
+				
+				
+				
 }
 

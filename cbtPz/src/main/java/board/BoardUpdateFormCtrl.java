@@ -25,7 +25,7 @@ String path = "/board/boardUpdate.jsp";
 
 		if(!board_id.isEmpty()) {
 			BoardVO board = new BoardVO();
-			board.setBoard_id(Integer.parseInt(board_id));
+			board.setBoard_id(board_id);
 						
 			board = dao.selectOne(board);
 			request.setAttribute("board", board);

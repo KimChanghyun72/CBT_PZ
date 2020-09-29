@@ -58,7 +58,7 @@ import common.ConnectionManager;
 			while(rs.next()) {
 				
 				resultVO = new BoardVO();
-				resultVO.setBoard_id(rs.getInt(2));
+				resultVO.setBoard_id(rs.getString(2));
 				resultVO.setBoard_title(rs.getString(3));
 				resultVO.setBoard_contents(rs.getString(4));
 				resultVO.setMember_id(rs.getString(5));
@@ -86,13 +86,13 @@ import common.ConnectionManager;
 				conn = ConnectionManager.getConnnect();
 				String sql = "SELECT BOARD_ID,BOARD_TITLE,BOARD_CONTENTS,MEMBER_ID,BOARD_DATE,BOARD_VIEWS,BOARD_FILE FROM BOARD WHERE BOARD_ID = ?";
 				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, boardVo.getBoard_id());
+				pstmt.setString(1, boardVo.getBoard_id());
 				rs = pstmt.executeQuery();
 				
 				if(rs.next()) {
 					
 					resultVO = new BoardVO();
-					resultVO.setBoard_id(rs.getInt("BOARD_ID"));
+					resultVO.setBoard_id(rs.getString("BOARD_ID"));
 					resultVO.setBoard_title(rs.getString("BOARD_TITLE"));
 					resultVO.setBoard_contents(rs.getString("BOARD_CONTENTS"));
 					resultVO.setMember_id(rs.getString("MEMBER_ID"));
@@ -147,7 +147,7 @@ import common.ConnectionManager;
 				conn = ConnectionManager.getConnnect();
 				String sql = "DELETE Board WHERE BOARD_ID = ?";
 				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, boardVo.getBoard_id());
+				pstmt.setString(1, boardVo.getBoard_id());
 				pstmt.executeUpdate();
 			
 			
@@ -169,9 +169,8 @@ import common.ConnectionManager;
 				pstmt.setString(1, boardVo.getBoard_title());
 				pstmt.setString(2, boardVo.getBoard_contents());
 				pstmt.setString(3, boardVo.getMember_id());
-				
 				pstmt.setString(4, boardVo.getBoard_file());
-				pstmt.setInt(5, boardVo.getBoard_id());		
+				pstmt.setString(5, boardVo.getBoard_id());		
 				pstmt.executeUpdate();
 			
 			}catch(Exception e) {
@@ -218,7 +217,7 @@ import common.ConnectionManager;
 				conn = ConnectionManager.getConnnect();
 				String sql ="UPDATE BOARD SET BOARD_VIEWS = BOARD_VIEWS + 1 WHERE BOARD_ID = ? ";
 				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, vo.getBoard_id());
+				pstmt.setString(1, vo.getBoard_id());
 				pstmt.executeUpdate();
 			}catch(Exception e){
 				e.printStackTrace();
@@ -227,5 +226,6 @@ import common.ConnectionManager;
 		}
 		
 	}//###조회수 카운터 ###
-	
+
+		
 	}

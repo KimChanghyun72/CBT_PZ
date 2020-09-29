@@ -18,7 +18,7 @@ public class BoardDeleteCtrl implements Controller {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String board_id = request.getParameter("board_id");
 		BoardVO board  = new BoardVO();
-		board.setBoard_id(Integer.parseInt(board_id));
+		board.setBoard_id(board_id);
 		BoardDAO.getInstance().delete(board);
 		request.getRequestDispatcher("/board/boardDeleteOutput.jsp")
 		.forward(request, response);

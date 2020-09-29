@@ -11,6 +11,45 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
 <meta charset="UTF-8">
 <title>qaboard.jsp</title>
+<script>
+/*-----------------------댓글 리스트 출력 기능 --------------------- */
+$(function(){
+	function boardList(){
+		$.ajax("${pageContext.request.contextPath}/ajax/qacommentList.do",{
+			dataType : "json",
+			data:{qaboard_id : "${qaboard.qaboard_id}"},
+			success : function(datas){
+				for(i=0; i<datas.length; i++){
+					$("<div>").append($("<b>").append(datas[i].qaboard_ans))
+							.append($("<br>"))
+							.data("qaboard_id", datas[i].qaboard_id)
+							.appendTo($("#list"))
+				}
+			}
+		
+		})}
+
+	boardList();// 댓글리스트 바로 실행
+
+/*-----------------------댓글 저장 버튼 기능 --------------------- */	
+		 $("#btnSave").on("click", function(){
+				$.ajax("${pageContext.request.contextPath}/ajax/qacommentUpdate.do", {
+					dataType:"json",
+					data : $("form").serialize(),
+					success : function(data){
+						$("<div>").append($("<b>").append(data.qaboard_ans))
+						.append($("<br>"))
+						.data("qaboard_id", data.qaboard_id)
+						.appendTo($("#list"))
+					}
+				});
+			}) 
+			
+		});	
+</script>	
+
+
+
 <style>
 body {
 
@@ -95,16 +134,16 @@ body {
 			</p>
 			</div>
 <!---------------------댓글 입력폼------------------------->
-<c:if test="${sessionScope.check=='A'}">								  						
+<c:if test="${sessionScope.check!='A'}">								  						
 <div class="my-3 p-3 bg-white rounded shadow-sm" style="padding-top: 10px">
 <form>
 <div class="row">
 <div class="col-sm-10">
-<textarea class="form-control" rows="3" placeholder="댓글을 입력해 주세요" name="comment_contents"></textarea>
+<textarea class="form-control" rows="3" placeholder="댓글을 입력해 주세요" name="qaboard_ans"></textarea>
 </div>
 <div class="col-sm-2">
-	<input type="text" class="form-control" name="comment_poster" placeholder="작성자"/>
-	<input type="hidden" name="board_id" value="${board.board_id}"/>
+	
+	<input type="hidden" name="qaboard_id" value="${qaboard.qaboard_id}"/>
 	<button type="button" class="btn btn-sm btn-primary" name="btnSave" style="width: 100%; margin-top: 10px" id="btnSave">저장</button>
 </div>
 </div>
@@ -113,7 +152,7 @@ body {
 </c:if>
 <!--------------------댓글 리스트------------------------>
 	<div class="my-3 p-3 bg-white rounded shadow-sm" style="padding-top: 10px">			
-	<h6 class="border-bottom pb-2 mb-0" align='center'>Answer</h6>
+	<h6 class="border-bottom pb-2 mb-0" align='center'><strong>관리자님 답변</strong></h6>
 	<div id="list"></div>
 	</div>
 <!--------------------댓글 리스트------------------------>			

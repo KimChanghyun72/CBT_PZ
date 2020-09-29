@@ -27,7 +27,7 @@ public class QaBoardSelectCtrl implements Controller {
 		qaboard = dao.selectOne(qaboard);
 		request.setAttribute("qaboard", qaboard);
 		
-		request.getRequestDispatcher("qaboard.jsp")
+		request.getRequestDispatcher("/board/qaboard.jsp")
 		.forward(request, response);
 	}
 }
