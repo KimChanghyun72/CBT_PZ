@@ -39,7 +39,7 @@ public class NoticeDAO {
 					//String sql = "SELECT BOARD_ID,TITLE,CONTENTS,MEMBER_ID,BOARD_DATE,VIEWS FROM BOARD";
 				
 					String sql = "select a.* from(select rownum rn,b.* from( "
-							+ " SELECT BOARD_ID,BOARD_TITLE,MEMBER_ID,BOARD_DATE"
+							+ " SELECT SUBSTR(BOARD_ID,2),BOARD_TITLE,MEMBER_ID,BOARD_DATE"
 							+ " FROM BOARD"
 							+ where
 							+ " AND BOARD_ID LIKE'A%'"
@@ -128,4 +128,37 @@ public class NoticeDAO {
 				}
 				return r;
 			}//###입력###
+			
+			//###단건조회###
+			public BoardVO selectOne(BoardVO boardVo) {
+				
+				BoardVO resultVO = null;
+				ResultSet rs = null;
+				
+				try {
+					conn = ConnectionManager.getConnnect();
+					String sql = "SELECT BOARD_ID,BOARD_TITLE,BOARD_CONTENTS,MEMBER_ID,BOARD_DATE,BOARD_FILE FROM BOARD WHERE BOARD_ID = ?";
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, boardVo.getBoard_id());
+					rs = pstmt.executeQuery();
+					
+					if(rs.next()) {
+						
+						resultVO = new BoardVO();
+						resultVO.setBoard_id(rs.getString("BOARD_ID"));
+						resultVO.setBoard_title(rs.getString("BOARD_TITLE"));
+						resultVO.setBoard_contents(rs.getString("BOARD_CONTENTS"));
+						resultVO.setMember_id(rs.getString("MEMBER_ID"));
+						resultVO.setBoard_date(rs.getString("BOARD_DATE"));
+						resultVO.setBoard_file(rs.getString("BOARD_FILE"));
+				
+					}			
+				}catch(Exception e){
+					e.printStackTrace();
+				}finally {
+					ConnectionManager.close(rs,pstmt,conn);
+				}
+				return resultVO;
+			}//###단건조회###
+			
 }

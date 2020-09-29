@@ -43,6 +43,7 @@ import common.ConnectionManager;
 						+ " SELECT BOARD_ID,BOARD_TITLE,BOARD_CONTENTS,MEMBER_ID,BOARD_DATE,BOARD_VIEWS,BOARD_FILE"
 						+ " FROM BOARD"
 						+ where
+						+ " AND BOARD_ID NOT LIKE'A%'"
 						+ " ORDER BY BOARD_ID DESC"
 						+ " )b ) a where rn between ? and ? ";
 			pstmt = conn.prepareStatement(sql);

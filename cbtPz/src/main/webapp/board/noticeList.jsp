@@ -40,10 +40,10 @@
 							<c:when test="${!empty list}">
 								<c:forEach var="notice" items="${list}">
 										<tr>
-										<td>${noitce.board_id}</td>
+										<td>${notice.board_id}</td>
 									<td><a href="${pageContext.request.contextPath}/ajax/noticeSelect.do?board_id=${notice.board_id}">${notice.board_title}</a></td>
-										<td>${noitce.member_id}</td>
-										<td>${noitce.board_date}</td>
+										<td>${notice.member_id}</td>
+										<td>${notice.board_date}</td>
 									  </tr>
 									
 								</c:forEach>

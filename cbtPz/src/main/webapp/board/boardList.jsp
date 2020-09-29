@@ -17,9 +17,9 @@
 
 
 function check(){
-        		if($("input:checkbox[name='ck']").length > 0) {
+        		if($("input:checkbox[name='ck']:checked").length > 0) {
         			
-         			location.href="${pageContext.request.contextPath}/board/boardDelete.do?board_id="+$("input:checkbox[id='ck']").val();
+         			location.href="${pageContext.request.contextPath}/board/boardDelete.do?board_id="+$("input:checkbox[id='ck']:checked").val();
  
                 }        
 }      

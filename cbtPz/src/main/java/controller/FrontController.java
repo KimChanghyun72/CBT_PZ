@@ -49,7 +49,7 @@ public class FrontController extends HttpServlet {
     	list.put("/ajax/qacommentList.do", new board.QaCommentListCtrl());
     	list.put("/board/noticeList.do", new board.noticeListCtrl());
     	list.put("/board/noticeInsert.do", new board.noticeInsertCtrl());
-    	
+    	list.put("/ajax/noticeSelect.do", new board.noticeSelectCtrl());
     	
     	//김창현
     	//list.put("/memberPayUpdate.do", new member.MemberUpdateController());
