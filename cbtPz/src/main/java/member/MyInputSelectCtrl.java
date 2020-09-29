@@ -19,7 +19,7 @@ public class MyInputSelectCtrl implements Controller {
 		BoardDAO dao = new BoardDAO();
 		String board_id = request.getParameter("board_id");
 		BoardVO board = new BoardVO();
-		board.setBoard_id(Integer.parseInt(board_id));
+		board.setBoard_id(board_id);
 
 		if (board_id.isEmpty()) {
 
