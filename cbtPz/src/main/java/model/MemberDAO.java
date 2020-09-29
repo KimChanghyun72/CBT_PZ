@@ -293,5 +293,51 @@ public class MemberDAO {
 			return resultVo; // 리턴값 필요!
 		} //selectPwOne   memPw찾기
 	
+	// studyChart
+		public ArrayList<MemberVo> selectCnt(MemberVo memberVo) {
+			MemberVo resultVo = null;
+			ResultSet rs = null;
+			ArrayList<MemberVo> list = new ArrayList<MemberVo>();
+			try {
+				conn = ConnectionManager.getConnnect();
+				String sql = "SELECT STUDY_TERM, COUNT(*) AS CNT FROM MEMBER GROUP BY STUDY_TERM ORDER BY CNT";
+				pstmt = conn.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				while(rs.next()) {
+					resultVo = new MemberVo();
+					resultVo.setStudy_term(rs.getString("study_term"));
+					resultVo.setCnt(rs.getString("cnt"));
+					list.add(resultVo);
+				}
+				
+			} catch(Exception e) {
+				e.printStackTrace();
+			} finally {
+				ConnectionManager.close(rs, pstmt, conn);
+			}
+			return list;
+		}
 	
+	//majorChart
+		public ArrayList<MemberVo> selectMajor(MemberVo memberVo) {
+			MemberVo resultVo = null;
+			ResultSet rs = null;
+			ArrayList<MemberVo> list = new ArrayList<MemberVo>();
+			try {
+				conn = ConnectionManager.getConnnect();
+				String sql = "SELECT IS_MAJOR, COUNT(*) AS CNT FROM MEMBER GROUP BY IS_MAJOR ORDER BY CNT";
+				pstmt = conn.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				while(rs.next()) {
+					resultVo = new MemberVo();
+					resultVo.setIs_major(rs.getString("is_major"));
+					resultVo.setCnt(rs.getString("cnt"));
+					list.add(resultVo);
+				}
+				
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			return list;
+		}
 }

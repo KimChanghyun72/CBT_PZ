@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+
 import common.ConnectionManager;
 
 public class LectureDAO {
@@ -27,14 +28,16 @@ public class LectureDAO {
 			conn = ConnectionManager.getConnnect();
 
 			// 2.sql 구문 실행
-			String sql = "insert into lecture (lecture_id, lecture_name, lecture_info, lecture_link, lecture_image, teacher_num)"
+			String sql = "insert into lecture (lecture_id, lecture_name, lecture_info, lecture_link, lecture_image, teacher_id)"
 					+ "values (lecture_seq.nextval, ?, ?, ?, ?, ?)";
+			// 			String sql = "insert into lecture (lecture_id, lecture_name, lecture_info, lecture_link, lecture_image, teacher_id)"
+			// + "values (lecture_seq.nextval, ?, ?, ?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, lectureVO.getLecture_name());
 			pstmt.setString(2, lectureVO.getLecture_info());
 			pstmt.setString(3, lectureVO.getLecture_link());
 			pstmt.setString(4, lectureVO.getLecture_image());
-			pstmt.setString(5, lectureVO.getTeacher_num());
+			pstmt.setString(5, lectureVO.getTeacher_id());
 			// create sequence lecture_seq;
 			// 
 
@@ -63,19 +66,22 @@ public class LectureDAO {
 			ArrayList<LectureVO> list = new ArrayList<LectureVO>();
 			try {
 				conn = ConnectionManager.getConnnect();
-				String sql = "SELECT LECTURE_ID, TEACHER_NUM, LECTURE_NAME, LECTURE_INFO, LECTURE_LINK, LECTURE_IMAGE,"
-						+ " LECTURE_LEVEL, LECTURE_SUBJECT"
-						+ " FROM LECTURE WHERE TEACHER_NUM = ?"; // sql문 + 앞에 " " 공백
+
+				String sql = "SELECT LECTURE_ID, teacher_id, LECTURE_NAME, LECTURE_INFO, LECTURE_LINK, LECTURE_IMAGE,"
+							+ " LECTURE_LEVEL, LECTURE_SUBJECT"
+
+						+ " FROM LECTURE WHERE teacher_id = ?"; // sql문 + 앞에 " " 공백
+
 				pstmt = conn.prepareStatement(sql);
 				
-				pstmt.setString(1, lectureVO.getTeacher_num());
+				pstmt.setString(1, lectureVO.getTeacher_id());
 				
 				rs = pstmt.executeQuery();
 				
 				while(rs.next()) { //list니까 while문 사용
 					resultVO = new LectureVO();
 					resultVO.setLecture_id(rs.getString("lecture_id"));
-					resultVO.setTeacher_num(rs.getString("teacher_num"));
+					resultVO.setTeacher_id(rs.getString("teacher_id"));
 					resultVO.setLecture_name(rs.getString("lecture_name"));
 					resultVO.setLecture_info(rs.getString("lecture_info"));
 					resultVO.setLecture_link(rs.getString("lecture_link"));
@@ -125,4 +131,110 @@ public class LectureDAO {
 		return resultVO;
 	}
 */
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		//민영
+		//강의페이지 subject 카테 추출
+		public ArrayList<String> selectCateDISTINCT(){
+			ResultSet rs = null;
+			ArrayList<String> list = new ArrayList<String>();
+			try {
+				conn = ConnectionManager.getConnnect();
+				String sql = "select DISTINCT lecture_subject from lecture order by 1";
+				pstmt = conn.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				while(rs.next()) { //list니까 while문 사용
+					list.add(rs.getString("lecture_subject"));
+				} 
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				ConnectionManager.close(rs, pstmt, conn);
+			}
+			return list;
+		}
+		
+		
+		
+		//강의페이지 강의전체리스트
+		public ArrayList<LectureVO> selectLectureAll(){
+			LectureVO resultVO = null;
+			ResultSet rs = null;
+			ArrayList<LectureVO> list = new ArrayList<LectureVO>();
+			try {
+				conn = ConnectionManager.getConnnect();
+				String sql = "SELECT LECTURE_ID, LECTURE_NAME, LECTURE_INFO, LECTURE_LINK, LECTURE_IMAGE,"
+							+ " LECTURE_LEVEL, LECTURE_SUBJECT, teacher_name"
+							+ " FROM LECTURE, teacher_member"
+							+ " WHERE lecture.teacher_id = teacher_member.teacher_id";
+				pstmt = conn.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				while(rs.next()) { //list니까 while문 사용
+					resultVO = new LectureVO();
+					resultVO.setLecture_id(rs.getString("lecture_id"));
+					resultVO.setTeacher_name(rs.getString("teacher_name"));
+					resultVO.setLecture_name(rs.getString("lecture_name"));
+					resultVO.setLecture_info(rs.getString("lecture_info"));
+					resultVO.setLecture_link(rs.getString("lecture_link"));
+					resultVO.setLecture_image(rs.getString("lecture_image"));
+					resultVO.setLecture_level(rs.getString("lecture_level"));
+					resultVO.setLecture_subject(rs.getString("lecture_subject"));
+					list.add(resultVO); //resultVo를 list에 담음
+				} 
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				ConnectionManager.close(rs, pstmt, conn);
+			}
+			return list;  //담은 list를 리턴.
+		}//selectAll
+		
+		
+		
+		//강의 카테별 조회
+			public ArrayList<LectureVO> selectCate(LectureVO lectureVO){
+				LectureVO resultVO = null;
+				ResultSet rs = null;
+				ArrayList<LectureVO> list = new ArrayList<LectureVO>();
+				try {
+					conn = ConnectionManager.getConnnect();
+					String sql = "SELECT LECTURE_ID, LECTURE_NAME, LECTURE_INFO, LECTURE_LINK, LECTURE_IMAGE,"
+								+ " LECTURE_LEVEL, LECTURE_SUBJECT, teacher_name"
+								+ " FROM LECTURE, teacher_member"
+								+ " WHERE lecture.teacher_id = teacher_member.teacher_id"
+								+ " AND LECTURE.LECTURE_SUBJECT = ?"; 
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, lectureVO.getLecture_subject());
+					rs = pstmt.executeQuery();
+					while(rs.next()) { //list니까 while문 사용
+						resultVO = new LectureVO();
+						resultVO.setLecture_id(rs.getString("lecture_id"));
+						resultVO.setTeacher_name(rs.getString("teacher_name"));
+						resultVO.setLecture_name(rs.getString("lecture_name"));
+						resultVO.setLecture_info(rs.getString("lecture_info"));
+						resultVO.setLecture_link(rs.getString("lecture_link"));
+						resultVO.setLecture_image(rs.getString("lecture_image"));
+						resultVO.setLecture_level(rs.getString("lecture_level"));
+						resultVO.setLecture_subject(rs.getString("lecture_subject"));
+						list.add(resultVO);
+					} 
+				} catch (Exception e) {
+					e.printStackTrace();
+				} finally {
+					ConnectionManager.close(rs, pstmt, conn);
+				}
+				return list;  //담은 list를 리턴.
+			}//selectCate
+		
+		
+			
+			
+		
 }

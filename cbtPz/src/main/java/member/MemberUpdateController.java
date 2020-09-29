@@ -10,6 +10,7 @@ import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpUtils;
 
 import common.HttpUtil;
@@ -18,20 +19,23 @@ import model.MemberDAO;
 import model.MemberVo;
 
 public class MemberUpdateController implements Controller {
-
+	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		
 		//유료 결제에 대한 정보 받기
 		String payCheck = request.getParameter("payCheck");
+		String pay="pay";
 		System.out.println(payCheck);
 		String term = request.getParameter("term");
 		MemberVo pay_member = (MemberVo) request.getSession().getAttribute("login");
-
-		if (payCheck.equals("pay")) {
+		
+		if (pay.equals(payCheck)) {
 			MemberDAO dao = new MemberDAO();
-			String is_pay = "YES"; //유료회원 판단 문자
-			System.out.println(pay_member.getIs_pay());
-			int term2 = Integer.parseInt(term); //string term을 int 값으로 변환. 위치 if문 밖이면 유저정보 업데이트시에 null값 때문에 문제 발생함.
+			String is_pay = "Y"; //유료회원 판단 문자
+			System.out.println();
+			int term2 = Integer.parseInt(term);
 			
 			if(is_pay.equals(pay_member.getIs_pay())) { //유료회원의 경우
 				Calendar cal = Calendar.getInstance();
@@ -63,19 +67,20 @@ public class MemberUpdateController implements Controller {
 		} else {
 
 		// Parameter 추출
-		String member_id = request.getParameter("member_id");
-		String member_pw = request.getParameter("member_pw");
-		String member_name = request.getParameter("member_name");
-		String member_age = request.getParameter("member_age");
-		String member_job = request.getParameter("member_job");
-		String study_term = request.getParameter("study_term");
-		String phone_number = request.getParameter("phone_number");
-		String is_major = request.getParameter("is_major");
-		String tested_num = request.getParameter("tested_num");
-		String email = request.getParameter("email");
+		String member_id = pay_member.getMember_id();//request.getParameter("member_id");
+		String member_pw = pay_member.getMember_pw();//request.getParameter("member_pw");
+		String member_name = pay_member.getMember_name();//request.getParameter("member_name");
+		String member_age = pay_member.getMember_age();//request.getParameter("member_age");
+		String member_job = pay_member.getMember_job();//request.getParameter("member_job");
+		String study_term = pay_member.getStudy_term();//request.getParameter("study_term");
+		String phone_number = pay_member.getPhone_number();//request.getParameter("phone_number");
+		String is_major = pay_member.getIs_major();//request.getParameter("is_major");
+		String tested_num = pay_member.getTested_num();//request.getParameter("tested_num");
+		String email = pay_member.getEmail();//request.getParameter("email");
+		System.out.println("멤버pw"+member_pw);
 		// 유효성 체크
 		if (member_id.isEmpty() || member_pw.isEmpty() || member_name.isEmpty() || member_age.isEmpty()
-				|| member_job.isEmpty() || study_term.isEmpty() || phone_number.isEmpty() || is_major.isEmpty()
+				|| member_job.isEmpty() || study_term.isEmpty() || phone_number.isEmpty()
 				|| tested_num.isEmpty() || email.isEmpty()) {
 			request.setAttribute("error", "모든 항목을 빠짐없이 입력해주시기 바랍니다.");
 			//	HttpUtil.forward(request, response, "/myInfo.jsp");
@@ -99,8 +104,12 @@ public class MemberUpdateController implements Controller {
 			// DAO 객체의 메소드 호출
 			MemberDAO dao = MemberDAO.getInstance();
 			dao.update(member);
-			// Output View 페이지 이동
-			response.sendRedirect("myInfo.do?member_id=" + member_id);
+			// Output View 페이지 이동\
+			if(session.getAttribute("check") != "A") {
+				response.sendRedirect("myInfo.do?member_id=" + member_id);
+			}else {
+				response.sendRedirect("memberList.do?member_id=" + member_id);
+			}
 		}
 	}
 

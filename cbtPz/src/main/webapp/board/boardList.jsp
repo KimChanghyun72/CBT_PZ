@@ -11,6 +11,7 @@
 <head>
 <meta charset="UTF-8">
 <title>boardList.jsp</title>
+<<<<<<< HEAD
 <!--style CSS -->
 <script>
 
@@ -33,6 +34,8 @@ body {
 
 </style>
 <!--style CSS -->
+=======
+>>>>>>> branch 'master' of https://github.com/KimChanghyun72/CBT_PZ.git
 </head>
 <body>
 	<article>
@@ -95,8 +98,13 @@ body {
    <my:paging paging="${paging}" jsfunc="gopage"/>
     	<script>
     	function gopage(p){
+<<<<<<< HEAD
     		location.href="boardList.do?p="+ p;
     	};
+=======
+    		location.href="board/boardList.do?p="+ p;
+    	}
+>>>>>>> branch 'master' of https://github.com/KimChanghyun72/CBT_PZ.git
     	</script>	
  		
 	<!-- 페이징 처리 영역 -->

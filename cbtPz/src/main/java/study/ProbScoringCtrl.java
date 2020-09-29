@@ -26,15 +26,22 @@ public class ProbScoringCtrl implements Controller {
 		for(i=0 ; i<headproblem.size(); i++) {
 			String ansCorrect;
 			String problemId;
+			String haeseol;
 			HashMap<String, String> ans = new HashMap<String, String>();
 			problemId = (String)headproblem.get(i).get("problem_id");
 			ansCorrect = (String)headproblem.get(i).get("ans_correct");
-			System.out.println(problemId);
-			System.out.println(ansCorrect);
-			ans.put(problemId, ansCorrect);
-			System.out.println(ans);
+			haeseol = (String)headproblem.get(i).get("haeseol");
+			
+//			System.out.println(problemId);
+//			System.out.println(ansCorrect);
+//			System.out.println(haeseol);
+			
+			ans.put("problem_id", problemId);
+			ans.put("ans_correct", ansCorrect);
+			ans.put("haeseol", haeseol);
+//			System.out.println(ans);
 			ansList.add(i, ans);
-			System.out.println(ansList);
+//			System.out.println(ansList);
 			}
 		String result = JSONArray.fromObject(ansList).toString();
 		response.getWriter().print(result);

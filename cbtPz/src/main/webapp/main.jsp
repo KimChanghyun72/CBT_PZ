@@ -7,6 +7,77 @@
 <html>
 <head>
  
+ <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.2/main.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.2/main.css" rel="stylesheet">
+
+
+<script>
+
+ document.addEventListener('DOMContentLoaded', function() {
+	  var calendarEl = document.getElementById('calendar');
+
+	  var calendar = new FullCalendar.Calendar(calendarEl, {
+	    initialView: 'dayGridMonth',
+	    initialDate: '2020-09-07',
+	    headerToolbar: {
+	      left: 'prev',
+	      center: 'title',
+	      right: 'next today'
+	    },
+	    events: [
+	      {
+	        title: 'All Day Event',
+	        start: '2020-09-01'
+	      },
+	      {
+	        title: 'Long Event',
+	        start: '2020-09-07',
+	        end: '2020-09-10'
+	      },
+	      {
+	        groupId: '999',
+	        title: 'Repeating Event',
+	        start: '2020-09-09T16:00:00'
+	      },
+	      {
+	        groupId: '999',
+	        title: 'Repeating Event',
+	        start: '2020-09-16T16:00:00'
+	      },
+	      {
+	        title: 'Conference',
+	        start: '2020-09-11',
+	        end: '2020-09-13'
+	      },
+	      {
+	        title: 'Meeting',
+	        start: '2020-09-12T10:30:00',
+	        end: '2020-09-12T12:30:00'
+	      },
+	      {
+	        title: 'Lunch',
+	        start: '2020-09-12T12:00:00'
+	      },
+	      {
+	        title: 'Meeting',
+	        start: '2020-09-12T14:30:00'
+	      },
+	      {
+	        title: 'Birthday Party',
+	        start: '2020-09-13T07:00:00'
+	      },
+	      {
+	        title: 'Click for Google',
+	        url: 'http://google.com/',
+	        start: '2020-09-28'
+	      }
+	    ]
+	  });
+
+	  calendar.render();
+	});
+ 
+</script>
 
 </head>
 
@@ -54,17 +125,44 @@
         <span class="sr-only">Next</span>
       </a>
     </div>
-	<section class="popular-courses-area section-padding-100-0">
-		<div class="container">
+    
+	<!-- <section class="popular-courses-area section-padding-100-0"> -->
+	<section class="blog-area blog-page section-padding-100">
+                <!-- Single Blog Area -->
+		
 			<div class="row">
-				<div class="col-12">
+				<div class="col-12 col-lg-6">
+				<!-- 공지사항 캘린더 ㅓ넣을꺼임 -->
+                    <div class="single-blog-area mb-100 wow fadeInUp" data-wow-delay="250ms">
+                        <img src="img/blog-img/1.jpg" alt="">
+                        <!-- Blog Content -->
+                        <div class="blog-content">
+                            <a href="#" class="blog-headline">
+                                <h4>English Grammer</h4>
+                            </a>
+                            <div class="meta d-flex align-items-center">
+                                <a href="#">Sarah Parker</a>
+                                <span><i class="fa fa-circle" aria-hidden="true"></i></span>
+                                <a href="#">Art &amp; Design</a>
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce enim nulla, mollis eu metus in, sagittis</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Single Blog Area -->
+                <div class="col-12 col-lg-6">
+                    <div class="single-blog-area mb-100 wow fadeInUp" data-wow-delay="500ms">
+          <div id='calendar'></div>
+                    </div>
+                </div>
+
+            </div>
 					<div class="section-heading">
 						<h3>Popular Online Courses</h3>
-					</div>
-				</div>
-			</div>
-		</div>
+
 	</section>
+
 	<section class="popular-courses-area section-padding-100-0">
 		<div class="container">
 			<div class="row">

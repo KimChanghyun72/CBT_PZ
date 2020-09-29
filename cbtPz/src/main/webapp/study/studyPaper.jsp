@@ -59,13 +59,13 @@ body {
 /* Left column */
 .leftcolumn {
 	float: left;
-	width: 55%;
+	width: 60%;
 }
 
 /* Right column */
 .rightcolumn {
 	float: right;
-	width: 25%;
+	width: 40%;
 	background-color: #f1f1f1;
 	padding-left: 20px;
 }
@@ -87,8 +87,8 @@ body {
 /* Clear floats after the columns */
 .row:after {
 	content: "";
-	display: table;
-	clear: both;
+	/* display: table;  */
+	clear: both; 
 }
 
 /* Footer */
@@ -100,7 +100,7 @@ body {
 }
 
 /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1500px) {
 	.leftcolumn, .rightcolumn {
 		width: 100%;
 		padding: 0;
@@ -113,6 +113,9 @@ body {
 		float: none;
 		width: 100%;
 	}
+}
+.row {
+	width : 1000px;
 }
 
 .haeseol {
@@ -138,10 +141,13 @@ int probNum;  //문제 번호
 int ansNum;  //오른쪽 문제번호
 int probSize = problemList.size();
 %>
+
 var size = <%=probSize%>;
+var is_submit=0;
 
 $(function(){
 	 $("#foo-table").DataTable();
+	 $("div.row").eq(3).css("width","600px");
 })
 $(function(){ //for문은 번호를 설정해주는 역할만 하고 이벤트시에는 안 먹음.
 	for(var i=0; i<size; i++){
@@ -156,50 +162,74 @@ $(function(){ //for문은 번호를 설정해주는 역할만 하고 이벤트�
 		var j= $(this).attr('name').substring(6);
 		var v =$(this).val();
 		
-		$('input:radio[name=problem'+j+']').val([v]);
+		$('input:radio[name=problem'+j+']').val([v]); 
 	})
 	}
+	var cnt = 0; //문제 맞춘 갯수
 	//ajax로 답지 불러오는 함수.
 	function submitFunc(){
 		$.ajax("${pageContext.request.contextPath}/ajax/probScoringCtrl.do", {
 			dataType : "json",
 			success : function(datas){
 				for(i=0; i<datas.length; i++){
-					console.log(datas.length)
-					$("p").append(datas[i]).appendTo($(".ans_correct"));
-				}
+					console.log(datas.length)       //데이터 길이 콘솔출력
+					$(".haeseol"+i).html(datas[i].haeseol); //헤설 출력
+					if(datas[i].ans_correct == $('input[name=problem'+i+']:checked').val()){
+						$('input[name=problem'+i+']').closest("td").prev().append("<div>O</div>");
+						$("input[name=is_correct"+i+"]").val("Y");
+						cnt = cnt+1; //정답 갯수 ++
+						console.log(cnt);//정답 개수 콘솔
+					}else{
+						$('input[name=problem'+i+']').closest("td").prev()
+								.append("<div>X</div><div>정답 : "+datas[i].ans_correct+"</div>");
+						$("input[name=is_correct"+i+"]").val("N");
+					}
+				};
+				$("[name=testNum]").val(datas.length); //문제 갯수 입력
+				$("[name=testScore]").val(cnt); //성적 폼태그에 입력
 			}
 		})
 	}
 	
 	
-	//문제 제출하면 ajax로 답지 불러옴.
-	$(".btnScore").on("click", function(){
-		var is_submit = confirm("제출하시겠습니까?");
+	//문제 제출하면 ajax로 답지 불러오고 제출버튼 삭제.
+	$(document).on("click",".btnScore", function(){
+		is_submit = confirm("제출하시겠습니까?");
 		if(is_submit){
 			submitFunc();
+			$(this).remove();
+			$(".rightcolumn").append("<button class='btnFinish'>확인</button>");
+			//타이머 시간 고정.
+			
 			}
+	});
+	
+	$(document).on("click", ".btnFinish", function(){
+	
+		console.log(cnt);
+		//$("#testResult").submit();
 	})
-	
-	
 	
 });
 	
 
 //수정중 삭제파트 1.
-</script>
-<script>
 //카운트 시간 표시.
-var SetTime = 1800;		// 최초 설정 시간(기본 : 초)
+var SetTime = 0;		// 최초 설정 시간(기본 : 0초)
 function msg_time() {	// 1초씩 카운트
-	var m = Math.floor(SetTime / 60) + "분 " + (SetTime % 60) + "초";	// 남은 시간 계산
-	var msg = "현재 남은 시간은 <font color='red'>" + m + "</font> 입니다.";
+	var m = Math.floor(SetTime / 60) + "분 " + (SetTime % 60) + "초";	//남은 시간 계산
+	var msg = "현재 경과된 시간은 <font color='red'>" + m + "</font> 입니다.";
 	document.all.ViewTimer.innerHTML = msg;		// div 영역에 보여줌 
-	SetTime--;					// 1초씩 감소
-	if (SetTime < 0) {			// 시간이 종료 되었으면..
-		clearInterval(tid);		// 타이머 해제
-		alert("종료");
+	 if(is_submit != true){// 제출되지 않았다면 1초씩 증가
+		SetTime++;		
+	} else{
+		var timeCnt = SetTime;
+		$("[name=testTime]").val(timeCnt);  //form에 걸린 시간 전송
+		console.log(timeCnt.toFixed(0)); //콘솔에 걸린 시간 표시 (초단위)
+		
+		clearInterval(tid); //타이머 해제
 	}
+
 }
 window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };
 
@@ -207,10 +237,14 @@ window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };
 </head>
 <body>
 	<div class="header">
-		<h1>Header</h1>
+		<h1>${problemList[0].paper_type_cd} ${problemList[0].paper_round}</h1>
+ 		<h1>${problemList[0].subject}</h1>
+		<c:if test="">
+		</c:if>
 			<div id="ViewTimer"></div>
 	</div>
 <div class="leftcolumn">
+	<form id="testResult" name="testResult" action="ScoreInsert.do">
 <table id="foo-table" class="table table-bordered">
 	
 		<thead>
@@ -222,17 +256,22 @@ window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };
 				<td><%=problemList.get(probNum).get("subject") %>
 				<td class="probNum<%=probNum %>"><%=probNum+1 %>번</td>
 				<td>
-					<div><%=problemList.get(probNum).get("problem_text") %>&nbsp;&nbsp;<input type="checkbox"  class="probChk"></div>
+					<div><%=problemList.get(probNum).get("problem_text") %>&nbsp;&nbsp;<input type="checkbox"  name="probChk<%=probNum%>"></div>
 					<div><input type="radio" name="problem<%=probNum%>" value="1"><%=problemList.get(probNum).get("ans_1") %></div>
 					<div><input type="radio" name="problem<%=probNum%>" value="2"><%=problemList.get(probNum).get("ans_2") %></div>
 					<div><input type="radio" name="problem<%=probNum%>" value="3"><%=problemList.get(probNum).get("ans_3") %></div>
 					<div><input type="radio" name="problem<%=probNum%>" value="4"><%=problemList.get(probNum).get("ans_4") %></div>
+					<input type="text" name="is_correct<%=probNum%>">
 					<div class="haeseol<%=probNum %>"></div>
 				</td>
 			</tr>
 			<% } %>
 		</tbody>
     </table>
+				<input type="text" name="testTime"> <!-- 테스트에 걸린 시간 -->
+				<input type="text" name="testScore"> <!-- 테스트 성적 -->
+				<input type="text" name="testNum"> <!-- 문제 갯수 -->
+		</form>
     
 </div>
 
@@ -257,7 +296,18 @@ window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };
 							<% } %>
 						</tbody>
 					</table>
+					<!-- 응시 insert -->
+					<form action="${pageContext.request.contextPath}/solveInsert.do">
+						<input type="text" name="member_id" value="${sessionScope.name}">		
+						<input type="text" name="solve_type_cd" value="${problemList[0].paper_type_cd} ${problemList[0].paper_round}">
+						<input type="text" name="testTime"> <!-- 테스트에 걸린 시간 -->
+						<input type="text" name="testScore"> <!-- 테스트 성적 -->
+						<input type="text" name="testNum"> <!-- 문항 갯수 -->
+					
 					<button class="btnScore">제출</button>
+					<button>DB_Insert</button>	
+					</form>
+					
 					<div class="ans_correct"></div>
 				</div>
 			</div>
