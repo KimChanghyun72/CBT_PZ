@@ -106,10 +106,7 @@ public class FrontController extends HttpServlet {
     	list.put("/ajax/hashtagAutoSearch.do", new study.HashAutoSearchCtrl());
     	
     	list.put("/solveInsert.do", new study.SolveInsertCtrl());
-<<<<<<< HEAD
-    	
-=======
->>>>>>> branch 'master' of https://github.com/KimChanghyun72/CBT_PZ.git
+
     	
     	
     	
