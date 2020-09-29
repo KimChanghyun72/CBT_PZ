@@ -15,7 +15,7 @@
 /*-----------------------댓글 리스트 출력 기능 --------------------- */
 $(function(){
 	function boardList(){
-		$.ajax("./commentList.do",{
+		$.ajax("./ajax/commentList.do",{
 			dataType : "json",
 			data:{board_id : "${board.board_id}"},
 			success : function(datas){
