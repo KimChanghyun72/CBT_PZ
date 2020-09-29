@@ -15,25 +15,23 @@
     <!-- Title -->
     <title><decorator:title/></title>
 
-    <script src="js/jquery/jquery-2.2.4.min.js"></script>
+
 	<!-- Bootstrap core CSS -->
 	<!-- <link rel="stylesheet1" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"> -->
 	<link href="${pageContext.request.contextPath}/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	
 	
   	<!-- Custom styles for this template -->
-  	<link href="css/modern-business.css" rel="stylesheet">
+  	<link href="${pageContext.request.contextPath}/css/modern-business.css" rel="stylesheet">
 
     <!-- Favicon -->
     <link rel="icon" href="${pageContext.request.contextPath}/img/core-img/favicon.ico">
-
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">
-    
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">    
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
+    
+    <script src="${pageContext.request.contextPath}/js/jquery/jquery-2.2.4.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.min.js"></script>
 
     
  <decorator:head/>   
@@ -79,17 +77,18 @@
                         <!-- Nav Start -->
                         <div class="classynav">
                             <ul>
-                                <li><a href="indexx.jsp">Home</a></li>
+                                <li><a href="${pageContext.request.contextPath}/indexx.jsp">Home</a></li>
                                 <li><a href="index.jsp">공지사항</a></li>
                                 <li><a href="#">학습하기</a>
                                     <ul class="dropdown">
-                                        <li><a href="index.jsp">기출문제</a></li>
-                                        <li><a href="courses.html">모의고사</a></li>
-                                        <li><a href="single-course.html">과목별</a></li>
-                                        <li><a href="instructors.html">태그별</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/haederSearch.do?paper_type_cd=기출">기출문제</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/haederSearch.do?paper_type_cd=모의">모의고사</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/subjectSearch.do">과목별</a></li>
+                                        <li><a href="/cbtPz/hashtagPage.do">태그별</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="courses.html">게시판</a>
+                                <li><a href="lecturePage.do">동영상강의</a></li>
+                                <li><a href="board/boardList.do">게시판</a>
                                 	<ul class="dropdown">
                                         <li><a href="index.jsp">기출문제</a></li>
                                         <li><a href="courses.html">모의고사</a></li>
@@ -100,12 +99,23 @@
                               <c:if test="${not empty sessionScope.check && sessionScope.check != 'A'}">
                                 <li><a href="instructors.html" >마이페이지</a>
                                 	<ul class="dropdown">
-                                        <li><a href="index.jsp">기출문제</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/memberUpdate.do">개인정보수정</a></li>
                                         <li><a href="courses.html">모의고사</a></li>
                                         <li><a href="single-course.html">과목별</a></li>
                                         <li><a href="instructors.html">태그별</a></li>
+                                        <c:if test="${not empty sessionScope.check && sessionScope.check == 'T'}">
+                                        <li><a href="${pageContext.request.contextPath}/myLecture.do">나의 강의</a></li>
+                                        </c:if>
+                                        <c:if test="${not empty sessionScope.check && sessionScope.check == 'M'}">
+                                        <li><a href="${pageContext.request.contextPath}/memLecture.do">나의 강의</a></li>
+                                        </c:if>
+                                        <li><a href="${pageContext.request.contextPath}/insertLecForm.do">강의 등록</a></li>
+                                        <li><a href="courses.html">오답노트</a></li>
+                                        <li><a href="single-course.html">개인성적</a></li>
+                                        <li><a href="instructors.html">즐겨찾기문제</a></li>
                                     </ul>
                                 </li>
+                                <li><a href="${pageContext.request.contextPath}/payment/payment.jsp">멤버쉽</a></li>
                               </c:if>
                               <c:if test="${not empty sessionScope.check && sessionScope.check == 'A'}">
                                 <li><a href="instructors.html">관리자메뉴</a>
@@ -116,7 +126,6 @@
                                         <li><a href="instructors.html">태그별</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="${pageContext.request.contextPath}/payment/payment.jsp">멤버쉽</a></li>
                               </c:if>
                             </ul>
 
@@ -124,6 +133,11 @@
                             <!-- Register / Login -->
                             <div class="register-login-area">
                                 <c:if test="${not empty sessionScope.name}">
+                                <c:if test="${sessionScope.check=='M'}">
+                                	<c:if test="${sessionScope.login.is_pay == 'Y' }">
+                                		<span class="badge badge-pill badge-warning">VIP</span>
+                                	</c:if>
+                                	</c:if>
 	                                ${sessionScope.name}님  
 	                                <a href="${pageContext.request.contextPath}/logout.do" class="btn active">Logout</a>
                                 </c:if>
