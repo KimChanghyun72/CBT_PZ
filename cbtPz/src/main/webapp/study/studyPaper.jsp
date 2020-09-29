@@ -297,15 +297,15 @@ window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };
 						</tbody>
 					</table>
 					<!-- 응시 insert -->
-					<form action="${pageContext.request.contextPath}/solveInsert.do">
-						<input type="text" name="member_id" value="${sessionScope.name}">		
+					<form action="${pageContext.request.contextPath}/ajax/probScoringCtrl.do">
+						<!--  <input type="text" name="member_id" value="${sessionScope.login}">	--> 
 						<input type="text" name="solve_type_cd" value="${problemList[0].paper_type_cd} ${problemList[0].paper_round}">
 						<input type="text" name="testTime"> <!-- 테스트에 걸린 시간 -->
 						<input type="text" name="testScore"> <!-- 테스트 성적 -->
 						<input type="text" name="testNum"> <!-- 문항 갯수 -->
 					
 					<button class="btnScore">제출</button>
-					<button>DB_Insert</button>	
+					<button>dd</button>
 					</form>
 					
 					<div class="ans_correct"></div>
