@@ -13,7 +13,7 @@ import model.PaperHeadDAO;
 import model.ProblemVO;
 
 public class ProblemSubCtrl implements Controller {
-
+	/**과목별 문제 불러오기**/
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String path = "studyPaper.jsp";

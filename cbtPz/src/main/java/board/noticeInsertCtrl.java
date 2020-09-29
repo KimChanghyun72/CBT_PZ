@@ -5,26 +5,24 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 import javax.servlet.ServletException;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
-
 import common.FileRenamePolicy;
 import controller.Controller;
-import model.BoardDAO;
 import model.BoardVO;
+import model.NoticeDAO;
 
-public class BoardInsertCtrl implements Controller {
+public class noticeInsertCtrl implements Controller {
 
+	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		String board_title = request.getParameter("board_title");
 		String board_contents = request.getParameter("board_contents");
 		String member_id = request.getParameter("member_id");
 		String path = "C:/upload";
-		// String views = request.getParameter("views");	
+	
 		System.out.println(path);
 		BoardVO board = new BoardVO();
 
@@ -44,7 +42,7 @@ public class BoardInsertCtrl implements Controller {
 			
 			
 		}
-		BoardDAO dao = new BoardDAO();
+		NoticeDAO dao = new NoticeDAO();
 		dao.insert(board);
 
 		request.getRequestDispatcher("/board/boardInsertOutput.jsp").forward(request, response);
@@ -59,4 +57,7 @@ public class BoardInsertCtrl implements Controller {
 		}
 		return null;
 	}
-}
+
+	}
+
+

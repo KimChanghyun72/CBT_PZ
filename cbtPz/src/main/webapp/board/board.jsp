@@ -15,7 +15,7 @@
 /*-----------------------댓글 리스트 출력 기능 --------------------- */
 $(function(){
 	function boardList(){
-		$.ajax("./commentList.do",{
+		$.ajax("${pageContext.request.contextPath}/ajax/commentList.do",{
 			dataType : "json",
 			data:{board_id : "${board.board_id}"},
 			success : function(datas){
@@ -37,7 +37,7 @@ $(function(){
 	$("#list").on("click",".btnDel", function(){
 		comment_id = $(this).parent().data("comment_id");
 		div = $(this).parent();
-		$.ajax("./commentDelete.do", {
+		$.ajax("${pageContext.request.contextPath}/ajax/commentDelete.do", {
 			method : "get",
 			dataType : "json",
 			data : {comment_id : comment_id},//"no="+no + "&name=" + name 
@@ -49,7 +49,7 @@ $(function(){
 	});
 /*-----------------------댓글 저장 버튼 기능 --------------------- */	
 		 $("#btnSave").on("click", function(){
-				$.ajax("./commentInsert.do", {
+				$.ajax("${pageContext.request.contextPath}/ajax/commentInsert.do", {
 					dataType:"json",
 					data : $("form").serialize(),
 					success : function(data){
@@ -123,7 +123,7 @@ body {
 
 		<div class="container" role="main">
 
-			<h2 align="right" onclick="location.href='boardList.do'">자유게시판</h2>
+			<h2 align="right" onclick="location.href='${pageContext.request.contextPath}/board/boardList.do'">자유게시판</h2>
 			
 			<div class="bg-white rounded shadow-sm">
 
@@ -136,16 +136,16 @@ body {
 				</div>
 				
 				<div class="board_content">${board.board_contents}</div>
-				<div class="board_file"><img src="${board.board_file}" style="width:50px"/></div>
+				<div class="board_file"><img src="${pageContext.request.contextPath}/filenameDownload.do?board_file=${board.board_file}" style="width:500px"/></div>
 					
 				</div>
 			<div style="margin-top : 20px">
 			 <p align="right">	
 				<button type="button" onclick="location.href='boardUpdateForm.do?board_id='+${board.board_id}" class="btn btn-sm btn-primary" id="btnUpdate">수정</button>
 
-				<button type="button" onclick="location.href='boardDelete.do?board_id='+${board.board_id}" class="btn btn-sm btn-primary" id="btnDelete">삭제</button>
+				<button type="button" onclick="location.href='${pageContext.request.contextPath}/board/boardDelete.do?board_id='+${board.board_id}" class="btn btn-sm btn-primary" id="btnDelete">삭제</button>
 
-				<button type="button" onclick="location.href='boardList.do'" class="btn btn-sm btn-primary" id="btnList">목록</button>
+				<button type="button" onclick="location.href='${pageContext.request.contextPath}/board/boardList.do'" class="btn btn-sm btn-primary" id="btnList">목록</button>
 			</p>
 			</div>
 		<div data-id="4" data-goods="book" id="divid"></div>

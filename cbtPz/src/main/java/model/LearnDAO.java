@@ -68,4 +68,65 @@ public class LearnDAO {
 		}
 		return list;  //담은 list를 리턴.
 	} //selectAll
+	
+	
+	
+	//learn테이블 수강강의 인서트
+	public int learnInsert(LearnVO learnVO) {
+		int r =0;
+		try {
+			conn = ConnectionManager.getConnnect();
+			
+			String sql = "insert into learn(learn_id, member_id, lecture_id)"
+					 	+ "values (learn_seq.nextval, ?, ?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, learnVO.getMember_id());
+			pstmt.setString(2, learnVO.getLecture_id());		
+					
+			r = pstmt.executeUpdate();
+
+			// 3. 결과 처리
+			if (r == 1) {
+				System.out.println(r + "건이 처리됨");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(conn);
+		}
+		return r;
+	} // learn테이블 수강강의 인서트
+	
+	
+	
+	//수강이력 체크 (단건조회)
+	public LearnVO learnSelectOne(LearnVO learnVO) {
+		LearnVO resultVo = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "SELECT LEARN_ID "
+						+ "FROM LEARN "
+						+ "WHERE MEMBER_ID=? AND LECTURE_ID=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, learnVO.getMember_id());
+			pstmt.setString(2, learnVO.getLecture_id());
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				resultVo = new LearnVO();
+				resultVo.setLearn_id(rs.getString("learn_id"));
+			} else {
+				System.out.println("no data");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return resultVo;
+	}//수강이력 체크 (단건조회)
+	
+	
+	
 }

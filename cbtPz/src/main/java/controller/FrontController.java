@@ -13,20 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import admin.ExcelInsertCtrl;
 
 
-/**
- * Servlet implementation class FrontController
- */
 
-/*
-@WebServlet(name = "front", 
-			urlPatterns = "*.do", 
-			initParams = 
-			{
-					@WebInitParam(name = "charset", value = "UTF-8")
-			})  //여기적거나 web-int에 web.xml 파일에 적거나. 책550p
-*/
-//@MultipartConfig(location = "E:/upload", maxRequestSize = 1024 * 1024 * 10)
-@MultipartConfig(location = "D:/upload", maxRequestSize = 1024 * 1024 * 10)
+@MultipartConfig(location = "C:/upload", maxRequestSize = 1024 * 1024 * 10)
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
@@ -41,18 +29,26 @@ public class FrontController extends HttpServlet {
 
     	
     	//김민기
-    	list.put("/boardInsert.do", new board.BoardInsertCtrl());
-    	list.put("/boardSelect.do", new board.BoardSelectCtrl());
+    	list.put("/board/boardInsert.do", new board.BoardInsertCtrl());
+    	list.put("/ajax/boardSelect.do", new board.BoardSelectCtrl());
     	list.put("/board/boardList.do", new board.BoardListCtrl());
-    	list.put("/boardUpdate.do", new board.BoardUpdateCtrl());
-    	list.put("/boardUpdateForm.do", new board.BoardUpdateFormCtrl());
-    	list.put("/boardDelete.do", new board.BoardDeleteCtrl());    	
-    	list.put("/commentList.do", new board.CommentListCtrl());
-    	list.put("/commentInsert.do",new board.CommentInsertCtrl());
-    	list.put("/commentDelete.do", new board.CommentDeleteCtrl());
-    	
-    	
-    	
+    	list.put("/board/boardUpdate.do", new board.BoardUpdateCtrl());
+    	list.put("/board/boardUpdateForm.do", new board.BoardUpdateFormCtrl());
+    	list.put("/board/boardDelete.do", new board.BoardDeleteCtrl());    	
+    	list.put("/ajax/commentList.do", new board.CommentListCtrl());
+    	list.put("/ajax/commentInsert.do",new board.CommentInsertCtrl());
+    	list.put("/ajax/commentDelete.do", new board.CommentDeleteCtrl());
+    	list.put("/board/qaboardList.do", new board.QaBoardListCtrl());
+    	list.put("/ajax/qaboardSelect.do", new board.QaBoardSelectCtrl());
+    	list.put("/board/qaboardInsert.do", new board.QaBoardInsertCtrl());
+    	list.put("/board/qaboardDelete.do", new board.QaBoardDeleteCtrl());
+    	list.put("/board/qaboardUpdate.do", new board.QaBoardUpdateCtrl());
+    	list.put("/board/qaboardUpdateForm.do", new board.QaBoardUpdateFormCtrl());
+    	list.put("/filenameDownload.do", new board.FilenameDownloadCtrl());
+    	list.put("/ajax/qacommentUpdate.do", new board.QaCommentUpdateCtrl());
+    	list.put("/ajax/qacommentList.do", new board.QaCommentListCtrl());
+    	list.put("/board/noticeList.do", new board.noticeListCtrl());
+    	list.put("/board/noticeInsert.do", new board.noticeInsertCtrl());
     	
     	
     	//김창현
@@ -106,6 +102,7 @@ public class FrontController extends HttpServlet {
     	list.put("/ajax/hashtagAutoSearch.do", new study.HashAutoSearchCtrl());
     	
     	list.put("/solveInsert.do", new study.SolveInsertCtrl());
+
     	
     	
     	
@@ -148,7 +145,8 @@ public class FrontController extends HttpServlet {
     	list.put("/ajax/memIdFind.do", new member.MemIdFindCtrl()); //findId.jsp
     	list.put("/ajax/memPwFind.do", new member.MemPwFindCtrl()); //findId.jsp
     	
-    	list.put("/lecturePage.do", new lecture.LecturePageCtrl()); //강의 전체리스트 메인 페이지 
+    	list.put("/lecturePage.do", new lecture.LecturePageCtrl()); //강의 전체리스트 메인 페이지 (전체 || 카테별 보여주는 서블릿)
+    	list.put("/ajax/lectureLearnInsert.do", new lecture.LectureLearnInsert()); //강의 수강하기 버튼 클릭시 learn table 인서트
     	
     	
     	list.put("/mainCtrl.do", new common.MainCtrl()); // main.jsp 구동하는 서블릿 (indexx.jsp)

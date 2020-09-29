@@ -87,7 +87,7 @@
                                         <li><a href="instructors.html">태그별</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="lecturePage.do">동영상강의</a></li>
+                                <li><a href="${pageContext.request.contextPath}/lecturePage.do">동영상강의</a></li>
                                 <li><a href="board/boardList.do">게시판</a>
                                 	<ul class="dropdown">
                                         <li><a href="index.jsp">기출문제</a></li>

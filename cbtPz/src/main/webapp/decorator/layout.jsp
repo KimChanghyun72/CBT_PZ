@@ -79,15 +79,15 @@
                             <ul>
                                 <li><a href="${pageContext.request.contextPath}/indexx.jsp">Home</a></li>
                                 <li><a href="index.jsp">공지사항</a></li>
-                                <li><a href="#">학습하기</a>
+                                <li><a href="${pageContext.request.contextPath}/study/studymain.jsp">학습하기</a>
                                     <ul class="dropdown">
-                                        <li><a href="index.jsp">기출문제</a></li>
-                                        <li><a href="courses.html">모의고사</a></li>
-                                        <li><a href="single-course.html">과목별</a></li>
-                                        <li><a href="instructors.html">태그별</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/haederSearch.do?paper_type_cd=기출">기출문제</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/haederSearch.do?paper_type_cd=모의">모의고사</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/subjectSearch.do">과목별</a></li>
+                                        <li><a href="/cbtPz/hashtagPage.do">태그별</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="lecturePage.do">동영상강의</a></li>
+                                <li><a href="${pageContext.request.contextPath}/lecturePage.do">동영상강의</a></li>
                                 <li><a href="board/boardList.do">게시판</a>
                                 	<ul class="dropdown">
                                         <li><a href="index.jsp">기출문제</a></li>
@@ -99,7 +99,7 @@
                               <c:if test="${not empty sessionScope.check && sessionScope.check != 'A'}">
                                 <li><a href="instructors.html" >마이페이지</a>
                                 	<ul class="dropdown">
-                                        <li><a href="${pageContext.request.contextPath}/memberUpdate.do">개인정보수정</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/myInfo.do">개인정보수정</a></li>
                                         <li><a href="courses.html">모의고사</a></li>
                                         <li><a href="single-course.html">과목별</a></li>
                                         <li><a href="instructors.html">태그별</a></li>

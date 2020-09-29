@@ -1,5 +1,4 @@
-<%@page import="model.BoardDAO"%>
-<%@page import="model.BoardVO"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" 
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -10,16 +9,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>boardList.jsp</title>
 
+<!-- Bootstrap CSS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+<!-- Bootstrap CSS -->
+<title>qaboardList.jsp</title>
 <!--style CSS -->
 <script>
 
 
 function check(){
-        		if($("input:checkbox[name='ck']").length > 0) {
+        		if($("input:checkbox[name='ck']:checked").length > 0) {
         			
-         			location.href="${pageContext.request.contextPath}/board/boardDelete.do?board_id="+$("input:checkbox[id='ck']").val();
+         			location.href="${pageContext.request.contextPath}/board/qaboardDelete.do?qaboard_id="+$("input:checkbox[id='ck']:checked").val();
  
                 }        
 }      
@@ -34,21 +37,20 @@ body {
 
 </style>
 <!--style CSS -->
-
 </head>
 <body>
 	<article>
 		<div class="container">
 			<div class="table-responsive">
-				<h2 align="right">자유게시판</h2>
+				<h2 align="right">Q&A</h2>
 				<table class="table table-striped table-sm">
 					<colgroup>
 						<col style="width: 10%;" />
 						<col style="width: 30%;" />
 						<col style="width: 15%;" />
 						<col style="width: 10%;" />
-						<col style="width: 10%;" />
-						<col style="width: 10%;" />
+						<col style="width: 11%;" />
+						<col style="width: 15%;" />
 					</colgroup>
 					<thead>
 						<tr align="center">
@@ -57,6 +59,7 @@ body {
 							<th>작성자</th>
 							<th>조회수</th>
 							<th>작성일</th>
+							<th>질문유형</th>
 							<c:if test="${list[0].member_id!='s'}">									  
 							<th>관리자</th>
 							</c:if>
@@ -70,18 +73,18 @@ body {
 								</tr>
 							</c:when>
 							<c:when test="${!empty list}">
-								<c:forEach var="board" items="${list}">
+								<c:forEach var="qaboard" items="${list}">
 										<tr>
-										<td>${board.board_id}</td>
-									<td><a href="${pageContext.request.contextPath}/ajax/boardSelect.do?board_id=${board.board_id}">${board.board_title}</a></td>
-										<td>${board.member_id}</td>
-										<td>${board.board_views}</td>
-										<td>${board.board_date}</td>
-										<c:if test="${list[0].member_id!='s'}">			<!-- "${sessionScope.check=='A'} --> 						  
-										<td><input id="ck" name="ck" type="checkbox" value="${board.board_id}"></td>
+										<td>${qaboard.qaboard_id}</td>
+									<td><a href="${pageContext.request.contextPath}/ajax/qaboardSelect.do?qaboard_id=${qaboard.qaboard_id}">${qaboard.qaboard_title}</a></td>
+										<td>${qaboard.member_id}</td>
+										<td>${qaboard.qaboard_views}</td>
+										<td>${qaboard.qaboard_date}</td>
+										<td>${qaboard.qaboard_type_cd}</td>
+										<c:if test="${sessionScope.check!='A'}">							  
+										<td><input id="ck" name="ck" type="checkbox" value="${qaboard.qaboard_id}"></td>
 									  	</c:if>
 									  </tr>
-									
 								</c:forEach>
 							</c:when>
 						</c:choose>
@@ -90,18 +93,15 @@ body {
 				</table>
 				<p align="right">
 				<button class="btn btn-sm btn-primary"
-					onclick="location.href='${pageContext.request.contextPath}/board/boardInsert.jsp'">글쓰기</button>
+					onclick="location.href='${pageContext.request.contextPath}/board/qaboardInsert.jsp'">글쓰기</button>
 				<button id="del" class="btn btn-sm btn-primary" onclick="check()">삭제</button>
 				</p>
 	<!-- 페이징 처리 영역 -->	
    <my:paging paging="${paging}" jsfunc="gopage"/>
     	<script>
     	function gopage(p){
-
-    		location.href="${pageContext.request.contextPath}/board/boardList.do?p="+ p;
-    	
+    		location.href="${pageContext.request.contextPath}/board/qaboardList.do?p="+ p;
     	};
-
     	</script>	
  		
 	<!-- 페이징 처리 영역 -->

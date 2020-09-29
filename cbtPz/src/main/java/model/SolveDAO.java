@@ -26,13 +26,11 @@ public class SolveDAO {
 					   + "values(solve_seq.nextval,?,?,sysdate,?,?,?)"; 
 					
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, solveVO.getSolve_id());
-			pstmt.setString(2, solveVO.getSolve_score());
-			pstmt.setString(3, solveVO.getMember_id());
-			pstmt.setString(4, solveVO.getSolve_date());
-			pstmt.setString(5, solveVO.getSolve_time());
-			pstmt.setString(6, solveVO.getSolve_type_cd());
-			pstmt.setString(7, solveVO.getSolve_cnt());
+			pstmt.setString(1, solveVO.getSolve_score());
+			pstmt.setString(2, solveVO.getMember_id());			
+			pstmt.setString(3, solveVO.getSolve_time());
+			pstmt.setString(4, solveVO.getSolve_type_cd());
+			pstmt.setString(5, solveVO.getSolve_cnt());
 			
 			int r = pstmt.executeUpdate();
 			System.out.println(r + "건이 입력됨");

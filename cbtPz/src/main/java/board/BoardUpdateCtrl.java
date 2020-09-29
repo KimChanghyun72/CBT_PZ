@@ -32,7 +32,7 @@ public class BoardUpdateCtrl implements Controller {
 		board.setBoard_contents(board_contents);
 		board.setMember_id(member_id);
 		board.setBoard_file(original_board_file);
-		board.setBoard_id(Integer.parseInt(board_id));
+		board.setBoard_id(board_id);
 		Part part = request.getPart("file");
 		String board_file = getFileName(part);
 		
@@ -45,7 +45,7 @@ public class BoardUpdateCtrl implements Controller {
 		BoardDAO dao = new BoardDAO();
 		dao.update(board);
 
-		request.getRequestDispatcher("/boardSelect.do?=board_id"+board_id).forward(request, response);
+		request.getRequestDispatcher("/board/boardSelect.do?=board_id"+board_id).forward(request, response);
 
 	}
 

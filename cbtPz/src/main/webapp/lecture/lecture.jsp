@@ -6,89 +6,110 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<script>
+	$(document).ready(function(){
+		
+		$('.single-catagories').on("click", function(){
+			$('#frmdiv').hide();
+			var cateval = $(this).find("h6").text();
+			location.href="${pageContext.request.contextPath}/lecturePage.do?subject=" + cateval
+		});
+			
+		
+		$('.blog-content button').on("click", function(){
+			var lecid = $(this).next().val();
+			var mempay = "${sessionScope.login.is_pay}";
+			console.log(lecid);
+			console.log(mempay);
+			if( mempay == "Y" ){
+				$.ajax({
+			        type:"POST",
+			        url:"${pageContext.request.contextPath}/ajax/lectureLearnInsert.do",
+			        data : {lectureid : lecid},
+			        dataType : "json",
+			        success: function(data){
+			        	if(data == 1){
+			    			alert("수강되었습니다.");
+			    		}else if(data == 0){
+			    			alert("이미 수강한 강의입니다.");
+			    		}
+			        }
+			    });
+				
+			} else {
+				alert("                      동영상강의는 유료회원 전용입니다. \n                            멤버쉽 가입을 해주세요!");
+			}
+		});
+		
+		
+	});
+</script>
+
 </head>
 <body>
 	<section class="blog-area blog-page section-padding-100">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <div class="blog-catagories mb-70 d-flex flex-wrap justify-content-between">
+                    <div class="blog-catagories mb-70 d-flex flex-wrap justify-content-between" >
 
                         <!-- Single Catagories -->
-                        <div class="single-catagories bg-img" style="background-image: url(img/bg-img/bc1.jpg);">
-                            <a href="#">
-                                <h6>Art &amp; Design</h6>
-                            </a>
-                        </div>
+	                      <div class="single-catagories bg-img" style="background-color: blue;">
+	                                <h6>전체</h6>
+	                      </div>
+ 	                      <c:forEach items="${clist}" var="catelist">
+	                        <div class="single-catagories bg-img" style="background-image: url(img/bg-img/bc2.jpg);">
+	                                <h6>${catelist}</h6>
+	                        </div>
+	                      </c:forEach>
 
-                        <!-- Single Catagories -->
-                        <div class="single-catagories bg-img" style="background-image: url(img/bg-img/bc2.jpg);">
-                            <a href="#">
-                                <h6>Business</h6>
-                            </a>
-                        </div>
-
-                        <!-- Single Catagories -->
-                        <div class="single-catagories bg-img" style="background-image: url(img/bg-img/bc3.jpg);">
-                            <a href="#">
-                                <h6>IT &amp; Software</h6>
-                            </a>
-                        </div>
-
-                        <!-- Single Catagories -->
-                        <div class="single-catagories bg-img" style="background-image: url(img/bg-img/bc4.jpg);">
-                            <a href="#">
-                                <h6>Languages</h6>
-                            </a>
-                        </div>
-
-                        <!-- Single Catagories -->
-                        <div class="single-catagories bg-img" style="background-image: url(img/bg-img/bc5.jpg);">
-                            <a href="#">
-                                <h6>Programming Languages</h6>
-                            </a>
-                        </div>
-
-                        <!-- Single Catagories -->
-                        <div class="single-catagories bg-img" style="background-image: url(img/bg-img/bc6.jpg);">
-                            <a href="#">
-                                <h6>psychology</h6>
-                            </a>
-                        </div>
+						
+                       
                     </div>
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row"  id="frmdiv">
                 <!-- Single Blog Area -->
                 <c:forEach items="${lecturelist}" var="lecture_list">
-                <div class="col-12 col-lg-6">
-                    <div class="single-blog-area mb-100 wow fadeInUp" data-wow-delay="250ms">
-                        <%-- <a href="${lecture_list.lecture_link}"><img src="../img/blog-img/1.jpg" ></a> --%>
+                <div class="col-12 col-lg-6" >
+                    <div class="single-blog-area mb-100 wow fadeInUp">
+                        <a href="${lecture_list.lecture_link}">
+	                        <img 
+	                        	src="lectureSelect.do?lecture_image=${lecture_list.lecture_image }"
+								data-title="${lecture_list.lecture_name }" data-desc="${lecture_list.lecture_info}">
+						</a>
                         <!-- Blog Content -->
                         <div class="blog-content">
-                            <a href="#" class="blog-headline">
+                            <a href="${lecture_list.lecture_link}" class="blog-headline" target="_blank">
                                 <h4>${lecture_list.lecture_name}</h4>
                             </a>
                             <div class="meta d-flex align-items-center">
                                 <span><i class="fa fa-circle" aria-hidden="true"></i></span>
-                                <a href="#">${lecture_list.teacher_id}</a>
+                                <div>${lecture_list.teacher_name}</div>
                             </div>
-                            <p>${lecture_list.lecture_info}</p>
+                            <div class="meta d-flex align-items-center">
+                            	<p>${lecture_list.lecture_info}</p>
+                            </div>
+                            <button type="button" class="btn btn-outline-success">수강하기</button>
+                            <!-- <form id="lecid" action="${pageContext.request.contextPath}/lectureLearnInsert.do">  -->
+                            <input type="hidden" value="${lecture_list.lecture_id}">
+                            
                         </div>
                     </div>
                 </div>
                 </c:forEach>
+        	</div>
 
-
-            <div class="row">
+		</div>
+<!--             <div class="row">
                 <div class="col-12">
                     <div class="load-more text-center mt-100 wow fadeInUp" data-wow-delay="1000ms">
                         <a href="#" class="btn clever-btn btn-2">Load More</a>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div> -->
     </section>
     <!-- ##### Blog Area End ##### -->
 </body>

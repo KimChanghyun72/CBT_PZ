@@ -7,9 +7,9 @@
 <title>Insert title here</title>
 <script>
 	//글쓰기  완료시  목록으로 보냄	
-	if('${param.board_id}' != ""){
-		window.alert("글이 삭제 되었습니다");
-		location.href='${pageContext.request.contextPath}/board/boardList.do';
+	if('${qaboard.qaboard_id}'=='${qaboard.qaboard_id}'){
+		window.alert("글이 등록 되었습니다");
+		location.href='${pageContext.request.contextPath}/board/qaboardList.do';
 	}
 </script>
 </head>
