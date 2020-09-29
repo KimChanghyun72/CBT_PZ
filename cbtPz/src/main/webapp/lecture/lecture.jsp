@@ -10,28 +10,39 @@
 <script>
 	$(document).ready(function(){
 		
-		$('#catediv').on("click", function(){
+		$('.single-catagories').on("click", function(){
 			$('#frmdiv').hide();
-			var cateval = $('#catediv').val();
-			console.log(cateval);
-	 		$.ajax({
-		        type:"POST",
-		        url:"${pageContext.request.contextPath}/ajax/lectureCategorySelect.do",
-		        data : {cate : cateval},
-		        dataType : "json",
-		        success: function(data){
-		        	console.log(data);
-		        	for(i=0; i<Object.keys(data).length; i++){
-		        		$('#frmdivcate_link').attr("href", data.lecture_link).append("<h4>data.lecture_name</h4>");
-		        		$('#frmdivcate_tname').text(data.teacher_name);
-		        		$('#frmdivcate_info').text(data.lecture_info);
-		        	}
-		        	
-		        	$('#frmdivcate').show();
-		        }
-		    });
+			var cateval = $(this).find("h6").text();
+			location.href="${pageContext.request.contextPath}/lecturePage.do?subject=" + cateval
 		});
 			
+		
+		$('.blog-content button').on("click", function(){
+			var lecid = $(this).next().val();
+			var mempay = "${sessionScope.login.is_pay}";
+			console.log(lecid);
+			console.log(mempay);
+			if( mempay == "Y" ){
+				$.ajax({
+			        type:"POST",
+			        url:"${pageContext.request.contextPath}/ajax/lectureLearnInsert.do",
+			        data : {lectureid : lecid},
+			        dataType : "json",
+			        success: function(data){
+			        	if(data == 1){
+			    			alert("수강되었습니다.");
+			    		}else if(data == 0){
+			    			alert("이미 수강한 강의입니다.");
+			    		}
+			        }
+			    });
+				
+			} else {
+				alert("                      동영상강의는 유료회원 전용입니다. \n                            멤버쉽 가입을 해주세요!");
+			}
+		});
+		
+		
 	});
 </script>
 
@@ -41,17 +52,18 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <div class="blog-catagories mb-70 d-flex flex-wrap justify-content-between" id="divfrm">
+                    <div class="blog-catagories mb-70 d-flex flex-wrap justify-content-between" >
 
                         <!-- Single Catagories -->
 	                      <div class="single-catagories bg-img" style="background-color: blue;">
 	                                <h6>전체</h6>
 	                      </div>
-	                      <c:forEach items="${clist}" var="catelist">
-	                        <div class="single-catagories bg-img" style="background-image: url(img/bg-img/bc2.jpg);" id="catediv">
+ 	                      <c:forEach items="${clist}" var="catelist">
+	                        <div class="single-catagories bg-img" style="background-image: url(img/bg-img/bc2.jpg);">
 	                                <h6>${catelist}</h6>
 	                        </div>
 	                      </c:forEach>
+
 						
                        
                     </div>
@@ -62,8 +74,12 @@
                 <!-- Single Blog Area -->
                 <c:forEach items="${lecturelist}" var="lecture_list">
                 <div class="col-12 col-lg-6" >
-                    <div class="single-blog-area mb-100 wow fadeInUp" data-wow-delay="250ms">
-                        <%-- <a href="${lecture_list.lecture_link}"><img src="../img/blog-img/1.jpg" ></a> --%>
+                    <div class="single-blog-area mb-100 wow fadeInUp">
+                        <a href="${lecture_list.lecture_link}">
+	                        <img 
+	                        	src="lectureSelect.do?lecture_image=${lecture_list.lecture_image }"
+								data-title="${lecture_list.lecture_name }" data-desc="${lecture_list.lecture_info}">
+						</a>
                         <!-- Blog Content -->
                         <div class="blog-content">
                             <a href="${lecture_list.lecture_link}" class="blog-headline" target="_blank">
@@ -73,44 +89,27 @@
                                 <span><i class="fa fa-circle" aria-hidden="true"></i></span>
                                 <div>${lecture_list.teacher_name}</div>
                             </div>
-                            <p>${lecture_list.lecture_info}</p>
+                            <div class="meta d-flex align-items-center">
+                            	<p>${lecture_list.lecture_info}</p>
+                            </div>
+                            <button type="button" class="btn btn-outline-success">수강하기</button>
+                            <!-- <form id="lecid" action="${pageContext.request.contextPath}/lectureLearnInsert.do">  -->
+                            <input type="hidden" value="${lecture_list.lecture_id}">
+                            
                         </div>
                     </div>
                 </div>
                 </c:forEach>
         	</div>
 
-			<div class="row" id="frmdivcate" hidde="hidden">
-				<!-- Single Blog Area -->
-				
-					<div class="col-12 col-lg-6">
-						<div class="single-blog-area mb-100 wow fadeInUp"
-							data-wow-delay="250ms">
-							<%-- <a href="${lecture_list.lecture_link}"><img src="../img/blog-img/1.jpg" ></a> --%>
-							<!-- Blog Content -->
-							<div class="blog-content">
-								<a href="" class="blog-headline" target="_blank" id="frmdivcate_link">
-									<h4></h4>
-								</a>
-								<div class="meta d-flex align-items-center">
-									<span><i class="fa fa-circle" aria-hidden="true"></i></span>
-									<div id="frmdivcate_tname"></div>
-								</div>
-								<p id="frmdivcate_info"></p>
-							</div>
-						</div>
-					</div>
-			
-			</div>
-
 		</div>
-            <div class="row">
+<!--             <div class="row">
                 <div class="col-12">
                     <div class="load-more text-center mt-100 wow fadeInUp" data-wow-delay="1000ms">
                         <a href="#" class="btn clever-btn btn-2">Load More</a>
                     </div>
                 </div>
-            </div>
+            </div> -->
     </section>
     <!-- ##### Blog Area End ##### -->
 </body>

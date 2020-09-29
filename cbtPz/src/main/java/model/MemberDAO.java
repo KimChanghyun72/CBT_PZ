@@ -198,6 +198,7 @@ public class MemberDAO {
 	} //업뎃
 
 	
+	
 	public int insert(MemberVo memberVo) {
 		int r =0;
 		try {
