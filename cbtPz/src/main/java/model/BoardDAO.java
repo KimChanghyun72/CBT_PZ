@@ -21,7 +21,7 @@ public class BoardDAO {
 		}
 		return instance;
 
-<<<<<<< HEAD
+
 		}//###싱글톤###
 		
 		//###전체조회###
@@ -47,30 +47,7 @@ public class BoardDAO {
 						+ " AND BOARD_ID NOT LIKE'A%'"
 						+ " ORDER BY BOARD_ID DESC"
 						+ " )b ) a where rn between ? and ? ";
-=======
-	}// ###싱글톤###
-
-	// ###전체조회###
-	public ArrayList<BoardVO> selectAll(BoardVO boardVo) {
-
-		BoardVO resultVO = null;
-		ResultSet rs = null;
-
-		ArrayList<BoardVO> list = new ArrayList<BoardVO>();
-		try {
-
-			conn = ConnectionManager.getConnnect();
-			String where = " where 1 = 1";
-			if (boardVo.getBoard_title() != null) {
-				where += " and title like '%' || ? || '%'";
-			}
-			// String sql = "SELECT BOARD_ID,TITLE,CONTENTS,MEMBER_ID,BOARD_DATE,VIEWS FROM
-			// BOARD";
-
-			String sql = "select a.* from(select rownum rn,b.* from( "
-					+ " SELECT BOARD_ID,BOARD_TITLE,BOARD_CONTENTS,MEMBER_ID,BOARD_DATE,BOARD_VIEWS,BOARD_FILE"
-					+ " FROM BOARD" + where + " ORDER BY BOARD_ID DESC" + " )b ) a where rn between ? and ? ";
->>>>>>> branch 'master' of https://github.com/KimChanghyun72/CBT_PZ.git
+	
 			pstmt = conn.prepareStatement(sql);
 
 			int pos = 1;
@@ -250,8 +227,6 @@ public class BoardDAO {
 	}// ###조회수 카운터 ###
 
 	
-	// =====================================================================
-
 	
 	// 회원 작성글 조회
 	public ArrayList<BoardVO> selectMemberAll(BoardVO boardVo) {
