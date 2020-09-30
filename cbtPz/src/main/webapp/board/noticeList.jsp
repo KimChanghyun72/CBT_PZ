@@ -3,12 +3,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="my" tagdir="/WEB-INF/tags"%> 
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>noticeList.jsp</title>
 </head>
 <body>
 <article>
@@ -19,7 +18,7 @@
 					<colgroup>
 						<col style="width: 10%;" />
 						<col style="width: 30%;" />
-						<col style="width: 15%;" />
+						<col style="width: 10%;" />
 						<col style="width: 10%;" />
 					</colgroup>
 					<thead>
@@ -41,7 +40,7 @@
 								<c:forEach var="notice" items="${list}">
 										<tr>
 										<td>${notice.board_id}</td>
-									<td><a href="${pageContext.request.contextPath}/ajax/noticeSelect.do?board_id=${notice.board_id}">${notice.board_title}</a></td>
+									<td><a href="${pageContext.request.contextPath}/board/noticeSelect.do?board_id=${notice.board_id}">${notice.board_title}</a></td>
 										<td>${notice.member_id}</td>
 										<td>${notice.board_date}</td>
 									  </tr>
@@ -52,10 +51,12 @@
 					</tbody>
 								
 				</table>
+				<c:if test="${sessionScope.check!='A'}">
 				<p align="right">
 				<button class="btn btn-sm btn-primary"
 					onclick="location.href='${pageContext.request.contextPath}/board/noticeInsert.jsp'">글쓰기</button>
 				</p>
+				</c:if>
 	<!-- 페이징 처리 영역 -->	
    <my:paging paging="${paging}" jsfunc="gopage"/>
     	<script>
@@ -64,9 +65,7 @@
     		location.href="${pageContext.request.contextPath}/board/noticeList.do?p="+ p;
     	
     	};
-
     	</script>	
- 		
 	<!-- 페이징 처리 영역 -->
 			</div>
 		</div>

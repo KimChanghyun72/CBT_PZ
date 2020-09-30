@@ -29,27 +29,31 @@ public class FrontController extends HttpServlet {
 
     	
     	//김민기
-    	list.put("/board/boardInsert.do", new board.BoardInsertCtrl());
-    	list.put("/ajax/boardSelect.do", new board.BoardSelectCtrl());
-    	list.put("/board/boardList.do", new board.BoardListCtrl());
-    	list.put("/board/boardUpdate.do", new board.BoardUpdateCtrl());
-    	list.put("/board/boardUpdateForm.do", new board.BoardUpdateFormCtrl());
-    	list.put("/board/boardDelete.do", new board.BoardDeleteCtrl());    	
-    	list.put("/ajax/commentList.do", new board.CommentListCtrl());
-    	list.put("/ajax/commentInsert.do",new board.CommentInsertCtrl());
-    	list.put("/ajax/commentDelete.do", new board.CommentDeleteCtrl());
-    	list.put("/board/qaboardList.do", new board.QaBoardListCtrl());
-    	list.put("/ajax/qaboardSelect.do", new board.QaBoardSelectCtrl());
-    	list.put("/board/qaboardInsert.do", new board.QaBoardInsertCtrl());
-    	list.put("/board/qaboardDelete.do", new board.QaBoardDeleteCtrl());
-    	list.put("/board/qaboardUpdate.do", new board.QaBoardUpdateCtrl());
-    	list.put("/board/qaboardUpdateForm.do", new board.QaBoardUpdateFormCtrl());
-    	list.put("/filenameDownload.do", new board.FilenameDownloadCtrl());
-    	list.put("/ajax/qacommentUpdate.do", new board.QaCommentUpdateCtrl());
-    	list.put("/ajax/qacommentList.do", new board.QaCommentListCtrl());
-    	list.put("/board/noticeList.do", new board.noticeListCtrl());
-    	list.put("/board/noticeInsert.do", new board.noticeInsertCtrl());
-    	list.put("/ajax/noticeSelect.do", new board.noticeSelectCtrl());
+    	list.put("/board/boardInsert.do", new board.BoardInsertCtrl());  		//자유게시판 입력
+    	list.put("/board/boardSelect.do", new board.BoardSelectCtrl());			//자유게시판 단건 조회
+    	list.put("/board/boardList.do", new board.BoardListCtrl());				//자유게시판 전체 리스트
+    	list.put("/board/boardUpdate.do", new board.BoardUpdateCtrl());			//자유게시판 수정
+    	list.put("/board/boardUpdateForm.do", new board.BoardUpdateFormCtrl());	//자유게시판 수정입력폼
+    	list.put("/board/boardDelete.do", new board.BoardDeleteCtrl());    		//자유게시판 삭제
+    	list.put("/ajax/commentList.do", new board.CommentListCtrl());			//댓글 목록조회
+    	list.put("/ajax/commentInsert.do",new board.CommentInsertCtrl());		//댓글 입력
+    	list.put("/ajax/commentDelete.do", new board.CommentDeleteCtrl()); 		//댓글 삭제
+    	list.put("/board/qaboardList.do", new board.QaBoardListCtrl()); 		//QA게시판 전체 리스트
+    	list.put("/board/qaboardSelect.do", new board.QaBoardSelectCtrl());		//QA게시판 단건 조회
+    	list.put("/board/qaboardInsert.do", new board.QaBoardInsertCtrl());		//QA게시판 입력
+    	list.put("/board/qaboardDelete.do", new board.QaBoardDeleteCtrl());		//QA게시판 삭제
+    	list.put("/board/qaboardUpdate.do", new board.QaBoardUpdateCtrl());		//QA게시판 수정
+    	list.put("/board/qaboardUpdateForm.do", new board.QaBoardUpdateFormCtrl());//QA게시판 수정입력품
+    	list.put("/filenameDownload.do", new board.FilenameDownloadCtrl());		//사진파일 다운로드
+    	list.put("/ajax/qacommentUpdate.do", new board.QaCommentUpdateCtrl());	//QA댓글입력
+    	list.put("/ajax/qacommentList.do", new board.QaCommentListCtrl());		//QA댓글목록조회
+    	list.put("/board/noticeList.do", new board.NoticeListCtrl());			//공지사항 리스트
+    	list.put("/board/noticeInsert.do", new board.NoticeInsertCtrl());		//공지사항 입력
+    	list.put("/board/noticeSelect.do", new board.NoticeSelectCtrl());		//공지사항 단건조회
+    	list.put("/board/noticeDelete.do", new board.NoticeDeleteCtrl());		//공지사항 삭제
+    	list.put("/board/noticeUpdate.do", new board.NoticeUpdateCtrl());		//공지사항 수정
+    	list.put("/board/noticeUpdateForm.do", new board.NoticeUpdateFormCtrl());//공지사항 수정입력폼
+    	
     	
     	//김창현
     	//list.put("/memberPayUpdate.do", new member.MemberUpdateController());

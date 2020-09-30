@@ -5,36 +5,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="my" tagdir="/WEB-INF/tags"%> 
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>boardList.jsp</title>
-
-<!--style CSS -->
 <script>
-
-
-function check(){
-        		if($("input:checkbox[name='ck']:checked").length > 0) {
-        			
-         			location.href="${pageContext.request.contextPath}/board/boardDelete.do?board_id="+$("input:checkbox[id='ck']:checked").val();
- 
-                }        
-}      
-
+		//관리자 접속시 체크 버튼 확인시 삭제 기능 
+		function check()	{
+        	if($("input:checkbox[name='ck']:checked").length > 0) {	
+         	location.href="${pageContext.request.contextPath}/board/boardDelete.do?board_id="+$("input:checkbox[id='ck']:checked").val();
+             }        
+		}      
 </script>
-
-<style>
-body {
-	padding-top: 70px;
-	padding-bottom: 30px;
-}
-
-</style>
-<!--style CSS -->
-
 </head>
 <body>
 	<article>
@@ -73,11 +56,11 @@ body {
 								<c:forEach var="board" items="${list}">
 										<tr>
 										<td>${board.board_id}</td>
-									<td><a href="${pageContext.request.contextPath}/ajax/boardSelect.do?board_id=${board.board_id}">${board.board_title}</a></td>
+									<td><a href="${pageContext.request.contextPath}/board/boardSelect.do?board_id=${board.board_id}">${board.board_title}</a></td>
 										<td>${board.member_id}</td>
 										<td>${board.board_views}</td>
 										<td>${board.board_date}</td>
-										<c:if test="${list[0].member_id!='s'}">			<!-- "${sessionScope.check=='A'} --> 						  
+										<c:if test="${sessionScope.check!='A'}">			<!-- "${sessionScope.check=='A'} --> 						  
 										<td><input id="ck" name="ck" type="checkbox" value="${board.board_id}"></td>
 									  	</c:if>
 									  </tr>
@@ -101,9 +84,7 @@ body {
     		location.href="${pageContext.request.contextPath}/board/boardList.do?p="+ p;
     	
     	};
-
     	</script>	
- 		
 	<!-- 페이징 처리 영역 -->
 			</div>
 		</div>

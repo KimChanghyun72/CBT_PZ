@@ -130,8 +130,34 @@ public class NoticeDAO {
 			}//###입력###
 			
 			//###단건조회###
-			public BoardVO selectOne(BoardVO boardVo) {
+			public BoardVO selectOne(BoardVO boardVo) {			
+				BoardVO resultVO = null;
+				ResultSet rs = null;
 				
+				try {
+					conn = ConnectionManager.getConnnect();
+					String sql = "SELECT BOARD_ID,BOARD_TITLE,BOARD_CONTENTS,MEMBER_ID,BOARD_DATE,BOARD_FILE FROM BOARD WHERE BOARD_ID = 'A'||?";
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, boardVo.getBoard_id());
+					rs = pstmt.executeQuery();
+					if(rs.next()) {
+						resultVO = new BoardVO();
+						resultVO.setBoard_id(rs.getString("BOARD_ID"));
+						resultVO.setBoard_title(rs.getString("BOARD_TITLE"));
+						resultVO.setBoard_contents(rs.getString("BOARD_CONTENTS"));
+						resultVO.setMember_id(rs.getString("MEMBER_ID"));
+						resultVO.setBoard_date(rs.getString("BOARD_DATE"));
+						resultVO.setBoard_file(rs.getString("BOARD_FILE"));		
+					}			
+				}catch(Exception e){
+					e.printStackTrace();
+				}finally {
+					ConnectionManager.close(rs,pstmt,conn);
+				}
+				return resultVO;
+			}//###단건조회###
+			//###갱신단건조회###
+			public BoardVO upselectOne(BoardVO boardVo) {			
 				BoardVO resultVO = null;
 				ResultSet rs = null;
 				
@@ -141,17 +167,14 @@ public class NoticeDAO {
 					pstmt = conn.prepareStatement(sql);
 					pstmt.setString(1, boardVo.getBoard_id());
 					rs = pstmt.executeQuery();
-					
 					if(rs.next()) {
-						
 						resultVO = new BoardVO();
 						resultVO.setBoard_id(rs.getString("BOARD_ID"));
 						resultVO.setBoard_title(rs.getString("BOARD_TITLE"));
 						resultVO.setBoard_contents(rs.getString("BOARD_CONTENTS"));
 						resultVO.setMember_id(rs.getString("MEMBER_ID"));
 						resultVO.setBoard_date(rs.getString("BOARD_DATE"));
-						resultVO.setBoard_file(rs.getString("BOARD_FILE"));
-				
+						resultVO.setBoard_file(rs.getString("BOARD_FILE"));		
 					}			
 				}catch(Exception e){
 					e.printStackTrace();
@@ -159,6 +182,46 @@ public class NoticeDAO {
 					ConnectionManager.close(rs,pstmt,conn);
 				}
 				return resultVO;
-			}//###단건조회###
+			}//###업데이트단건조회###
 			
+			// ###삭제###
+			public void delete(BoardVO boardVo) {
+
+				try {
+
+					conn = ConnectionManager.getConnnect();
+					String sql = "DELETE Board WHERE BOARD_ID = ?";
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, boardVo.getBoard_id());
+					pstmt.executeUpdate();
+
+				} catch (Exception e) {
+					e.printStackTrace();
+				} finally {
+					ConnectionManager.close(null, pstmt, conn);
+				}
+			}// ###삭제###
+			
+			
+			
+			
+			// ###갱신###
+			public void update(BoardVO boardVo) {
+
+				try {
+					conn = ConnectionManager.getConnnect();
+					String sql = "UPDATE BOARD SET BOARD_TITLE = ?,BOARD_CONTENTS = ?,BOARD_DATE = sysdate,BOARD_FILE = ? WHERE BOARD_ID = ?";
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, boardVo.getBoard_title());
+					pstmt.setString(2, boardVo.getBoard_contents());
+					pstmt.setString(3, boardVo.getBoard_file());
+					pstmt.setString(4, boardVo.getBoard_id());
+					pstmt.executeUpdate();
+
+				} catch (Exception e) {
+					e.printStackTrace();
+				} finally {
+					ConnectionManager.close(null, pstmt, conn);
+				}
+			}// ###갱신###
 }

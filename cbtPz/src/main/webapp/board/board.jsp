@@ -1,14 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-   
 <!DOCTYPE html>
 <html>
 <head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<!-- jQuery -->
-
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
 <meta charset="UTF-8">
 <title>board.jsp</title>
 <script>
@@ -66,14 +61,6 @@ $(function(){
 		});	
 </script>	
 <style>
-body {
-
-	padding-top: 70px;
-
-	padding-bottom: 30px;
-
-}
-
 .board_title {
 
 	font-weight : 700;
@@ -141,7 +128,7 @@ body {
 				</div>
 			<div style="margin-top : 20px">
 			 <p align="right">	
-				<button type="button" onclick="location.href='boardUpdateForm.do?board_id='+${board.board_id}" class="btn btn-sm btn-primary" id="btnUpdate">수정</button>
+				<button type="button" onclick="location.href='${pageContext.request.contextPath}/board/boardUpdateForm.do?board_id='+${board.board_id}" class="btn btn-sm btn-primary" id="btnUpdate">수정</button>
 
 				<button type="button" onclick="location.href='${pageContext.request.contextPath}/board/boardDelete.do?board_id='+${board.board_id}" class="btn btn-sm btn-primary" id="btnDelete">삭제</button>
 

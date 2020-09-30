@@ -12,7 +12,7 @@ import controller.Controller;
 import model.BoardVO;
 import model.NoticeDAO;
 
-public class noticeListCtrl implements Controller {
+public class NoticeListCtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

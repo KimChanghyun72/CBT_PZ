@@ -14,7 +14,7 @@ import controller.Controller;
 import model.BoardVO;
 import model.NoticeDAO;
 
-public class noticeInsertCtrl implements Controller {
+public class NoticeInsertCtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -45,7 +45,7 @@ public class noticeInsertCtrl implements Controller {
 		NoticeDAO dao = new NoticeDAO();
 		dao.insert(board);
 
-		request.getRequestDispatcher("/board/boardInsertOutput.jsp").forward(request, response);
+		request.getRequestDispatcher("/board/noticeInsertOutput.jsp").forward(request, response);
 		System.out.println(path);
 	}
 

@@ -168,7 +168,6 @@ public class BoardDAO {
 			pstmt.setString(1, boardVo.getBoard_title());
 			pstmt.setString(2, boardVo.getBoard_contents());
 			pstmt.setString(3, boardVo.getMember_id());
-
 			pstmt.setString(4, boardVo.getBoard_file());
 			pstmt.setString(5, boardVo.getBoard_id());
 			pstmt.executeUpdate();

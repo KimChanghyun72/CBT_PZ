@@ -13,15 +13,15 @@ import common.FileRenamePolicy;
 import controller.Controller;
 import model.BoardDAO;
 import model.BoardVO;
+import model.NoticeDAO;
 
-public class BoardUpdateCtrl implements Controller {
+public class NoticeUpdateCtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String board_id =request.getParameter("board_id");
 		String board_title = request.getParameter("board_title");
 		String board_contents = request.getParameter("board_contents");
-		String member_id = request.getParameter("member_id");
 		String original_board_file = request.getParameter("board_file");
 		String path = "C:/upload";
 		// String views = request.getParameter("views");
@@ -30,7 +30,6 @@ public class BoardUpdateCtrl implements Controller {
 
 		board.setBoard_title(board_title);
 		board.setBoard_contents(board_contents);
-		board.setMember_id(member_id);
 		board.setBoard_file(original_board_file);
 		board.setBoard_id(board_id);
 		Part part = request.getPart("file");
@@ -42,11 +41,14 @@ public class BoardUpdateCtrl implements Controller {
 			part.write(renameFile.getName());
 			board.setBoard_file(path+"/"+renameFile.getName());
 		}
-		BoardDAO dao = new BoardDAO();
+		NoticeDAO dao = new NoticeDAO();
 		dao.update(board);
-
-		request.getRequestDispatcher("/ajax/boardSelect.do?=board_id"+board_id).forward(request, response);
-
+		if (board_id.startsWith("A")) {
+			board_id = board_id.substring(1);
+		}
+		
+		request.getRequestDispatcher("/ajax/noticeSelect.do?board_id="+board_id).forward(request, response);
+		
 	}
 
 	private String getFileName(Part part) throws UnsupportedEncodingException {
@@ -59,4 +61,6 @@ public class BoardUpdateCtrl implements Controller {
 	}
 	
 
-}
+	}
+
+

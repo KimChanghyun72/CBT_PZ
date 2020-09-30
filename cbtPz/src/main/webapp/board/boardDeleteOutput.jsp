@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>boardDeleteOutput.jsp</title>
 <script>
 	//글쓰기  완료시  목록으로 보냄	
 	if('${param.board_id}' != ""){

@@ -1,42 +1,22 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" 
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="my" tagdir="/WEB-INF/tags"%> 
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-
-<!-- Bootstrap CSS -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
-<!-- Bootstrap CSS -->
 <title>qaboardList.jsp</title>
-<!--style CSS -->
 <script>
-
-
-function check(){
+		function check(){
         		if($("input:checkbox[name='ck']:checked").length > 0) {
         			
-         			location.href="${pageContext.request.contextPath}/board/qaboardDelete.do?qaboard_id="+$("input:checkbox[id='ck']:checked").val();
- 
-                }        
-}      
-
+         		location.href="${pageContext.request.contextPath}/board/qaboardDelete.do?qaboard_id="+$("input:checkbox[id='ck']:checked").val();
+       			 }        
+			}      
 </script>
 
-<style>
-body {
-	padding-top: 70px;
-	padding-bottom: 30px;
-}
-
-</style>
-<!--style CSS -->
 </head>
 <body>
 	<article>
@@ -76,7 +56,7 @@ body {
 								<c:forEach var="qaboard" items="${list}">
 										<tr>
 										<td>${qaboard.qaboard_id}</td>
-									<td><a href="${pageContext.request.contextPath}/ajax/qaboardSelect.do?qaboard_id=${qaboard.qaboard_id}">${qaboard.qaboard_title}</a></td>
+									<td><a href="${pageContext.request.contextPath}/board/qaboardSelect.do?qaboard_id=${qaboard.qaboard_id}">${qaboard.qaboard_title}</a></td>
 										<td>${qaboard.member_id}</td>
 										<td>${qaboard.qaboard_views}</td>
 										<td>${qaboard.qaboard_date}</td>
@@ -103,7 +83,6 @@ body {
     		location.href="${pageContext.request.contextPath}/board/qaboardList.do?p="+ p;
     	};
     	</script>	
- 		
 	<!-- 페이징 처리 영역 -->
 			</div>
 		</div>

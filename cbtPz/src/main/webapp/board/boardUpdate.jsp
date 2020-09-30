@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,41 +8,28 @@
 	<script>
 	function inputCheck() {
 
-		if (frm.title.value == "") {
+		if (frm.board_title.value == "") {
 			window.alert("제목 입력하세요");
-			frm.title.focus();
+			frm.board_title.focus();
 			return false;
 		}
-		if (frm.id.value == "") {
+		if (frm.member_id.value == "") {
 			window.alert("작성자를 입력하세요");
-			frm.contents.focus();
+			frm.member_id.focus();
 			return false;
 		}
-		if (frm.contexts.value == "") {
+		if (frm.board_contents.value == "") {
 			window.alert("내용을 입력하세요");
-			frm.title.focus();
+			frm.board_contents.focus();
 			return false;
 		}
 	
 		return true;
 	}
 </script> 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
-
-<title>boardInsert.jsp</title>
-<style>
-body {
-	padding-top: 170px;
-	padding-bottom: 30px;
-}
-</style>
-
-
+<title>boardUpdate.jsp</title>
 </head>
 <body>
-	
 		<div class="container" role="main">
 			<h2 align="right" onclick="location.href='${pageContext.request.contextPath}/board/boardList.do'">자유게시판</h2>
 			<form id="frm" name="frm" id="frm" onsubmit="return inputCheck()" method="post" action="${pageContext.request.contextPath}/board/boardUpdate.do" enctype="multipart/form-data">

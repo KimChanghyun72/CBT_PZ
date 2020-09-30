@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>boardInsertOutput.jsp</title>
 <script>
 	//글쓰기  완료시  목록으로 보냄	
 	if('${board.board_id}'=='${board.board_id}'){
