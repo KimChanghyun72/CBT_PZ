@@ -70,7 +70,7 @@
 				
 				<div class="board_content">${board.board_contents}</div>
 				
-				<div class="board_file"><img src="${pageContext.request.contextPath}/filenameDownload.do?board_file=${board.board_file}" style="width:500px"/></div>
+				<div class="board_file"><img src="${pageContext.request.contextPath}/filenameDownload.do?board_file=${board.board_file}" style="width:1000px"/></div>
 				
 				</div>
 			<div style="margin-top : 20px">
