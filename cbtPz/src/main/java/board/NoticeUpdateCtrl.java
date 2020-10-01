@@ -11,7 +11,7 @@ import javax.servlet.http.Part;
 
 import common.FileRenamePolicy;
 import controller.Controller;
-import model.BoardDAO;
+
 import model.BoardVO;
 import model.NoticeDAO;
 
