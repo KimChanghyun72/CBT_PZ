@@ -72,11 +72,13 @@ public class MemberUpdateController implements Controller {
 		String member_name = pay_member.getMember_name();//request.getParameter("member_name");
 		String member_age = pay_member.getMember_age();//request.getParameter("member_age");
 		String member_job = pay_member.getMember_job();//request.getParameter("member_job");
-		String study_term = pay_member.getStudy_term();//request.getParameter("study_term");
-		String phone_number = pay_member.getPhone_number();//request.getParameter("phone_number");
-		String is_major = pay_member.getIs_major();//request.getParameter("is_major");
-		String tested_num = pay_member.getTested_num();//request.getParameter("tested_num");
-		String email = pay_member.getEmail();//request.getParameter("email");
+		String study_term = pay_member.getStudy_term();
+		String phone_number = pay_member.getPhone_number();
+		String is_major = pay_member.getIs_major();
+		String tested_num = pay_member.getTested_num();
+		String email = pay_member.getEmail();
+		String is_pay = pay_member.getIs_pay(); //유료회원여부 정보
+		String pay_enddate = pay_member.getPay_enddate(); //회원만기일 정보
 		System.out.println("멤버pw"+member_pw);
 		// 유효성 체크
 		if (member_id.isEmpty() || member_pw.isEmpty() || member_name.isEmpty() || member_age.isEmpty()
@@ -101,6 +103,8 @@ public class MemberUpdateController implements Controller {
 			member.setIs_major(is_major);
 			member.setTested_num(tested_num);
 			member.setEmail(email);
+			member.setIs_pay(is_pay); //유료회원여부
+			member.setPay_enddate(pay_enddate); //회원만기일
 			// DAO 객체의 메소드 호출
 			MemberDAO dao = MemberDAO.getInstance();
 			dao.update(member);
