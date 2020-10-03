@@ -1,4 +1,5 @@
 package model;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -142,20 +143,18 @@ public class BoardDAO {
 
 	// ###삭제###
 	public void delete(BoardVO boardVo) {
-
+		CallableStatement cstmt = null;
+		conn = ConnectionManager.getConnnect();
 		try {
-
-			conn = ConnectionManager.getConnnect();
-			String sql = "DELETE Board WHERE BOARD_ID = ?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, boardVo.getBoard_id());
-			pstmt.executeUpdate();
-
+			cstmt = conn.prepareCall("{call board_del(?)}");
+			cstmt.setString(1, boardVo.getBoard_id());
+			cstmt.executeUpdate();
+	
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			ConnectionManager.close(null, pstmt, conn);
-		}
+		}	
 	}// ###삭제###
 
 	// ###갱신###

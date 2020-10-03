@@ -29,7 +29,7 @@ public class QaBoardUpdateCtrl implements Controller {
 		QaBoardDAO dao = new QaBoardDAO();
 		dao.update(qaboard);
 		
-		request.getRequestDispatcher("/ajax/qaboardSelect.do?=qaboard_id"+qaboard_id).forward(request, response);
+		request.getRequestDispatcher("/board/qaboardSelect.do?=qaboard_id"+qaboard_id).forward(request, response);
 	}
 
 }

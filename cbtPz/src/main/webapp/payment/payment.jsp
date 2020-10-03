@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" isELIgnored="false"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,10 +66,10 @@ $(function(){
 		console.log($(this).val());
 		term = $(this).val();
 		switch(term){
-		case "30" :$(".price").html("30000원");break;
-		case "60" :$(".price").html("58000원");break;
-		case "90" :$(".price").html("85000원");break;
-		case "180" :$(".price").html("165000원");break;
+		case "30" :$(".price").html("30000원"); $("input[name=price]").val("30000");break;
+		case "60" :$(".price").html("58000원"); $("input[name=price]").val("58000");break;
+		case "90" :$(".price").html("85000원"); $("input[name=price]").val("85000");break;
+		case "180" :$(".price").html("165000원"); $("input[name=price]").val("165000");break;
 		default : break;
 		}	
 	});
@@ -105,19 +105,21 @@ $(function(){
 </script>
 </head>
 <body>
-<form id="payFrm" name="payFrm" action="<%=application.getContextPath()%>/memberUpdate.do">
+<form id="payFrm" name="payFrm" action="<%=application.getContextPath()%>/payInsertCtrl.do">
 	<div class="box2"><p>선택 옵션</p></div>
 	<div class="box">
 	<p>
+	<!-- 유료회원 기간 선택 -->
 	<input type="radio" name="term" value="30">1개월(30000원)
 	<input type="radio" name="term" value="60">2개월(58000원)
 	<input type="radio" name="term" value="90">3개월(85000원)<br><br>
 	<input type="radio" name="term" value="180">6개월(165000원)
 	</div>
-	
+	<!-- 지불 가격 선택 -->
 	<div class="box2"><p>결제 가격</p></div>
 	<div class="box">
 	<p class="price"></p>
+	<input type="text" name="price">
 	</div>
 	
 	<div class="box2"><p>결제 수단</p></div>

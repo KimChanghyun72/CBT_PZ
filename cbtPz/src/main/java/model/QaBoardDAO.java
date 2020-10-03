@@ -1,5 +1,6 @@
 package model;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -118,22 +119,16 @@ public class QaBoardDAO {
 		
 		//###입력###
 		public QaBoardVO insert(QaBoardVO qaboardVo) {
-			
+			CallableStatement cstmt = null;
 			try {
 				conn = ConnectionManager.getConnnect();
 				
-				String sql = "INSERT INTO QABOARD (QABOARD_ID,QABOARD_TITLE,QABOARD_CONTENTS,QABOARD_DATE,QABOARD_VIEWS,QABOARD_TYPE_CD,MEMBER_ID)"
-							 + " VALUES(QABOARD_ID_SEQ.NEXTVAL,?,?,sysdate,0,?,?)";
-				
-				PreparedStatement pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, qaboardVo.getQaboard_contents());
-				pstmt.setString(2, qaboardVo.getQaboard_title());
-//				pstmt.setString(3, qaboardVo.getQaboard_date());
-//				pstmt.setString(4, qaboardVo.getQaboard_ans());
-//				pstmt.setInt(5, qaboardVo.getQaboard_views());
-				pstmt.setString(3, qaboardVo.getQaboard_type_cd());
-				pstmt.setString(4, qaboardVo.getMember_id());
-				pstmt.executeUpdate();
+				cstmt = conn.prepareCall("{call qaboard_ins(?,?,?,?)}");			
+				cstmt.setString(1, qaboardVo.getQaboard_contents());
+				cstmt.setString(2, qaboardVo.getQaboard_title());
+				cstmt.setString(3, qaboardVo.getQaboard_type_cd());
+				cstmt.setString(4, qaboardVo.getMember_id());
+				cstmt.executeUpdate();
 			
 			}catch(Exception e) {
 				e.printStackTrace();
@@ -146,16 +141,14 @@ public class QaBoardDAO {
 		
 		//###삭제###
 		public void delete(QaBoardVO qaboardVo) {
-			
+			CallableStatement cstmt = null;
+			conn = ConnectionManager.getConnnect();
 			try {
 			
-				conn = ConnectionManager.getConnnect();
-				String sql = "DELETE QABOARD WHERE QABOARD_ID = ?";
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, qaboardVo.getQaboard_id());
-				pstmt.executeUpdate();
-			
-			
+				cstmt = conn.prepareCall("{call qaboard_del(?)}");
+				cstmt.setInt(1, qaboardVo.getQaboard_id());
+				cstmt.executeUpdate();
+				
 			}catch(Exception e) {
 				e.printStackTrace();
 			}finally {
@@ -166,20 +159,17 @@ public class QaBoardDAO {
 		
 		//###수정###
 		public void update(QaBoardVO qaboardVo) {
-			
-			try {
+				CallableStatement cstmt = null;
 				conn = ConnectionManager.getConnnect();
-				String sql = "UPDATE QABOARD SET QABOARD_TITLE = ?, QABOARD_CONTENTS = ?,QABOARD_DATE = sysdate, MEMBER_ID = ? WHERE QABOARD_ID=?";
-				pstmt = conn.prepareStatement(sql);
+			try {
+				cstmt = conn.prepareCall("{call qaboard_upd(?,?,?,?)}");
+				cstmt.setInt(1, qaboardVo.getQaboard_id());
+				cstmt.setString(2, qaboardVo.getQaboard_title());
+				cstmt.setString(3, qaboardVo.getQaboard_contents());
+				cstmt.setString(4, qaboardVo.getMember_id());
+				cstmt.executeUpdate();
 				
-				pstmt.setString(1, qaboardVo.getQaboard_title());
-				pstmt.setString(2, qaboardVo.getQaboard_contents());
-				pstmt.setString(3, qaboardVo.getMember_id());
-				pstmt.setInt(4, qaboardVo.getQaboard_id());
-				pstmt.executeUpdate();
-				
-				
-				
+
 			}catch(Exception e) {
 				e.printStackTrace();
 			}finally {
