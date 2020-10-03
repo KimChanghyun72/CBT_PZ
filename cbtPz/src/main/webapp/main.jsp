@@ -13,6 +13,11 @@
 
 <script>
 
+
+
+
+
+
  document.addEventListener('DOMContentLoaded', function() {
 	  var calendarEl = document.getElementById('calendar');
 
@@ -67,7 +72,7 @@
 	        start: '2020-09-13T07:00:00'
 	      },
 	      {
-	        title: 'Click for Google',
+	        title: 'Click for 구글',
 	        url: 'http://google.com/',
 	        start: '2020-09-28'
 	      }
@@ -137,21 +142,33 @@
                         <!-- Blog Content -->
                         <div class="blog-content">
                             <a href="${pageContext.request.contextPath}/board/noticeList.do" class="blog-headline">
-                                <h4>Notice</h4>
+                                <h4><i class="fa fa-clock-o" aria-hidden="true"></i> Notice</h4>
                             </a>
-                            <div class="meta d-flex align-items-center">
+                            <div class="contact--info">
 								<ul class="contact-list">
 									<li>
 										<h6>
-											<i class="fa fa-clock-o" aria-hidden="true"></i> Business Hours
+											<i class="fa fa-map-pin" aria-hidden="true"></i> 공지사항 제목제목제 어느정도나오면 안나오게가능?
 										</h6>
-										<h6>9:00 AM - 18:00 PM</h6>
+										<h6>공지사항 날짜</h6>
 									</li>
 									<li>
 										<h6>
-											<i class="fa fa-phone" aria-hidden="true"></i> Number
+											<i class="fa fa-map-pin" aria-hidden="true"></i> Address
 										</h6>
-										<h6>+44 300 303 0266</h6>
+										<h6>10 Suffolk st Soho, London, UK</h6>
+									</li>
+									<li>
+										<h6>
+											<i class="fa fa-map-pin" aria-hidden="true"></i> Address
+										</h6>
+										<h6>10 Suffolk st Soho, London, UK</h6>
+									</li>
+									<li>
+										<h6>
+											<i class="fa fa-map-pin" aria-hidden="true"></i> Address
+										</h6>
+										<h6>10 Suffolk st Soho, London, UK</h6>
 									</li>
 									<li>
 										<h6>
@@ -161,7 +178,6 @@
 									</li>
 								</ul>
 							</div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce enim nulla, mollis eu metus in, sagittis</p>
                         </div>
                     </div>
                 </div>

@@ -224,4 +224,19 @@ public class NoticeDAO {
 					ConnectionManager.close(null, pstmt, conn);
 				}
 			}// ###갱신###
+			
+			
+			
+			
+			
+			// 메인 공지사항 리스트
+			/*
+			 * select * from( SELECT row_number() OVER (order by
+			 * to_number(SUBSTR(BOARD_ID,2)) DESC) as board_id_rownum,
+			 * BOARD_TITLE,MEMBER_ID,BOARD_DATE FROM BOARD WHERE BOARD_ID LIKE'A%')a where
+			 * a.board_id_rownum <= 5;
+			 */
+			
+			
+			
 }
