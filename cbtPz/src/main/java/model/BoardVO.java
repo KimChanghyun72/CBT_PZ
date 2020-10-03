@@ -13,4 +13,5 @@ public class BoardVO {
 	private Integer first;
 	private Integer last;
 	private String board_file;
+	private String id_rownum;
 }

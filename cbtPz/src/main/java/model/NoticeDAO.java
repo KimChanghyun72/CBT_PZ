@@ -229,7 +229,7 @@ public class NoticeDAO {
 			
 			
 			
-			// 메인 공지사항 리스트
+			// 메인 공지사항 리스트top5
 			/*
 			 * select * from( SELECT row_number() OVER (order by
 			 * to_number(SUBSTR(BOARD_ID,2)) DESC) as board_id_rownum,
@@ -237,6 +237,42 @@ public class NoticeDAO {
 			 * a.board_id_rownum <= 5;
 			 */
 			
+				public ArrayList<BoardVO> selectMainTOP5(){
+				
+				BoardVO resultVO = null;
+				ResultSet rs = null;
+				
+				ArrayList<BoardVO> list = new ArrayList<BoardVO>();
+				try {
+					
+					conn = ConnectionManager.getConnnect();
+				
+					String sql = "select * "
+								+ "from(SELECT row_number() OVER (order by to_number(SUBSTR(BOARD_ID,2)) DESC) as id_rownum, "
+								+ "SUBSTR(BOARD_ID,2) BOARD_ID, "
+								+ "BOARD_TITLE, MEMBER_ID,"
+								+ "TO_CHAR(BOARD_DATE, 'yyyy-mm-dd') as board_date "
+								+ "FROM BOARD "
+								+ "WHERE BOARD_ID LIKE'A%')a "
+								+ "where a.id_rownum <= 5"; 
+				pstmt = conn.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				while(rs.next()) {
+					resultVO = new BoardVO();
+					resultVO.setId_rownum(rs.getString("id_rownum"));
+					resultVO.setBoard_id(rs.getString("board_id"));
+					resultVO.setBoard_title(rs.getString("board_title"));
+					resultVO.setMember_id(rs.getString("member_id"));
+					resultVO.setBoard_date(rs.getString("board_date"));
+					list.add(resultVO);
+				}	
+				}catch(Exception e){		
+					e.printStackTrace();		
+				}finally{		
+					ConnectionManager.close(rs, pstmt, conn); 
+				} 	
+				return list;
+				}//메인 공지사항 리스트 top5
 			
-			
+				
 }

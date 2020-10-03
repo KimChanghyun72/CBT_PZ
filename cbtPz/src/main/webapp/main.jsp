@@ -13,7 +13,16 @@
 
 <script>
 
-
+$(document).ready(function(){
+	
+	$('.contact--info li').on("click", function(){
+		console.log($(this).attr('id'));
+		var b_id = $(this).attr('id');
+		location.href="${pageContext.request.contextPath}/board/noticeSelect.do?board_id=" + b_id;
+	});
+	
+	
+});
 
 
 
@@ -146,36 +155,14 @@
                             </a>
                             <div class="contact--info">
 								<ul class="contact-list">
-									<li>
-										<h6>
-											<i class="fa fa-map-pin" aria-hidden="true"></i> 공지사항 제목제목제 어느정도나오면 안나오게가능?
-										</h6>
-										<h6>공지사항 날짜</h6>
-									</li>
-									<li>
-										<h6>
-											<i class="fa fa-map-pin" aria-hidden="true"></i> Address
-										</h6>
-										<h6>10 Suffolk st Soho, London, UK</h6>
-									</li>
-									<li>
-										<h6>
-											<i class="fa fa-map-pin" aria-hidden="true"></i> Address
-										</h6>
-										<h6>10 Suffolk st Soho, London, UK</h6>
-									</li>
-									<li>
-										<h6>
-											<i class="fa fa-map-pin" aria-hidden="true"></i> Address
-										</h6>
-										<h6>10 Suffolk st Soho, London, UK</h6>
-									</li>
-									<li>
-										<h6>
-											<i class="fa fa-map-pin" aria-hidden="true"></i> Address
-										</h6>
-										<h6>10 Suffolk st Soho, London, UK</h6>
-									</li>
+									<c:forEach items="${nlist}" var="notice_list">
+										<li id="${notice_list.board_id}">
+											<h6>
+												<i class="fa fa-map-pin" aria-hidden="true"></i> ${notice_list.board_title}
+											</h6>
+											<h6>${notice_list.board_date}</h6>
+										</li>
+									</c:forEach>
 								</ul>
 							</div>
                         </div>

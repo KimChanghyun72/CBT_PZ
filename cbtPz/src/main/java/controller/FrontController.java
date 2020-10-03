@@ -153,6 +153,8 @@ public class FrontController extends HttpServlet {
     	list.put("/ajax/lectureLearnInsert.do", new lecture.LectureLearnInsert()); //강의 수강하기 버튼 클릭시 learn table 인서트
     	
     	
+    	
+    	
     	list.put("/mainCtrl.do", new common.MainCtrl()); // main.jsp 구동하는 서블릿 (indexx.jsp)
 	}
 
