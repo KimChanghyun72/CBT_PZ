@@ -75,7 +75,7 @@
                 <c:forEach items="${lecturelist}" var="lecture_list">
                 <div class="col-12 col-lg-6" >
                     <div class="single-blog-area mb-100 wow fadeInUp">
-                        <a href="${lecture_list.lecture_link}">
+                        <a href="${lecture_list.lecture_link}"  target="_blank" >
 	                        <img 
 	                        	src="lectureSelect.do?lecture_image=${lecture_list.lecture_image }"
 								data-title="${lecture_list.lecture_name }" data-desc="${lecture_list.lecture_info}">

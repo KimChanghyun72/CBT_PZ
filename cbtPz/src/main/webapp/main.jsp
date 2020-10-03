@@ -128,64 +128,102 @@
     
 	<!-- <section class="popular-courses-area section-padding-100-0"> -->
 	<section class="blog-area blog-page section-padding-100">
-                <!-- Single Blog Area -->
 		
 			<div class="row">
+				<!-- 공지사항 -->
 				<div class="col-12 col-lg-6">
-				<!-- 공지사항 캘린더 ㅓ넣을꺼임 -->
                     <div class="single-blog-area mb-100 wow fadeInUp" data-wow-delay="250ms">
                         <img src="img/blog-img/1.jpg" alt="">
                         <!-- Blog Content -->
                         <div class="blog-content">
-                            <a href="#" class="blog-headline">
-                                <h4>English Grammer</h4>
+                            <a href="${pageContext.request.contextPath}/board/noticeList.do" class="blog-headline">
+                                <h4>Notice</h4>
                             </a>
                             <div class="meta d-flex align-items-center">
-                                <a href="#">Sarah Parker</a>
-                                <span><i class="fa fa-circle" aria-hidden="true"></i></span>
-                                <a href="#">Art &amp; Design</a>
-                            </div>
+								<ul class="contact-list">
+									<li>
+										<h6>
+											<i class="fa fa-clock-o" aria-hidden="true"></i> Business Hours
+										</h6>
+										<h6>9:00 AM - 18:00 PM</h6>
+									</li>
+									<li>
+										<h6>
+											<i class="fa fa-phone" aria-hidden="true"></i> Number
+										</h6>
+										<h6>+44 300 303 0266</h6>
+									</li>
+									<li>
+										<h6>
+											<i class="fa fa-map-pin" aria-hidden="true"></i> Address
+										</h6>
+										<h6>10 Suffolk st Soho, London, UK</h6>
+									</li>
+								</ul>
+							</div>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce enim nulla, mollis eu metus in, sagittis</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Single Blog Area -->
-                <div class="col-12 col-lg-6">
-                    <div class="single-blog-area mb-100 wow fadeInUp" data-wow-delay="500ms">
-          <div id='calendar'></div>
+                <!-- calendar -->
+				<div class="col-12 col-lg-6">
+					<div class="single-blog-area mb-100 wow fadeInUp"
+						data-wow-delay="500ms">
+						<div id='calendar'></div>
+					</div>
+				</div>
+
+			</div>
+					<div class="section-heading">
+						<h3></h3>
+					</div>
+
+	</section>
+
+	<section class="popular-courses-area section-padding-100-0">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="section-heading">
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+<!-- 	<section class="popular-courses-area section-padding-100-0">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="section-heading">
+						<h3>Popular Online Courses</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section> -->
+
+
+		<!-- Top Footer Area -->
+        <div class="top-footer-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <!-- Footer Logo -->
+                        <div class="footer-logo">
+                            <a href="${pageContext.request.contextPath}/indexx.jsp" style="color: white;">YDCBT</a>
+                        </div>
+                        <!-- Copywrite -->
+                        <p><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
                     </div>
                 </div>
-
             </div>
-					<div class="section-heading">
-						<h3>Popular Online Courses</h3>
+        </div>
+
 
 	</section>
-
-	<section class="popular-courses-area section-padding-100-0">
-		<div class="container">
-			<div class="row">
-				<div class="col-12">
-					<div class="section-heading">
-						<h3>Popular Online Courses</h3>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<section class="popular-courses-area section-padding-100-0">
-		<div class="container">
-			<div class="row">
-				<div class="col-12">
-					<div class="section-heading">
-						<h3>Popular Online Courses</h3>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-    </section>
     <!-- ##### Hero Area End ##### -->
 
 
@@ -198,7 +236,7 @@
             <div class="row">
                 <!-- Single Cool Facts Area -->
                 <div class="col-12 col-sm-6 col-lg-3">
-                    dfdfdf
+                    
                 </div>
             </div>
         </div>
@@ -207,7 +245,7 @@
 
     <!-- ##### Footer Area Start ##### -->
     <footer class="footer-area">
-		<div>footer</div>
+		<div></div>
     </footer>
     <!-- ##### Footer Area End ##### -->
 
