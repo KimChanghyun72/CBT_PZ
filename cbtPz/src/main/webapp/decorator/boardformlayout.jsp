@@ -144,7 +144,7 @@
 
 	<div class="clever-catagory bg-img d-flex align-items-center justify-content-center p-3" >
         
-        <h3>이거 값가져와야대</h3>
+        <h3>이거 값가져와야대${sessionScope.login.member_id}</h3>
     </div>
    
 <decorator:body/>

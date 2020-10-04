@@ -52,10 +52,30 @@
 	margin-left:-50%;
 	text-align:center;
 }
+.btn-login {
+	background-color: #59B2E0;
+	outline: none;
+	color: #fff;
+	font-size: 14px;
+	height: auto;
+	font-weight: normal;
+	padding: 14px 0;
+	text-transform: uppercase;
+	border-color: #59B2E6;
+}
+.btn-login:hover,
+.btn-login:focus {
+	color: #fff;
+	background-color: #53A3CD;
+	border-color: #53A3CD;
+}
 
 </style>
 <meta charset="UTF-8">
 <title>결제 페이지</title>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
 <script>
 $(function(){
@@ -78,7 +98,7 @@ $(function(){
 		payment = $(this).val();
 	})
 	
-	$(".btnSubmit").on("click", function(){
+	$(".btn-login").on("click", function(){
 		if($("[name=is_payed]").prop("checked")){ //결제 동의여부 체크
 			var confirmVal = confirm("결제하시겠습니까?");
 			if(confirmVal){
@@ -119,7 +139,7 @@ $(function(){
 	<div class="box2"><p>결제 가격</p></div>
 	<div class="box">
 	<p class="price"></p>
-	<input type="text" name="price">
+	<input type="hidden" name="price">
 	</div>
 	
 	<div class="box2"><p>결제 수단</p></div>
@@ -141,10 +161,16 @@ $(function(){
 	</div>
 	<div class="box3">
 	<input type="hidden" name ="payCheck" value="pay">
-	
-	<p></p>
 	<!-- 선택옵션은 회원정보에 결제여부가 no이면 yes로 바꾸고 만료기간을 sysdate+30일로 업데이트. 만약 유료회원이 결제한다면 만료일에 결제기간 + -->
-	<input type="button" class="btnSubmit" value="결제하기">
+	<!-- <input type="button" class="btnSubmit" value="결제하기"> -->
+	<br>
+		<div class="form-group">
+			<div class="row">
+				<div class="col-sm-6 col-sm-offset-3">
+					<input type="button" name="login-submit" id="tin-submit" tabindex="4" class="form-control btn btn-login" value="결제하기">
+				</div>
+			</div>
+		</div>
 	</div>
 </form>	
 </body>

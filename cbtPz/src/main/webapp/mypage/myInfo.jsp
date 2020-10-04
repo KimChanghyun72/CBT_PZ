@@ -37,25 +37,26 @@
 			onsubmit="inputCheck()">
 			<div>
 				<label for="member_id">ID</label> <input id="member_id"
-					name="member_id" type="text" value="${member.member_id }"
+					name="member_id" type="text" value="${login.member_id}"
 					readonly="readonly">
 			</div>
 			<div>
 				<label for="member_pw">Password</label> <input id="member_pw"
-					name="member_pw" type="password" value="${member.member_pw }">
+					name="member_pw" type="password" value="${login.member_pw}">
 			</div>
 			<div>
 				<label for="member_name">이름</label> <input type="text"
-					name="member_name" value="${member.member_name }">
+					name="member_name" value="${login.member_name}">
 			</div>
 			<div>
 				<label for="member_age">나이</label> <input type="text"
-					name="member_age" value="${member.member_age }">
+					name="member_age" value="${login.member_age }">
 			</div>
 			<div>
 				<label for="member_job">직업</label> <input type="text"
-					name="member_job" value="${member.member_job}">
-					<select id="member_job" name="member_job" class="form-control" value="${member.member_job}">
+					name="member_job" value="${login.member_job}">
+					
+					<select id="member_job" name="member_job" class="form-control" value="${login.member_job}">
 								<option value="학생">학생</option>
 								<option value="취준생">취준생</option>
 								<option value="직장인">직장인</option>
@@ -63,12 +64,12 @@
 			</div>
 			<div>
 				<label for="study_term">공부기간</label> <input type="text"
-					id="study_term" name="study_term" value="${member.study_term }">
+					id="study_term" name="study_term" value="${login.study_term }">
 			</div>
 			<div>
 				<label for="phone_number">전화번호</label> <input type="text"
 					id="phone_number" name="phone_number"
-					value="${member.phone_number }">
+					value="${login.phone_number }">
 			</div>
 			<div>
 				<label for="is_major">전공 여부</label> <input type="checkbox"
@@ -77,11 +78,11 @@
 			</div>
 			<div>
 				<label for="tested_num">시험 응시 횟수</label> <input type="text"
-					id="tested_num" name="tested_num" value="${member.tested_num }">
+					id="tested_num" name="tested_num" value="${login.tested_num }">
 			</div>
 			<div>
 				<label for="email">이메일</label> <input type="text"
-					id="email" name="email" value="${member.email }">
+					id="email" name="email" value="${login.email }">
 			</div>
 			<div>
 				<button type="reset">초기화</button>
@@ -89,7 +90,7 @@
 			</div>
 		</form>
 		<form action="memberDelete.do" method="post">
-			<input type="hidden" name="member_id" value="${member.member_id }" />
+			<input type="hidden" name="member_id" value="${login.member_id }" />
 			<button>회원 탈퇴</button>
 		</form>
 	</div>

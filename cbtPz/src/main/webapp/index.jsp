@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-
+    pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,6 +59,60 @@
 
                         <!-- Nav Start -->
                         <div class="classynav">
+                        	<!-- layout에서 복붙해온 태그 내용. -->
+                        	<ul>
+                        	<li><a href="${pageContext.request.contextPath}/indexx.jsp">Home</a></li>
+                                <li><a href="${pageContext.request.contextPath}/board/noticeList.do">공지사항</a></li>
+                                <li><a href="${pageContext.request.contextPath}/study/studymain.jsp">학습하기</a>
+                                    <ul class="dropdown">
+                                        <li><a href="${pageContext.request.contextPath}/haederSearch.do?paper_type_cd=기출">기출문제</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/haederSearch.do?paper_type_cd=모의">모의고사</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/subjectSearch.do">과목별</a></li>
+                                        <li><a href="/cbtPz/hashtagPage.do">태그별</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="${pageContext.request.contextPath}/lecturePage.do">동영상강의</a></li>
+                                <li><a href="${pageContext.request.contextPath}/board/boardList.do">게시판</a>
+                                	<ul class="dropdown">
+                                        <li><a href="${pageContext.request.contextPath}/board/boardList.do">자유게시판</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/board/qaboardList.do">Q&A</a></li>                                 
+                                   </ul>
+                                </li>
+                              <c:if test="${not empty sessionScope.check && sessionScope.check != 'A'}">
+                                <li><a href="instructors.html" >마이페이지</a>
+                                	<ul class="dropdown">
+                                        <li><a href="${pageContext.request.contextPath}/myInfo.do">개인정보수정</a></li>
+                                        <c:if test="${not empty sessionScope.check && sessionScope.check == 'T'}">
+                                        <li><a href="${pageContext.request.contextPath}/myLecture.do">나의 강의</a></li>
+                                        </c:if>
+                                        <c:if test="${not empty sessionScope.check && sessionScope.check == 'M'}">
+                                        <li><a href="${pageContext.request.contextPath}/memLecture.do">나의 강의</a></li>
+                                        </c:if>
+                                        <c:if test="${not empty sessionScope.check && sessionScope.check == 'T'}">
+                                        <li><a href="${pageContext.request.contextPath}/insertLecForm.do">강의 등록</a></li>
+                                        </c:if>
+                                        <li><a href="courses.html">오답노트</a></li>
+                                        <li><a href="single-course.html">개인성적</a></li>
+                                        <li><a href="instructors.html">즐겨찾기문제</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/myInput.do">작성글</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="${pageContext.request.contextPath}/payment/payment.jsp">멤버쉽</a></li>
+                              </c:if>
+                              <c:if test="${not empty sessionScope.check && sessionScope.check == 'A'}">
+                                <li><a href="instructors.html">관리자메뉴</a>
+                                	<ul class="dropdown">
+                                        <li><a href="index.jsp">기출문제</a></li>
+                                        <li><a href="courses.html">모의고사</a></li>
+                                        <li><a href="single-course.html">과목별</a></li>
+                                        <li><a href="instructors.html">태그별</a></li>
+                                    </ul>
+                                </li>
+                              </c:if>
+                            </ul>
+                        	
+                        	<!-- 
+                        	
                             <ul>
                                 <li><a href="index.jsp">Home</a></li>
                                 <li><a href="index.jsp">공지사항</a></li>
@@ -78,7 +132,7 @@
                                 <li><a href="instructors.html">Instructors</a></li>
                                 <li><a href="blog.html">Blog</a></li>
                             </ul>
-
+ -->
                             <!-- Search Button -->
 
                             <!-- Register / Login -->

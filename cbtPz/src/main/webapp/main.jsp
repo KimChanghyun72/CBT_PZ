@@ -39,7 +39,6 @@ $(document).ready(function(){
 		location.href="${pageContext.request.contextPath}/board/noticeSelect.do?board_id=" + b_id;
 	});
 	
-	
 });
 
 
@@ -118,6 +117,7 @@ $(document).ready(function(){
 
 	  calendar.render();
 	});
+ 
  
 </script>
 

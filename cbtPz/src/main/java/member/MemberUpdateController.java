@@ -63,7 +63,11 @@ public class MemberUpdateController implements Controller {
 				pay_member.setPay_enddate(df.format(cal.getTime()));
 				dao.update(pay_member);
 			}
-			response.sendRedirect("main.jsp");
+			
+			request.setAttribute("paymsg", "결제가 완료되었습니다.");
+			request.setAttribute("paycode", 1);
+			String path = "indexx.jsp";
+			request.getRequestDispatcher(path).forward(request, response);
 		} else {
 
 		// Parameter 추출
