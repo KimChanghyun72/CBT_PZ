@@ -32,13 +32,13 @@ $(document).ready(function(){
 
 	  var calendar = new FullCalendar.Calendar(calendarEl, {
 	    initialView: 'dayGridMonth',
-	    initialDate: '2020-09-07',
+	    /* initialDate: '2020-09-07',
 	    headerToolbar: {
 	      left: 'prev',
 	      center: 'title',
 	      right: 'next today'
-	    },
-	    events: [
+	    }, */
+	    /* events: [
 	      {
 	        title: 'All Day Event',
 	        start: '2020-09-01'
@@ -73,19 +73,39 @@ $(document).ready(function(){
 	        start: '2020-09-12T12:00:00'
 	      },
 	      {
-	        title: 'Meeting',
-	        start: '2020-09-12T14:30:00'
-	      },
-	      {
-	        title: 'Birthday Party',
-	        start: '2020-09-13T07:00:00'
-	      },
-	      {
 	        title: 'Click for 구글',
 	        url: 'http://google.com/',
 	        start: '2020-09-28'
 	      }
-	    ]
+	    ] */
+	    
+	    events: function(start, end, timezone, callback) {
+	        $.ajax({
+	            url: '${pageContext.request.contextPath}/ajax/fullCalendar.do',
+	            type: 'POST',
+	            dataType: 'json',
+	            data: {
+	                start: start.format(),
+	                end: end.format()
+	            },
+	            success: function(doc) {
+	                var events = [];
+	                if(!!doc.result){
+	                    $.map( doc.result, function( r ) {
+	                        events.push({
+	                            id: r.id,
+	                            title: r.title,
+	                            start: r.date_start,
+	                            end: r.date_end
+	                        });
+	                    });
+	                }
+	                callback(events);
+	            }
+	        });
+	    }
+	    
+	    
 	  });
 
 	  calendar.render();
@@ -111,22 +131,22 @@ $(document).ready(function(){
         <!-- Slide One - Set the background image for this slide in the line below -->
         <div class="carousel-item active" style="background-image: url(./img/computer1920.jpg)">
           <div class="carousel-caption d-none d-md-block">
-            <h3>First Slide</h3>
-            <p>This is a description for the first slide.</p>
+            <h3>YDCBT</h3>
+            <p>Hi, We are YeDamCBT!</p>
           </div>
         </div>
         <!-- Slide Two - Set the background image for this slide in the line below -->
         <div class="carousel-item" style="background-image: url(img/bg-img/bg1.jpg)">
           <div class="carousel-caption d-none d-md-block">
-            <h3>Second Slide</h3>
-            <p>This is a description for the second slide.</p>
+            <h3>#HASHTAG로 나에게 딱 맞는 맞춤 공부를 경험해보세요</h3>
+            <p>Let's do it, HashTag Study!</p>
           </div>
         </div>
         <!-- Slide Three - Set the background image for this slide in the line below -->
         <div class="carousel-item" style="background-image: url(./img/architect1920.jpg)">
           <div class="carousel-caption d-none d-md-block">
-            <h3>Third Slide</h3>
-            <p>This is a description for the third slide.</p>
+            <h3>차별화된 YDCBT만의 문제를 만나보세요</h3>
+            <p>기출문제와 YDCBT만의 모의고사문제까지 준비되어있습니다.</p>
           </div>
         </div>
       </div>
@@ -218,7 +238,7 @@ $(document).ready(function(){
                         </div>
                         <!-- Copywrite -->
                         <p><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+Copyright &copy;2020 yedam vocational training institute | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
                     </div>
                 </div>
