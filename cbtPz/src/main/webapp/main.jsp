@@ -11,6 +11,24 @@
 <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.2/main.css" rel="stylesheet">
 
 
+<style>
+.txt_line {  
+			width: 80%; 
+			overflow:hidden; 
+			text-overflow:ellipsis; 
+			white-space:nowrap; }
+			
+.txt_line2 {  
+			 
+			overflow:hidden; 
+			text-overflow:ellipsis; 
+			white-space:nowrap; }
+
+
+</style>
+
+
+
 <script>
 
 $(document).ready(function(){
@@ -177,10 +195,10 @@ $(document).ready(function(){
 								<ul class="contact-list">
 									<c:forEach items="${nlist}" var="notice_list">
 										<li id="${notice_list.board_id}">
-											<h6>
+											<h6  class="txt_line">
 												<i class="fa fa-map-pin" aria-hidden="true"></i> ${notice_list.board_title}
 											</h6>
-											<h6>${notice_list.board_date}</h6>
+											<h6  class="txt_line2">${notice_list.board_date}</h6>
 										</li>
 									</c:forEach>
 								</ul>
