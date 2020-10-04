@@ -17,4 +17,8 @@ public class MemberVo {
 	private String pay_enddate;
 	private String email;
 	private String cnt;
+	
+	public Object get(String string) {
+		return null;
+	}
 }

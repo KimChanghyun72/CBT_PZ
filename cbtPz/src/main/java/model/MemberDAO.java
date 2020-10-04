@@ -294,6 +294,36 @@ public class MemberDAO {
 			return resultVo; // 리턴값 필요!
 		} //selectPwOne   memPw찾기
 	
+		
+		
+	//fullcalendar test
+		public ArrayList<MemberVo> selectAllfc() {
+			MemberVo resultVo = null;
+			ResultSet rs = null;
+			ArrayList<MemberVo> list = new ArrayList<MemberVo>();
+			try {
+				conn = ConnectionManager.getConnnect();
+				String sql = "SELECT MEMBER_NAME, to_char(PAY_ENDDATE,'yyyy-mm-dd') PAY_ENDDATE"
+							+ " FROM MEMBER "
+							+ " ORDER BY MEMBER_ID";
+				pstmt = conn.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				while(rs.next()) { //list니까 while문 사용
+					resultVo = new MemberVo();
+					resultVo.setMember_name(rs.getString("member_name"));
+					resultVo.setPay_enddate(rs.getString("pay_enddate"));
+					list.add(resultVo); //resultVo를 list에 담음
+				} 
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				ConnectionManager.close(rs, pstmt, conn);
+			}
+			return list;  //담은 list를 리턴.
+		} //selectAllfc fullcalendar test
+		
+		
+		
 	// studyChart
 		public ArrayList<MemberVo> selectCnt(MemberVo memberVo) {
 			MemberVo resultVo = null;

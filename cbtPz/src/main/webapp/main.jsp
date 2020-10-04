@@ -97,28 +97,18 @@ $(document).ready(function(){
 	      }
 	    ] */
 	    
-	    events: function(start, end, timezone, callback) {
+	    events: function(info, successCallback, failureCallback) {
 	        $.ajax({
 	            url: '${pageContext.request.contextPath}/ajax/fullCalendar.do',
 	            type: 'POST',
 	            dataType: 'json',
 	            data: {
-	                start: start.format(),
-	                end: end.format()
+	                start: info.start,
+	                end: info.end
 	            },
 	            success: function(doc) {
-	                var events = [];
-	                if(!!doc.result){
-	                    $.map( doc.result, function( r ) {
-	                        events.push({
-	                            id: r.id,
-	                            title: r.title,
-	                            start: r.date_start,
-	                            end: r.date_end
-	                        });
-	                    });
-	                }
-	                callback(events);
+	            	console.log(doc);
+	            	successCallback(doc);
 	            }
 	        });
 	    }
