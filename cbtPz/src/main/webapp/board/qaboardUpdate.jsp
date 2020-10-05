@@ -23,6 +23,16 @@
 			frm.qaboard_contents.focus();
 			return false;
 		}
+		if (frm.pw.value == "") {
+			window.alert("비밀번호 입력하세요");
+			frm.pw.focus();
+			return false;
+		}
+		if (frm.pw.value != '${sessionScope.login.member_pw}') {
+			window.alert("비밀번호를 확인해주세요");
+			frm.pw.focus();
+			return false;
+		}
 	
 		return true;
 	}

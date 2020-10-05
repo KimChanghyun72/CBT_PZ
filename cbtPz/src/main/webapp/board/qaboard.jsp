@@ -118,7 +118,7 @@ $(function(){
 			</p>
 			</div>
 <!---------------------댓글 입력폼------------------------->
-<c:if test="${sessionScope.check!='A'}">								  						
+<c:if test="${sessionScope.check=='A'}">								  						
 <div class="my-3 p-3 bg-white rounded shadow-sm" style="padding-top: 10px">
 <form>
 <div class="row">

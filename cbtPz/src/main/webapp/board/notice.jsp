@@ -69,13 +69,13 @@
 				</div>
 				
 				<div class="board_content">${board.board_contents}</div>
-				
+			<c:if test="${board.board_file != null}">
 				<div class="board_file"><img src="${pageContext.request.contextPath}/filenameDownload.do?board_file=${board.board_file}" style="width:1000px"/></div>
-				
+			</c:if>
 				</div>
 			<div style="margin-top : 20px">
 			 <p align="right">	
-				<c:if test="${sessionScope.check!='A'}">
+				<c:if test="${sessionScope.check=='A'}">
 				<button type="button" onclick="location.href='${pageContext.request.contextPath}/board/noticeUpdateForm.do?board_id=${board.board_id}'" class="btn btn-sm btn-primary" id="btnUpdate">수정</button>
 				<button type="button" onclick="location.href='${pageContext.request.contextPath}/board/noticeDelete.do?board_id=${board.board_id}'" class="btn btn-sm btn-primary" id="btnDelete">삭제</button>
 				</c:if>

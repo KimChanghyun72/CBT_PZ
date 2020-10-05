@@ -59,7 +59,7 @@
                 <nav class="classy-navbar justify-content-between" id="cleverNav">
 
                     <!-- Logo -->
-                    <a class="nav-brand" href="${pageContext.request.contextPath}/indexx.jsp"><img src="${pageContext.request.contextPath}/img/core-img/logo.png" alt=""></a>
+                    <a class="nav-brand" href="${pageContext.request.contextPath}/indexx.jsp">YDCBT</a>
 
                     <!-- Navbar Toggler -->
                     <div class="classy-navbar-toggler">
@@ -127,27 +127,6 @@
                                 </li>
                               </c:if>
                               
-                             <%--  <c:if test="${not empty sessionScope.check && sessionScope.check != 'A'}">
-                                <li><a href="instructors.html" >마이페이지</a>
-                                	<ul class="dropdown">
-                                        <li><a href="index.jsp">기출문제</a></li>
-                                        <li><a href="courses.html">모의고사</a></li>
-                                        <li><a href="single-course.html">과목별</a></li>
-                                        <li><a href="instructors.html">태그별</a></li>
-                                    </ul>
-                                </li>
-                              </c:if>
-                              <c:if test="${not empty sessionScope.check && sessionScope.check == 'A'}">
-                                <li><a href="instructors.html">관리자메뉴</a>
-                                	<ul class="dropdown">
-                                        <li><a href="index.jsp">기출문제</a></li>
-                                        <li><a href="courses.html">모의고사</a></li>
-                                        <li><a href="single-course.html">과목별</a></li>
-                                        <li><a href="instructors.html">태그별</a></li>
-                                    </ul>
-                                </li>
-                                
-                              </c:if> --%>
                             </ul>
 
 
@@ -176,8 +155,8 @@
 
 
 	<div class="clever-catagory bg-img d-flex align-items-center justify-content-center p-3" >
-        
-        <h3>${sessionScope.pageName}</h3>
+       
+        <h1 style="color:#3762f0">${sessionScope.pageName}</h1>
     </div>
    
 <decorator:body/>

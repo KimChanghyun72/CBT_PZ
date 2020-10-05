@@ -140,7 +140,7 @@ $(document).ready(function(){
         <div class="carousel-item active" style="background-image: url(./img/computer1920.jpg)">
           <div class="carousel-caption d-none d-md-block">
             <h3>YDCBT</h3>
-            <p>Hi, We are YeDamCBT!</p>
+            <p style="text-shadow: 1px -1px white;">Hi, We are YeDamCBT!</p>
           </div>
         </div>
         <!-- Slide Two - Set the background image for this slide in the line below -->
@@ -153,7 +153,7 @@ $(document).ready(function(){
         <!-- Slide Three - Set the background image for this slide in the line below -->
         <div class="carousel-item" style="background-image: url(./img/architect1920.jpg)">
           <div class="carousel-caption d-none d-md-block">
-            <h3>차별화된 YDCBT만의 문제를 만나보세요</h3>
+            <h3 style="text-shadow: 1px -2px white;">차별화된 YDCBT만의 문제를 만나보세요</h3>
             <p>기출문제와 YDCBT만의 모의고사문제까지 준비되어있습니다.</p>
           </div>
         </div>

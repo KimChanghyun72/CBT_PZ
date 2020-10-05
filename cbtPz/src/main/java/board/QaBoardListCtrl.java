@@ -35,6 +35,7 @@ public class QaBoardListCtrl implements Controller {
 		qaboard.setLast(paging.getLast());
 		
 		ArrayList<QaBoardVO> list = dao.selectAll(qaboard);
+		request.getSession().setAttribute("pageName", "Q&A");
 		request.setAttribute("list", list);
 		request.setAttribute("paging", paging);
 		request.getSession().setAttribute("pageName", "Q&A 게시판");

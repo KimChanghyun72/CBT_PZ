@@ -45,7 +45,7 @@ public class BoardUpdateCtrl implements Controller {
 		BoardDAO dao = new BoardDAO();
 		dao.update(board);
 
-		request.getRequestDispatcher("/ajax/boardSelect.do?=board_id"+board_id).forward(request, response);
+		request.getRequestDispatcher("/board/boardSelect.do?=board_id"+board_id).forward(request, response);
 
 	}
 
