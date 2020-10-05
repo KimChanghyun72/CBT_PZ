@@ -9,4 +9,5 @@ public class AdminVO {
 	private String admin_password;
 	private String admin_name;
 	private String is_pay;
+	private String member_id;
 }

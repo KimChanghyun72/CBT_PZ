@@ -51,7 +51,7 @@
 					</tbody>
 								
 				</table>
-				<c:if test="${sessionScope.check!='A'}">
+				<c:if test="${sessionScope.check=='A'}">
 				<p align="right">
 				<button class="btn btn-sm btn-primary"
 					onclick="location.href='${pageContext.request.contextPath}/board/noticeInsert.jsp'">글쓰기</button>

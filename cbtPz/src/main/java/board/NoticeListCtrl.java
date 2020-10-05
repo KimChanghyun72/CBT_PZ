@@ -37,6 +37,7 @@ public class NoticeListCtrl implements Controller {
 		board.setLast(paging.getLast());
 		
 		ArrayList<BoardVO> list = dao.selectAll(board);
+		request.getSession().setAttribute("pageName", "공지사항");
 		request.setAttribute("list", list);
 		request.setAttribute("paging", paging);
 		request.getRequestDispatcher("/board/noticeList.jsp").forward(request, response);
