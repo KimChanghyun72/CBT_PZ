@@ -40,6 +40,7 @@ public class NoticeListCtrl implements Controller {
 		request.getSession().setAttribute("pageName", "공지사항");
 		request.setAttribute("list", list);
 		request.setAttribute("paging", paging);
+		request.getSession().setAttribute("pageName", "공지사항");
 		request.getRequestDispatcher("/board/noticeList.jsp").forward(request, response);
 	
 

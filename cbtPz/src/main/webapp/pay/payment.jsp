@@ -78,6 +78,7 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
 <script>
+<% request.getSession().setAttribute("pageName", "결 제");%>
 $(function(){
 	var term;
 	var payment;

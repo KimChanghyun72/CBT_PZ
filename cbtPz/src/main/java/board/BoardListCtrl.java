@@ -41,6 +41,7 @@ public class BoardListCtrl implements Controller {
 		request.getSession().setAttribute("pageName", "자유게시판");
 		request.setAttribute("list", list);
 		request.setAttribute("paging", paging);
+		request.getSession().setAttribute("pageName", "자유게시판");
 		request.getRequestDispatcher("/board/boardList.jsp").forward(request, response);
 	
 		
