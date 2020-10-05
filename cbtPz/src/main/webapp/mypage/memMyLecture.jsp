@@ -81,7 +81,7 @@ a {
 </style>
 
 <!-- jQuery Relocator.js Plugin Demo -->
-<script type="text/javascript" src="js/jquery.relocator.1.0.0.js"></script>
+
 
 <script>
 	$(document).ready(function() {
@@ -118,8 +118,8 @@ a {
 		<ul>
 			<c:forEach items="${ st_lecture_list }" var="lecture">
 				<li><a href="${lecture.lecture_link }"> <img style="width: 300px; height: 200px;"
-						src="lectureSelect.do?lecture_image=${lecture.lecture_image }"
-						data-title="${lecture.lecture_name }" data-desc="${lecture.lecture_info }">
+						src="${pageContext.request.contextPath}/lectureSelect.do?lecture_image=${lecture.lecture_image}"
+						data-title="${lecture.lecture_name}" data-desc="${lecture.lecture_info}">
 				</a></li>
 			</c:forEach>
 		</ul>
