@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,14 +28,35 @@
 		return true;
 	}
 	/**/
+	
+	
+	
+	//교사 업데이트
+	$(document).ready(function(){
+		/* $('#confirm_password').focusout(function(){
+			if($('#teacher_password').val() != $('#confirm_password').val()){
+				$('#pw2_check').removeClass('hidden');
+				$('#pw2_check').css('color', 'red');
+				$('#confirm_password').val("");
+			} else $('#pw2_check').addClass('hidden');
+		}); */
+	
+	
+		$('#tfrmsubmit').on("click", function(){
+			$('#tfrm').submit();
+		});
+	
+	});
+	
 </script>
 </head>
 <body>
 	
 	<h1 class="page_title">개인 정보 수정</h1>
-	<div class="regist">
+	<c:if test="${sessionScope.check == 'M'}">
 		<form method="post" name="frm" id="frm" action="<%=application.getContextPath()%>/memberUpdate.do"
 			onsubmit="inputCheck()">
+		<div class="regist">
 			<div>
 				<label for="member_id">ID</label> <input id="member_id"
 					name="member_id" type="text" value="${login.member_id}"
@@ -88,11 +110,118 @@
 				<button type="reset">초기화</button>
 				<button>등록</button>
 			</div>
+		</div>
 		</form>
 		<form action="memberDelete.do" method="post">
 			<input type="hidden" name="member_id" value="${login.member_id }" />
 			<button>회원 탈퇴</button>
 		</form>
-	</div>
+	</c:if>
+	
+	
+	
+	<c:if test="${sessionScope.check == 'T'}">
+		<div class="container">
+		<div class="row justify-content-center">
+                <!-- Post A Comment -->
+                <div class="col-12 col-lg-8">
+                    <div class="post-a-comments mb-70">
+
+                        <form action="${pageContext.request.contextPath}/nostms/proUpdate.do" method="post" name="tfrm" id="tfrm">
+                            <div class="row">
+                                <div class="col-12 col-lg-6">
+                                    <div class="form-group" style="text-align: center;">
+                                        <p>Id</p>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6">
+                                    <div class="form-group">
+										<input id="teacher_id" name="teacher_id" type="text" value="${login.teacher_id}" readonly="readonly">
+									</div>
+                                </div>
+                                <div class="col-12 col-lg-6">
+                                    <div class="form-group" style="text-align: center;">
+                                        <p>Password</p>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6">
+                                    <div class="form-group">
+										<input id="teacher_password" name="teacher_password" type="password" value="${login.teacher_password}">
+									</div>
+                                </div>
+                                <div class="col-12 col-lg-6">
+                                    <div class="form-group" style="text-align: center;">
+                                        <p>Name</p>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6">
+                                    <div class="form-group">
+										<input type="text" name="teacher_name" value="${login.teacher_name}" readonly="readonly">
+									</div>
+                                </div>
+                                <div class="col-12 col-lg-6">
+                                    <div class="form-group" style="text-align: center;">
+                                        <p>Email</p>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6">
+                                    <div class="form-group">
+                                    	<input type="text" id="teacher_email" name="teacher_email" value="${login.teacher_email }">
+									</div>
+                                </div>
+                                <div class="col-12 col-lg-6">
+                                    <div class="form-group" style="text-align: center;">
+                                        <p>Profile picture</p>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6">
+                                    <div class="form-group">
+                                    	 <img src="${pageContext.request.contextPath}/nostms/profilepicSelect.do?teacher_picture=${teacher.teacher_picture }"
+											data-title="${teacher.teacher_name }" >
+									</div>
+                                </div>
+                                <div class="col-12 col-lg-6">
+                                    <div class="form-group">
+                                    	<input type="file" id="filename" name="teacher_picture">
+									</div>
+                                </div>
+                                
+                                <div class="col-12">
+                                    <div class="form-group" >
+                                        <p>이력</p>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <textarea name="teacher_record" class="form-control" id="teacher_record" cols="30" rows="10">${login.teacher_record }</textarea>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group" >
+                                        <p>자격증</p>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <textarea name="teacher_certificate" class="form-control" id="teacher_certificate" cols="30" rows="10" >${login.teacher_certificate }</textarea>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn clever-btn w-100" id="tfrmsubmit">수정</button>
+                                </div>
+							</div>
+                        </form>
+								<form action="" method="post">
+									<input type="hidden" name="member_id"
+										value="" />
+									<button class="btn clever-btn">회원 탈퇴</button>
+								</form>
+                    </div>
+                </div>
+            </div>
+         </div>
+	</c:if>
+	
+	
 </body>
 </html>

@@ -59,7 +59,7 @@ public class ProfInsertCtrl implements Controller {
 		if (teacher_picture != null && !teacher_picture.isEmpty()) {
 			File renameFile = FileRenamePolicy.rename(new File(path,teacher_picture));
 			part.write(path + "/" + tname + "_" + renameFile.getName());
-			teacher.setTeacher_picture(tname + "_" +renameFile.getName());
+			teacher.setTeacher_picture(path + "/" + tname + "_" +renameFile.getName());
 		}
 		
 		int r = TeacherDAO.getInstance().insert(teacher);
