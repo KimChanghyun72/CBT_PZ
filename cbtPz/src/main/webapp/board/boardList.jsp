@@ -23,7 +23,7 @@
 	<article>
 		<div class="container">
 			<div class="table-responsive">
-				<h2 align="right">자유게시판</h2>
+				<br><br>
 				<table class="table table-striped table-sm">
 					<colgroup>
 						<col style="width: 10%;" />

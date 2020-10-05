@@ -110,7 +110,7 @@ $(function(){
 
 		<div class="container" role="main">
 
-			<h2 align="right" onclick="location.href='${pageContext.request.contextPath}/board/boardList.do'">자유게시판</h2>
+				<br><br>
 			<input type="hidden" id="title" value="자유게시판">
 			
 			<div class="bg-white rounded shadow-sm">

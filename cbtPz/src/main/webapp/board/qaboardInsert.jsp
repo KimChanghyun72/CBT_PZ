@@ -46,7 +46,7 @@
 <body>
 	
 		<div class="container" role="main">
-			<h2 align="right" onclick="location.href='${pageContext.request.contextPath}/board/qaboardList.do'">Q&A</h2>
+			<br><br>
 			<form id="frm" name="frm" id="frm" onsubmit="return inputCheck()" method="post" action="${pageContext.request.contextPath}/board/qaboardInsert.do">
 				<div class="form-group">
 					<SELECT name="qaboard_type_cd" id="qaboard_type_cd" class="form-control">
