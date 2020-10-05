@@ -113,7 +113,6 @@
                                         <li><a href="${pageContext.request.contextPath}/myInput.do">작성글</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="${pageContext.request.contextPath}/payment/payment.jsp">멤버쉽</a></li>
                               </c:if>
                               <c:if test="${not empty sessionScope.check && sessionScope.check == 'A'}">
                                 <li><a href="instructors.html">관리자메뉴</a>
@@ -125,6 +124,7 @@
                                     </ul>
                                 </li>
                               </c:if>
+                                <li><a href="${pageContext.request.contextPath}/payment/payment.jsp">멤버쉽</a></li>
                             </ul>
 
 

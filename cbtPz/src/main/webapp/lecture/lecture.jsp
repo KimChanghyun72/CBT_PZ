@@ -93,7 +93,6 @@
                             	<p>${lecture_list.lecture_info}</p>
                             </div>
                             <button type="button" class="btn btn-outline-success">수강하기</button>
-                            <!-- <form id="lecid" action="${pageContext.request.contextPath}/lectureLearnInsert.do">  -->
                             <input type="hidden" value="${lecture_list.lecture_id}">
                             
                         </div>

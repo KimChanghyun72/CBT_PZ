@@ -12,7 +12,7 @@ public class LogoutController implements Controller {
 
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getSession().invalidate();
-		response.sendRedirect("/cbtPz/main.jsp");
+		response.sendRedirect(request.getContextPath() + "/indexx.jsp");
 	}
 
 }
