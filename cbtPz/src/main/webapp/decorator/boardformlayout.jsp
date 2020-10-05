@@ -59,7 +59,7 @@
                 <nav class="classy-navbar justify-content-between" id="cleverNav">
 
                     <!-- Logo -->
-                    <a class="nav-brand" href="${pageContext.request.contextPath}/indexx.jsp"><img src="${pageContext.request.contextPath}/img/core-img/logo.png" alt=""></a>
+                    <a class="nav-brand" href="${pageContext.request.contextPath}/indexx.jsp">YDCBT</a>
 
                     <!-- Navbar Toggler -->
                     <div class="classy-navbar-toggler">
