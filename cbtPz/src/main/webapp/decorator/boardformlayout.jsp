@@ -79,12 +79,12 @@
                             <ul>
                                 <li><a href="${pageContext.request.contextPath}/indexx.jsp">Home</a></li>
                                 <li><a href="${pageContext.request.contextPath}/board/noticeList.do">공지사항</a></li>
-                                <li><a href="#">학습하기</a>
+                                <li><a href="${pageContext.request.contextPath}/study/studymain.jsp">학습하기</a>
                                     <ul class="dropdown">
-                                        <li><a href="index.jsp">기출문제</a></li>
-                                        <li><a href="courses.html">모의고사</a></li>
-                                        <li><a href="single-course.html">과목별</a></li>
-                                        <li><a href="instructors.html">태그별</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/haederSearch.do?paper_type_cd=기출">기출문제</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/haederSearch.do?paper_type_cd=모의">모의고사</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/subjectSearch.do">과목별</a></li>
+                                        <li><a href="/cbtPz/hashtagPage.do">태그별</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="${pageContext.request.contextPath}/lecturePage.do">동영상강의</a></li>
@@ -94,15 +94,27 @@
                                         <li><a href="${pageContext.request.contextPath}/board/qaboardList.do" id="Q&A">Q&A</a></li>
                                     </ul>
                                 </li>
-                              <c:if test="${not empty sessionScope.check && sessionScope.check != 'A'}">
-                                <li><a href="instructors.html" >마이페이지</a>
+                                
+                                <c:if test="${not empty sessionScope.check && sessionScope.check != 'A'}">
+                                <li><a href="${pageContext.request.contextPath}/mypage/myInfo.do" >마이페이지</a>
                                 	<ul class="dropdown">
-                                        <li><a href="index.jsp">기출문제</a></li>
-                                        <li><a href="courses.html">모의고사</a></li>
-                                        <li><a href="single-course.html">과목별</a></li>
-                                        <li><a href="instructors.html">태그별</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/mypage/myInfo.do">개인정보수정</a></li>
+                                        <c:if test="${not empty sessionScope.check && sessionScope.check == 'T'}">
+                                        <li><a href="${pageContext.request.contextPath}/mypage/myLecture.do">나의 강의</a></li>
+                                        </c:if>
+                                        <c:if test="${not empty sessionScope.check && sessionScope.check == 'M'}">
+                                        <li><a href="${pageContext.request.contextPath}/mypage/memLecture.do">나의 강의</a></li>
+                                        </c:if>
+                                        <c:if test="${not empty sessionScope.check && sessionScope.check == 'T'}">
+                                        <li><a href="${pageContext.request.contextPath}/insertLecForm.do">강의 등록</a></li>
+                                        </c:if>
+                                        <li><a href="courses.html">오답노트</a></li>
+                                        <li><a href="single-course.html">개인성적</a></li>
+                                        <li><a href="instructors.html">즐겨찾기문제</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/myInput.do">작성글</a></li>
                                     </ul>
                                 </li>
+                                <li><a href="${pageContext.request.contextPath}/pay/payment.jsp">멤버쉽</a></li>
                               </c:if>
                               <c:if test="${not empty sessionScope.check && sessionScope.check == 'A'}">
                                 <li><a href="instructors.html">관리자메뉴</a>
@@ -114,7 +126,7 @@
                                     </ul>
                                 </li>
                               </c:if>
-                                <li><a href="${pageContext.request.contextPath}/payment/payment.jsp">멤버쉽</a></li>
+                              
                             </ul>
 
 
@@ -143,8 +155,8 @@
 
 
 	<div class="clever-catagory bg-img d-flex align-items-center justify-content-center p-3" >
-        
-        <h3>이거 값가져와야대${sessionScope.login.member_id}</h3>
+       
+        <h1 style="color:#3762f0">${sessionScope.pageName}</h1>
     </div>
    
 <decorator:body/>

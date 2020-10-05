@@ -22,7 +22,7 @@
 	<article>
 		<div class="container">
 			<div class="table-responsive">
-				<h2 align="right">Q&A</h2>
+			<br><br>
 				<table class="table table-striped table-sm">
 					<colgroup>
 						<col style="width: 10%;" />
@@ -40,7 +40,7 @@
 							<th>조회수</th>
 							<th>작성일</th>
 							<th>질문유형</th>
-							<c:if test="${list[0].member_id!='s'}">									  
+							<c:if test="${sessionScope.check=='A'}">									  
 							<th>관리자</th>
 							</c:if>
 						</tr>				
@@ -61,7 +61,7 @@
 										<td>${qaboard.qaboard_views}</td>
 										<td>${qaboard.qaboard_date}</td>
 										<td>${qaboard.qaboard_type_cd}</td>
-										<c:if test="${sessionScope.check!='A'}">							  
+										<c:if test="${sessionScope.check=='A'}">							  
 										<td><input id="ck" name="ck" type="checkbox" value="${qaboard.qaboard_id}"></td>
 									  	</c:if>
 									  </tr>
@@ -74,7 +74,9 @@
 				<p align="right">
 				<button class="btn btn-sm btn-primary"
 					onclick="location.href='${pageContext.request.contextPath}/board/qaboardInsert.jsp'">글쓰기</button>
+				<c:if test="${sessionScope.check=='A'}">
 				<button id="del" class="btn btn-sm btn-primary" onclick="check()">삭제</button>
+				</c:if>
 				</p>
 	<!-- 페이징 처리 영역 -->	
    <my:paging paging="${paging}" jsfunc="gopage"/>

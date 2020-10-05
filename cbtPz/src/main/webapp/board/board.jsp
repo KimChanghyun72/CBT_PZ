@@ -110,7 +110,7 @@ $(function(){
 
 		<div class="container" role="main">
 
-			<h2 align="right" onclick="location.href='${pageContext.request.contextPath}/board/boardList.do'">자유게시판</h2>
+				<br><br>
 			<input type="hidden" id="title" value="자유게시판">
 			
 			<div class="bg-white rounded shadow-sm">
@@ -124,8 +124,9 @@ $(function(){
 				</div>
 				
 				<div class="board_content">${board.board_contents}</div>
+				<c:if test="${board.board_file != null}">
 				<div class="board_file"><img src="${pageContext.request.contextPath}/filenameDownload.do?board_file=${board.board_file}" style="width:500px"/></div>
-					
+				</c:if>	
 				</div>
 			<div style="margin-top : 20px">
 			 <p align="right">	

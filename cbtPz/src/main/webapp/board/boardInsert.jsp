@@ -23,7 +23,17 @@
 			frm.board_contents.focus();
 			return false;
 		}
-	
+		if (frm.pw.value == "") {
+			window.alert("비밀번호 입력하세요");
+			frm.pw.focus();
+			return false;
+		}
+		if (frm.pw.value != '${sessionScope.login.member_pw}') {
+			window.alert("비밀번호를 확인해주세요");
+			frm.pw.focus();
+			return false;
+		}
+		
 		return true;
 	}
 </script> 
@@ -32,7 +42,7 @@
 <body>
 	
 		<div class="container" role="main">
-			<h2 align="right" onclick="location.href='${pageContext.request.contextPath}/board/boardList.do'">자유게시판</h2>
+				<br><br>
 			<form id="frm" name="frm" id="frm" onsubmit="return inputCheck()" method="post" action="${pageContext.request.contextPath}/board/boardInsert.do" enctype="multipart/form-data">
 				<div class="mb-3">
 					<input  class="form-control" type="text" name="board_title" id="board_title" placeholder="제목"> 

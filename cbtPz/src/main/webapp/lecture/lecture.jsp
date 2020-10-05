@@ -75,16 +75,19 @@
                 <c:forEach items="${lecturelist}" var="lecture_list">
                 <div class="col-12 col-lg-6" >
                     <div class="single-blog-area mb-100 wow fadeInUp">
-                        <a href="${lecture_list.lecture_link}"  target="_blank" >
 	                        <img 
 	                        	src="lectureSelect.do?lecture_image=${lecture_list.lecture_image }"
 								data-title="${lecture_list.lecture_name }" data-desc="${lecture_list.lecture_info}">
-						</a>
                         <!-- Blog Content -->
                         <div class="blog-content">
+                        <c:if test="${sessionScope.login != null && sessionScope.login.is_pay == 'Y'}">
                             <a href="${lecture_list.lecture_link}" class="blog-headline" target="_blank">
                                 <h4>${lecture_list.lecture_name}</h4>
                             </a>
+                        </c:if>
+                        <c:if test="${sessionScope.login == null || sessionScope.login.is_pay != 'Y'}">
+                                <h4>${lecture_list.lecture_name}</h4>
+                        </c:if>
                             <div class="meta d-flex align-items-center">
                                 <span><i class="fa fa-circle" aria-hidden="true"></i></span>
                                 <div>${lecture_list.teacher_name}</div>
@@ -93,7 +96,6 @@
                             	<p>${lecture_list.lecture_info}</p>
                             </div>
                             <button type="button" class="btn btn-outline-success">수강하기</button>
-                            <!-- <form id="lecid" action="${pageContext.request.contextPath}/lectureLearnInsert.do">  -->
                             <input type="hidden" value="${lecture_list.lecture_id}">
                             
                         </div>

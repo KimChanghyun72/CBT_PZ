@@ -71,14 +71,14 @@ public class FrontController extends HttpServlet {
     	
     	
     	//정유정
-    	list.put("/myInfo.do", new member.MemberSearchctrl());					// 개인 정보 수정 페이지로 이동
+    	list.put("/mypage/myInfo.do", new member.MemberSearchctrl());					// 개인 정보 수정 페이지로 이동
     	list.put("/memberUpdate.do", new member.MemberUpdateController());		// 개인 정보 수정 처리
     	list.put("/memberDelete.do", new member.MemberDelController());			// 개인 정보 삭제 처리
     	list.put("/insertLecture.do", new teacher.LectureInsertCtrl());			// 강의 등록 처리
-    	list.put("/insertLecForm.do", new teacher.insertLecFormCtl());			// 강의 등록 페이지로 이동
-    	list.put("/myLecture.do", new teacher.myLectureCtrl());					// 강사) 강의 조회 페이지
+    	list.put("/mypage/insertLecForm.do", new teacher.insertLecFormCtl());			// 강의 등록 페이지로 이동
+    	list.put("/mypage/myLecture.do", new teacher.myLectureCtrl());					// 강사) 강의 조회 페이지
     	list.put("/lectureSelect.do", new teacher.LectureSelectCtrl());			// 이미지 불러오기
-    	list.put("/memLecture.do", new member.MemLectureCtrl());				// 회원) 강의 조회 페이지
+    	list.put("/mypage/memLecture.do", new member.MemLectureCtrl());				// 회원) 강의 조회 페이지
     	
     	list.put("/myInput.do", new member.MyInputCtrl());						// 회원 작성글 조회 페이지
     	list.put("/myInputSelect.do", new member.MyInputSelectCtrl());
@@ -149,8 +149,13 @@ public class FrontController extends HttpServlet {
     	list.put("/ajax/memIdFind.do", new member.MemIdFindCtrl()); //findId.jsp
     	list.put("/ajax/memPwFind.do", new member.MemPwFindCtrl()); //findId.jsp
     	
+    	
     	list.put("/lecturePage.do", new lecture.LecturePageCtrl()); //강의 전체리스트 메인 페이지 (전체 || 카테별 보여주는 서블릿)
     	list.put("/ajax/lectureLearnInsert.do", new lecture.LectureLearnInsert()); //강의 수강하기 버튼 클릭시 learn table 인서트
+    	
+    	list.put("/nostms/profilepicSelect.do", new teacher.ProfPicSelectCtrl()); //강사 프로필사진
+    	list.put("/nostms/proUpdate.do", new teacher.ProfUpdateCtrl()); //강사 개인정보수정
+    	
     	
     	
     	list.put("/ajax/fullCalendar.do", new member.FullCalendarCtrl()); //풀캘린더실험용

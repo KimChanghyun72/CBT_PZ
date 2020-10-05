@@ -13,7 +13,7 @@
 <article>
 		<div class="container">
 			<div class="table-responsive">
-				<h2 align="right">공지사항</h2>
+				<br><br>
 				<table class="table table-striped table-sm">
 					<colgroup>
 						<col style="width: 10%;" />
@@ -51,7 +51,7 @@
 					</tbody>
 								
 				</table>
-				<c:if test="${sessionScope.check!='A'}">
+				<c:if test="${sessionScope.check=='A'}">
 				<p align="right">
 				<button class="btn btn-sm btn-primary"
 					onclick="location.href='${pageContext.request.contextPath}/board/noticeInsert.jsp'">글쓰기</button>
