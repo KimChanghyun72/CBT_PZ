@@ -59,7 +59,7 @@
                 <nav class="classy-navbar justify-content-between" id="cleverNav">
 
                     <!-- Logo -->
-                    <a class="nav-brand" href="${pageContext.request.contextPath}/indexx.jsp"><img src="${pageContext.request.contextPath}/img/core-img/logo.png" alt=""></a>
+                    <a class="nav-brand" href="${pageContext.request.contextPath}/indexx.jsp">YDCBT</a>
 
                     <!-- Navbar Toggler -->
                     <div class="classy-navbar-toggler">
@@ -113,8 +113,8 @@
                                         <li><a href="instructors.html">태그별</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="${pageContext.request.contextPath}/payment/payment.jsp">멤버쉽</a></li>
                               </c:if>
+                                <li><a href="${pageContext.request.contextPath}/payment/payment.jsp">멤버쉽</a></li>
                             </ul>
 
 
