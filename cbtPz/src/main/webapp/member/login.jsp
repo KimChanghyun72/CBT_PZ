@@ -247,7 +247,7 @@ $(function(){
 									</div>
 								</div>
 
-									<form id="user2Register2" action="${pageContext.request.contextPath}/main.jsp" style="display: block;">
+									<form id="user2Register2" action="${pageContext.request.contextPath}/indexx.jsp" style="display: block;">
 									<div class="form-group">
 										<div class="row">
 											<div class="col-sm-6 col-sm-offset-3">
