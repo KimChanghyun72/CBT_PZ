@@ -113,8 +113,8 @@
                                         <li><a href="instructors.html">태그별</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="${pageContext.request.contextPath}/payment/payment.jsp">멤버쉽</a></li>
                               </c:if>
+                                <li><a href="${pageContext.request.contextPath}/payment/payment.jsp">멤버쉽</a></li>
                             </ul>
 
 
