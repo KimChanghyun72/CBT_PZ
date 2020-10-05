@@ -4,6 +4,8 @@
 
 	<decorator name="boardform" page="boardformlayout.jsp">
 		<pattern>/board/*</pattern>
+		<pattern>/mypage/*</pattern>
+		<pattern>/pay/*</pattern>
 		
 	</decorator>
 	

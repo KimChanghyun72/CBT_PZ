@@ -11,4 +11,5 @@ public class TeacherVO {
 	private String teacher_name;
 	private String teacher_certificate;
 	private String teacher_email;
+	private String is_pay;
 }
