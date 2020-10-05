@@ -1,8 +1,10 @@
 package model;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,19 +25,20 @@ public class PaperHeadDAO {
 			return instance;
 	}
 	
-	//과목별 문제검색
-	public List<Map<String,Object>> selectSubjectType(ProblemVO problemVO) {
+	//모든 문제검색
+	public List<Map<String,Object>> selectAllType(SearchVO searchVO) {
 		List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
 		
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "SELECT PROBLEM_ID, SUBJECT, HAESEOL, PROBLEM_TEXT, ANS_1, ANS_2, ANS_3,"
-					+ " ANS_4, ANS_CORRECT, PAPERHEAD_ID, PROBLEM_IMAGE "
-					+ " FROM problem "
-					+ " where subject = ? "; 
+			String sql = "SELECT p.PROBLEM_ID, SUBJECT, HAESEOL, PROBLEM_TEXT, ANS_1, ANS_2, ANS_3, " 
+						+ " ANS_4, ANS_CORRECT, PAPERHEAD_ID, PROBLEM_IMAGE "  
+					    + " FROM paper p, PROBLEM b " 
+					    + " where p.problem_id = b.problem_id "  
+					    + " and solve_id = ?" ; 
 			
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1,problemVO.getSubject());
+			pstmt.setString(1,searchVO.getSolve_id());
 			
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
@@ -61,6 +64,75 @@ public class PaperHeadDAO {
 		}
 		return list;
 	}
+	
+	public int insert_Proc(SearchVO searchVO) {			
+		int next = 0;
+		CallableStatement cstmt = null;
+		try {
+			conn = ConnectionManager.getConnnect();
+			conn.setAutoCommit(false);
+			
+			cstmt = conn.prepareCall("{call INS_SOLVE_PAPER(?,?,?,?,?)}");
+			cstmt.setString(1,searchVO.getPaperhead_id());
+			cstmt.setString(2,searchVO.getSubject());
+			cstmt.setString(3,searchVO.getHashtag_name());
+			cstmt.setString(4,searchVO.getMember_id());		
+			cstmt.registerOutParameter(5, java.sql.Types.NUMERIC);
+			cstmt.executeUpdate();
+			conn.commit();
+			next = cstmt.getInt(5);
+			
+		} catch(Exception e) {
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return next;
+	}
+	//과목별 문제검색
+		public List<Map<String,Object>> selectSubjectType(ProblemVO problemVO) {
+			List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
+			
+			try {
+				conn = ConnectionManager.getConnnect();
+				String sql = "SELECT PROBLEM_ID, SUBJECT, HAESEOL, PROBLEM_TEXT, ANS_1, ANS_2, ANS_3,"
+						+ " ANS_4, ANS_CORRECT, PAPERHEAD_ID, PROBLEM_IMAGE "
+						+ " FROM problem "
+						+ " where subject = ? "; 
+				
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1,problemVO.getSubject());
+				
+				rs = pstmt.executeQuery();
+				while(rs.next()) {
+					Map<String,Object> map = new HashMap<String,Object>();
+					map.put("problem_id", rs.getString(1));
+					map.put("subject", rs.getString(2));
+					map.put("haeseol", rs.getString(3));
+					map.put("problem_text", rs.getString(4));
+					map.put("ans_1", rs.getString(5));
+					map.put("ans_2", rs.getString(6));
+					map.put("ans_3", rs.getString(7));
+					map.put("ans_4", rs.getString(8));
+					map.put("ans_correct", rs.getString(9));
+					map.put("paperhead_id", rs.getString(10));
+					map.put("problem_image", rs.getString(11));
+					list.add(map);
+				}
+				
+			} catch(Exception e) {
+				e.printStackTrace();
+			} finally {
+				ConnectionManager.close(rs, pstmt, conn);
+			}
+			return list;
+		}
+		
 				
 		// 모의/기출 검색
 		public ArrayList<PaperheadVO> selectPaper_type(PaperheadVO paperheadVO) {
@@ -167,7 +239,10 @@ public class PaperHeadDAO {
 			return list;
 		}
 	
-	
+		
+		
+		
+		
 	public ArrayList<PaperheadVO> selectAll(PaperheadVO paperHeadVO) {
 		ArrayList<PaperheadVO> list = new ArrayList<>();
 		PaperheadVO resultVO = null;
