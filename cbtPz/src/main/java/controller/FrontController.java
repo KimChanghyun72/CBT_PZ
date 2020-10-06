@@ -105,7 +105,7 @@ public class FrontController extends HttpServlet {
     	list.put("/hashtagSelect.do", new study.HashSelectCtrl());
     	list.put("/ajax/hashtagAutoSearch.do", new study.HashAutoSearchCtrl());
     	
-    	list.put("/solveInsert.do", new study.SolveInsertCtrl());
+    	list.put("/solveUpdate.do", new study.SolveUpdateCtrl());
 
     	
     	
@@ -154,7 +154,8 @@ public class FrontController extends HttpServlet {
     	list.put("/ajax/lectureLearnInsert.do", new lecture.LectureLearnInsert()); //강의 수강하기 버튼 클릭시 learn table 인서트
     	
     	list.put("/nostms/profilepicSelect.do", new teacher.ProfPicSelectCtrl()); //강사 프로필사진
-    	list.put("/nostms/proUpdate.do", new teacher.ProfUpdateCtrl()); //강사 개인정보수정
+    	list.put("/mypage/proUpdate.do", new teacher.ProfUpdateCtrl()); //강사 개인정보수정
+    	list.put("/mypage/proDelete.do", new teacher.ProfDeleteCtrl()); //강사 탈퇴
     	
     	
     	

@@ -237,8 +237,7 @@ window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };
 </head>
 <body>
 	<div class="header">
-		<h1>${problemList[0].paper_type_cd} ${problemList[0].paper_round}</h1>
- 		<h1>${problemList[0].subject}</h1>
+		<h1>${problemList[0].solve_type_cd} </h1>
 		<c:if test="">
 		</c:if>
 			<div id="ViewTimer"></div>
@@ -268,6 +267,7 @@ window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };
 			<% } %>
 		</tbody>
     </table>
+    			<input type="text" name="solve_id" value="${problemList[0].solve_id} ">
 				<input type="text" name="testTime"> <!-- 테스트에 걸린 시간 -->
 				<input type="text" name="testScore"> <!-- 테스트 성적 -->
 				<input type="text" name="testNum"> <!-- 문제 갯수 -->
@@ -297,9 +297,8 @@ window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };
 						</tbody>
 					</table>
 					<!-- 응시 insert -->
-					<form action="${pageContext.request.contextPath}/ajax/probScoringCtrl.do">
-						<!--  <input type="text" name="member_id" value="${sessionScope.login}">	--> 
-						<input type="text" name="solve_type_cd" value="${problemList[0].paper_type_cd} ${problemList[0].paper_round}">
+					<form action="">
+						<input type="text" name="solve_id" value="${problemList[0].solve_id} ">
 						<input type="text" name="testTime"> <!-- 테스트에 걸린 시간 -->
 						<input type="text" name="testScore"> <!-- 테스트 성적 -->
 						<input type="text" name="testNum"> <!-- 문항 갯수 -->

@@ -21,18 +21,17 @@ public class ProblemHeadCtrl implements Controller {
 		
 		String path = "studyPaper.jsp";
 		
+		MemberVo memberVo= (MemberVo) request.getSession().getAttribute("login");
 		SearchVO searchVO = new SearchVO();
-		PaperheadVO problem = new PaperheadVO();
 		
 		//파라미터 변수에 저장
+		String member_id = memberVo.getMember_id();
 		String paperhead_id = request.getParameter("paperhead_id");
 		
-		MemberVo memberVo= (MemberVo) request.getSession().getAttribute("login");
-		String member_id = memberVo.getMember_id();
 		
 		//VO에 담기
-		problem.setPaperhead_id(paperhead_id);
 		searchVO.setMember_id(member_id);
+		searchVO.setPaperhead_id(paperhead_id);
 		
 		//문제등록 				
 		int next = PaperHeadDAO.getInstance().insert_Proc(searchVO);
