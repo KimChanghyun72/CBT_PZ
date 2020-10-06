@@ -16,7 +16,7 @@ $(function(){
 			success : function(datas){
 				for(i=0; i<datas.length; i++){
 					$("<div>").append($("<b>").append(datas[i].qaboard_ans))
-							.append($("<br>"))
+							
 							.data("qaboard_id", datas[i].qaboard_id)
 							.appendTo($("#list"))
 				}
@@ -32,10 +32,9 @@ $(function(){
 					dataType:"json",
 					data : $("form").serialize(),
 					success : function(data){
-						$("<div>").append($("<b>").append(data.qaboard_ans))
-						.append($("<br>"))
-						.data("qaboard_id", data.qaboard_id)
-						.appendTo($("#list"))
+						$("b").remove();
+						boardList();
+					
 					}
 				});
 			}) 
