@@ -39,6 +39,7 @@ $(document).ready(function(){
 		location.href="${pageContext.request.contextPath}/board/noticeSelect.do?board_id=" + b_id;
 	});
 	
+	
 });
 
 

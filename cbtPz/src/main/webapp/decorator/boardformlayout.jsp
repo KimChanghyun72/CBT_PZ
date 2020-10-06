@@ -106,7 +106,7 @@
                                         <li><a href="${pageContext.request.contextPath}/mypage/memLecture.do">나의 강의</a></li>
                                         </c:if>
                                         <c:if test="${not empty sessionScope.check && sessionScope.check == 'T'}">
-                                        <li><a href="${pageContext.request.contextPath}/insertLecForm.do">강의 등록</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/mypage/insertLecForm.do">강의 등록</a></li>
                                         </c:if>
                                         <li><a href="courses.html">오답노트</a></li>
                                         <li><a href="single-course.html">개인성적</a></li>

@@ -26,13 +26,13 @@
 			return false;
 		}
 		return true;
-	}
+	};
 	/**/
 	
 	
 	
 	//교사 업데이트
-	$(document).ready(function(){
+	//$(document).ready(function(){
 		/* $('#confirm_password').focusout(function(){
 			if($('#teacher_password').val() != $('#confirm_password').val()){
 				$('#pw2_check').removeClass('hidden');
@@ -41,12 +41,47 @@
 			} else $('#pw2_check').addClass('hidden');
 		}); */
 	
+	//});
 	
+	
+	$(function(){
+		
+		//수정 상태 어럴트
+		if("${errorcode}" > 0 && "${errorcode}" < 5 ){
+			alert("${errormsg}");		
+		}
+		
+		//수정버튼시 수정작동
 		$('#tfrmsubmit').on("click", function(){
 			$('#tfrm').submit();
+		}); 
+		
+		
+		//탈퇴
+		$('#tdelete').on("click", function(){
+			$('#tdfrm').submit();
 		});
-	
+		
+		
+		//이미지 미리보기
+		$("#filename").on('change', function(){
+            readURL(this);
+        });
+		
+		
 	});
+	
+	
+	//이미지 미리보기 func
+	function readURL(input) {
+        if (input.files && input.files[0]) {
+           var reader = new FileReader();
+           reader.onload = function (e) {
+              $('#preImage').attr('src', e.target.result);
+           }
+           reader.readAsDataURL(input.files[0]);
+        }
+    }
 	
 </script>
 </head>
@@ -127,7 +162,8 @@
                 <div class="col-12 col-lg-8">
                     <div class="post-a-comments mb-70">
 
-                        <form action="${pageContext.request.contextPath}/nostms/proUpdate.do" method="post" name="tfrm" id="tfrm">
+                        <form action="${pageContext.request.contextPath}/mypage/proUpdate.do" method="post" 
+                        	name="tfrm" id="tfrm" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-12 col-lg-6">
                                     <div class="form-group" style="text-align: center;">
@@ -136,7 +172,7 @@
                                 </div>
                                 <div class="col-12 col-lg-6">
                                     <div class="form-group">
-										<input id="teacher_id" name="teacher_id" type="text" value="${login.teacher_id}" readonly="readonly">
+										<input id="teacher_id" name="teacher_id" type="text" value="${teacher.teacher_id}" readonly="readonly">
 									</div>
                                 </div>
                                 <div class="col-12 col-lg-6">
@@ -146,7 +182,7 @@
                                 </div>
                                 <div class="col-12 col-lg-6">
                                     <div class="form-group">
-										<input id="teacher_password" name="teacher_password" type="password" value="${login.teacher_password}">
+										<input id="teacher_password" name="teacher_password" type="password" value="${teacher.teacher_password}">
 									</div>
                                 </div>
                                 <div class="col-12 col-lg-6">
@@ -156,7 +192,7 @@
                                 </div>
                                 <div class="col-12 col-lg-6">
                                     <div class="form-group">
-										<input type="text" name="teacher_name" value="${login.teacher_name}" readonly="readonly">
+										<input type="text" name="teacher_name" value="${teacher.teacher_name}" readonly="readonly">
 									</div>
                                 </div>
                                 <div class="col-12 col-lg-6">
@@ -166,7 +202,7 @@
                                 </div>
                                 <div class="col-12 col-lg-6">
                                     <div class="form-group">
-                                    	<input type="text" id="teacher_email" name="teacher_email" value="${login.teacher_email }">
+                                    	<input type="text" id="teacher_email" name="teacher_email" value="${teacher.teacher_email }">
 									</div>
                                 </div>
                                 <div class="col-12 col-lg-6">
@@ -176,7 +212,8 @@
                                 </div>
                                 <div class="col-12 col-lg-6">
                                     <div class="form-group">
-                                    	 <img src="${pageContext.request.contextPath}/nostms/profilepicSelect.do?teacher_picture=${teacher.teacher_picture }"
+                                    	 <img id="preImage"
+                                    	 	src="${pageContext.request.contextPath}/nostms/profilepicSelect.do?teacher_picture=${teacher.teacher_picture }"
 											data-title="${teacher.teacher_name }" >
 									</div>
                                 </div>
@@ -193,7 +230,7 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <textarea name="teacher_record" class="form-control" id="teacher_record" cols="30" rows="10">${login.teacher_record }</textarea>
+                                        <textarea name="teacher_record" class="form-control" id="teacher_record" cols="30" rows="10">${teacher.teacher_record }</textarea>
                                     </div>
                                 </div>
                                 <div class="col-12">
@@ -203,7 +240,7 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <textarea name="teacher_certificate" class="form-control" id="teacher_certificate" cols="30" rows="10" >${login.teacher_certificate }</textarea>
+                                        <textarea name="teacher_certificate" class="form-control" id="teacher_certificate" cols="30" rows="10" >${teacher.teacher_certificate }</textarea>
                                     </div>
                                 </div>
                                 <div class="col-12">
@@ -211,10 +248,10 @@
                                 </div>
 							</div>
                         </form>
-								<form action="" method="post">
-									<input type="hidden" name="member_id"
-										value="" />
-									<button class="btn clever-btn">회원 탈퇴</button>
+								<form action="${pageContext.request.contextPath}/mypage/proDelete.do" method="post"
+									id="tdfrm">
+									<!-- <input type="hidden" name="member_id" value="" /> -->
+									<button id="tdelete" class="btn clever-btn">회원 탈퇴</button>
 								</form>
                     </div>
                 </div>
