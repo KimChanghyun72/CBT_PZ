@@ -21,9 +21,12 @@ public class SolveDAO {
 	public void UpateSolve(SolveVO solveVO) {
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = " UPDATE SOLVE " + 
-					     " SET SOLVE_SCORE = ?, SOLVE_TIME = ?, SOLVE_CNT = ? "+ 
-					     " WHERE SOLVE_ID = ? ";
+			String sql = " UPDATE SOLVE " 
+					     + " SET SOLVE_SCORE = (SELECT p.IS_CORRECT from PAPER p ), " 
+					     + " SOLVE_SCORE = ,"
+					     + " SOLVE_TIME = ?, "
+					     + " SOLVE_CNT = ? "
+					     + " WHERE SOLVE_ID = ? ";
 					
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, solveVO.getSolve_score());
