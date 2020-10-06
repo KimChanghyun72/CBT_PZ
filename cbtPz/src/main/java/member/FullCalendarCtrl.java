@@ -18,7 +18,7 @@ public class FullCalendarCtrl implements Controller {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<MemberVo> list = MemberDAO.getInstance().selectAllfc();
-		System.out.println(list);
+		//System.out.println(list);
 		JSONArray st = new JSONArray();
 		for(MemberVo des : list) {
 			JSONObject dseJson = new JSONObject();
@@ -29,7 +29,7 @@ public class FullCalendarCtrl implements Controller {
 		}
 		
 		String str = JSONArray.fromObject(st).toString();
-		System.out.println(str);
+		//System.out.println(str);
 		response.getWriter().print(str);
 		
 	}

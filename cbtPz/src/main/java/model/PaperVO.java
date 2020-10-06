@@ -9,4 +9,6 @@ public class PaperVO {
 	private String check_num;
 	private String is_favorite;
 	private String ans_order;
+	private String solve_id;
+	private String problem_id;
 }
