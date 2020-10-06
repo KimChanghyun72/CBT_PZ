@@ -36,13 +36,8 @@ public class PaperHeadDAO {
 					    + " FROM paper p, PROBLEM b, SOLVE s " 
 					    + " where p.problem_id = b.problem_id "  
 					    + " and p.solve_id = s.solve_id "
-<<<<<<< HEAD
 					    + " and p.solve_id = ?"
 					    + " ORDER BY TO_NUMBER(P.PROBLEM_ID)"; 
-=======
-					    + " and p.solve_id = ?" 
-					    + " order by to_number(p.problem_id) "; 
->>>>>>> branch 'master' of https://github.com/KimChanghyun72/CBT_PZ.git
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1,searchVO.getSolve_id());
