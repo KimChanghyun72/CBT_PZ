@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 	<script>
+	<!--공백 체크 확인  -->
 	function inputCheck() {
 
 		if (frm.board_title.value == "") {
@@ -26,7 +27,7 @@
 <title>noticeUpdate.jsp</title>
 </head>
 <body>
-	
+		<!-- 수정 페이지 입력 폼  -->
 		<div class="container" role="main">
 			<br><br>
 			<form id="frm" name="frm" id="frm" onsubmit="return inputCheck()" method="post" action="${pageContext.request.contextPath}/board/noticeUpdate.do" enctype="multipart/form-data">

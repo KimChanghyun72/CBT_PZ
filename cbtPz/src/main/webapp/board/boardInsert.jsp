@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+			<!--공백 체크 및 비밀번호 확인  -->
 	<script>
 	function inputCheck() {
 
@@ -40,7 +41,7 @@
 <title>boardInsert.jsp</title>
 </head>
 <body>
-	
+		<!--자유게시판 입력 폼  -->
 		<div class="container" role="main">
 				<br><br>
 			<form id="frm" name="frm" id="frm" onsubmit="return inputCheck()" method="post" action="${pageContext.request.contextPath}/board/boardInsert.do" enctype="multipart/form-data">
