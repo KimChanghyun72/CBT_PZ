@@ -24,6 +24,12 @@
 			text-overflow:ellipsis; 
 			white-space:nowrap; }
 
+.h3, h3 {
+    font-size: 40px;
+    text-shadow: 2px 2px 6px #F8F8FF;
+  	
+}
+
 
 </style>
 
@@ -148,14 +154,14 @@ $(document).ready(function(){
         <div class="carousel-item" style="background-image: url(img/bg-img/bg1.jpg)">
           <div class="carousel-caption d-none d-md-block">
             <h3>#HASHTAG로 나에게 딱 맞는 맞춤 공부를 경험해보세요</h3>
-            <p>Let's do it, HashTag Study!</p>
+            <p style="text-shadow: 1px -1px white;">Let's do it, HashTag Study!</p>
           </div>
         </div>
         <!-- Slide Three - Set the background image for this slide in the line below -->
         <div class="carousel-item" style="background-image: url(./img/architect1920.jpg)">
           <div class="carousel-caption d-none d-md-block">
-            <h3 style="text-shadow: 1px -2px white;">차별화된 YDCBT만의 문제를 만나보세요</h3>
-            <p>기출문제와 YDCBT만의 모의고사문제까지 준비되어있습니다.</p>
+            <h3>차별화된 YDCBT만의 문제를 만나보세요</h3> <!-- style="text-shadow: 1px -2px white;" -->
+            <p style="text-shadow: 1px -1px white;">기출문제와 YDCBT만의 모의고사문제까지 준비되어있습니다.</p>
           </div>
         </div>
       </div>

@@ -49,7 +49,7 @@
 			<input  type="hidden" name="board_id" value="${board.board_id}"> 
 				<div class="mb-3">
 					<input  class="form-control" type="text" name="board_title" id="board_title" value="${board.board_title}" placeholder="제목"> 
-					<input  class="form-control" type="text" name="member_id" id="member_id" value="${board.member_id}" placeholder="작성자"> 
+					<input  class="form-control" type="text" name="member_id" id="member_id" value="${board.member_id}" readonly="readonly"> 
 					<input type="file" id="file" name="file">
 				</div>
 
