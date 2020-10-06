@@ -33,6 +33,7 @@
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.min.js"></script>
 
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.relocator.1.0.0.js"></script>
     
  <decorator:head/>   
 

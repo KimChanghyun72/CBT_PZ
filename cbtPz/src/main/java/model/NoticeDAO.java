@@ -36,10 +36,11 @@ public class NoticeDAO {
 					if(boardVo.getBoard_title() != null) {
 						where += " and title like '%' || ? || '%'";
 					}
-					//String sql = "SELECT BOARD_ID,TITLE,CONTENTS,MEMBER_ID,BOARD_DATE,VIEWS FROM BOARD";
+				
+			
 				
 					String sql = "select a.* from(select rownum rn,b.* from( "
-							+ " SELECT SUBSTR(BOARD_ID,2),BOARD_TITLE,MEMBER_ID,BOARD_DATE"
+							+ " SELECT TO_NUMBER(SUBSTR(BOARD_ID,2)) BOARD_ID,BOARD_TITLE,MEMBER_ID,BOARD_DATE"
 							+ " FROM BOARD"
 							+ where
 							+ " AND BOARD_ID LIKE'A%'"
@@ -82,7 +83,7 @@ public class NoticeDAO {
 					if(boardVo.getBoard_title() != null) {
 						where += " and TITLE like '%' || ? || '%'";
 					}
-					String sql = "select count(*) from board" + where;
+					String sql = "select count(BOARD_ID) from board" + where +"AND BOARD_ID LIKE 'A%'" ;
 					pstmt = conn.prepareStatement(sql);
 					int pos = 1;
 					if(boardVo.getBoard_title() != null) {

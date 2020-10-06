@@ -46,7 +46,7 @@ public class BoardDAO {
 						+ " FROM BOARD"
 						+ where
 						+ " AND BOARD_ID NOT LIKE'A%'"
-						+ " ORDER BY BOARD_ID DESC"
+						+ " ORDER BY TO_NUMBER(BOARD_ID) DESC"
 						+ " )b ) a where rn between ? and ? ";
 	
 			pstmt = conn.prepareStatement(sql);
@@ -187,7 +187,7 @@ public class BoardDAO {
 			if (boardVo.getBoard_title() != null) {
 				where += " and TITLE like '%' || ? || '%'";
 			}
-			String sql = "select count(*) from board" + where;
+			String sql = "select count(BOARD_ID) from board" + where +"AND BOARD_ID NOT LIKE 'A%'";
 			pstmt = conn.prepareStatement(sql);
 			int pos = 1;
 			if (boardVo.getBoard_title() != null) {
