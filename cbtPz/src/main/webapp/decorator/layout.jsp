@@ -32,10 +32,9 @@
     <script src="${pageContext.request.contextPath}/js/jquery/jquery-2.2.4.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.min.js"></script>
-
+	
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.relocator.1.0.0.js"></script>
-    
- <decorator:head/>   
+<decorator:head/>   
 
     
 
@@ -119,10 +118,10 @@
                               <c:if test="${not empty sessionScope.check && sessionScope.check == 'A'}">
                                 <li><a href="instructors.html">관리자메뉴</a>
                                 	<ul class="dropdown">
-                                        <li><a href="index.jsp">기출문제</a></li>
-                                        <li><a href="courses.html">모의고사</a></li>
-                                        <li><a href="single-course.html">과목별</a></li>
-                                        <li><a href="instructors.html">태그별</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/admin/quizInsert.jsp">개별문제</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/admin/headInsert.jsp">회차문제</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/admin/adminChart.jsp">회원통계</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/memberList.do">회원관리</a></li>
                                     </ul>
                                 </li>
                               </c:if>
