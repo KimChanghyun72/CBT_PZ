@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
 import model.HashtagVO;
+import model.MemberVo;
 import model.PaperHeadDAO;
+import model.SearchVO;
 
 public class HashSelectCtrl implements Controller {
 	/**해쉬태그 문제 불러오기**/
@@ -19,24 +21,33 @@ public class HashSelectCtrl implements Controller {
 		System.out.println("해쉬검색");
 		String path = "studyPaper.jsp";
 		
+		MemberVo memberVo= (MemberVo) request.getSession().getAttribute("login");
+		SearchVO searchVO = new SearchVO();
 		
 		//파라미터 변수에 저장
+		String member_id = memberVo.getMember_id();
 		String hashtag_name = request.getParameter("hashtag_name");
 		
 		hashtag_name = hashtag_name.substring(0,hashtag_name.length()-1);
 		
 		//VO에 담기
-		HashtagVO hash = new HashtagVO();
-		hash.setHashtag_name(hashtag_name);
+		searchVO.setMember_id(member_id);
+		searchVO.setHashtag_name(hashtag_name);
+		
+		//문제등록 				
+		int next = PaperHeadDAO.getInstance().insert_Proc(searchVO);
 		
 		//서비스		
-		PaperHeadDAO dao = new PaperHeadDAO();
-		List<Map<String, Object>> hashSelect = dao.selectHash(hash);
-		System.out.println("hash = " + hash);
-		System.out.println("hashtag_name = " + hashtag_name);
+		/*
+		 * PaperHeadDAO dao = new PaperHeadDAO(); List<Map<String, Object>> hashSelect =
+		 * dao.selectHash(hash); System.out.println("hash = " + hash);
+		 * System.out.println("hashtag_name = " + hashtag_name);
+		 */
+		searchVO.setSolve_id(Integer.toString(next)); 
+		List<Map<String, Object>> selectproblem = PaperHeadDAO.getInstance().selectAllType(searchVO);
 
 		//조회결과를 저장후에 결과페이지로 포워드
-		request.getSession().setAttribute("problemList", hashSelect);
+		request.getSession().setAttribute("problemList", selectproblem);
 							 
 		request.getRequestDispatcher("/study/"+path).forward(request, response);
 		

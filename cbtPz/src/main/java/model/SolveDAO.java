@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import common.ConnectionManager;
-import paper.PaperVO;
 
 public class SolveDAO {
 	ResultSet rs;
@@ -19,18 +18,18 @@ public class SolveDAO {
 			return instance;
 	}
 	
-	public void insertSolve(SolveVO solveVO) {
+	public void UpateSolve(SolveVO solveVO) {
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "insert into solve (SOLVE_ID, SOLVE_SCORE, MEMBER_ID, SOLVE_DATE, SOLVE_TIME, SOLVE_TYPE_CD, SOLVE_CNT) " 
-					   + "values(solve_seq.nextval,?,?,sysdate,?,?,?)"; 
+			String sql = " UPDATE SOLVE " + 
+					     " SET SOLVE_SCORE = ?, SOLVE_TIME = ?, SOLVE_CNT = ? "+ 
+					     " WHERE SOLVE_ID = ? ";
 					
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, solveVO.getSolve_score());
-			pstmt.setString(2, solveVO.getMember_id());			
-			pstmt.setString(3, solveVO.getSolve_time());
-			pstmt.setString(4, solveVO.getSolve_type_cd());
-			pstmt.setString(5, solveVO.getSolve_cnt());
+			pstmt.setString(2, solveVO.getSolve_time());
+			pstmt.setString(3, solveVO.getSolve_cnt());
+			pstmt.setString(4, solveVO.getSolve_id());
 			
 			int r = pstmt.executeUpdate();
 			System.out.println(r + "건이 입력됨");
