@@ -45,7 +45,7 @@ public class QaBoardDAO {
 						+ " SELECT QABOARD_ID,QABOARD_TITLE,QABOARD_CONTENTS,QABOARD_DATE,QABOARD_ANS,QABOARD_VIEWS,QABOARD_TYPE_CD,MEMBER_ID"
 						+ " FROM QABOARD"
 						+ where
-						+ " ORDER BY QABOARD_ID DESC"
+						+ " ORDER BY TO_NUMBER(QABOARD_ID) DESC"
 						+ " )b ) a where rn between ? and ?";		
 			pstmt = conn.prepareStatement(sql);
 			int pos = 1;
