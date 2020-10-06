@@ -297,7 +297,7 @@ window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };
 						</tbody>
 					</table>
 					<!-- 응시 insert -->
-					<form action="">
+					<form action="${pageContext.request.contextPath}/solveUpdate.do">
 						<input type="text" name="solve_id" value="${problemList[0].solve_id} ">
 						<input type="text" name="testTime"> <!-- 테스트에 걸린 시간 -->
 						<input type="text" name="testScore"> <!-- 테스트 성적 -->

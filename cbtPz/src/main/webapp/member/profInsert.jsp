@@ -12,6 +12,20 @@
 
 <title>/member/profInsert.jsp</title>
 
+<style>
+
+img {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 150px;
+}
+
+</style>
+
+
+
+
 <script>
 
 
@@ -148,7 +162,26 @@ $(document).ready(function(){
 		}
 	});
 	
+	
+	
+	//이미지 미리보기
+	$("#filename").on('change', function(){
+        readURL(this);
+    });
+	
 });
+
+
+//이미지 미리보기 func
+function readURL(input) {
+    if (input.files && input.files[0]) {
+       var reader = new FileReader();
+       reader.onload = function (e) {
+          $('#preImage').attr('src', e.target.result);
+       }
+       reader.readAsDataURL(input.files[0]);
+    }
+}
 
 
 </script>
@@ -223,6 +256,13 @@ $(document).ready(function(){
 					<div class="form-group">
 					<label class="col-md-4 control-label" for="address">프로필 사진</label>
 						<div>
+							<img id="preImage" src="" >
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="emial"></label>
+						<div class="col-md-5">
 							<label for="filename">Select a file:</label> 
 							<input type="file" id="filename" name="teacher_picture">
 						</div>
