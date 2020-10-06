@@ -92,7 +92,7 @@ $(function(){
 
 		<div class="container" role="main">
 
-			<h2 align="right" onclick="location.href='${pageContext.request.contextPath}/board/qaboardList.do'">Q&A</h2>
+			<br><br>
 			
 			<div class="bg-white rounded shadow-sm">
 

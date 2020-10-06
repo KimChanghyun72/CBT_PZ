@@ -41,7 +41,7 @@
 </head>
 <body>
 		<div class="container" role="main">
-			<h2 align="right" onclick="location.href='${pageContext.request.contextPath}/board/boardList.do'">자유게시판</h2>
+				<br><br>
 			<form id="frm" name="frm" id="frm" onsubmit="return inputCheck()" method="post" action="${pageContext.request.contextPath}/board/boardUpdate.do" enctype="multipart/form-data">
 			<input  type="hidden" name="board_file" value="${board.board_file}"> 
 			<input  type="hidden" name="board_id" value="${board.board_id}"> 

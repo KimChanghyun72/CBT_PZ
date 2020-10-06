@@ -56,7 +56,7 @@
 
 		<div class="container" role="main">
 
-			<h2 align="right" onclick="location.href='${pageContext.request.contextPath}/board/noticeList.do'">공지사항</h2>
+			<br><br>
 			
 			<div class="bg-white rounded shadow-sm">
 

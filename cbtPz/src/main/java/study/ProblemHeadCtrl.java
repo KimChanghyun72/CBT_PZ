@@ -9,29 +9,40 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
+import model.MemberVo;
 import model.PaperHeadDAO;
 import model.PaperheadVO;
+import model.SearchVO;
 
 public class ProblemHeadCtrl implements Controller {
 	/**(모의/기출) 문제 불러오기**/
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		String path = "studyPaper.jsp";
 		
+		SearchVO searchVO = new SearchVO();
 		PaperheadVO problem = new PaperheadVO();
 		
 		//파라미터 변수에 저장
 		String paperhead_id = request.getParameter("paperhead_id");
 		
+		MemberVo memberVo= (MemberVo) request.getSession().getAttribute("login");
+		String member_id = memberVo.getMember_id();
+		
 		//VO에 담기
 		problem.setPaperhead_id(paperhead_id);
+		searchVO.setMember_id(member_id);
 		
-		//서비스		
-		PaperHeadDAO dao = new PaperHeadDAO();
-		List<Map<String, Object>> headproblem = dao.selectOne(problem);	
+		//문제등록 				
+		int next = PaperHeadDAO.getInstance().insert_Proc(searchVO);
+		
+		//문제조회
+		searchVO.setSolve_id(Integer.toString(next)); 
+		List<Map<String, Object>> selectproblem = PaperHeadDAO.getInstance().selectAllType(searchVO);
 		
 		//조회결과를 저장후에 결과페이지로 포워드
-		request.getSession().setAttribute("problemList", headproblem);
+		request.getSession().setAttribute("problemList", selectproblem);
 		
 		request.getRequestDispatcher("/study/"+path).forward(request, response);
 	}

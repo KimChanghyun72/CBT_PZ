@@ -149,8 +149,13 @@ public class FrontController extends HttpServlet {
     	list.put("/ajax/memIdFind.do", new member.MemIdFindCtrl()); //findId.jsp
     	list.put("/ajax/memPwFind.do", new member.MemPwFindCtrl()); //findId.jsp
     	
+    	
     	list.put("/lecturePage.do", new lecture.LecturePageCtrl()); //강의 전체리스트 메인 페이지 (전체 || 카테별 보여주는 서블릿)
     	list.put("/ajax/lectureLearnInsert.do", new lecture.LectureLearnInsert()); //강의 수강하기 버튼 클릭시 learn table 인서트
+    	
+    	list.put("/nostms/profilepicSelect.do", new teacher.ProfPicSelectCtrl()); //강사 프로필사진
+    	list.put("/nostms/proUpdate.do", new teacher.ProfUpdateCtrl()); //강사 개인정보수정
+    	
     	
     	
     	list.put("/ajax/fullCalendar.do", new member.FullCalendarCtrl()); //풀캘린더실험용
