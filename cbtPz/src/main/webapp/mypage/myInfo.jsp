@@ -213,11 +213,18 @@
         </div>
 	        <div class="col-12 col-lg-6">
 	        <div class="form-group">
-				<input type="radio" name="is_major" value="Y" checked="checked">예
-				<input type="radio" name="is_major" value="N">아니오
+		        <div class="form-check form-check-inline">
+				  <input class="form-check-input" type="radio" name="is_major" value="Y" checked="checked">
+				  <label class="form-check-label" for="is_major">예</label>
+				</div>
+				<div class="form-check form-check-inline">
+				  <input class="form-check-input" type="radio" name="is_major" value="N">
+				  <label class="form-check-label" for="is_major">아니오</label>
+				</div>
 			</div>
 			</div>	
 			
+
 			
 			
 			
@@ -227,18 +234,38 @@
 				<p>공부기간</p>
 		</div>
 		</div>
+		
 			<div class="col-12 col-lg-6">
 			<div class="form-group">
-				<input type="radio" id="study_term"
-				name="study_term" value="1개월 미만" checked="checked">1개월 미만
-				<input type="radio" id="study_term"
-				name="study_term" value="1~3개월 미만">1~3개월 미만
-				<input type="radio" id="study_term"
-				name="study_term" value="3개월 이상">3개월 이상
+			
+				<div class="form-check disabled">
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" id="study_term"
+					name="study_term" value="1개월 미만" checked="checked">
+					<label class="form-check-label">1개월 미만</label>
+				</div>
+				</div>
+				
+				<div class="form-check disabled">
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" id="study_term"
+					name="study_term" value="1~3개월 미만">
+					<label class="form-check-label">1~3개월 미만</label>
+				</div>
+				</div>
+				
+				<div class="form-check disabled">
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" id="study_term"
+					name="study_term" value="3개월 이상">
+					<label class="form-check-label">3개월 이상</label>
+				</div>
+				</div>
+				
 			</div>
 			</div>
 			
-			
+
 			
 			
 		<div class="col-12 col-lg-6">
@@ -247,28 +274,31 @@
 			</div>
 			</div>
 		<div class="col-12 col-lg-6">
-				<label class="radio-inline">
-					<input type="radio" id="tested_num"
-					name="tested_num-0" value="0" checked="checked"> 0회
-				</label>
-				
-				<label class="radio-inline">
-					<input type="radio" id="tested_num"
-					name="tested_num-1" value="1"> 1회
-				</label>
-				
-				<label class="radio-inline">
-					<input type="radio" id="tested_num"
-					name="tested_num-2" value="2"> 2회
-				</label>
-				
-				<label class="radio-inline">
-					<input type="radio" id="tested_num"
-					name="tested_num-3" value="3회 이상"> 3회 이상
-				</label>
+			<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" id="tested_num"
+					name="tested_num-0" value="0" checked="checked"> 
+					<label class="form-check-label">0회</label>
+			</div>	
+			
+			<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" id="tested_num"
+					name="tested_num-1" value="1"> 
+					<label class="form-check-label">1회</label>
+			</div>	
+			
+			<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" id="tested_num"
+					name="tested_num-2" value="2"> 
+					<label class="form-check-label">2회</label>
+			</div>	
+			
+			<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" id="tested_num"
+					name="tested_num-3" value="3회 이상"> 
+					<label class="form-check-label">3회 이상</label>
+			</div>
 		</div>
 
-			
 
 			
 			
