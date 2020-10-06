@@ -95,7 +95,7 @@
                             <div class="meta d-flex align-items-center">
                             	<p>${lecture_list.lecture_info}</p>
                             </div>
-                            <button type="button" class="btn btn-outline-success">수강하기</button>
+                            <button type="button" class="btn btn-outline-success">내 강좌에 넣기</button>
                             <input type="hidden" value="${lecture_list.lecture_id}">
                             
                         </div>
