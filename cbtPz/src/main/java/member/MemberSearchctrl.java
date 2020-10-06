@@ -39,14 +39,17 @@ public class MemberSearchctrl implements Controller {
 		if(check.equals("T")) {
 			TeacherVO teacherVO = (TeacherVO) request.getSession().getAttribute("login");
 			String teacher_id = teacherVO.getTeacher_id();
-			teacherVO.setTeacher_id(teacher_id);
+			TeacherVO tteacherVO = new TeacherVO();
+			tteacherVO.setTeacher_id(teacher_id);
+			
 			TeacherDAO tdao = TeacherDAO.getInstance();
-			TeacherVO teacher = tdao.selectOne(teacherVO);
+			TeacherVO teacher = tdao.selectOne(tteacherVO);
 			request.setAttribute("teacher", teacher);
-			System.out.println(teacher);
+			//System.out.println(teacher);
 		}
 	
-		HttpUtil.forward(request, response, "/mypage/myInfo.jsp"); // 이동
+		//HttpUtil.forward(request, response, "/mypage/myInfo.jsp"); // 이동
+		request.getRequestDispatcher("/mypage/myInfo.jsp").forward(request, response);
 	}
 
 }

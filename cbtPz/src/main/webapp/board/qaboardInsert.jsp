@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 	<script>
+	<!--공백 체크 및 비밀번호 확인  -->
 	function inputCheck() {
 
 		if (frm.qaboard_type_cd.value == "") {
@@ -44,7 +45,7 @@
 <title>qaboardInsert.jsp</title>
 </head>
 <body>
-	
+		<!--Q&A 입력 폼  -->
 		<div class="container" role="main">
 			<br><br>
 			<form id="frm" name="frm" id="frm" onsubmit="return inputCheck()" method="post" action="${pageContext.request.contextPath}/board/qaboardInsert.do">

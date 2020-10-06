@@ -20,6 +20,32 @@ public class LearnDAO {
 		return instance;
 	}
 	
+	public int learnDelete(LearnVO learnVO) {
+		int r =0;
+		try {
+			conn = ConnectionManager.getConnnect();
+			
+			String sql = "delete from learn " + 
+					" where member_id = ? "+ 
+					"and lecture_id = ? ";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, learnVO.getMember_id());
+			pstmt.setString(2, learnVO.getLecture_id());		
+					
+			r = pstmt.executeUpdate();
+
+			// 3. 결과 처리
+			if (r == 1) {
+				System.out.println(r + "건이 처리됨");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(conn);
+		}
+		return r;
+	} // learn테이블 수강강의 인서트
+	
 	public ArrayList<LearnVO> selectAll(LearnVO learnVO) {
 		
 		LearnVO resultVO = null;

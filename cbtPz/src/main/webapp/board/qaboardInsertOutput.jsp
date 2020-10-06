@@ -6,6 +6,8 @@
 <meta charset="UTF-8">
 <title>qaboardInsertOutput.jsp</title>
 <script>
+	//삭제 완료 페이지
+
 	//글쓰기  완료시  목록으로 보냄	
 	if('${qaboard.qaboard_id}'=='${qaboard.qaboard_id}'){
 		window.alert("글이 등록 되었습니다");

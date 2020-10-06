@@ -1,5 +1,6 @@
 package model;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -190,29 +191,45 @@ public class TeacherDAO {
 	//교사 개인정보 수정
 		public int update(TeacherVO teacherVO) {
 			int r=0;
+			CallableStatement cstmt = null;
+			conn = ConnectionManager.getConnnect();
 			try {
-				conn = ConnectionManager.getConnnect();
-				String sql = "UPDATE TEACHER_MEMBER SET TEACHER_PASSWORD = ?, TEACHER_RECORD = ?, TEACHER_NAME = ?, TEACHER_CERTIFICATE = ?, "
-						+ " TEACHER_EMAIL = ?, TEACHER_PICTURE = ? "
-						+ " WHERE TEACHER_ID = ? ";
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, teacherVO.getTeacher_password());
-				pstmt.setString(2, teacherVO.getTeacher_record());
-				pstmt.setString(3, teacherVO.getTeacher_name());
-				pstmt.setString(4, teacherVO.getTeacher_certificate());
-				pstmt.setString(5, teacherVO.getTeacher_email());
-				pstmt.setString(6, teacherVO.getTeacher_picture());
-				pstmt.setString(7, teacherVO.getTeacher_id());
-				r = pstmt.executeUpdate();
+				cstmt = conn.prepareCall("{call prof_update(?,?,?,?,?,?)}");
+				cstmt.setString(1, teacherVO.getTeacher_id());
+				cstmt.setString(2, teacherVO.getTeacher_password());
+				cstmt.setString(3, teacherVO.getTeacher_record());
+				cstmt.setString(4, teacherVO.getTeacher_picture());
+				cstmt.setString(5, teacherVO.getTeacher_certificate());
+				cstmt.setString(6, teacherVO.getTeacher_email());
+				r = cstmt.executeUpdate();
 				System.out.println(r + "건이 수정됨");
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
-				ConnectionManager.close(conn);
+				ConnectionManager.close(null, pstmt, conn);
 			}
 			return r;
 		} //교사 개인정보 수정
 		
 	
+	//교사 탈퇴
+			public int delete(TeacherVO teacherVO) {
+				int r=0;
+				CallableStatement cstmt = null;
+				conn = ConnectionManager.getConnnect();
+				try {
+					cstmt = conn.prepareCall("{call prof_delete(?)}");
+					cstmt.setString(1, teacherVO.getTeacher_id());
+					r = cstmt.executeUpdate();
+					System.out.println(r + "건이 삭제됨");
+				} catch (Exception e) {
+					e.printStackTrace();
+				} finally {
+					ConnectionManager.close(null, pstmt, conn);
+				}
+				return r;
+			} //교사 탈퇴
+		
+		
 	
 }

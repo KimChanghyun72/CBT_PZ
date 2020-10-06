@@ -53,7 +53,7 @@
 </head>
 <body>
 <article>
-
+		<!-- 공지사항 상세조회 페이지  -->
 		<div class="container" role="main">
 
 			<br><br>

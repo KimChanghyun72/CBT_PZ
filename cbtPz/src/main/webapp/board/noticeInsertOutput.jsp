@@ -6,6 +6,8 @@
 <meta charset="UTF-8">
 <title>noticeInsertOutput.jsp</title>
 <script>
+	//입력 확인 페이지
+	
 	//글쓰기  완료시  목록으로 보냄	
 	if('${board.board_id}'=='${board.board_id}'){
 		window.alert("글이 등록 되었습니다");

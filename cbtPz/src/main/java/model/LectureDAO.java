@@ -173,7 +173,8 @@ public class LectureDAO {
 				String sql = "SELECT LECTURE_ID, LECTURE_NAME, LECTURE_INFO, LECTURE_LINK, LECTURE_IMAGE,"
 							+ " LECTURE_LEVEL, LECTURE_SUBJECT, teacher_name"
 							+ " FROM LECTURE, teacher_member"
-							+ " WHERE lecture.teacher_id = teacher_member.teacher_id";
+							+ " WHERE lecture.teacher_id = teacher_member.teacher_id"
+							+ " ORDER BY LECTURE_ID";
 				pstmt = conn.prepareStatement(sql);
 				rs = pstmt.executeQuery();
 				while(rs.next()) { //list니까 while문 사용
@@ -209,7 +210,8 @@ public class LectureDAO {
 								+ " LECTURE_LEVEL, LECTURE_SUBJECT, teacher_name"
 								+ " FROM LECTURE, teacher_member"
 								+ " WHERE lecture.teacher_id = teacher_member.teacher_id"
-								+ " AND LECTURE.LECTURE_SUBJECT = ?"; 
+								+ " AND LECTURE.LECTURE_SUBJECT = ?"
+								+ " ORDER BY LECTURE_NAME"; 
 					pstmt = conn.prepareStatement(sql);
 					pstmt.setString(1, lectureVO.getLecture_subject());
 					rs = pstmt.executeQuery();

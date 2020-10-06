@@ -20,6 +20,7 @@
 </script>
 </head>
 <body>
+	<!--자유게시판 목록  -->
 	<article>
 		<div class="container">
 			<div class="table-responsive">

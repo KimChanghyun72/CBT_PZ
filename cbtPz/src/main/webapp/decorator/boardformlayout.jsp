@@ -33,6 +33,7 @@
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.min.js"></script>
 
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.relocator.1.0.0.js"></script>
     
  <decorator:head/>   
 
@@ -106,7 +107,7 @@
                                         <li><a href="${pageContext.request.contextPath}/mypage/memLecture.do">나의 강의</a></li>
                                         </c:if>
                                         <c:if test="${not empty sessionScope.check && sessionScope.check == 'T'}">
-                                        <li><a href="${pageContext.request.contextPath}/insertLecForm.do">강의 등록</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/mypage/insertLecForm.do">강의 등록</a></li>
                                         </c:if>
                                         <li><a href="courses.html">오답노트</a></li>
                                         <li><a href="single-course.html">개인성적</a></li>

@@ -106,6 +106,7 @@ $(function(){
 
 </head>
 <body>
+	<!-- 자유게시판 상세조회 페이지  -->
 <article>
 
 		<div class="container" role="main">

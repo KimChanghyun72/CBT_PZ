@@ -89,7 +89,7 @@ $(function(){
 </head>
 <body>
 <article>
-
+		<!-- Q&A 상세조회 페이지  -->
 		<div class="container" role="main">
 
 			<br><br>
