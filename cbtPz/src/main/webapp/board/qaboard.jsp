@@ -109,10 +109,11 @@ $(function(){
 				</div>
 			<div style="margin-top : 20px">
 			 <p align="right">	
+				<c:if test="${sessionScope.name == board.member_id}">
 				<button type="button" onclick="location.href='${pageContext.request.contextPath}/board/qaboardUpdateForm.do?qaboard_id='+${qaboard.qaboard_id}" class="btn btn-sm btn-primary" id="btnUpdate">수정</button>
 
 				<button type="button" onclick="location.href='${pageContext.request.contextPath}/board/qaboardDelete.do?qaboard_id='+${qaboard.qaboard_id}" class="btn btn-sm btn-primary" id="btnDelete">삭제</button>
-
+				</c:if>
 				<button type="button" onclick="location.href='${pageContext.request.contextPath}/board/qaboardList.do'" class="btn btn-sm btn-primary" id="btnList">목록</button>
 			</p>
 			</div>

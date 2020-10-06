@@ -33,6 +33,7 @@
 			    			alert("수강되었습니다.");
 			    		}else if(data == 0){
 			    			alert("이미 수강한 강의입니다.");
+			    			$('#btn').onchange.val("수강중")
 			    		}
 			        }
 			    });
@@ -95,7 +96,8 @@
                             <div class="meta d-flex align-items-center">
                             	<p>${lecture_list.lecture_info}</p>
                             </div>
-                            <button type="button" class="btn btn-outline-success">수강하기</button>
+                           
+                            <button type="button" id="btn" class="btn btn-outline-success">수강하기</button>
                             <input type="hidden" value="${lecture_list.lecture_id}">
                             
                         </div>

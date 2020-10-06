@@ -77,8 +77,10 @@
 
 				</table>
 				<p align="right">
+					<c:if test="${sessionScope.check=='M'||sessionScope.check=='A'}">
 					<button class="btn btn-sm btn-primary"
 						onclick="location.href='${pageContext.request.contextPath}/board/qaboardInsert.jsp'">글쓰기</button>
+					</c:if>
 					<c:if test="${sessionScope.check=='A'}">
 						<button id="del" class="btn btn-sm btn-primary" onclick="check()">삭제</button>
 					</c:if>
