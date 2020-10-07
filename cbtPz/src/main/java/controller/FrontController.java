@@ -120,7 +120,7 @@ public class FrontController extends HttpServlet {
     	
     	//철희
     	list.put("/problemInsert.do", new admin.ProblemInsertCtrl());
-    	list.put("/excelInsert.do", new admin.ExcelInsertCtrl());
+    	//list.put("/excelInsert.do", new admin.ExcelInsertCtrl());
     	list.put("/hashInsert.do", new admin.HashInsertCtrl());
     	
     	
