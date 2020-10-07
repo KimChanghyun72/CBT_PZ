@@ -146,18 +146,19 @@ var size = <%=probSize%>;
 var is_submit=0;
 $(function(){
 	$(document).on("click", "#checknum", function () {
+		console.log($(this).val());	
+		console.log($(this).closest("tr").find('#paper_id').val());
 	    var checkNum = $(this).val();
-	    console.log($(this).val());
-	    console.log(document.getElementById('paper_id').value);
-	    console.log(document.getElementById('pro_id').value);
+	    var paper_id = $(this).closest("tr").find('#paper_id').val();
+	    var pro_id = $(this).closest("tr").find('#pro_id').val();
 	    $.ajax({
 	        type: "POST",   
 	        url: "${pageContext.request.contextPath}/ajax/paperUpdate.do",
 	        dataType : "json",
 	        data: {
 	        	check_num : checkNum,
-	        	paper_id : document.getElementById('paper_id').value,
-	        	problem_id : document.getElementById('pro_id').value
+	        	paper_id : paper_id,
+	        	problem_id : pro_id
 	        },
 	        success: function(data){
 	           
@@ -192,7 +193,13 @@ $(function(){ //for문은 번호를 설정해주는 역할만 하고 이벤트�
 	var cnt = 0; //문제 맞춘 갯수
 	//ajax로 답지 불러오는 함수.
 	function submitFunc(){
+		var solve_id = $('#solve_id').val();
+		var testTime = $('#testTime').val();
 		$.ajax("${pageContext.request.contextPath}/ajax/probScoringCtrl.do", {
+			data : {
+				 solve_id : solve_id,
+				 testTime : testTime				 
+				},
 			dataType : "json",
 			success : function(datas){
 				for(i=0; i<datas.length; i++){
@@ -245,7 +252,8 @@ function msg_time() {	// 1초씩 카운트
 	var msg = "현재 경과된 시간은 <font color='red'>" + m + "</font> 입니다.";
 	document.all.ViewTimer.innerHTML = msg;		// div 영역에 보여줌 
 	 if(is_submit != true){// 제출되지 않았다면 1초씩 증가
-		SetTime++;		
+		SetTime++;
+	 $("[name=testTime]").val(SetTime)
 	} else{
 		var timeCnt = SetTime;
 		$("[name=testTime]").val(timeCnt);  //form에 걸린 시간 전송
@@ -260,8 +268,6 @@ window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };
 </script>
 </head>
 <body>
-	
-	
 	<div class="header">
 		<h1>${problemList[0].solve_type_cd} </h1>
 		<c:if test="">
@@ -282,8 +288,8 @@ window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };
 				<td class="probNum<%=probNum %>"><%=probNum+1 %>번</td>
 				<td>
 					<div><%=problemList.get(probNum).get("problem_text") %>&nbsp;&nbsp;<input type="checkbox"  name="probChk<%=probNum%>"></div>
-					<input type="text" id="paper_id" value="<%=problemList.get(probNum).get("paper_id") %>">
-					<input type="text" id="pro_id" value="<%=problemList.get(probNum).get("problem_id") %>">
+					<input type="hidden" id="paper_id" value="<%=problemList.get(probNum).get("paper_id") %>">
+					<input type="hidden" id="pro_id" value="<%=problemList.get(probNum).get("problem_id") %>">
 					<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="1"><%=problemList.get(probNum).get("ans_1") %></div>
 					<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="2"><%=problemList.get(probNum).get("ans_2") %></div>
 					<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="3"><%=problemList.get(probNum).get("ans_3") %></div>
@@ -295,10 +301,6 @@ window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };
 			<% } %>
 		</tbody>
     </table>
-    			<input type="text" name="solve_id" value="${problemList[0].solve_id} ">
-				<input type="text" name="testTime"> <!-- 테스트에 걸린 시간 -->
-				<input type="text" name="testScore"> <!-- 테스트 성적 -->
-				<input type="text" name="testNum"> <!-- 문제 갯수 -->
 	</form>
 </div>
 
@@ -313,6 +315,8 @@ window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };
 								for(ansNum=0; ansNum<problemList.size();ansNum++){
 							%>
 							<tr>
+								<td><input type="hidden" id="paper_id" value="<%=problemList.get(ansNum).get("paper_id") %>"></td>
+								<td><input type="hidden" id="pro_id" value="<%=problemList.get(ansNum).get("problem_id") %>"></td>
 								<td class="ansNum<%=problemList.get(ansNum).get("problem_id") %>"><b><%=ansNum+1 %>. |</b></td>
 								<td>&nbsp; 1<input type="radio" id="checknum" name="answer<%=ansNum %>" value="1"></td>
 								<td>&nbsp; 2<input type="radio" id="checknum" name="answer<%=ansNum %>" value="2"></td>
@@ -323,20 +327,16 @@ window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };
 							<% } %>
 						</tbody>
 					</table>
-					<!-- 응시 insert -->
-					<form action="${pageContext.request.contextPath}/solveUpdate.do">
-						<input type="text" name="solve_id" value="${problemList[0].solve_id} ">
-						<input type="text" name="testTime"> <!-- 테스트에 걸린 시간 -->
-						<input type="text" name="testScore"> <!-- 테스트 성적 -->
-						<input type="text" name="testNum"> <!-- 문항 갯수 -->
+						<input type="text" id="solve_id" name="solve_id" value="${problemList[0].solve_id}">
+						<input type="text" id="testTime" name="testTime"> <!-- 테스트에 걸린 시간 -->
 					
-					<button class="btnScore">제출</button>
-					<button>dd</button>
-					</form>
+					
+					
 					
 					<div class="ans_correct"></div>
 				</div>
 			</div>
+			<button class="btnScore">제출</button>
 		</div>
 	</div>
 </body>
