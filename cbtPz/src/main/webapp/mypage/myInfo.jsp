@@ -89,69 +89,240 @@
 	
 	<h1 class="page_title">개인 정보 수정</h1>
 	<c:if test="${sessionScope.check == 'M'}">
-		<form method="post" name="frm" id="frm" action="<%=application.getContextPath()%>/memberUpdate.do"
-			onsubmit="inputCheck()">
-		<div class="regist">
-			<div>
-				<label for="member_id">ID</label> <input id="member_id"
-					name="member_id" type="text" value="${login.member_id}"
-					readonly="readonly">
+			<div class="container">
+			<div class="row justify-content-center">
+		<!-- Post A Comment -->
+		<div class="col-12 col-lg-8">
+			<div class="post-a-comments mb-70">
+			
+		<form method="post" name="frm" id="frm"
+		action="<%=application.getContextPath()%>/memberUpdate.do"
+			onsubmit="inputCheck()" enctype="multipart/form-data">
+			<div class="row">
+				<div class="col-12 col-lg-6">
+					<div class="form-group" style="text-align: center;">
+						<p>ID</p>
+						</div>
+					</div>
+					<div class="col-12 col-lg-6">
+						<div class="form-group">
+						<input id="member_id" name="member_id"
+						type="text" value="${login.member_id}" readonly="readonly">
 			</div>
-			<div>
-				<label for="member_pw">Password</label> <input id="member_pw"
-					name="member_pw" type="password" value="${login.member_pw}">
 			</div>
-			<div>
-				<label for="member_name">이름</label> <input type="text"
-					name="member_name" value="${login.member_name}">
+			
+			
+			
+			<div class="col-12 col-lg-6">
+				<div class="form-group" style="text-align: center;">
+					<p>Password</p>
+				</div>
 			</div>
-			<div>
-				<label for="member_age">나이</label> <input type="text"
-					name="member_age" value="${login.member_age }">
+			<div class="col-12 col-lg-6">
+            	<div class="form-group">
+					<input id="member_pw" name="member_pw"
+					type="password" value="${login.member_pw}">
 			</div>
-			<div>
-				<label for="member_job">직업</label> <input type="text"
-					name="member_job" value="${login.member_job}">
-					
-					<select id="member_job" name="member_job" class="form-control" value="${login.member_job}">
-								<option value="학생">학생</option>
-								<option value="취준생">취준생</option>
-								<option value="직장인">직장인</option>
-					</select>
 			</div>
-			<div>
-				<label for="study_term">공부기간</label> <input type="text"
-					id="study_term" name="study_term" value="${login.study_term }">
+			
+			
+			<div class="col-12 col-lg-6">
+				<div class="form-group" style="text-align: center;">
+					<p>Name</p>
+					</div>
+				</div>
+					<div class="col-12 col-lg-6">
+                    	<div class="form-group">
+					<input type="text" name="member_name" value="${login.member_name}">
+				</div>
 			</div>
-			<div>
-				<label for="phone_number">전화번호</label> <input type="text"
-					id="phone_number" name="phone_number"
-					value="${login.phone_number }">
+			
+			
+			
+			
+		<div class="col-12 col-lg-6">
+			<div class="form-group" style="text-align: center;">
+				<p>Age</p>
+		</div>
 			</div>
-			<div>
-				<label for="is_major">전공 여부</label> <input type="checkbox"
-					name="is_major" value="y">
-				<!-- yes or no -->
+			<div class="col-12 col-lg-6">
+			<div class="form-group">
+				<input type="text" name="member_age"
+				value="${login.member_age }">
 			</div>
-			<div>
-				<label for="tested_num">시험 응시 횟수</label> <input type="text"
-					id="tested_num" name="tested_num" value="${login.tested_num }">
 			</div>
-			<div>
-				<label for="email">이메일</label> <input type="text"
-					id="email" name="email" value="${login.email }">
+			
+			
+			
+
+			
+			
+		<div class="col-12 col-lg-6">
+		<div class="form-group" style="text-align: center;">
+				<p>Phone number</p>
+		</div>
+		</div>
+			<div class="col-12 col-lg-6">
+			<div class="form-group">
+				<input type="text" id="phone_number"
+				name="phone_number" value="${login.phone_number }">
 			</div>
-			<div>
-				<button type="reset">초기화</button>
-				<button>등록</button>
+			</div>
+			
+			
+		<div class="col-12 col-lg-6">
+		<div class="form-group" style="text-align: center;">
+				<p>Email</p> 
+			</div>
+			</div>
+		<div class="col-12 col-lg-6">
+		<div class="form-group">
+				<input type="text" id="email"
+				name="email" value="${login.email }">
+			</div>
+			</div>
+			
+			
+			
+			
+			
+			
+		<div class="col-12 col-lg-6">
+		<div class="form-group" style="text-align: center;">
+				<p>Job</p>
+			</div>
+			</div>
+		<div class="col-12 col-lg-6">
+        <div class="form-group">
+        
+				<select id="member_job" name="member_job" class="form-control">
+						<option value="학생">학생</option>
+						<option value="취준생">취준생</option>
+						<option value="직장인">직장인</option>
+				</select>
+			</div>
+			</div>
+			
+			
+			
+			
+		<div class="col-12 col-lg-6">
+		<div class="form-group" style="text-align: center;">
+				<p>전공 여부</p>
+		</div>
+        </div>
+	        <div class="col-12 col-lg-6">
+	        <div class="form-group">
+		        <div class="form-check form-check-inline">
+				  <input class="form-check-input" type="radio" name="is_major" value="Y" checked="checked">
+				  <label class="form-check-label" for="is_major">예</label>
+				</div>
+				<div class="form-check form-check-inline">
+				  <input class="form-check-input" type="radio" name="is_major" value="N">
+				  <label class="form-check-label" for="is_major">아니오</label>
+				</div>
+			</div>
+			</div>	
+			
+
+			
+			
+			
+			
+		<div class="col-12 col-lg-6">
+		<div class="form-group" style="text-align: center;">
+				<p>공부기간</p>
+		</div>
+		</div>
+		
+			<div class="col-12 col-lg-6">
+			<div class="form-group">
+			
+				<div class="form-check disabled">
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" id="study_term"
+					name="study_term" value="1개월 미만" checked="checked">
+					<label class="form-check-label">1개월 미만</label>
+				</div>
+				</div>
+				
+				<div class="form-check disabled">
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" id="study_term"
+					name="study_term" value="1~3개월 미만">
+					<label class="form-check-label">1~3개월 미만</label>
+				</div>
+				</div>
+				
+				<div class="form-check disabled">
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" id="study_term"
+					name="study_term" value="3개월 이상">
+					<label class="form-check-label">3개월 이상</label>
+				</div>
+				</div>
+				
+			</div>
+			</div>
+			
+
+			
+			
+		<div class="col-12 col-lg-6">
+		<div class="form-group" style="text-align: center;">
+			<label class="col-md-4 control-label" for="tested_num">시험 응시 횟수</label>
+			</div>
+			</div>
+		<div class="col-12 col-lg-6">
+			<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" id="tested_num"
+					name="tested_num-0" value="0" checked="checked"> 
+					<label class="form-check-label">0회</label>
+			</div>	
+			
+			<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" id="tested_num"
+					name="tested_num-1" value="1"> 
+					<label class="form-check-label">1회</label>
+			</div>	
+			
+			<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" id="tested_num"
+					name="tested_num-2" value="2"> 
+					<label class="form-check-label">2회</label>
+			</div>	
+			
+			<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" id="tested_num"
+					name="tested_num-3" value="3회 이상"> 
+					<label class="form-check-label">3회 이상</label>
 			</div>
 		</div>
-		</form>
+
+
+			
+			
+		<div class="col-12">
+        	<button class="btn clever-btn w-100" id="tfrmsubmit">수정</button>
+       </div>
+			</div>
+			</form>
+			
+
 		<form action="memberDelete.do" method="post">
 			<input type="hidden" name="member_id" value="${login.member_id }" />
-			<button>회원 탈퇴</button>
+			<button id="tdelete" class="btn clever-btn">회원 탈퇴</button>
 		</form>
+		</div>
+		</div>
+		</div>
+		</div>
 	</c:if>
+	
+	
+	
+	
+	
 	
 	
 	

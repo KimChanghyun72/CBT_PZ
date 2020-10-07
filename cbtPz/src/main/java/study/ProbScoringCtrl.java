@@ -51,16 +51,16 @@ public class ProbScoringCtrl implements Controller {
 		  /***************************************************/
 		 /**************** 제출 시 DB update********************/
 		/***************************************************/
-		/*
-		 * SolveVO solveVO = new SolveVO(); System.out.println();
-		 * solveVO.setSolve_score(request.getParameter("testScore"));
-		 * solveVO.setSolve_time(request.getParameter("testTime"));
-		 * solveVO.setSolve_cnt(request.getParameter("testNum"));
-		 * solveVO.setSolve_id(request.getParameter("solve_id"));
-		 * 
-		 * 
-		 * SolveDAO dao = new SolveDAO(); dao.UpateSolve(solveVO);
-		 */
+		
+//		  SolveVO solveVO = new SolveVO(); System.out.println();
+//		  solveVO.setSolve_score(request.getParameter("testScore"));
+//		  solveVO.setSolve_time(request.getParameter("testTime"));
+//		  solveVO.setSolve_cnt(request.getParameter("testNum"));
+//		  solveVO.setSolve_id(request.getParameter("solve_id"));
+//		  
+//		  
+//		  SolveDAO dao = new SolveDAO(); dao.UpateSolve(solveVO);
+		 
 	}
 
 }

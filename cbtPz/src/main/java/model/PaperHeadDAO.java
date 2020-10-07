@@ -32,7 +32,7 @@ public class PaperHeadDAO {
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = "SELECT p.PROBLEM_ID, s.solve_type_cd, SUBJECT, HAESEOL, PROBLEM_TEXT, ANS_1, ANS_2, ANS_3, " 
-						+ " ANS_4, ANS_CORRECT, PAPERHEAD_ID, PROBLEM_IMAGE, p.solve_id "  
+						+ " ANS_4, ANS_CORRECT, PAPERHEAD_ID, PROBLEM_IMAGE, p.solve_id, p.paper_id "  
 					    + " FROM paper p, PROBLEM b, SOLVE s " 
 					    + " where p.problem_id = b.problem_id "  
 					    + " and p.solve_id = s.solve_id "
@@ -58,6 +58,7 @@ public class PaperHeadDAO {
 				map.put("paperhead_id", rs.getString(11));
 				map.put("problem_image", rs.getString(12));
 				map.put("solve_id", rs.getString(13));
+				map.put("paper_id", rs.getString(14));
 				list.add(map);
 			}
 			
