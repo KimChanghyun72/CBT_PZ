@@ -23,7 +23,7 @@ public class SolveDAO {
 			conn = ConnectionManager.getConnnect();
 			String sql = "UPDATE SOLVE " 
 						+" 		SET SOLVE_SCORE = " 
-						+"			( SELECT sum(IS_CORRECT) " 
+						+"			( SELECT sum(NVL(IS_CORRECT,0)) " 
 						+"			  from PAPER " 
 						+"			  where solve_id = ? ), " 
 						+" 			SOLVE_TIME = ? " 						 
