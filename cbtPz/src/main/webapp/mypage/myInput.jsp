@@ -22,7 +22,7 @@
 				</tr>
 			</thead>
 			<tbody>
-			<c:forEach items="${ board_list }" var="board">
+			<c:forEach items="${board_list}" var="board">
 				<tr>
 					<td>${board.board_id}</td>
 					<td><a href="myInputSelect.do?board_id=${board.board_id}">${board.board_title}</a></td>

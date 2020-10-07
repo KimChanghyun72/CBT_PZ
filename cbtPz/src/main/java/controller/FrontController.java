@@ -81,6 +81,7 @@ public class FrontController extends HttpServlet {
     	list.put("/myFavorite.do", new retest.MyFavoriteCtrl());						// 즐겨찾기 문제 출력
     	
     	
+    	list.put("/mypage/myFavorite.do", new retest.MyFavoriteCtrl());						// 즐겨찾기 문제 출력
     	
     	
     	
@@ -103,7 +104,6 @@ public class FrontController extends HttpServlet {
     	list.put("/ajax/hashtagAutoSearch.do", new study.HashAutoSearchCtrl());
     	
     	list.put("/ajax/paperUpdate.do", new study.PaperUpdateCtrl());
-    	
 
     	
     	
@@ -121,9 +121,14 @@ public class FrontController extends HttpServlet {
     	
     	//철희
     	list.put("/problemInsert.do", new admin.ProblemInsertCtrl());
-    	//list.put("/excelInsert.do", new admin.ExcelInsertCtrl());
+
+
     	list.put("/hashInsert.do", new admin.HashInsertCtrl());
-    	
+    	list.put("/ajax/studyChart.do", new admin.StudyTermChartCtrl());
+    	list.put("/ajax/majorChart.do", new admin.MajorChartCtrl());
+    	list.put("/memberList.do", new admin.MemberListCtrl());
+    	list.put("/memberUpdateForm.do", new member.MemberUpdateFormCtrl());
+    	list.put("/excelInsert.do", new admin.ExcInsertCtrl());
     	
     	
     	
