@@ -10,10 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import admin.ExcelInsertCtrl;
-
-
-
 @MultipartConfig(location = "C:/upload", maxRequestSize = 1024 * 1024 * 10)
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -105,7 +101,8 @@ public class FrontController extends HttpServlet {
     	list.put("/hashtagSelect.do", new study.HashSelectCtrl());
     	list.put("/ajax/hashtagAutoSearch.do", new study.HashAutoSearchCtrl());
     	
-    	list.put("/solveUpdate.do", new study.SolveUpdateCtrl());
+    	list.put("/ajax/paperUpdate.do", new study.PaperUpdateCtrl());
+    	
 
     	
     	

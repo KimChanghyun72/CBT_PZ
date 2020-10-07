@@ -6,7 +6,17 @@
 		<pattern>/board/*</pattern>
 		<pattern>/mypage/*</pattern>
 		<pattern>/pay/*</pattern>
+		<pattern>/admin/*</pattern>
+		<pattern>/memberList.do</pattern>
 		
+		<!-- study part sitemesh apply -->
+		<pattern>/study/studymain.jsp</pattern>
+		<pattern>/haederSearch.do</pattern>
+		<pattern>/subjectSearch.do</pattern>
+		<pattern>/hashtagPage.do</pattern>
+		
+		<!-- 마이페이지 작성글 -->
+		<pattern>/myInput.do</pattern>
 	</decorator>
 	
 	<decorator name="user" page="layout.jsp">

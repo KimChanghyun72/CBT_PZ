@@ -31,9 +31,12 @@ public class MyInputCtrl implements Controller {
 		BoardDAO dao = BoardDAO.getInstance();
 		ArrayList<BoardVO> board = dao.selectMemberAll(boardvo);
 		
+		//페이지이름 할당
+		
+		request.getSession().setAttribute("pageName", "작성글");
 		// page 이동
 		request.setAttribute("board_list", board);
 		HttpUtil.forward(request, response, "/mypage/myInput.jsp");
+	
 	}
-
 }

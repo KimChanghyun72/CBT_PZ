@@ -11,18 +11,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
+import model.SolveDAO;
 import net.sf.json.JSONArray;
 
 public class ProbScoringCtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		
 		int i;
 		
 		// 채점
 		List<Map<String, Object>> headproblem = (List<Map<String, Object>>)request.getSession().getAttribute("problemList");
-		//System.out.println(headproblem);
 		List<Map<String, String>> ansList = new ArrayList<Map<String, String>>();
 		for(i=0 ; i<headproblem.size(); i++) {
 			String ansCorrect;
@@ -33,34 +35,28 @@ public class ProbScoringCtrl implements Controller {
 			ansCorrect = (String)headproblem.get(i).get("ans_correct");
 			haeseol = (String)headproblem.get(i).get("haeseol");
 			
-//			System.out.println(problemId);
-//			System.out.println(ansCorrect);
-//			System.out.println(haeseol);
 			
 			ans.put("problem_id", problemId);
 			ans.put("ans_correct", ansCorrect);
 			ans.put("haeseol", haeseol);
-//			System.out.println(ans);
 			ansList.add(i, ans);
-//			System.out.println(ansList);
 			}
+		//채점 후 시간,결과 업데이트
+		String a, b;
+			
+		a = request.getParameter("solve_id");
+		b = request.getParameter("testTime");
+		
+		SolveDAO.getInstance().UpateSolve(a, b);
+		
 		String result = JSONArray.fromObject(ansList).toString();
 		response.getWriter().print(result);
 		
 		
-		  /***************************************************/
-		 /**************** 제출 시 DB update********************/
-		/***************************************************/
-		/*
-		 * SolveVO solveVO = new SolveVO(); System.out.println();
-		 * solveVO.setSolve_score(request.getParameter("testScore"));
-		 * solveVO.setSolve_time(request.getParameter("testTime"));
-		 * solveVO.setSolve_cnt(request.getParameter("testNum"));
-		 * solveVO.setSolve_id(request.getParameter("solve_id"));
-		 * 
-		 * 
-		 * SolveDAO dao = new SolveDAO(); dao.UpateSolve(solveVO);
-		 */
+		
+		
+
+		 
 	}
 
 }

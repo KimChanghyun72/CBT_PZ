@@ -164,56 +164,54 @@ public class LectureDAO {
 		
 		
 		//강의페이지 강의전체리스트
-		public ArrayList<LectureVO> selectLectureAll(){
-			LectureVO resultVO = null;
-			ResultSet rs = null;
-			ArrayList<LectureVO> list = new ArrayList<LectureVO>();
-			try {
-				conn = ConnectionManager.getConnnect();
-				String sql = "SELECT LECTURE_ID, LECTURE_NAME, LECTURE_INFO, LECTURE_LINK, LECTURE_IMAGE,"
-							+ " LECTURE_LEVEL, LECTURE_SUBJECT, teacher_name"
-							+ " FROM LECTURE, teacher_member"
-							+ " WHERE lecture.teacher_id = teacher_member.teacher_id"
-							+ " ORDER BY LECTURE_ID";
-				pstmt = conn.prepareStatement(sql);
-				rs = pstmt.executeQuery();
-				while(rs.next()) { //list니까 while문 사용
-					resultVO = new LectureVO();
-					resultVO.setLecture_id(rs.getString("lecture_id"));
-					resultVO.setTeacher_name(rs.getString("teacher_name"));
-					resultVO.setLecture_name(rs.getString("lecture_name"));
-					resultVO.setLecture_info(rs.getString("lecture_info"));
-					resultVO.setLecture_link(rs.getString("lecture_link"));
-					resultVO.setLecture_image(rs.getString("lecture_image"));
-					resultVO.setLecture_level(rs.getString("lecture_level"));
-					resultVO.setLecture_subject(rs.getString("lecture_subject"));
-					list.add(resultVO); //resultVo를 list에 담음
-				} 
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				ConnectionManager.close(rs, pstmt, conn);
-			}
-			return list;  //담은 list를 리턴.
-		}//selectAll
+		/*
+		 * // public ArrayList<LectureVO> selectLectureAll(){ // LectureVO resultVO =
+		 * null; // ResultSet rs = null; // ArrayList<LectureVO> list = new
+		 * ArrayList<LectureVO>(); // try { // conn = ConnectionManager.getConnnect();
+		 * // String sql =
+		 * "SELECT LECTURE_ID, LECTURE_NAME, LECTURE_INFO, LECTURE_LINK, LECTURE_IMAGE,"
+		 * // + " LECTURE_LEVEL, LECTURE_SUBJECT, teacher_name" // +
+		 * " FROM LECTURE, teacher_member" // +
+		 * " WHERE lecture.teacher_id = teacher_member.teacher_id" // +
+		 * " ORDER BY LECTURE_ID"; // pstmt = conn.prepareStatement(sql); // rs =
+		 * pstmt.executeQuery(); // while(rs.next()) { //list니까 while문 사용 // resultVO =
+		 * new LectureVO(); // resultVO.setLecture_id(rs.getString("lecture_id")); //
+		 * resultVO.setTeacher_name(rs.getString("teacher_name")); //
+		 * resultVO.setLecture_name(rs.getString("lecture_name")); //
+		 * resultVO.setLecture_info(rs.getString("lecture_info")); //
+		 * resultVO.setLecture_link(rs.getString("lecture_link")); //
+		 * resultVO.setLecture_image(rs.getString("lecture_image")); //
+		 * resultVO.setLecture_level(rs.getString("lecture_level")); //
+		 * resultVO.setLecture_subject(rs.getString("lecture_subject")); //
+		 * list.add(resultVO); //resultVo를 list에 담음 // } // } catch (Exception e) { //
+		 * e.printStackTrace(); // } finally { // ConnectionManager.close(rs, pstmt,
+		 * conn); // } // return list; //담은 list를 리턴. // }//selectAll
+		 */		
 		
-		
-		
-		//강의 카테별 조회
-			public ArrayList<LectureVO> selectCate(LectureVO lectureVO){
+		//강의페이지 강의전체리스트
+			public ArrayList<LectureVO> selectLectureAll(LearnVO learnVO){
 				LectureVO resultVO = null;
 				ResultSet rs = null;
 				ArrayList<LectureVO> list = new ArrayList<LectureVO>();
 				try {
 					conn = ConnectionManager.getConnnect();
+					String where ="";
+					if(learnVO.getMember_id() != null) {
+						where += ", nvl((SELECT 1 from learn where lecture_id = LECTURE.lecture_id  AND member_id = ? ),0) lecture_yn";		
+					} else {
+						where += ", 0 lecture_yn ";
+					}
 					String sql = "SELECT LECTURE_ID, LECTURE_NAME, LECTURE_INFO, LECTURE_LINK, LECTURE_IMAGE,"
-								+ " LECTURE_LEVEL, LECTURE_SUBJECT, teacher_name"
+								+ " LECTURE_LEVEL, LECTURE_SUBJECT, teacher_name "
+								+ where
 								+ " FROM LECTURE, teacher_member"
 								+ " WHERE lecture.teacher_id = teacher_member.teacher_id"
-								+ " AND LECTURE.LECTURE_SUBJECT = ?"
-								+ " ORDER BY LECTURE_NAME"; 
+								+ " ORDER BY LECTURE_ID"
+								+ "";
 					pstmt = conn.prepareStatement(sql);
-					pstmt.setString(1, lectureVO.getLecture_subject());
+					if(learnVO.getMember_id() != null) {
+						pstmt.setString(1, learnVO.getMember_id());
+					}
 					rs = pstmt.executeQuery();
 					while(rs.next()) { //list니까 while문 사용
 						resultVO = new LectureVO();
@@ -225,6 +223,61 @@ public class LectureDAO {
 						resultVO.setLecture_image(rs.getString("lecture_image"));
 						resultVO.setLecture_level(rs.getString("lecture_level"));
 						resultVO.setLecture_subject(rs.getString("lecture_subject"));
+						resultVO.setLecture_yn(rs.getString("lecture_yn"));
+						list.add(resultVO); //resultVo를 list에 담음
+					} 
+				} catch (Exception e) {
+					e.printStackTrace();
+				} finally {
+					ConnectionManager.close(rs, pstmt, conn);
+				}
+				return list;  //담은 list를 리턴.
+			}//selectAl
+		
+		
+		
+		
+		
+		
+		//강의 카테별 조회
+			public ArrayList<LectureVO> selectCate(LectureVO lectureVO){
+				LectureVO resultVO = null;
+				ResultSet rs = null;
+				ArrayList<LectureVO> list = new ArrayList<LectureVO>();
+				try {
+					conn = ConnectionManager.getConnnect();
+					String where ="";
+					if(lectureVO.getMember_id() != null) {
+						where += ", nvl((SELECT 1 from learn where lecture_id = LECTURE.lecture_id  AND member_id = ? ),0) lecture_yn";		
+					} else {
+						where += ", 0 lecture_yn ";
+					}
+					String sql = "SELECT LECTURE_ID, LECTURE_NAME, LECTURE_INFO, LECTURE_LINK, LECTURE_IMAGE,"
+								+ " LECTURE_LEVEL, LECTURE_SUBJECT, teacher_name"
+								+ where
+								+ " FROM LECTURE, teacher_member"
+								+ " WHERE lecture.teacher_id = teacher_member.teacher_id"
+								+ " AND LECTURE.LECTURE_SUBJECT = ?"
+								+ " ORDER BY LECTURE_NAME"; 
+					pstmt = conn.prepareStatement(sql);
+					if(lectureVO.getMember_id() != null) {
+						pstmt.setString(1, lectureVO.getMember_id());
+						pstmt.setString(2, lectureVO.getLecture_subject());
+					}else {
+						pstmt.setString(1, lectureVO.getLecture_subject());
+					}
+					rs = pstmt.executeQuery();
+					while(rs.next()) { //list니까 while문 사용
+						resultVO = new LectureVO();
+						resultVO.setLecture_id(rs.getString("lecture_id"));
+						resultVO.setTeacher_name(rs.getString("teacher_name"));
+						resultVO.setLecture_name(rs.getString("lecture_name"));
+						resultVO.setLecture_info(rs.getString("lecture_info"));
+						resultVO.setLecture_link(rs.getString("lecture_link"));
+						resultVO.setLecture_image(rs.getString("lecture_image"));
+						resultVO.setLecture_level(rs.getString("lecture_level"));
+						resultVO.setLecture_subject(rs.getString("lecture_subject"));
+						resultVO.setLecture_yn(rs.getString("lecture_yn"));
 						list.add(resultVO);
 					} 
 				} catch (Exception e) {

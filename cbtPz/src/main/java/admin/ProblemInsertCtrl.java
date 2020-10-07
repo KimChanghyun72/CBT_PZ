@@ -7,14 +7,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
-import problem.ProblemDAO;
-import problem.ProblemVO;
+import model.ProblemDAO;
+import model.ProblemVO;
 
-public class ProblemInsertCtrl implements Controller {
+public class ProblemInsertCtrl implements Controller {    // 개별문제 등록 페이지 
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String problem_id = request.getParameter("problem_id");
 		String subject = request.getParameter("subject");
 		String haeseol = request.getParameter("haeseol");
 		String problem_text = request.getParameter("problem_text");
@@ -27,7 +26,6 @@ public class ProblemInsertCtrl implements Controller {
 		System.out.println(subject);
 
 		ProblemVO problem = new ProblemVO();
-		problem.setProblem_id(problem_id);
 		problem.setSubject(subject);
 		problem.setHaeseol(haeseol);
 		problem.setProblem_text(problem_text);

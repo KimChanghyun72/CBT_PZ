@@ -134,9 +134,10 @@ $(function(){
 </head>
 
 <body>
+<% request.getSession().setAttribute("pageName", "HashTag"); %>
  <section class="cool-facts-area section-padding-100-0">
         <div class="container">
-			<div class="center"><h1>HashTag</h1></div>
+			<!-- <div class="center"><h1>HashTag</h1></div> -->
             <div class="row">
                 <!-- Single Cool Facts Area -->
                 <div class="col-12 col-sm-6 col-lg-3">

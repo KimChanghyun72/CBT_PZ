@@ -89,21 +89,20 @@ public class ProblemDAO {
 	public void insert(model.ProblemVO problem) {
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "INSERT INTO PROBLEM (PROBLEM_ID, SUBJECT, HAESEOL, PROBLEM_TEXT, ANS_1, ANS_2, "
+			String sql = "INSERT INTO PROBLEMS (PROBLEM_ID, SUBJECT, HAESEOL, PROBLEM_TEXT, ANS_1, ANS_2, "
 					+ "ANS_3, ANS_4, ANS_CORRECT, PAPERHEAD_ID, PROBLEM_IMAGE) "
-					+ "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+					+ "VALUES (PROBLEM_SEQ.NEXTVAL,?,?,?,?,?,?,?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, problem.getProblem_id());
-			pstmt.setString(2, problem.getSubject());
-			pstmt.setString(3, problem.getHaeseol());
-			pstmt.setString(4, problem.getProblem_text());
-			pstmt.setString(5, problem.getAns_1());
-			pstmt.setString(6, problem.getAns_2());
-			pstmt.setString(7, problem.getAns_3());
-			pstmt.setString(8, problem.getAns_4());
-			pstmt.setString(9, problem.getAns_correct());
-			pstmt.setString(10, problem.getPaperhead_id());
-			pstmt.setString(11, problem.getProblem_image());
+			pstmt.setString(1, problem.getSubject());
+			pstmt.setString(2, problem.getHaeseol());
+			pstmt.setString(3, problem.getProblem_text());
+			pstmt.setString(4, problem.getAns_1());
+			pstmt.setString(5, problem.getAns_2());
+			pstmt.setString(6, problem.getAns_3());
+			pstmt.setString(7, problem.getAns_4());
+			pstmt.setString(8, problem.getAns_correct());
+			pstmt.setString(9, problem.getPaperhead_id());
+			pstmt.setString(10, problem.getProblem_image());
 		
 			int r = pstmt.executeUpdate();
 			System.out.println(r + "건이 입력됨");

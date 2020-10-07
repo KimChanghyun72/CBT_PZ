@@ -24,7 +24,7 @@ public class QaBoardListCtrl implements Controller {
 			page = Integer.parseInt(p);
 		}
 		Paging paging = new Paging();
-		paging.setPageUnit(5);
+		paging.setPageUnit(10);
 		paging.setPageSize(3);
 		paging.setPage(page);
 		
