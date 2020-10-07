@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" isELIgnored="false" %>
+	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -20,11 +20,11 @@
 			return false;
 		}
 		//if(frm.job.value == ""){
-		if (frm.member_job.selectedIndex == 0) { //
+		/* if (frm.member_job.selectedIndex == 0) { //
 			window.alert("job 선택");
 			frm.member_job.focus();
 			return false;
-		}
+		} */
 		return true;
 	};
 	/**/
@@ -45,7 +45,9 @@
 	
 	
 	$(function(){
-		
+		$("[name=is_major]").val(["${member.is_major}"]);
+		$("[name=study_term]").val(["${member.study_term}"]);
+		$("[name=tested_num]").val(["${member.tested_num}"]);
 		//수정 상태 어럴트
 		if("${errorcode}" > 0 && "${errorcode}" < 5 ){
 			alert("${errormsg}");		
@@ -107,7 +109,7 @@
 					<div class="col-12 col-lg-6">
 						<div class="form-group">
 						<input id="member_id" name="member_id"
-						type="text" value="${login.member_id}" readonly="readonly">
+						type="text" value="${member.member_id}" readonly="readonly">
 			</div>
 			</div>
 			
@@ -121,7 +123,7 @@
 			<div class="col-12 col-lg-6">
             	<div class="form-group">
 					<input id="member_pw" name="member_pw"
-					type="password" value="${login.member_pw}">
+					type="password" value="${member.member_pw}">
 			</div>
 			</div>
 			
@@ -133,7 +135,7 @@
 				</div>
 					<div class="col-12 col-lg-6">
                     	<div class="form-group">
-					<input type="text" name="member_name" value="${login.member_name}">
+					<input type="text" name="member_name" value="${member.member_name}">
 				</div>
 			</div>
 			
@@ -148,7 +150,7 @@
 			<div class="col-12 col-lg-6">
 			<div class="form-group">
 				<input type="text" name="member_age"
-				value="${login.member_age }">
+				value="${member.member_age }" readonly>
 			</div>
 			</div>
 			
@@ -165,7 +167,7 @@
 			<div class="col-12 col-lg-6">
 			<div class="form-group">
 				<input type="text" id="phone_number"
-				name="phone_number" value="${login.phone_number }">
+				name="phone_number" value="${member.phone_number}">
 			</div>
 			</div>
 			
@@ -178,7 +180,7 @@
 		<div class="col-12 col-lg-6">
 		<div class="form-group">
 				<input type="text" id="email"
-				name="email" value="${login.email }">
+				name="email" value="${member.email }">
 			</div>
 			</div>
 			
@@ -214,7 +216,7 @@
 	        <div class="col-12 col-lg-6">
 	        <div class="form-group">
 		        <div class="form-check form-check-inline">
-				  <input class="form-check-input" type="radio" name="is_major" value="Y" checked="checked">
+				  <input class="form-check-input" type="radio" name="is_major" value="Y">
 				  <label class="form-check-label" for="is_major">예</label>
 				</div>
 				<div class="form-check form-check-inline">
@@ -276,25 +278,25 @@
 		<div class="col-12 col-lg-6">
 			<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" id="tested_num"
-					name="tested_num-0" value="0" checked="checked"> 
+					name="tested_num" value="0" checked="checked"> 
 					<label class="form-check-label">0회</label>
 			</div>	
 			
 			<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" id="tested_num"
-					name="tested_num-1" value="1"> 
+					name="tested_num" value="1"> 
 					<label class="form-check-label">1회</label>
 			</div>	
 			
 			<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" id="tested_num"
-					name="tested_num-2" value="2"> 
+					name="tested_num" value="2"> 
 					<label class="form-check-label">2회</label>
 			</div>	
 			
 			<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" id="tested_num"
-					name="tested_num-3" value="3회 이상"> 
+					name="tested_num" value="3"> 
 					<label class="form-check-label">3회 이상</label>
 			</div>
 		</div>

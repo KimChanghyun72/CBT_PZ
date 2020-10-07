@@ -30,7 +30,7 @@ public class SecondFilter implements Filter {
 		if (uri.indexOf("login") < 0) {
 			HttpSession session = ((HttpServletRequest) request).getSession();
 			String contextPath = ((HttpServletRequest) request).getContextPath();
-			if (session.getAttribute("id") == null) {
+			if (session.getAttribute("login") == null) {
 				((HttpServletResponse) response).sendRedirect("member/login");
 			}
 			return;

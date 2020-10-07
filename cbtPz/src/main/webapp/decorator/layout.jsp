@@ -73,7 +73,7 @@
                      <!-- Navbar Toggler -->
                     <div class="classy-navbar-toggler">
                         <span class="navbarToggler"><span></span><span></span><span></span></span>
-                    </div> -->
+                    </div>
 
                     <!-- Menu -->
                     <div class="classy-menu">
