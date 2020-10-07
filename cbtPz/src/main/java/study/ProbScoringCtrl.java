@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
-import model.SolveDAO;
-import model.SolveVO;
 import net.sf.json.JSONArray;
 
 public class ProbScoringCtrl implements Controller {
@@ -51,21 +49,18 @@ public class ProbScoringCtrl implements Controller {
 		
 		
 		  /***************************************************/
-		 /**************** 제출 시 DB insert********************/
+		 /**************** 제출 시 DB update********************/
 		/***************************************************/
-		/*
-		 * SolveVO solveVO = new SolveVO();
-		 * 
-		 * solveVO.setSolve_score(request.getParameter("testScore"));
-		 * solveVO.setMember_id(request.getParameter("member_id"));
-		 * solveVO.setSolve_time(request.getParameter("testTime"));
-		 * solveVO.setSolve_type_cd(request.getParameter("solve_type_cd"));
-		 * solveVO.setSolve_cnt(request.getParameter("testNum"));
-		 * 
-		 * 
-		 * SolveDAO dao = new SolveDAO(); dao.insertSolve(solveVO);
-		 */
-
+		
+//		  SolveVO solveVO = new SolveVO(); System.out.println();
+//		  solveVO.setSolve_score(request.getParameter("testScore"));
+//		  solveVO.setSolve_time(request.getParameter("testTime"));
+//		  solveVO.setSolve_cnt(request.getParameter("testNum"));
+//		  solveVO.setSolve_id(request.getParameter("solve_id"));
+//		  
+//		  
+//		  SolveDAO dao = new SolveDAO(); dao.UpateSolve(solveVO);
+		 
 	}
 
 }

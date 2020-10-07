@@ -7,35 +7,29 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
-import model.MemberVo;
 import model.SolveDAO;
 import model.SolveVO;
 
-public class SolveInsertCtrl implements Controller {
+public class SolveUpdateCtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		//String path = "study_result.jsp";
-		
-		MemberVo login = new MemberVo();
-		login = (MemberVo) request.getSession().getAttribute("login");
-		String login_id = login.getMember_id();
+		//String path = "studyPaper.jsp";
 		
 		SolveVO solveVO = new SolveVO();
 		System.out.println();
-		solveVO.setSolve_score(request.getParameter("testScore"));
-		solveVO.setMember_id(login_id);
+		solveVO.setSolve_score(request.getParameter("testScore"));	
 		solveVO.setSolve_time(request.getParameter("testTime"));
-		solveVO.setSolve_type_cd(request.getParameter("solve_type_cd"));
 		solveVO.setSolve_cnt(request.getParameter("testNum"));
+		solveVO.setSolve_id(request.getParameter("solve_id"));
 		
 				
 		SolveDAO dao = new SolveDAO();
-		dao.insertSolve(solveVO);
+		dao.UpateSolve(solveVO);
 
-		//response.sendRedirect("/study/"+path);
-
+		//response.sendRedirect(path);
+		
 	}
 
 }
