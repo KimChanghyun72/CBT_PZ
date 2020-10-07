@@ -28,6 +28,7 @@
 				<br> <br>
 				<table class="table table-striped table-sm">
 					<colgroup>
+						<col style="width: 1%;" />
 						<col style="width: 10%;" />
 						<col style="width: 30%;" />
 						<col style="width: 15%;" />
@@ -37,6 +38,7 @@
 					</colgroup>
 					<thead>
 						<tr align="center">
+							<th> </th>
 							<th>NO</th>
 							<th>글제목</th>
 							<th>작성자</th>
@@ -58,9 +60,14 @@
 							<c:when test="${!empty list}">
 								<c:forEach var="qaboard" items="${list}">
 									<tr>
+										<c:if test="${qaboard.qaboard_views <= 2}">
+										<td style="color:Tomato;">NEW</td>
+										</c:if>
+										<c:if test="${qaboard.qaboard_views > 2}">
+										<td>  </td>
+										</c:if>
 										<td>${qaboard.qaboard_id}</td>
-										<td><a
-											href="${pageContext.request.contextPath}/board/qaboardSelect.do?qaboard_id=${qaboard.qaboard_id}">${qaboard.qaboard_title}</a></td>
+										<td><a href="${pageContext.request.contextPath}/board/qaboardSelect.do?qaboard_id=${qaboard.qaboard_id}">${qaboard.qaboard_title}</a></td>
 										<td>${qaboard.member_id}</td>
 										<td>${qaboard.qaboard_views}</td>
 										<td>${qaboard.qaboard_date}</td>
