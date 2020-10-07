@@ -23,6 +23,8 @@ public class ProblemHeadCtrl implements Controller {
 		
 		MemberVo memberVo= (MemberVo) request.getSession().getAttribute("login");
 		SearchVO searchVO = new SearchVO();
+		//문제 유형 세션에서 불러옴.
+		
 		
 		//파라미터 변수에 저장
 		String member_id = memberVo.getMember_id();
