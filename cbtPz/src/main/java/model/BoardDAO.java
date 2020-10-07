@@ -39,11 +39,12 @@ public class BoardDAO {
 				if(boardVo.getBoard_title() != null) {
 					where += " and title like '%' || ? || '%'";
 				}
-				//String sql = "SELECT BOARD_ID,TITLE,CONTENTS,MEMBER_ID,BOARD_DATE,VIEWS FROM BOARD";
+			
 			
 				String sql = "select a.* from(select rownum rn,b.* from( "
-						+ " SELECT BOARD_ID,BOARD_TITLE,BOARD_CONTENTS,MEMBER_ID,BOARD_DATE,BOARD_VIEWS,BOARD_FILE"
-						+ " FROM BOARD"
+						+ " SELECT BOARD_ID,BOARD_TITLE,BOARD_CONTENTS,MEMBER_ID,BOARD_DATE,BOARD_VIEWS,"
+						+ " (case when sysdate - board_date<0.007 then 1 else 0 end) isNew"
+						+ " FROM BOARD "
 						+ where
 						+ " AND BOARD_ID NOT LIKE'A%'"
 						+ " ORDER BY TO_NUMBER(BOARD_ID) DESC"
@@ -68,6 +69,7 @@ public class BoardDAO {
 				resultVO.setMember_id(rs.getString(5));
 				resultVO.setBoard_date(rs.getString(6));
 				resultVO.setBoard_views(rs.getInt(7));
+				resultVO.setIsNew(rs.getString(8));
 				list.add(resultVO);
 
 			}
