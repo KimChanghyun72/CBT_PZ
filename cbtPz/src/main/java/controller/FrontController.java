@@ -76,7 +76,7 @@ public class FrontController extends HttpServlet {
     	list.put("/lectureSelect.do", new teacher.LectureSelectCtrl());			// 이미지 불러오기
     	list.put("/mypage/memLecture.do", new member.MemLectureCtrl());				// 회원) 강의 조회 페이지
     	
-    	list.put("/myInput.do", new member.MyInputCtrl());						// 회원 작성글 조회 페이지
+    	list.put("/mypage/myInput.do", new member.MyInputCtrl());						// 회원 작성글 조회 페이지
     	list.put("/myInputSelect.do", new member.MyInputSelectCtrl());
     	
     	
