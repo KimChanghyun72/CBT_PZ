@@ -40,8 +40,7 @@ public class PaperDAO {
 		return r;
 	}
 	
-	public int updateCorrect(PaperVO paperVO) {
-		int r = 0;
+	public void updateCorrect(String a,PaperVO paperVO) {
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = "UPDATE PAPER " 
@@ -49,40 +48,36 @@ public class PaperDAO {
 						 +" WHERE PAPER_ID = ? "  
 					     +" AND PROBLEM_ID = ? "; 
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, paperVO.getIs_correct());
+			pstmt.setString(1, a);
 			pstmt.setString(2, paperVO.getPaper_id());
 			pstmt.setString(3, paperVO.getProblem_id());
-			r = pstmt.executeUpdate();
-			System.out.println(r + "건 수정됨");
+			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			ConnectionManager.close(null, pstmt, conn);
 		}
-		return r;
 	}
 	
-	public int selectAns(ProblemVO problemVO) {
-		int r = 0;
-		ProblemVO resultVO = null;
+	public String selectAns(String a) {
+		String b = null;
 		try {
 			conn = ConnectionManager.getConnnect(); 
 			String sql = "SELECT ANS_CORRECT "  
 					+" FROM PROBLEM "  
 					+" WHERE PROBLEM_ID = ?"; 
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, problemVO.getProblem_id());
+			pstmt.setString(1, a);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				resultVO = new ProblemVO();
-				resultVO.setAns_correct(rs.getString(1));
+				b = rs.getString("ANS_CORRECT");
 			} 
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			ConnectionManager.close(rs, pstmt, conn);
 		}
-		return r;
+		return b;
 	}
 	
 }

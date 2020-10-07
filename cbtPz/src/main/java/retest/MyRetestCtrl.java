@@ -1,4 +1,4 @@
-package member;
+package retest;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,34 +9,29 @@ import javax.servlet.http.HttpServletResponse;
 
 import common.HttpUtil;
 import controller.Controller;
-import model.BoardDAO;
-import model.BoardVO;
 import model.MemberVo;
+import model.ProblemDAO;
+import model.ProblemVO;
+import model.SolveVO;
 
-public class MyInputCtrl implements Controller {
+public class MyRetestCtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Parameter 추출
 		MemberVo member = (MemberVo) request.getSession().getAttribute("login");
 		String member_id = member.getMember_id();
-		// member_id를 기준으로 조회
-		
-		BoardVO boardvo = new BoardVO();
-		boardvo.setMember_id(member_id);
-		boardvo.setFirst(1);
-		boardvo.setLast(10);
+		//
+		SolveVO solvevo = new SolveVO();
+		solvevo.setMember_id(member_id);
 		
 		// DAO 객체의 메소드 호출
-		BoardDAO dao = BoardDAO.getInstance();
-		ArrayList<BoardVO> board = dao.selectMemberAll(boardvo);
+		ProblemDAO dao = ProblemDAO.getInstance();
+		ArrayList<ProblemVO> problem = dao.selectAllRetest(solvevo);
 		
-		//페이지이름 할당
-		
-		request.getSession().setAttribute("pageName", "작성글");
 		// page 이동
-		request.setAttribute("board_list", board);
-		HttpUtil.forward(request, response, "/mypage/myInput.jsp");
-	
+		request.setAttribute("retest_list", problem);
+		HttpUtil.forward(request, response, "/mypage/myRetest.jsp");
 	}
+
 }
