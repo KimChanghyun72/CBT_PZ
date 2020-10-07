@@ -147,40 +147,38 @@ public class ProblemDAO {
 	
 	
 	
-	// 오답노트, 오답 문제 불러오기
-		public ArrayList<ProblemVO> selectAllRetest(SolveVO solveVO) {
-			// 매개변수랑 리턴값 다름
-			ProblemVO resultVO = null;
-			ResultSet rs = null;
+	// 오답노트 응시결과 불러오기
+	public ArrayList<SolveVO> selectAllRetest(SolveVO solveVO) {
+		SolveVO resultVO = null;
+		ResultSet rs = null;
+		
+		ArrayList<SolveVO> list = new ArrayList<SolveVO>();
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "SELECT member_id, SOLVE_ID, SOLVE_DATE, SOLVE_TIME, SOLVE_TYPE_CD, SOLVE_SCORE, SOLVE_CNT "  
+						+" FROM SOLVE "  
+						+" WHERE MEMBER_ID = ? ";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, solveVO.getMember_id()); // member_id를 기준으로  문제 출력
+			rs = pstmt.executeQuery();
 			
-			ArrayList<ProblemVO> list = new ArrayList<ProblemVO>();
-			try {
-				conn = ConnectionManager.getConnnect();
-				String sql = "select problem_text, ans_1, ans_2, ans_3, ans_4"
-							+ " from problem, paper, solve"
-							+ " where problem.problem_id = paper.problem_id"
-							+ " and paper.solve_id = solve.solve_id" 
-							+ " and paper.is_correct = 'N'"
-							+ " and member_id = ?";
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, solveVO.getMember_id()); // member_id를 기준으로 오답인 문제 출력
-				rs = pstmt.executeQuery();
-				
-				while(rs.next()) {
-					resultVO = new ProblemVO();
-					resultVO.setProblem_text(rs.getString("problem_text"));
-					resultVO.setAns_1(rs.getString("ans_1"));
-					resultVO.setAns_2(rs.getString("ans_2"));
-					resultVO.setAns_3(rs.getString("ans_3"));
-					resultVO.setAns_4(rs.getString("ans_4"));
-					list.add(resultVO);
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				ConnectionManager.close(rs, pstmt, conn);
+			while(rs.next()) {
+				resultVO = new SolveVO();
+				resultVO.setMember_id(rs.getString("member_id"));
+				resultVO.setSolve_id(rs.getString("solve_id"));
+				resultVO.setSolve_date(rs.getString("solve_date"));
+				resultVO.setSolve_time(rs.getString("solve_time"));
+				resultVO.setSolve_type_cd(rs.getString("solve_type_cd"));
+				resultVO.setSolve_score(rs.getString("solve_score"));
+				resultVO.setSolve_cnt(rs.getString("solve_cnt"));
+				list.add(resultVO);
 			}
-			return list;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return list;
 	}
 	
 	

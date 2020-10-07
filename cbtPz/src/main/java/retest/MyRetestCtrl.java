@@ -18,20 +18,23 @@ public class MyRetestCtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String path = "myRetest.jsp";
 		// Parameter 추출
-		MemberVo member = (MemberVo) request.getSession().getAttribute("login");
-		String member_id = member.getMember_id();
-		//
-		SolveVO solvevo = new SolveVO();
-		solvevo.setMember_id(member_id);
+		MemberVo memberVo= (MemberVo) request.getSession().getAttribute("login");
+		SolveVO solveVo = new SolveVO();
+		
+		//파라미터 변수에 저장
+		String member_id = memberVo.getMember_id();
+		
+		// VO에 담기
+		solveVo.setMember_id(member_id);
 		
 		// DAO 객체의 메소드 호출
-		ProblemDAO dao = ProblemDAO.getInstance();
-		ArrayList<ProblemVO> problem = dao.selectAllRetest(solvevo);
+		ArrayList<SolveVO> problem = ProblemDAO.getInstance().selectAllRetest(solveVo);
 		
 		// page 이동
-		request.setAttribute("retest_list", problem);
-		HttpUtil.forward(request, response, "/mypage/myRetest.jsp");
+		request.getSession().setAttribute("solvelist", problem);
+		request.getRequestDispatcher("/mypage/"+path).forward(request, response);
 	}
 
 }
