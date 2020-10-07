@@ -144,4 +144,44 @@ public class ProblemDAO {
 			ConnectionManager.close(null, pstmt, conn);
 		}
 	}
+	
+	
+	
+	// 오답노트 응시결과 불러오기
+	public ArrayList<SolveVO> selectAllRetest(SolveVO solveVO) {
+		SolveVO resultVO = null;
+		ResultSet rs = null;
+		
+		ArrayList<SolveVO> list = new ArrayList<SolveVO>();
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "SELECT member_id, SOLVE_ID, SOLVE_DATE, SOLVE_TIME, SOLVE_TYPE_CD, SOLVE_SCORE, SOLVE_CNT "  
+						+" FROM SOLVE "  
+						+" WHERE MEMBER_ID = ? ";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, solveVO.getMember_id()); // member_id를 기준으로  문제 출력
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				resultVO = new SolveVO();
+				resultVO.setMember_id(rs.getString("member_id"));
+				resultVO.setSolve_id(rs.getString("solve_id"));
+				resultVO.setSolve_date(rs.getString("solve_date"));
+				resultVO.setSolve_time(rs.getString("solve_time"));
+				resultVO.setSolve_type_cd(rs.getString("solve_type_cd"));
+				resultVO.setSolve_score(rs.getString("solve_score"));
+				resultVO.setSolve_cnt(rs.getString("solve_cnt"));
+				list.add(resultVO);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return list;
+	}
+	
+	
+	
+	
 }

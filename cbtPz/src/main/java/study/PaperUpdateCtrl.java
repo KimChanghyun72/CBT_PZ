@@ -1,20 +1,16 @@
 package study;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
-import model.HashtagDAO;
-import model.HashtagVO;
 import model.PaperDAO;
 import model.PaperVO;
-import model.ProblemVO;
-import net.sf.json.JSONArray;
 
+//Paper 테이블 실시간 체크번호, 정답여부 update
 public class PaperUpdateCtrl implements Controller {
 
 	@Override
@@ -30,22 +26,25 @@ public class PaperUpdateCtrl implements Controller {
 		
 		//VO에 담기
 		PaperVO paperVO = new PaperVO();
-		ProblemVO problemVO = new ProblemVO();
 		
 		paperVO.setCheck_num(check_num);
 		paperVO.setPaper_id(paper_id);
 		paperVO.setProblem_id(problem_id);
-		problemVO.setProblem_id(problem_id);
 		
 		//서비스		
-		int r = PaperDAO.getInstance().updateChecknum(paperVO);		
-		int a = PaperDAO.getInstance().selectAns(problemVO);
-		System.out.println(r);
-		System.out.println(a);
+		PaperDAO.getInstance().updateChecknum(paperVO);		
+		String ans  = PaperDAO.getInstance().selectAns(problem_id);
+		String a = "0";
+		if(check_num.equals(ans)) {
+			a = "1";
+			PaperDAO.getInstance().updateCorrect(a,paperVO);
+			System.out.println("정답");
+		}else {
+			a = "0";
+			PaperDAO.getInstance().updateCorrect(a,paperVO);
+			System.out.println("오답"); 
+		}
 		
-		//조회결과를 저장후에 결과페이지로 포워드
-		String str =  JSONArray.fromObject(r).toString();
-		response.getWriter().print(str);
 		
 	}
 

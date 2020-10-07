@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebFilter(filterName = "second")
+//@WebFilter(filterName = "session", urlPatterns = {"/board/*", "/study/*", "/mypage/*"})
 public class SecondFilter implements Filter {
 
 	@Override
@@ -31,7 +31,9 @@ public class SecondFilter implements Filter {
 			HttpSession session = ((HttpServletRequest) request).getSession();
 			String contextPath = ((HttpServletRequest) request).getContextPath();
 			if (session.getAttribute("login") == null) {
-				((HttpServletResponse) response).sendRedirect("member/login");
+				/* ((HttpServletResponse) response).sendRedirect("member/login"); */
+				((HttpServletResponse) response).sendRedirect(contextPath + "/member/login.jsp");
+
 			}
 			return;
 		}

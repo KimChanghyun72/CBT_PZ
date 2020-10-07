@@ -40,7 +40,7 @@
 			<form id="frm" name="frm" id="frm" onsubmit="return inputCheck()" method="post" action="${pageContext.request.contextPath}/board/noticeInsert.do" enctype="multipart/form-data">
 				<div class="mb-3">
 					<input  class="form-control" type="text" name="board_title" id="board_title" placeholder="제목"> 
-					<input  class="form-control" type="text" name="member_id" id="member_id" placeholder="작성자" > 
+					<input  class="form-control" type="text" name="member_id" id="member_id" value="관리자" readonly="readonly"> 
 					<input type="file" id="board_file" name="board_file">
 				</div>
 

@@ -11,13 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 import controller.Controller;
 import model.MemberVo;
 import model.PaperHeadDAO;
-import model.PaperheadVO;
 import model.SearchVO;
 
 public class ProblemHeadCtrl implements Controller {
 	/**(모의/기출) 문제 불러오기**/
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
 		
 		String path = "studyPaper.jsp";
 		

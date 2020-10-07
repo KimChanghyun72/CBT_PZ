@@ -22,13 +22,13 @@ public class ProfUpdateCtrl implements Controller {
 		String path = "c:/upload/profupload";
 		//File Folder = new File(path);
 		
-		
 		System.out.println("강사 정보 수정");
 		TeacherVO teacherVO = (TeacherVO) request.getSession().getAttribute("login");
 		String teacher_id = teacherVO.getTeacher_id();
 		
 		String tname = request.getParameter("teacher_name");
 		String pw = request.getParameter("teacher_password");
+		String confirm_pw = request.getParameter("confirm_password");
 		String email = request.getParameter("teacher_email");
 		String rec = request.getParameter("teacher_record");
 		String certif = request.getParameter("teacher_certificate");
@@ -39,9 +39,12 @@ public class ProfUpdateCtrl implements Controller {
 		String teacher_picture = getFileName(part);
 
 		//System.out.println(teacher_picture);
-		
+		if(confirm_pw == null || confirm_pw.equals("")) {
+			teacher.setTeacher_password(pw);
+		} else {
+			teacher.setTeacher_password(confirm_pw);
+		}
 		teacher.setTeacher_id(teacher_id);
-		teacher.setTeacher_password(pw);
 		teacher.setTeacher_email(email);
 		teacher.setTeacher_record(rec);
 		teacher.setTeacher_certificate(certif);
