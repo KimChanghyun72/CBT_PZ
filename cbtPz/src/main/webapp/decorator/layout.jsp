@@ -116,9 +116,13 @@
                                         <c:if test="${not empty sessionScope.check && sessionScope.check == 'T'}">
                                         <li><a href="${pageContext.request.contextPath}/mypage/insertLecForm.do">강의 등록</a></li>
                                         </c:if>
-                                        <li><a href="courses.html">오답노트</a></li>
+                                        <c:if test="${not empty sessionScope.check && sessionScope.check == 'M'}">
+                                        <li><a href="${pageContext.request.contextPath}/mypage/myRetest.do">오답노트</a></li>
+                                        </c:if>
                                         <li><a href="single-course.html">개인성적</a></li>
-                                        <li><a href="instructors.html">즐겨찾기문제</a></li>
+                                        <c:if test="${not empty sessionScope.check && sessionScope.check == 'M'}">
+                                        <li><a href="${pageContext.request.contextPath}/mypage/myFavorite.do">즐겨찾기문제</a></li>
+                                        </c:if>
                                         <c:if test="${not empty sessionScope.check && sessionScope.check == 'M'}">
                                         <li><a href="${pageContext.request.contextPath}/mypage/myInput.do">작성글</a></li>
                                         </c:if>
