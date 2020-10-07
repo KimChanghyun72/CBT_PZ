@@ -14,6 +14,7 @@ import controller.Controller;
 import model.SolveDAO;
 import net.sf.json.JSONArray;
 
+//문제페이지에서 제출시 정답/해설 출력, solve 테이블에 시간,채점결과 update
 public class ProbScoringCtrl implements Controller {
 
 	@Override

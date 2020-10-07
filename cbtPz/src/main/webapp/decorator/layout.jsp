@@ -70,10 +70,10 @@
                     <!-- Logo -->
                     <a class="nav-brand" href="${pageContext.request.contextPath}/indexx.jsp">YDCBT</a>
 
-                     <!-- Navbar Toggler -->
+                    <!-- Navbar Toggler -->
                     <div class="classy-navbar-toggler">
                         <span class="navbarToggler"><span></span><span></span><span></span></span>
-                    </div> -->
+                    </div>
 
                     <!-- Menu -->
                     <div class="classy-menu">
@@ -105,7 +105,7 @@
                                 </li>
                               <c:if test="${not empty sessionScope.check && sessionScope.check != 'A'}">
                                 <li><a href="${pageContext.request.contextPath}/mypage/myInfo.do" >마이페이지</a>
-                                	<ul class="dropdown">
+                                	                                	<ul class="dropdown">
                                         <li><a href="${pageContext.request.contextPath}/mypage/myInfo.do">개인정보수정</a></li>
                                         <c:if test="${not empty sessionScope.check && sessionScope.check == 'T'}">
                                         <li><a href="${pageContext.request.contextPath}/mypage/myLecture.do">나의 강의</a></li>
