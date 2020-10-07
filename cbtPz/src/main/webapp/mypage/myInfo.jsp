@@ -31,18 +31,6 @@
 	
 	
 	
-	//교사 업데이트
-	//$(document).ready(function(){
-		/* $('#confirm_password').focusout(function(){
-			if($('#teacher_password').val() != $('#confirm_password').val()){
-				$('#pw2_check').removeClass('hidden');
-				$('#pw2_check').css('color', 'red');
-				$('#confirm_password').val("");
-			} else $('#pw2_check').addClass('hidden');
-		}); */
-	
-	//});
-	
 	
 	$(function(){
 		
@@ -53,13 +41,119 @@
 		
 		//수정버튼시 수정작동
 		$('#tfrmsubmit').on("click", function(){
-			$('#tfrm').submit();
+			var cnt = 0;
+			$('#tfrm').find("input").each(function(){
+				if($(this).val() == ""){
+					cnt++;
+				}
+				console.log(cnt);
+			});
+			
+			if($('#new_tpassword').val() == ""){
+				if(cnt > 3 ){
+					alert("모든 값을 입력하세요");
+				} else {
+					$('#tfrm').submit();
+				}
+			} else {
+				if(cnt >= 2 ){
+					alert("모든 값을 입력하세요");
+				} else {
+					$('#tfrm').submit();
+				}
+			}
 		}); 
 		
 		
 		//탈퇴
 		$('#tdelete').on("click", function(){
 			$('#tdfrm').submit();
+		});
+		
+		
+		
+		//패스워드 재설정 버튼
+		$('#newPwbtn').on("click", function(){
+			$('#newPw_div').css("display", "block");
+		}); 
+		
+		
+		//뉴패스워드 길이체크
+		$('#new_tpassword').on("focusout", function(){
+			var leng = $('#new_tpassword').val();
+			if (leng.length > 16){
+				alert("비밀번호 최대 16자리입니다");
+				$(this).val("");
+			}
+		});
+		
+		
+		//뉴패스워드 확인 체크
+		$('#confirm_password').on("focusout", function(){
+			if($('#new_tpassword').val() != $('#confirm_password').val()){
+				$('#pw2_check').css('color', 'red');
+				$('#pw2_check').text('다시 확인해주세요');
+				$('#pw2_check').show();
+				$('#confirm_password').val("");
+			} else $('#pw2_check').hide();
+		});
+		
+		
+		//email 체크
+		/* $('#teacher_email').on("focusout", function(){
+			var regex=/^[-A-Za-z0-9_]+[-A-Za-z0-9_.]*[@]{1}[-A-Za-z0-9_]+[-A-Za-z0-9_.]*[.]{1}[A-Za-z]{1,5}$/;
+			var v = $(this).val();
+			if( !regex.test(v) ) {
+				alert("정확한 email을 입력하세요");
+				$(this).val("");
+			} else {
+			
+				$.ajax({
+			        type:"POST",
+			        url:"${pageContext.request.contextPath}/ajax/memEmailCheck.do",
+			        data : {teacher_email : v},
+			        dataType : "json",
+			        success: function(data){
+			        	console.log(data);
+			            if(data == 1){
+			    			$('#teacher_email').val("");
+			    			$('#em_check').css('color', 'red');
+			    			$('#em_check').text('가입한 이력이 있습니다');
+			    		} else{
+			    			$('#em_check').text('사용 가능한 이메일입니다');
+			    		} 
+			        }
+			    });
+			}
+		}); */
+		
+		
+		
+		
+		//이력
+		$('#teacher_record').on({
+			keypress : function(){
+	 			var t = event.target.value;
+				  console.log(t.length);
+				  if( t.length > 1000){
+					  event.preventDefault();
+					  event.returnValue=false;
+					  return false;
+				}
+			}
+				
+		});
+				
+				
+		//자격증		
+		$('#teacher_certificate').on("keypress", function(){
+			var t = event.target.value;
+			  console.log(t.length);
+			  if( t.length > 400){
+				  event.preventDefault();
+				  event.returnValue=false;
+				  return false;
+			}
 		});
 		
 		
@@ -322,7 +416,7 @@
 	
 	
 	
-	
+<!-- =============================== 교사 개인정보 수정  ========================================= -->	
 	
 	
 	
@@ -336,59 +430,94 @@
                         <form action="${pageContext.request.contextPath}/mypage/proUpdate.do" method="post" 
                         	name="tfrm" id="tfrm" enctype="multipart/form-data">
                             <div class="row">
-                                <div class="col-12 col-lg-6">
+                                <div class="col-12 col-lg-5">
                                     <div class="form-group" style="text-align: center;">
                                         <p>Id</p>
                                     </div>
                                 </div>
-                                <div class="col-12 col-lg-6">
+                                <div class="col-12 col-lg-7">
                                     <div class="form-group">
 										<input id="teacher_id" name="teacher_id" type="text" value="${teacher.teacher_id}" readonly="readonly">
 									</div>
                                 </div>
-                                <div class="col-12 col-lg-6">
+                                <div class="col-12 col-lg-5">
                                     <div class="form-group" style="text-align: center;">
                                         <p>Password</p>
                                     </div>
                                 </div>
-                                <div class="col-12 col-lg-6">
+                                <div class="col-12 col-lg-7">
                                     <div class="form-group">
-										<input id="teacher_password" name="teacher_password" type="password" value="${teacher.teacher_password}">
+										<input id="teacher_password" name="teacher_password" type="password" value="${teacher.teacher_password}" readonly="readonly">
+										<span id="newPwbtn" class="btn clever-btn btn-2">비밀번호 재설정</span>
 									</div>
                                 </div>
-                                <div class="col-12 col-lg-6">
+                                <!-- 비밀번호 재설정 -->
+                              <div id="newPw_div" style="display: none;" class="col-12">
+                              <div class="row">
+                                <div class="col-12 col-lg-5">
+                                    <div class="form-group" style="text-align: center;">
+                                        <p>New Password (max 16)</p>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-7">
+                                    <div class="form-group">
+										<input id="new_tpassword" name="new_password" type="password">
+									</div>
+                                </div>
+                                <div class="col-12 col-lg-5">
+                                    <div class="form-group" style="text-align: center;">
+                                        <p>Confirm Password</p>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-7">
+                                    <div class="form-group">
+										<input id="confirm_password" name="confirm_password" type="password">
+										<span id="pw2_check"></span>
+									</div>
+                                </div>
+                              </div>
+                              </div>
+                              <!-- 비밀번호 재설정 끝 -->
+                                
+                                <div class="col-12 col-lg-5">
                                     <div class="form-group" style="text-align: center;">
                                         <p>Name</p>
                                     </div>
                                 </div>
-                                <div class="col-12 col-lg-6">
+                                <div class="col-12 col-lg-7">
                                     <div class="form-group">
 										<input type="text" name="teacher_name" value="${teacher.teacher_name}" readonly="readonly">
 									</div>
                                 </div>
-                                <div class="col-12 col-lg-6">
+                                <div class="col-12 col-lg-5">
                                     <div class="form-group" style="text-align: center;">
                                         <p>Email</p>
                                     </div>
                                 </div>
-                                <div class="col-12 col-lg-6">
+                                <div class="col-12 col-lg-7">
                                     <div class="form-group">
-                                    	<input type="text" id="teacher_email" name="teacher_email" value="${teacher.teacher_email }">
+                                    	<input type="text" id="teacher_email" name="teacher_email" value="${teacher.teacher_email }" readonly="readonly">
+                                    	<!-- <span id="em_check"></span> -->
 									</div>
                                 </div>
-                                <div class="col-12 col-lg-6">
+                                <div class="col-12 col-lg-5">
                                     <div class="form-group" style="text-align: center;">
                                         <p>Profile picture</p>
                                     </div>
                                 </div>
-                                <div class="col-12 col-lg-6">
+                                <div class="col-12 col-lg-7">
                                     <div class="form-group">
                                     	 <img id="preImage"
                                     	 	src="${pageContext.request.contextPath}/nostms/profilepicSelect.do?teacher_picture=${teacher.teacher_picture }"
 											data-title="${teacher.teacher_name }" >
 									</div>
                                 </div>
-                                <div class="col-12 col-lg-6">
+                                <div class="col-12 col-lg-5">
+                                    <div class="form-group">
+                                        <p> </p>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-7">
                                     <div class="form-group">
                                     	<input type="file" id="filename" name="teacher_picture">
 									</div>
@@ -396,7 +525,7 @@
                                 
                                 <div class="col-12">
                                     <div class="form-group" >
-                                        <p>이력</p>
+                                        <p>이력 (max 1000 characters)</p>
                                     </div>
                                 </div>
                                 <div class="col-12">
@@ -406,7 +535,7 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group" >
-                                        <p>자격증</p>
+                                        <p>보유자격증 (max 400 characters)</p>
                                     </div>
                                 </div>
                                 <div class="col-12">
@@ -415,7 +544,7 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <button class="btn clever-btn w-100" id="tfrmsubmit">수정</button>
+                                    <span class="btn clever-btn w-100" id="tfrmsubmit">수정</span>
                                 </div>
 							</div>
                         </form>
