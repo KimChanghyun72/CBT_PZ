@@ -83,6 +83,18 @@
         }
     }
 	
+	
+	//회원탈퇴 확인 메시지 창
+	function memDelete() {
+		var r = confirm("탈퇴하시겠습니까?");
+		if (r == true) {
+			memDeleteFrm.submit()
+		} else {
+			// 취소
+		}
+	}
+	
+	
 </script>
 </head>
 <body>
@@ -96,7 +108,7 @@
 			<div class="post-a-comments mb-70">
 			
 		<form method="post" name="frm" id="frm"
-		action="<%=application.getContextPath()%>/memberUpdate.do"
+		action="<%=application.getContextPath()%>/mypage/memberUpdate.do"
 			onsubmit="inputCheck()" enctype="multipart/form-data">
 			<div class="row">
 				<div class="col-12 col-lg-6">
@@ -196,9 +208,9 @@
         <div class="form-group">
         
 				<select id="member_job" name="member_job" class="form-control">
-						<option value="학생">학생</option>
-						<option value="취준생">취준생</option>
-						<option value="직장인">직장인</option>
+						<option value="학생" <c:if test="${login.member_job=='학생'}"> selected="selected"</c:if>>학생</option>
+						<option value="취준생"<c:if test="${login.member_job=='취준생'}"> selected="selected"</c:if>>취준생</option>
+						<option value="직장인"<c:if test="${login.member_job=='직장인'}"> selected="selected"</c:if>>직장인</option>
 				</select>
 			</div>
 			</div>
@@ -214,11 +226,13 @@
 	        <div class="col-12 col-lg-6">
 	        <div class="form-group">
 		        <div class="form-check form-check-inline">
-				  <input class="form-check-input" type="radio" name="is_major" value="Y" checked="checked">
+				  <input class="form-check-input" type="radio" name="is_major" value="Y"
+				  <c:if test="${login.is_major=='Y'}"> checked="checked"</c:if>>
 				  <label class="form-check-label" for="is_major">예</label>
 				</div>
 				<div class="form-check form-check-inline">
-				  <input class="form-check-input" type="radio" name="is_major" value="N">
+				  <input class="form-check-input" type="radio" name="is_major" value="N"
+				  <c:if test="${login.is_major=='N'}"> checked="checked"</c:if>>
 				  <label class="form-check-label" for="is_major">아니오</label>
 				</div>
 			</div>
@@ -241,7 +255,8 @@
 				<div class="form-check disabled">
 				<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" id="study_term"
-					name="study_term" value="1개월 미만" checked="checked">
+					name="study_term" value="1개월 미만"
+					<c:if test="${login.study_term=='1개월 미만'}"> checked="checked"</c:if>>
 					<label class="form-check-label">1개월 미만</label>
 				</div>
 				</div>
@@ -249,7 +264,8 @@
 				<div class="form-check disabled">
 				<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" id="study_term"
-					name="study_term" value="1~3개월 미만">
+					name="study_term" value="1~3개월 미만"
+					<c:if test="${login.study_term=='1~3개월 미만'}"> checked="checked"</c:if>>
 					<label class="form-check-label">1~3개월 미만</label>
 				</div>
 				</div>
@@ -257,7 +273,8 @@
 				<div class="form-check disabled">
 				<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" id="study_term"
-					name="study_term" value="3개월 이상">
+					name="study_term" value="3개월 이상"
+					<c:if test="${login.study_term=='3개월 이상'}"> checked="checked"</c:if>>
 					<label class="form-check-label">3개월 이상</label>
 				</div>
 				</div>
@@ -276,29 +293,33 @@
 		<div class="col-12 col-lg-6">
 			<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" id="tested_num"
-					name="tested_num-0" value="0" checked="checked"> 
+					name="tested_num" value="0"
+					<c:if test="${login.tested_num=='0'}"> checked="checked"</c:if>> 
 					<label class="form-check-label">0회</label>
 			</div>	
 			
 			<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" id="tested_num"
-					name="tested_num-1" value="1"> 
+					name="tested_num" value="1"
+					<c:if test="${login.tested_num=='1'}"> checked="checked"</c:if>> 
 					<label class="form-check-label">1회</label>
 			</div>	
 			
 			<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" id="tested_num"
-					name="tested_num-2" value="2"> 
+					name="tested_num" value="2"
+					<c:if test="${login.tested_num=='2'}"> checked="checked"</c:if>> 
 					<label class="form-check-label">2회</label>
 			</div>	
 			
 			<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" id="tested_num"
-					name="tested_num-3" value="3회 이상"> 
+					name="tested_num" value="3회 이상"
+					<c:if test="${login.tested_num=='3'}"> checked="checked"</c:if>> 
 					<label class="form-check-label">3회 이상</label>
 			</div>
 		</div>
-
+		<!-- name이 칼럼명과 같아야 함 -->
 
 			
 			
@@ -309,7 +330,7 @@
 			</form>
 			
 
-		<form action="memberDelete.do" method="post">
+		<form name="memDeleteFrm" action="memberDelete.do" method="post">
 			<input type="hidden" name="member_id" value="${login.member_id }" />
 			<button id="tdelete" class="btn clever-btn">회원 탈퇴</button>
 		</form>

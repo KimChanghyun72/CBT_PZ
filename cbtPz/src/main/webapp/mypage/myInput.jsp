@@ -25,7 +25,7 @@
 			<c:forEach items="${ board_list }" var="board">
 				<tr>
 					<td>${board.board_id}</td>
-					<td><a href="myInputSelect.do?board_id=${board.board_id}">${board.board_title}</td>
+					<td><a href="myInputSelect.do?board_id=${board.board_id}">${board.board_title}</a></td>
 					<td>${board.member_id}</td>
 					<td>${board.board_views}</td>
 					<td>${board.board_date}</td>
