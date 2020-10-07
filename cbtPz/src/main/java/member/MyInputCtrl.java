@@ -20,6 +20,7 @@ public class MyInputCtrl implements Controller {
 		// Parameter 추출
 		MemberVo member = (MemberVo) request.getSession().getAttribute("login");
 		String member_id = member.getMember_id();
+		System.out.println(member_id);
 		// member_id를 기준으로 조회
 		
 		BoardVO boardvo = new BoardVO();

@@ -77,10 +77,8 @@ public class FrontController extends HttpServlet {
     	list.put("/mypage/memLecture.do", new member.MemLectureCtrl());					// 회원) 강의 조회 페이지
     	list.put("/mypage/myInput.do", new member.MyInputCtrl());						// 회원 작성글 조회 페이지
     	list.put("/myInputSelect.do", new member.MyInputSelectCtrl());					// 작성글 상세 페이지로 이동
-    	list.put("/myRetest.do", new retest.MyRetestCtrl());							// 오답노트 문제 출력
-    	list.put("/myFavorite.do", new retest.MyFavoriteCtrl());						// 즐겨찾기 문제 출력
-    	
-    	
+    	list.put("/mypage/myRetest.do", new retest.MyRetestCtrl());							// 오답노트 문제 출력
+    	list.put("/mypage/myFavorite.do", new retest.MyFavoriteCtrl());						// 즐겨찾기 문제 출력
     	
     	
     	
@@ -103,7 +101,7 @@ public class FrontController extends HttpServlet {
     	list.put("/ajax/hashtagAutoSearch.do", new study.HashAutoSearchCtrl());
     	
     	list.put("/ajax/paperUpdate.do", new study.PaperUpdateCtrl());
-    	
+    	list.put("/solveUpdate.do", new study.SolveUpdateCtrl());
 
     	
     	
@@ -121,9 +119,14 @@ public class FrontController extends HttpServlet {
     	
     	//철희
     	list.put("/problemInsert.do", new admin.ProblemInsertCtrl());
-    	//list.put("/excelInsert.do", new admin.ExcelInsertCtrl());
+
+
     	list.put("/hashInsert.do", new admin.HashInsertCtrl());
-    	
+    	list.put("/ajax/studyChart.do", new admin.StudyTermChartCtrl());
+    	list.put("/ajax/majorChart.do", new admin.MajorChartCtrl());
+    	list.put("/memberList.do", new admin.MemberListCtrl());
+    	list.put("/memberUpdateForm.do", new member.MemberUpdateFormCtrl());
+    	list.put("/excelInsert.do", new admin.ExcInsertCtrl());
     	
     	
     	

@@ -29,11 +29,13 @@
 			frm.pw.focus();
 			return false;
 		}
+	
 		if (frm.pw.value != '${sessionScope.login.member_pw}') {
 			window.alert("비밀번호를 확인해주세요");
 			frm.pw.focus();
 			return false;
 		}
+		
 		
 		return true;
 	}
@@ -47,7 +49,7 @@
 			<form id="frm" name="frm" id="frm" onsubmit="return inputCheck()" method="post" action="${pageContext.request.contextPath}/board/boardInsert.do" enctype="multipart/form-data">
 				<div class="mb-3">
 					<input  class="form-control" type="text" name="board_title" id="board_title" placeholder="제목"> 
-					<input  class="form-control" type="text" name="member_id" id="member_id"  value="${sessionScope.name}" readonly="readonly"> 
+					<input  class="form-control" type="text" name="member_id" id="member_id"  value="${sessionScope.login.member_id}" readonly="readonly"> 
 					<input type="file" id="board_file" name="board_file">
 				</div>
 
