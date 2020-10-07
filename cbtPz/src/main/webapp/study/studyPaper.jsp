@@ -20,7 +20,7 @@
 }
 
 .header h1 {
-	font-size: 50px;
+	font-size: 50px; 
 }
 
 /* Style the top navigation bar */
@@ -102,8 +102,6 @@ var size = <%=probSize%>;
 var is_submit=0;
 $(function(){
 	$(document).on("click", "#checknum", function () {
-		console.log($(this).val());	
-		console.log($(this).closest("tr").find('#paper_id').val());
 	    var checkNum = $(this).val();
 	    var paper_id = $(this).closest("tr").find('#paper_id').val();
 	    var pro_id = $(this).closest("tr").find('#pro_id').val();
@@ -171,8 +169,6 @@ $(function(){ //for문은 번호를 설정해주는 역할만 하고 이벤트�
 						$("input[name=is_correct"+i+"]").val("N");
 					}
 				};
-				$("[name=testNum]").val(datas.length); //문제 갯수 입력
-				$("[name=testScore]").val(cnt); //성적 폼태그에 입력
 			}
 		})
 	}
@@ -282,12 +278,8 @@ window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };
 							<% } %>
 						</tbody>
 					</table>
-						<input type="text" id="solve_id" name="solve_id" value="${problemList[0].solve_id}">
-						<input type="text" id="testTime" name="testTime"> <!-- 테스트에 걸린 시간 -->
-					
-					
-					
-					
+						<input type="hidden" id="solve_id" name="solve_id" value="${problemList[0].solve_id}">
+						<input type="hidden" id="testTime" name="testTime"> <!-- 테스트에 걸린 시간 -->
 					<div class="ans_correct"></div>
 				</div>
 			</div>

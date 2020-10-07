@@ -10,6 +10,7 @@ import controller.Controller;
 import model.PaperDAO;
 import model.PaperVO;
 
+//Paper 테이블 실시간 체크번호, 정답여부 update
 public class PaperUpdateCtrl implements Controller {
 
 	@Override
