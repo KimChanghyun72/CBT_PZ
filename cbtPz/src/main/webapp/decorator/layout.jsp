@@ -111,7 +111,9 @@
                                         <li><a href="courses.html">오답노트</a></li>
                                         <li><a href="single-course.html">개인성적</a></li>
                                         <li><a href="instructors.html">즐겨찾기문제</a></li>
-                                        <li><a href="${pageContext.request.contextPath}/myInput.do">작성글</a></li>
+                                        <c:if test="${not empty sessionScope.check && sessionScope.check == 'M'}">
+                                        <li><a href="${pageContext.request.contextPath}/mypage/myInput.do">작성글</a></li>
+                                        </c:if>
                                     </ul>
                                 </li>
                                 <li><a href="${pageContext.request.contextPath}/pay/payment.jsp">멤버쉽</a></li>
