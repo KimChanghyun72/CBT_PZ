@@ -118,12 +118,12 @@
                                 <li><a href="${pageContext.request.contextPath}/pay/payment.jsp">멤버쉽</a></li>
                               </c:if>
                               <c:if test="${not empty sessionScope.check && sessionScope.check == 'A'}">
-                                <li><a href="instructors.html">관리자메뉴</a>
+                                <li><a href="${pageContext.request.contextPath}/memberList.do">관리자메뉴</a>
                                 	<ul class="dropdown">
-                                        <li><a href="index.jsp">기출문제</a></li>
-                                        <li><a href="courses.html">모의고사</a></li>
-                                        <li><a href="single-course.html">과목별</a></li>
-                                        <li><a href="instructors.html">태그별</a></li>
+                                       <li><a href="${pageContext.request.contextPath}/admin/quizInsert.jsp">개별문제</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/admin/headInsert.jsp">회차문제</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/admin/adminChart.jsp">회원통계</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/memberList.do">회원관리</a></li>
                                     </ul>
                                 </li>
                               </c:if>

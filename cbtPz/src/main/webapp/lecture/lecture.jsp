@@ -18,6 +18,7 @@
 			
 		
 		$('.blog-content button').on("click", function(){
+			var btn = $(this)
 			var lecid = $(this).next().val();
 			var mempay = "${sessionScope.login.is_pay}";
 			console.log(lecid);
@@ -30,10 +31,11 @@
 			        dataType : "json",
 			        success: function(data){
 			        	if(data == 1){
+			        		btn.text("수강중");
 			    			alert("수강되었습니다.");
 			    		}else if(data == 0){
-			    			alert("이미 수강한 강의입니다.");
-			    			$('#btn').onchange.val("수강중")
+			    			alert("이미 등록된 강의입니다.");
+			    			//$('#btn').onchange.val("수강중")
 			    		}
 			        }
 			    });
@@ -79,7 +81,7 @@
 	                        <img 
 	                        	src="lectureSelect.do?lecture_image=${lecture_list.lecture_image }"
 								data-title="${lecture_list.lecture_name }" data-desc="${lecture_list.lecture_info}">
-                        <!-- Blog Content -->
+                        <%-- <!-- Blog Content -->
                         <div class="blog-content">
                         <c:if test="${sessionScope.login != null && sessionScope.login.is_pay == 'Y'}">
                             <a href="${lecture_list.lecture_link}" class="blog-headline" target="_blank">
@@ -102,7 +104,43 @@
                         </div>
                     </div>
                 </div>
-                </c:forEach>
+                </c:forEach> --%>
+                
+                		<!-- Blog Content -->
+							<div class="blog-content">
+								<c:if
+									test="${sessionScope.login != null && sessionScope.login.is_pay == 'Y'}">
+									<a href="${lecture_list.lecture_link}" class="blog-headline"
+										target="_blank">
+										<h4>${lecture_list.lecture_name}</h4>
+									</a>
+								</c:if>
+								<c:if
+									test="${sessionScope.login == null || sessionScope.login.is_pay != 'Y'}">
+									<h4>${lecture_list.lecture_name}</h4>
+								</c:if>
+								<div class="meta d-flex align-items-center">
+									<span><i class="fa fa-circle" aria-hidden="true"></i></span>
+									<div>${lecture_list.teacher_name}</div>
+								</div>
+								<div class="meta d-flex align-items-center">
+									<p>${lecture_list.lecture_info}</p>
+								</div>
+
+								<button type="button" id="btn" class="btn btn-outline-success">
+									<c:if test="${lecture_list.lecture_yn == 1}">             
+                            						수강중
+                           			 </c:if>
+									<c:if test="${lecture_list.lecture_yn == 0}">             
+                            						내 강좌에 등록
+                           			 </c:if>
+								</button>
+								<input type="hidden" value="${lecture_list.lecture_id}">
+
+							</div>
+						</div>
+					</div>
+				</c:forEach>
         	</div>
 
 		</div>

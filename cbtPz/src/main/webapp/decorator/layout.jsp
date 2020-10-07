@@ -29,13 +29,21 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">    
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     
+<!-- studyPaper datatable link -->
+	<!-- <link rel="stylesheet" href="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.css"/> -->
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">    
+    
     <script src="${pageContext.request.contextPath}/js/jquery/jquery-2.2.4.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.min.js"></script>
-
+	
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.relocator.1.0.0.js"></script>
+	
+		<!-- studyPaper datatable link -->
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     
- <decorator:head/>   
+    
+<decorator:head/>   
 
     
 
@@ -62,10 +70,10 @@
                     <!-- Logo -->
                     <a class="nav-brand" href="${pageContext.request.contextPath}/indexx.jsp">YDCBT</a>
 
-                    <!-- Navbar Toggler -->
+                     <!-- Navbar Toggler -->
                     <div class="classy-navbar-toggler">
                         <span class="navbarToggler"><span></span><span></span><span></span></span>
-                    </div>
+                    </div> -->
 
                     <!-- Menu -->
                     <div class="classy-menu">
@@ -119,10 +127,10 @@
                               <c:if test="${not empty sessionScope.check && sessionScope.check == 'A'}">
                                 <li><a href="instructors.html">관리자메뉴</a>
                                 	<ul class="dropdown">
-                                        <li><a href="index.jsp">기출문제</a></li>
-                                        <li><a href="courses.html">모의고사</a></li>
-                                        <li><a href="single-course.html">과목별</a></li>
-                                        <li><a href="instructors.html">태그별</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/admin/quizInsert.jsp">개별문제</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/admin/headInsert.jsp">회차문제</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/admin/adminChart.jsp">회원통계</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/memberList.do">회원관리</a></li>
                                     </ul>
                                 </li>
                               </c:if>

@@ -12,16 +12,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-* {
-	box-sizing: border-box;
-}
-
-body {
-	font-family: Arial;
-	padding: 10px;
-	background: #f1f1f1;
-}
-
 /* Header/Blog Title */
 .header {
 	padding: 30px;
@@ -55,21 +45,21 @@ body {
 	color: black;
 }
 
+
 /* Create two unequal columns that floats next to each other */
 /* Left column */
 .leftcolumn {
 	float: left;
-	width: 60%;
+	width: 75%;
 }
 
 /* Right column */
 .rightcolumn {
 	float: right;
-	width: 40%;
-	background-color: #f1f1f1;
+	width: 25%;
+	/* background-color: #f1f1f1; */
 	padding-left: 20px;
 }
-
 /* Fake image */
 .fakeimg {
 	background-color: #aaa;
@@ -84,39 +74,6 @@ body {
 	margin-top: 20px;
 }
 
-/* Clear floats after the columns */
-.row:after {
-	content: "";
-	/* display: table;  */
-	clear: both; 
-}
-
-/* Footer */
-.footer {
-	padding: 20px;
-	text-align: center;
-	background: #ddd;
-	margin-top: 20px;
-}
-
-/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 1500px) {
-	.leftcolumn, .rightcolumn {
-		width: 100%;
-		padding: 0;
-	}
-}
-
-/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
-@media screen and (max-width: 400px) {
-	.topnav a {
-		float: none;
-		width: 100%;
-	}
-}
-.row {
-	width : 1000px;
-}
 
 .haeseol {
 	visibility:hidden;
@@ -132,8 +89,7 @@ body {
  }
 
 </style>
-<link rel="stylesheet" href="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.css"/> 
-<script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
+
 <script>
 <%
 List<Map<String, Object>> problemList = (List<Map<String, Object>>)request.getSession().getAttribute("problemList");
@@ -170,7 +126,6 @@ $(function(){
 
 $(function(){
 	 $("#foo-table").DataTable();
-	 $("div.row").eq(3).css("width","600px");
 })
 $(function(){ //for문은 번호를 설정해주는 역할만 하고 이벤트시에는 안 먹음.
 	for(var i=0; i<size; i++){
@@ -269,7 +224,7 @@ window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };
 </head>
 <body>
 	<div class="header">
-		<h1>${problemList[0].solve_type_cd} </h1>
+		<h1>${sessionScope.pageName} ${problemList[0].solve_type_cd} </h1>
 		<c:if test="">
 		</c:if>
 			<div id="ViewTimer"></div>
@@ -304,7 +259,7 @@ window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };
 	</form>
 </div>
 
-	<div class="row">
+	<!-- <div class="row"> -->
 		<div class="rightcolumn">
 			<div class="card">
 				<h3>정답확인</h3>
@@ -338,6 +293,6 @@ window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };
 			</div>
 			<button class="btnScore">제출</button>
 		</div>
-	</div>
+	<!-- </div> -->
 </body>
 </html>
