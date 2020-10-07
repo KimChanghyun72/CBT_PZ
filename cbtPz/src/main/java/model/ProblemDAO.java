@@ -144,4 +144,46 @@ public class ProblemDAO {
 			ConnectionManager.close(null, pstmt, conn);
 		}
 	}
+	
+	
+	
+	// 오답노트, 오답 문제 불러오기
+		public ArrayList<ProblemVO> selectAllRetest(SolveVO solveVO) {
+			// 매개변수랑 리턴값 다름
+			ProblemVO resultVO = null;
+			ResultSet rs = null;
+			
+			ArrayList<ProblemVO> list = new ArrayList<ProblemVO>();
+			try {
+				conn = ConnectionManager.getConnnect();
+				String sql = "select problem_text, ans_1, ans_2, ans_3, ans_4"
+							+ " from problem, paper, solve"
+							+ " where problem.problem_id = paper.problem_id"
+							+ " and paper.solve_id = solve.solve_id" 
+							+ " and paper.is_correct = 'N'"
+							+ " and member_id = ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, solveVO.getMember_id()); // member_id를 기준으로 오답인 문제 출력
+				rs = pstmt.executeQuery();
+				
+				while(rs.next()) {
+					resultVO = new ProblemVO();
+					resultVO.setProblem_text(rs.getString("problem_text"));
+					resultVO.setAns_1(rs.getString("ans_1"));
+					resultVO.setAns_2(rs.getString("ans_2"));
+					resultVO.setAns_3(rs.getString("ans_3"));
+					resultVO.setAns_4(rs.getString("ans_4"));
+					list.add(resultVO);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				ConnectionManager.close(rs, pstmt, conn);
+			}
+			return list;
+	}
+	
+	
+	
+	
 }

@@ -7,6 +7,7 @@
 <meta charset="UTF-8">		
 <title>Insert title here</title>
 </head>
+<% request.getSession().setAttribute("pageName", "학습하기-메인"); %>
 <body>
 <form action = "${pageContext.request.contextPath}/haederSearch.do">
 		<div><button name="paper_type_cd" value="모의">모의고사</button></div>
