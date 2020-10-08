@@ -87,6 +87,13 @@
  .after-Scoring{
  	visibility:hidden;
  }
+ #ques_ox1{
+	 margin: 0px; 
+	 position: absolute; 
+	 width: 55px; 
+	 height: 45px; 
+	 background-image: url(&quot;./img/re_o.gif&quot;);
+}
 
 </style>
 
@@ -173,14 +180,13 @@ $(function(){ //for문은 번호를 설정해주는 역할만 하고 이벤트�
 					console.log(datas.length)       //데이터 길이 콘솔출력
 					$(".haeseol"+i).html(datas[i].haeseol); //헤설 출력
 					if(datas[i].ans_correct == $('input[name=problem'+i+']:checked').val()){
-						$('input[name=problem'+i+']').closest("td").prev().append("<div>O</div>");
-						$("input[name=is_correct"+i+"]").val("Y");
-						cnt = cnt+1; //정답 갯수 ++
-						console.log(cnt);//정답 개수 콘솔
+						$('input[name=problem'+i+']').closest("td").prev()
+								.append('<div id="ques_ox1"><img src="./img/o.png" style="width:35px; height:35px;"></div>');
+						
 					}else{
 						$('input[name=problem'+i+']').closest("td").prev()
-								.append("<div>X</div><div>정답 : "+datas[i].ans_correct+"</div>");
-						$("input[name=is_correct"+i+"]").val("N");
+								.append('<div id="ques_ox1"><img src="./img/x.png" style="width:35px; height:35px;"></div><div style="margin-top:35px">정답 :'+datas[i].ans_correct+'</div>');
+						
 					}
 				};
 			}

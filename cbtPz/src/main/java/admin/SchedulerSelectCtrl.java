@@ -27,6 +27,7 @@ public class SchedulerSelectCtrl implements Controller {
 		 * 
 		 * response.getWriter().print(str);
 		 */
+		
 		SchedulerVO scdVo = new SchedulerVO();
 		
 		ArrayList<SchedulerVO> list = SchedulerDAO.getInstance().selectAll(scdVo);
