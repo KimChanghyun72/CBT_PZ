@@ -41,7 +41,7 @@ public class MemberUpdateController implements Controller {
 
 				String day = pay_member.getPay_enddate(); //유료회원의 만기일자 불러옴
 				day = day.substring(0,10).replace("-", "/"); //포맷 변경
-				DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+				DateFormat df = new SimpleDateFormat("YYYY/MM/dd");
 				try {
 					Date date = df.parse(day);
 					cal.setTime(date);
@@ -57,7 +57,7 @@ public class MemberUpdateController implements Controller {
 				/* Calendar cal = Calendar.getInstance(); */
 				pay_member.setIs_pay(is_pay);		//유료회원으로 전환
 				 cal.setTime(new Date());
-				 DateFormat df = new SimpleDateFormat("yyyy/MM/dd"); 
+				 DateFormat df = new SimpleDateFormat("YYYY/MM/dd"); 
 				 cal.add(Calendar.DATE, term2);
 				pay_member.setPay_enddate(df.format(cal.getTime()));
 				dao.update(pay_member);
@@ -93,7 +93,7 @@ public class MemberUpdateController implements Controller {
 			return;
 		}	
 			pay_enddate = pay_enddate.substring(0,10).replace("-", "/"); //포맷 변경
-			DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+			DateFormat df = new SimpleDateFormat("YYYY/MM/dd");
 			try {
 				Date date = df.parse(pay_enddate);
 				cal.setTime(date);
