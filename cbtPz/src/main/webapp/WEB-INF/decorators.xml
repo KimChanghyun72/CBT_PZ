@@ -19,7 +19,7 @@
 		<pattern>/ajax/*</pattern>
 		<pattern>/nostms/*</pattern>
 		<pattern>/member/*</pattern>
-		
+		<pattern>/mypage/myRetestSelect.do</pattern>
 		
 	</excludes>
 

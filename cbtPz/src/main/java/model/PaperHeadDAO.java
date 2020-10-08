@@ -43,6 +43,7 @@ public class PaperHeadDAO {
 			pstmt.setString(1,searchVO.getSolve_id());
 			
 			rs = pstmt.executeQuery();
+			System.out.println(rs);
 			while(rs.next()) {
 				Map<String,Object> map = new HashMap<String,Object>();
 				map.put("paper_id", rs.getString(1));
@@ -70,6 +71,7 @@ public class PaperHeadDAO {
 		} finally {
 			ConnectionManager.close(rs, pstmt, conn);
 		}
+		System.out.println(list);
 		return list;
 	}
 	
