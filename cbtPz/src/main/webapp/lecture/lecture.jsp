@@ -21,28 +21,33 @@
 			var btn = $(this)
 			var lecid = $(this).next().val();
 			var mempay = "${sessionScope.login.is_pay}";
+			var check = "${sessionScope.check}";
 			console.log(lecid);
 			console.log(mempay);
-			if( mempay == "Y" ){
-				$.ajax({
-			        type:"POST",
-			        url:"${pageContext.request.contextPath}/ajax/lectureLearnInsert.do",
-			        data : {lectureid : lecid},
-			        dataType : "json",
-			        success: function(data){
-			        	if(data == 1){
-			        		btn.text("수강중");
-			    			alert("수강되었습니다.");
-			    		}else if(data == 0){
-			    			alert("이미 등록된 강의입니다.");
-			    			//$('#btn').onchange.val("수강중")
-			    		}
-			        }
-			    });
-				
-			} else {
-				alert("                      동영상강의는 유료회원 전용입니다. \n                            멤버쉽 가입을 해주세요!");
-			}
+			//if(check == "M"){
+				if( mempay == "Y" ){
+					$.ajax({
+				        type:"POST",
+				        url:"${pageContext.request.contextPath}/ajax/lectureLearnInsert.do",
+				        data : {lectureid : lecid},
+				        dataType : "json",
+				        success: function(data){
+				        	if(data == 1){
+				        		btn.text("수강중");
+				    			alert("수강되었습니다.");
+				    		}else if(data == 0){
+				    			alert("이미 등록된 강의입니다.");
+				    		}
+				        }
+				    });
+					
+				} else if(check == ""){
+					alert("                      동영상강의는 유료회원 전용입니다. \n                            멤버쉽 가입을 해주세요!");
+				}
+			//} 
+			/* else if(check == "A" || check == "T") {
+				alert("회원만 등록 가능합니다^^");
+			} */
 		});
 		
 		
@@ -81,42 +86,18 @@
 	                        <img 
 	                        	src="lectureSelect.do?lecture_image=${lecture_list.lecture_image }"
 								data-title="${lecture_list.lecture_name }" data-desc="${lecture_list.lecture_info}">
-                        <%-- <!-- Blog Content -->
-                        <div class="blog-content">
-                        <c:if test="${sessionScope.login != null && sessionScope.login.is_pay == 'Y'}">
-                            <a href="${lecture_list.lecture_link}" class="blog-headline" target="_blank">
-                                <h4>${lecture_list.lecture_name}</h4>
-                            </a>
-                        </c:if>
-                        <c:if test="${sessionScope.login == null || sessionScope.login.is_pay != 'Y'}">
-                                <h4>${lecture_list.lecture_name}</h4>
-                        </c:if>
-                            <div class="meta d-flex align-items-center">
-                                <span><i class="fa fa-circle" aria-hidden="true"></i></span>
-                                <div>${lecture_list.teacher_name}</div>
-                            </div>
-                            <div class="meta d-flex align-items-center">
-                            	<p>${lecture_list.lecture_info}</p>
-                            </div>
-                            <button type="button" class="btn btn-outline-success">내 강좌에 넣기</button>
-                            <input type="hidden" value="${lecture_list.lecture_id}">
-                            
-                        </div>
-                    </div>
-                </div>
-                </c:forEach> --%>
                 
                 		<!-- Blog Content -->
 							<div class="blog-content">
 								<c:if
-									test="${sessionScope.login != null && sessionScope.login.is_pay == 'Y'}">
+									test="${sessionScope.login != null && sessionScope.login.is_pay == 'Y' || sessionScope.check == 'A' || sessionScope.check == 'T'}">
 									<a href="${lecture_list.lecture_link}" class="blog-headline"
 										target="_blank">
 										<h4>${lecture_list.lecture_name}</h4>
 									</a>
 								</c:if>
 								<c:if
-									test="${sessionScope.login == null || sessionScope.login.is_pay != 'Y'}">
+									test="${sessionScope.login == null || sessionScope.check == 'M' && sessionScope.login.is_pay != 'Y'}">
 									<h4>${lecture_list.lecture_name}</h4>
 								</c:if>
 								<div class="meta d-flex align-items-center">
@@ -127,14 +108,16 @@
 									<p>${lecture_list.lecture_info}</p>
 								</div>
 
-								<button type="button" id="btn" class="btn btn-outline-success">
-									<c:if test="${lecture_list.lecture_yn == 1}">             
-                            						수강중
-                           			 </c:if>
-									<c:if test="${lecture_list.lecture_yn == 0}">             
-                            						내 강좌에 등록
-                           			 </c:if>
-								</button>
+								<c:if test="${sessionScope.login == null || sessionScope.check == 'M'}">
+									<button type="button" id="btn" class="btn btn-outline-success">
+										<c:if test="${lecture_list.lecture_yn == 1}">             
+	                            						수강중
+	                           			 </c:if>
+										<c:if test="${lecture_list.lecture_yn == 0}">             
+	                            						내 강좌에 등록
+	                           			 </c:if>
+									</button>
+                           		</c:if>
 								<input type="hidden" value="${lecture_list.lecture_id}">
 
 							</div>
@@ -144,13 +127,7 @@
         	</div>
 
 		</div>
-<!--             <div class="row">
-                <div class="col-12">
-                    <div class="load-more text-center mt-100 wow fadeInUp" data-wow-delay="1000ms">
-                        <a href="#" class="btn clever-btn btn-2">Load More</a>
-                    </div>
-                </div>
-            </div> -->
+
     </section>
     <!-- ##### Blog Area End ##### -->
 </body>

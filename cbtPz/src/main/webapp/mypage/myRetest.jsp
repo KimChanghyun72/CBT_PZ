@@ -13,6 +13,13 @@
 table {
     width: 600px;
   }
+#ques_ox1{
+ margin: 0px; 
+ position: absolute; 
+ width: 55px; 
+ height: 45px; 
+ background-image: url(&quot;./img/re_o.gif&quot;);
+}
 </style>
 <script>
 function btnSelectSolve(solve_id) {

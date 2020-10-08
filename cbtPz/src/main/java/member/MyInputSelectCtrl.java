@@ -15,7 +15,7 @@ public class MyInputSelectCtrl implements Controller {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String path = "/mypage/myInputSelect.jsp";
-
+		// FrontController와 경로 맞춰야 함
 		BoardDAO dao = new BoardDAO();
 		String board_id = request.getParameter("board_id");
 		BoardVO board = new BoardVO();
