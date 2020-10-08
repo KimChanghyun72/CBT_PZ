@@ -42,23 +42,25 @@ public class LoginFilter implements Filter {
 				cnt++;
 			}
 			
+			System.out.println(cnt);
 			if(cnt > 0) {
-			
-				if (session.isNew() == true) {
+				//if (session.isNew() == true) {
 					String contextPath = ((HttpServletRequest) request).getContextPath();
 					System.out.println(session.isNew());
 					if (session.getAttribute("login") == null) {
 						((HttpServletResponse) response).sendRedirect(contextPath + "/member/login.jsp");
-						System.out.println(session.isNew());
+						return;
+						//System.out.println(session.isNew());
 					}
-					return;
-				}
+					//chain.doFilter(request, response);
+					System.out.println("login filter end ���� ����");
+				//}
 				
 			}
 			
-			chain.doFilter(request, response);
-			System.out.println("login filter end ���� ����");
 		}
+		chain.doFilter(request, response);
+		System.out.println("login filter end ���� ����");
 	}
 
 	@Override
@@ -84,7 +86,7 @@ public class LoginFilter implements Filter {
     	//list.add("/ajax/qacommentList.do");		//QA댓글목록조회
     	//list.add("/board/noticeList.do");			//공지사항 리스트
     	list.add("/board/noticeInsert.do");		//공지사항 입력
-    	list.add("/board/noticeSelect.do");		//공지사항 단건조회
+    	//list.add("/board/noticeSelect.do");		//공지사항 단건조회
     	list.add("/board/noticeDelete.do");		//공지사항 삭제
     	list.add("/board/noticeUpdate.do");		//공지사항 수정
     	list.add("/board/noticeUpdateForm.do");//공지사항 수정입력폼
