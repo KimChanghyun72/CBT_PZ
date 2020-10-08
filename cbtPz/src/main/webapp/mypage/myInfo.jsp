@@ -196,7 +196,7 @@
 <style>
 #member_job
 {
-padding: 0px;
+padding: 10px;
 }
 </style>
 </head>
@@ -310,7 +310,7 @@ padding: 0px;
 		<div class="col-12 col-lg-6">
         <div class="form-group">
         
-				<select id="member_job" name="member_job" class="form-control" style ="padding:0px">
+				<select id="member_job" name="member_job" class="form-control" style ="padding:10px">
 						<option value="학생" <c:if test="${login.member_job=='학생'}"> selected="selected"</c:if>>학생</option>
 						<option value="취준생"<c:if test="${login.member_job=='취준생'}"> selected="selected"</c:if>>취준생</option>
 						<option value="직장인"<c:if test="${login.member_job=='직장인'}"> selected="selected"</c:if>>직장인</option>
