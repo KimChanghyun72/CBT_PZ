@@ -36,7 +36,7 @@ public class MemberDelController implements Controller {
 
 		out.println("alert('회원 탈퇴 처리 되었습니다.');");
 		
-		out.println("location.href='/member/login.jsp';"); // 경로 오류
+		out.println("location.href='/cbtPz/member/login.jsp';");
 		
 		out.println("</script>");
 

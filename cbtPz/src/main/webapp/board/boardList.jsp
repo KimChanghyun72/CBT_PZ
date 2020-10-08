@@ -59,12 +59,9 @@
 							<c:when test="${!empty list}">
 								<c:forEach var="board" items="${list}">
 										<tr>
-										<c:if test="${board.board_views <= 2}">
-										<td style="color:Tomato;">NEW</td>
-										</c:if>
-										<c:if test="${board.board_views > 2}">
-										<td>  </td>
-										</c:if>
+										<td style="color:Tomato;">
+											<c:if test="${board.isNew == '1' }">NEW</c:if>
+										</td>
 										<td>${board.board_id}</td>
 									<td><a href="${pageContext.request.contextPath}/board/boardSelect.do?board_id=${board.board_id}">${board.board_title}</a></td>
 										<td>${board.member_id}</td>

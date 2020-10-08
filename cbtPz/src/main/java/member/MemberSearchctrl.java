@@ -24,13 +24,14 @@ public class MemberSearchctrl implements Controller {
 		if(check.equals("M")) {
 			
 			// Parameter 추출
-			String member_id = request.getParameter("member_id");
+			String member_id = ((MemberVo)request.getSession().getAttribute("login")).getMember_id();
 			
 			MemberVo membervo = new MemberVo(); //
 			membervo.setMember_id(member_id); //
 			MemberDAO dao = MemberDAO.getInstance();
 			MemberVo member = dao.selectOne(membervo); //
 			
+			System.out.println(member);
 			request.setAttribute("member", member); // myInfo.jsp value="${member.member_id }"
 		
 		}

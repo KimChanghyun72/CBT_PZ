@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" isELIgnored="false" %>
+	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -20,11 +20,11 @@
 			return false;
 		}
 		//if(frm.job.value == ""){
-		if (frm.member_job.selectedIndex == 0) { //
+		/* if (frm.member_job.selectedIndex == 0) { //
 			window.alert("job 선택");
 			frm.member_job.focus();
 			return false;
-		}
+		} */
 		return true;
 	};
 	/**/
@@ -33,7 +33,10 @@
 	
 	
 	$(function(){
-		
+		$("[name=is_major]").val(["${member.is_major}"]);
+		$("[name=member_job]").val(["${member.member_job}"]);
+		$("[name=study_term]").val(["${member.study_term}"]);
+		$("[name=tested_num]").val(["${member.tested_num}"]);
 		//수정 상태 어럴트
 		if("${errorcode}" > 0 && "${errorcode}" < 5 ){
 			alert("${errormsg}");		
@@ -190,6 +193,12 @@
 	
 	
 </script>
+<style>
+#member_job
+{
+padding: 10px;
+}
+</style>
 </head>
 <body>
 	
@@ -213,7 +222,7 @@
 					<div class="col-12 col-lg-6">
 						<div class="form-group">
 						<input id="member_id" name="member_id"
-						type="text" value="${login.member_id}" readonly="readonly">
+						type="text" value="${member.member_id}" readonly="readonly">
 			</div>
 			</div>
 			
@@ -227,7 +236,7 @@
 			<div class="col-12 col-lg-6">
             	<div class="form-group">
 					<input id="member_pw" name="member_pw"
-					type="password" value="${login.member_pw}">
+					type="password" value="${member.member_pw}">
 			</div>
 			</div>
 			
@@ -239,7 +248,7 @@
 				</div>
 					<div class="col-12 col-lg-6">
                     	<div class="form-group">
-					<input type="text" name="member_name" value="${login.member_name}">
+					<input type="text" name="member_name" value="${member.member_name}">
 				</div>
 			</div>
 			
@@ -254,7 +263,7 @@
 			<div class="col-12 col-lg-6">
 			<div class="form-group">
 				<input type="text" name="member_age"
-				value="${login.member_age }">
+				value="${member.member_age }" readonly>
 			</div>
 			</div>
 			
@@ -271,7 +280,7 @@
 			<div class="col-12 col-lg-6">
 			<div class="form-group">
 				<input type="text" id="phone_number"
-				name="phone_number" value="${login.phone_number }">
+				name="phone_number" value="${member.phone_number}">
 			</div>
 			</div>
 			
@@ -284,7 +293,7 @@
 		<div class="col-12 col-lg-6">
 		<div class="form-group">
 				<input type="text" id="email"
-				name="email" value="${login.email }">
+				name="email" value="${member.email }">
 			</div>
 			</div>
 			
@@ -301,7 +310,7 @@
 		<div class="col-12 col-lg-6">
         <div class="form-group">
         
-				<select id="member_job" name="member_job" class="form-control">
+				<select id="member_job" name="member_job" class="form-control" style ="padding:10px">
 						<option value="학생" <c:if test="${login.member_job=='학생'}"> selected="selected"</c:if>>학생</option>
 						<option value="취준생"<c:if test="${login.member_job=='취준생'}"> selected="selected"</c:if>>취준생</option>
 						<option value="직장인"<c:if test="${login.member_job=='직장인'}"> selected="selected"</c:if>>직장인</option>
@@ -396,6 +405,7 @@
 					<input class="form-check-input" type="radio" id="tested_num"
 					name="tested_num" value="1"
 					<c:if test="${login.tested_num=='1'}"> checked="checked"</c:if>> 
+
 					<label class="form-check-label">1회</label>
 			</div>	
 			
@@ -403,6 +413,7 @@
 					<input class="form-check-input" type="radio" id="tested_num"
 					name="tested_num" value="2"
 					<c:if test="${login.tested_num=='2'}"> checked="checked"</c:if>> 
+
 					<label class="form-check-label">2회</label>
 			</div>	
 			
@@ -410,7 +421,7 @@
 					<input class="form-check-input" type="radio" id="tested_num"
 					name="tested_num" value="3회 이상"
 					<c:if test="${login.tested_num=='3'}"> checked="checked"</c:if>> 
-					<label class="form-check-label">3회 이상</label>
+ 					<label class="form-check-label">3회 이상</label>
 			</div>
 		</div>
 		<!-- name이 칼럼명과 같아야 함 -->
@@ -426,7 +437,7 @@
 
 		<form name="memDeleteFrm" action="memberDelete.do" method="post">
 			<input type="hidden" name="member_id" value="${login.member_id }" />
-			<button id="tdelete" class="btn clever-btn">회원 탈퇴</button>
+			<button id="tdelete" type="button" class="btn clever-btn" onclick="memDelete()">회원 탈퇴</button>
 		</form>
 		</div>
 		</div>
