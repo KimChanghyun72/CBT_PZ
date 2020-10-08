@@ -33,7 +33,7 @@ public class LoginController implements Controller {
 				request.getRequestDispatcher(page).forward(request, response);
 			} 
 			request.getSession().setAttribute("login", resultaVO);
-			request.getSession().setAttribute("cbt", "member");
+			request.getSession().setAttribute("loginId", resultaVO.getAdmin_id());
 			request.getSession().setAttribute("name", resultaVO.getAdmin_name());
 			request.getSession().setAttribute("check", "A"); //어드민 체크
 			response.sendRedirect(request.getContextPath() + "/indexx.jsp");
@@ -63,6 +63,7 @@ public class LoginController implements Controller {
 				if (memberVo.getMember_pw().equals(resultVo.getMember_pw())) { // 로그인성공
 					request.getSession().setAttribute("login", resultVo);
 					request.getSession().setAttribute("name", resultVo.getMember_name());
+					request.getSession().setAttribute("loginId", resultVo.getMember_id());
 					request.getSession().setAttribute("check", "M"); //멤버 체크
 					response.sendRedirect(request.getContextPath() + "/indexx.jsp");
 				} else { // 패스워드 불일치
