@@ -33,6 +33,7 @@ public class LoginController implements Controller {
 				request.getRequestDispatcher(page).forward(request, response);
 			} 
 			request.getSession().setAttribute("login", resultaVO);
+			request.getSession().setAttribute("cbt", "member");
 			request.getSession().setAttribute("name", resultaVO.getAdmin_name());
 			request.getSession().setAttribute("check", "A"); //어드민 체크
 			response.sendRedirect(request.getContextPath() + "/indexx.jsp");

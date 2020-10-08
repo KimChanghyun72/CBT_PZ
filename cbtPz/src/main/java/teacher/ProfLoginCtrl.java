@@ -34,7 +34,7 @@ public class ProfLoginCtrl implements Controller {
 				request.getSession().setAttribute("login", resultVo);
 				request.getSession().setAttribute("name", resultVo.getTeacher_name());
 				request.getSession().setAttribute("check", "T"); //강사 체크
-				response.sendRedirect(request.getContextPath() +"/main.jsp");
+				response.sendRedirect(request.getContextPath() +"/indexx.jsp");
 			} else { // 패스워드 불일치
 				request.setAttribute("errormsg", "패스워드가 일치하지 않습니다.");
 				request.setAttribute("errorcode", "3");

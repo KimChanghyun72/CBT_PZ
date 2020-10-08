@@ -27,12 +27,16 @@ public class LecturePageCtrl implements Controller {
 		 * LectureVO lectureVO = new LectureVO(); lectureVO.setLecture_subject(subject);
 		 * lecturelist = LectureDAO.getInstance().selectCate(lectureVO); //카테별로 강의 전체 }
 		 */
-		
+		String check = (String) request.getSession().getAttribute("check");
 		
 		//강의 전체 리스트
 		LearnVO vo = new LearnVO();
 		if(request.getSession().getAttribute("login") != null) {
-			vo.setMember_id(((MemberVo)request.getSession().getAttribute("login")).getMember_id());
+			if(check.equals("M")) {
+				vo.setMember_id(((MemberVo)request.getSession().getAttribute("login")).getMember_id());
+			} else if (check.equals("M")) {
+				
+			}
 		}
 		List<LectureVO> lecturelist = new ArrayList<LectureVO>();
 		String subject = request.getParameter("subject");
