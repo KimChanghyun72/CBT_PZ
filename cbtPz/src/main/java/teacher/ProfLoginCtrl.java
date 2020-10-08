@@ -33,6 +33,7 @@ public class ProfLoginCtrl implements Controller {
 			if (teacherVO.getTeacher_password().equals(resultVo.getTeacher_password())) { // 로그인성공
 				request.getSession().setAttribute("login", resultVo);
 				request.getSession().setAttribute("name", resultVo.getTeacher_name());
+				request.getSession().setAttribute("loginId", resultVo.getTeacher_id());
 				request.getSession().setAttribute("check", "T"); //강사 체크
 				response.sendRedirect(request.getContextPath() +"/indexx.jsp");
 			} else { // 패스워드 불일치
