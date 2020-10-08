@@ -15,11 +15,7 @@
     <!-- Title -->
     <title>Clever - Education &amp; Courses Template | Courses</title>
 
-    <!-- Favicon -->
-    <link rel="icon" href="${pageContext.request.contextPath}/img/core-img/favicon.ico">
-
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">
+    
 	<script>
 	<% request.getSession().setAttribute("pageName", "나의 강의(학생)"); %>
 	$(function(){

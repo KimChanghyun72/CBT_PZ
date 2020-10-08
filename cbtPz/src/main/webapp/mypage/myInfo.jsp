@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script>
+<% request.getSession().setAttribute("pageName", "개인 정보 수정"); %>
 	
 	function inputCheck() {
 		if (frm.member_id.value == "") {
@@ -201,8 +202,9 @@ padding: 10px;
 </style>
 </head>
 <body>
-	
-	<h1 class="page_title">개인 정보 수정</h1>
+
+<br><br>
+
 	<c:if test="${sessionScope.check == 'M'}">
 			<div class="container">
 			<div class="row justify-content-center">
