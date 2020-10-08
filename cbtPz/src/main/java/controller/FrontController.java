@@ -78,11 +78,14 @@ public class FrontController extends HttpServlet {
     	list.put("/mypage/myInput.do", new member.MyInputCtrl());						// 회원 작성글 조회 페이지
     	list.put("/myInputSelect.do", new member.MyInputSelectCtrl());					// 작성글 상세 페이지로 이동
     	list.put("/mypage/myRetest.do", new retest.MyRetestCtrl());							// 오답노트 문제 출력
+    	list.put("/myFavorite.do", new retest.MyFavoriteCtrl());						// 즐겨찾기 문제 출력
+    	
+    	
     	list.put("/mypage/myFavorite.do", new retest.MyFavoriteCtrl());						// 즐겨찾기 문제 출력
     	
     	
     	
-    	
+    	list.put("/mypage/myRetestSelect.do",new retest.MyRetestSelect());
     	
     	
     	
@@ -101,7 +104,6 @@ public class FrontController extends HttpServlet {
     	list.put("/ajax/hashtagAutoSearch.do", new study.HashAutoSearchCtrl());
     	
     	list.put("/ajax/paperUpdate.do", new study.PaperUpdateCtrl());
-    	list.put("/solveUpdate.do", new study.SolveUpdateCtrl());
 
     	
     	

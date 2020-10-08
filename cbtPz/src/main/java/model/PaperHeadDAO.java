@@ -31,7 +31,7 @@ public class PaperHeadDAO {
 		
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "SELECT p.PROBLEM_ID, s.solve_type_cd, SUBJECT, HAESEOL, PROBLEM_TEXT, ANS_1, ANS_2, ANS_3, " 
+			String sql = "SELECT p.paper_id, p.is_correct, p.check_num, p.PROBLEM_ID, s.solve_type_cd, SUBJECT, HAESEOL, PROBLEM_TEXT, ANS_1, ANS_2, ANS_3, " 
 						+ " ANS_4, ANS_CORRECT, PAPERHEAD_ID, PROBLEM_IMAGE, p.solve_id, p.paper_id "  
 					    + " FROM paper p, PROBLEM b, SOLVE s " 
 					    + " where p.problem_id = b.problem_id "  
@@ -45,20 +45,23 @@ public class PaperHeadDAO {
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				Map<String,Object> map = new HashMap<String,Object>();
-				map.put("problem_id", rs.getString(1));
-				map.put("solve_type_cd", rs.getString(2));
-				map.put("subject", rs.getString(3));
-				map.put("haeseol", rs.getString(4));
-				map.put("problem_text", rs.getString(5));
-				map.put("ans_1", rs.getString(6));
-				map.put("ans_2", rs.getString(7));
-				map.put("ans_3", rs.getString(8));
-				map.put("ans_4", rs.getString(9));
-				map.put("ans_correct", rs.getString(10));
-				map.put("paperhead_id", rs.getString(11));
-				map.put("problem_image", rs.getString(12));
-				map.put("solve_id", rs.getString(13));
-				map.put("paper_id", rs.getString(14));
+				map.put("paper_id", rs.getString(1));
+				map.put("is_correct", rs.getString(2));
+				map.put("check_num", rs.getString(3));
+				map.put("problem_id", rs.getString(4));
+				map.put("solve_type_cd", rs.getString(5));
+				map.put("subject", rs.getString(6));
+				map.put("haeseol", rs.getString(7));
+				map.put("problem_text", rs.getString(8));
+				map.put("ans_1", rs.getString(9));
+				map.put("ans_2", rs.getString(10));
+				map.put("ans_3", rs.getString(11));
+				map.put("ans_4", rs.getString(12));
+				map.put("ans_correct", rs.getString(13));
+				map.put("paperhead_id", rs.getString(14));
+				map.put("problem_image", rs.getString(15));
+				map.put("solve_id", rs.getString(16));
+				map.put("paper_id", rs.getString(17));
 				list.add(map);
 			}
 			
