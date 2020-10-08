@@ -124,6 +124,7 @@
                                         <li><a href="${pageContext.request.contextPath}/admin/headInsert.jsp">회차문제</a></li>
                                         <li><a href="${pageContext.request.contextPath}/admin/adminChart.jsp">회원통계</a></li>
                                         <li><a href="${pageContext.request.contextPath}/memberList.do">회원관리</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/admin/scheduler.jsp">일정관리</a></li>
                                     </ul>
                                 </li>
                               </c:if>

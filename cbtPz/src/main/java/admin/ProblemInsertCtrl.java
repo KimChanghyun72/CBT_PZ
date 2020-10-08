@@ -38,7 +38,7 @@ public class ProblemInsertCtrl implements Controller {    // 개별문제 등록
 		
 		ProblemDAO.getInstance().insert(problem);
 		
-		request.getRequestDispatcher("/admin/problemInsertOutput.jsp").forward(request, response);	
+		request.getRequestDispatcher("/admin/quizInsertOutput.jsp").forward(request, response);	
 	}
 
 }
