@@ -31,7 +31,7 @@ public class LoginFilter implements Filter {
 		
 		String uri = ((HttpServletRequest) request).getRequestURI();
 		String path = uri.substring(((HttpServletRequest) request).getContextPath().length());
-		System.out.println(path);
+		//System.out.println(path);
 		//String uri = ((HttpServletRequest) request).getRequestURI();
 		HttpSession session = ((HttpServletRequest) request).getSession();
 		
@@ -42,11 +42,11 @@ public class LoginFilter implements Filter {
 				cnt++;
 			}
 			
-			System.out.println(cnt);
+			//System.out.println(cnt);
 			if(cnt > 0) {
 				//if (session.isNew() == true) {
 					String contextPath = ((HttpServletRequest) request).getContextPath();
-					System.out.println(session.isNew());
+					//System.out.println(session.isNew());
 					if (session.getAttribute("login") == null) {
 						((HttpServletResponse) response).sendRedirect(contextPath + "/member/login.jsp");
 						return;
@@ -134,7 +134,7 @@ public class LoginFilter implements Filter {
     	
     	//양수동
     	//list.add("/haederSearch.do");
-    	//list.add("/problemHead.do");
+    	list.add("/problemHead.do");
     	//list.add("/problemSubject.do");
     	//list.add("/subjectSearch.do");
     	//list.add("/hashtagPage.do");

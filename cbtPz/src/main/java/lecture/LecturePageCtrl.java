@@ -31,11 +31,9 @@ public class LecturePageCtrl implements Controller {
 		
 		//강의 전체 리스트
 		LearnVO vo = new LearnVO();
-		if(request.getSession().getAttribute("login") != null) {
+		if(request.getSession().getAttribute("loginId") != null) {
 			if(check.equals("M")) {
-				vo.setMember_id(((MemberVo)request.getSession().getAttribute("login")).getMember_id());
-			} else if (check.equals("M")) {
-				
+				vo.setMember_id((String)request.getSession().getAttribute("loginId"));
 			}
 		}
 		List<LectureVO> lecturelist = new ArrayList<LectureVO>();
