@@ -141,11 +141,11 @@ body {
 				</div>
 			<div style="margin-top : 20px">
 			 <p align="right">	
-				<button type="button" onclick="location.href='boardUpdateForm.do?board_id='+${board.board_id}" class="btn btn-sm btn-primary" id="btnUpdate">수정</button>
+				<button type="button" onclick="location.href='../board/boardUpdateForm.do?board_id='+${board.board_id}" class="btn btn-sm btn-primary" id="btnUpdate">수정</button>
 
-				<button type="button" onclick="location.href='boardDelete.do?board_id='+${board.board_id}" class="btn btn-sm btn-primary" id="btnDelete">삭제</button>
+				<button type="button" onclick="location.href='../board/boardDelete.do?board_id='+${board.board_id}" class="btn btn-sm btn-primary" id="btnDelete">삭제</button>
 
-				<button type="button" onclick="location.href='boardList.do'" class="btn btn-sm btn-primary" id="btnList">목록</button>
+				<button type="button" onclick="location.href='../mypage/myInput.do'" class="btn btn-sm btn-primary" id="btnList">목록</button>
 			</p>
 			</div>
 		<div data-id="4" data-goods="book" id="divid"></div>

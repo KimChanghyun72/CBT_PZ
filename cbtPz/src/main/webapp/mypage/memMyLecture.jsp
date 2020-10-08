@@ -47,6 +47,7 @@
 </head>
 
 <body>
+<%request.getSession().setAttribute( "pageName","나의 강의"); %>
     <!-- Preloader -->
     <!-- <div id="preloader">
         <div class="spinner"></div>
