@@ -143,10 +143,6 @@ $(function(){
 	});
 })
 	
-
-$(function(){
-	
-})
 $(function(){ //for문은 번호를 설정해주는 역할만 하고 이벤트시에는 안 먹음.
 	for(var i=0; i<size; i++){
 	$(document).on("change",'input[name=problem'+i+']', function(){
@@ -181,24 +177,24 @@ $(function(){ //for문은 번호를 설정해주는 역할만 하고 이벤트�
 					$(".haeseol"+i).html(datas[i].haeseol); //헤설 출력
 					if(datas[i].ans_correct == $('input[name=problem'+i+']:checked').val()){
 						$('input[name=problem'+i+']').closest("td").prev()
-								.append('<div id="ques_ox1"><img src="./img/o.png" style="width:35px; height:35px;"></div>');
+								.append('<div id="ques_ox1"><img src="../img/o.png" style="width:35px; height:35px;"></div>');
 						
 					}else{
 						$('input[name=problem'+i+']').closest("td").prev()
-								.append('<div id="ques_ox1"><img src="./img/x.png" style="width:35px; height:35px;"></div><div style="margin-top:35px">정답 :'+datas[i].ans_correct+'</div>');
+								.append('<div id="ques_ox1"><img src="../img/x.png" style="width:35px; height:35px;"></div><div style="margin-top:35px">정답 :'+datas[i].ans_correct+'</div>');
 						
 					}
 				};
 			}
 		})
 	}
-	
+	submitFunc();
 	
 	//문제 제출하면 ajax로 답지 불러오고 제출버튼 삭제.
 	$(document).on("click",".btnScore", function(){
 		is_submit = confirm("제출하시겠습니까?");
 		if(is_submit){
-			submitFunc();
+			
 			$(this).remove();
 			$(".rightcolumn").append("<button class='btnFinish'>확인</button>");
 			//타이머 시간 고정.
