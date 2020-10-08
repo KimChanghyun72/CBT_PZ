@@ -25,7 +25,6 @@ public class MyRetestSelect implements Controller {
 		searchVO.setSolve_id(solve_id);
 		System.out.println(searchVO);
 		List<Map<String, Object>> selectproblem = PaperHeadDAO.getInstance().selectAllType(searchVO);
-		System.out.println(selectproblem);
 		request.getSession().setAttribute("problemList", selectproblem);
 		request.getRequestDispatcher("/mypage/"+path).forward(request, response);
 	}

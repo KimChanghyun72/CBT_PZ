@@ -5,6 +5,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,6 +56,9 @@
 
 /* Right column */
 .rightcolumn {
+	position : fixed;
+	bottom: 0;
+    right: 0;
 	float: right;
 	width: 25%;
 	/* background-color: #f1f1f1; */
@@ -175,6 +179,8 @@ $(function(){ //for문은 번호를 설정해주는 역할만 하고 이벤트�
 						
 					}
 				};
+					alert("ooo"+solve_id);
+					location.href="${pageContext.request.contextPath}/mypage/myRetestSelect.do?solve_id=" + solve_id; 
 			}
 		})
 	}
@@ -223,12 +229,31 @@ function msg_time() {	// 1초씩 카운트
 window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };
 
 </script>
+
+<script>
+
+$(document).ready(function(){
+
+	$('.btn').click(function(){
+		var id = $(this).data("id");
+		var offset = $('#div'+id).offset();  //선택한 태그의 위치를 반환
+		offset.top-= 150;
+		console.log(offset);
+            //animate()메서드를 이용해서 선택한 태그의 스크롤 위치를 지정해서 0.4초 동안 부드럽게 해당 위치로 이동함 
+
+        $('html').animate({scrollTop : offset.top}, 300);
+
+	});
+
+});
+</script>
+
+
+
 </head>
 <body>
 	<div class="header">
 		<h1>${sessionScope.pageName} ${problemList[0].solve_type_cd} </h1>
-		<c:if test="">
-		</c:if>
 			<div id="ViewTimer"></div>
 	</div>
 <div class="leftcolumn">
@@ -239,13 +264,13 @@ window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };
 			<tr><th>과목</th><th>번호</th><th>문제</th></tr>
 		</thead>
 		<tbody>
-		<% for(probNum=0; probNum<problemList.size(); probNum++){ %>
+		<% for(probNum=0; probNum<problemList.size(); probNum++){ %>				
 			<tr>
 				<td><%=problemList.get(probNum).get("subject") %>
 				<td class="probNum<%=probNum %>"><%=probNum+1 %>번
 				</td>
 				<td>
-					<div><%=problemList.get(probNum).get("problem_text") %>&nbsp;&nbsp;<input type="checkbox"  name="probChk<%=probNum%>"></div>
+					<div id="div<%=probNum%>"><%=problemList.get(probNum).get("problem_text") %>&nbsp;&nbsp;<input type="checkbox"  name="probChk<%=probNum%>"></div>
 					<input type="hidden" id="paper_id" value="<%=problemList.get(probNum).get("paper_id") %>">
 					<input type="hidden" id="pro_id" value="<%=problemList.get(probNum).get("problem_id") %>">
 					<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="1"><%=problemList.get(probNum).get("ans_1") %></div>
@@ -275,7 +300,7 @@ window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };
 							<tr>
 								<td><input type="hidden" id="paper_id" value="<%=problemList.get(ansNum).get("paper_id") %>"></td>
 								<td><input type="hidden" id="pro_id" value="<%=problemList.get(ansNum).get("problem_id") %>"></td>
-								<td class="ansNum<%=problemList.get(ansNum).get("problem_id") %>"><b><%=ansNum+1 %>. |</b></td>
+								<td class="ansNum<%=problemList.get(ansNum).get("problem_id") %>"><button type="button" class="btn btn-outline-primary" data-id="<%=ansNum%>"><b><%=ansNum+1 %>. |</b></button></td>
 								<td>&nbsp; 1<input type="radio" id="checknum" name="answer<%=ansNum %>" value="1"></td>
 								<td>&nbsp; 2<input type="radio" id="checknum" name="answer<%=ansNum %>" value="2"></td>
 								<td>&nbsp; 3<input type="radio" id="checknum" name="answer<%=ansNum %>" value="3"></td>

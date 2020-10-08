@@ -22,6 +22,8 @@ public class ProbScoringCtrl implements Controller {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
+		
+		
 		int i;
 		
 		// 채점

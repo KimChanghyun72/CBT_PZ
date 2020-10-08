@@ -31,7 +31,7 @@ public class PaperHeadDAO {
 		
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "SELECT p.paper_id, p.is_correct, p.check_num, p.PROBLEM_ID, s.solve_type_cd, SUBJECT, HAESEOL, PROBLEM_TEXT, ANS_1, ANS_2, ANS_3, " 
+			String sql = "SELECT p.paper_id, NVL(p.is_correct,0) as is_correct, NVL(p.check_num,0) as check_num, p.PROBLEM_ID, s.solve_type_cd, SUBJECT, HAESEOL, PROBLEM_TEXT, ANS_1, ANS_2, ANS_3, " 
 						+ " ANS_4, ANS_CORRECT, PAPERHEAD_ID, PROBLEM_IMAGE, p.solve_id, p.paper_id "  
 					    + " FROM paper p, PROBLEM b, SOLVE s " 
 					    + " where p.problem_id = b.problem_id "  

@@ -55,7 +55,9 @@
 
 /* Right column */
 .rightcolumn {
-	float: right;
+	position : fixed;
+	bottom: 0;
+    right: 0;
 	width: 25%;
 	/* background-color: #f1f1f1; */
 	padding-left: 20px;
@@ -109,20 +111,6 @@ int probSize = problemList.size();
 var size = <%=probSize%>;
 var is_submit=0;
 $(function(){
-	<%-- <% for(int i=0; i < probSize ; i++){%>
-	var i = <%=i %>;
-	var is_correct = <%=(String)problemList.get(i).get("is_correct") %>;
-	var ox="";
- 		$("[name=answer"+i+"]").val([<%=(String)problemList.get(i).get("check_num") %>]);	
- 		$("[name=problem"+i+"]").val([<%=(String)problemList.get(i).get("check_num") %>]);
-		if(is_correct=='Y'){
-			ox = ' : 정답';
-		}else{
-			ox = ' : 오답';
-		}
-			$(".probNum"+i).html($(".probNum"+i).html()+ox);
-	
-	<% }%> --%>
 	$(document).on("click", "#checknum", function () {
 	    var checkNum = $(this).val();
 	    var paper_id = $(this).closest("tr").find('#paper_id').val();
@@ -142,11 +130,7 @@ $(function(){
 	    });
 	});
 })
-	
 
-$(function(){
-	
-})
 $(function(){ //for문은 번호를 설정해주는 역할만 하고 이벤트시에는 안 먹음.
 	for(var i=0; i<size; i++){
 	$(document).on("change",'input[name=problem'+i+']', function(){
@@ -161,7 +145,7 @@ $(function(){ //for문은 번호를 설정해주는 역할만 하고 이벤트�
 		var v =$(this).val();
 		
 		$('input:radio[name=problem'+j+']').val([v]); 
-	})
+		})
 	}
 	
 	var cnt = 0; //문제 맞춘 갯수
@@ -181,60 +165,33 @@ $(function(){ //for문은 번호를 설정해주는 역할만 하고 이벤트�
 					$(".haeseol"+i).html(datas[i].haeseol); //헤설 출력
 					if(datas[i].ans_correct == $('input[name=problem'+i+']:checked').val()){
 						$('input[name=problem'+i+']').closest("td").prev()
-								.append('<div id="ques_ox1"><img src="./img/o.png" style="width:35px; height:35px;"></div>');
+								.append('<div id="ques_ox1"><img src="../img/o.png" style="width:35px; height:35px;"></div>');
 						
 					}else{
 						$('input[name=problem'+i+']').closest("td").prev()
-								.append('<div id="ques_ox1"><img src="./img/x.png" style="width:35px; height:35px;"></div><div style="margin-top:35px">정답 :'+datas[i].ans_correct+'</div>');
+								.append('<div id="ques_ox1"><img src="../img/x.png" style="width:35px; height:35px;"></div><div style="margin-top:35px">');
 						
 					}
 				};
 			}
 		})
 	}
-	
-	
-	//문제 제출하면 ajax로 답지 불러오고 제출버튼 삭제.
-	$(document).on("click",".btnScore", function(){
-		is_submit = confirm("제출하시겠습니까?");
-		if(is_submit){
-			submitFunc();
-			$(this).remove();
-			$(".rightcolumn").append("<button class='btnFinish'>확인</button>");
-			//타이머 시간 고정.
-			
-			}
+	submitFunc(); //정답, ox 불러오는 함수 실행.
+
+	$(document).ready(function(){
+
+		$('.btn').click(function(){
+			var id = $(this).data("id");
+			var offset = $('#div'+id).offset(); //선택한 태그의 위치를 반환
+			offset.top-= 150;
+			console.log(offset);
+                //animate()메서드를 이용해서 선택한 태그의 스크롤 위치를 지정해서 0.4초 동안 부드럽게 해당 위치로 이동함 
+
+	        $('html').animate({scrollTop : offset.top}, 300);
+
+		});
+
 	});
-	
-	$(document).on("click", ".btnFinish", function(){
-	
-		console.log(cnt);
-		//$("#testResult").submit();
-	})
-	
-});
-	
-
-//수정중 삭제파트 1.
-//카운트 시간 표시.
-var SetTime = 0;		// 최초 설정 시간(기본 : 0초)
-function msg_time() {	// 1초씩 카운트
-	var m = Math.floor(SetTime / 60) + "분 " + (SetTime % 60) + "초";	//남은 시간 계산
-	var msg = "현재 경과된 시간은 <font color='red'>" + m + "</font> 입니다.";
-	document.all.ViewTimer.innerHTML = msg;		// div 영역에 보여줌 
-	 if(is_submit != true){// 제출되지 않았다면 1초씩 증가
-		SetTime++;
-	 $("[name=testTime]").val(SetTime)
-	} else{
-		var timeCnt = SetTime;
-		$("[name=testTime]").val(timeCnt);  //form에 걸린 시간 전송
-		console.log(timeCnt.toFixed(0)); //콘솔에 걸린 시간 표시 (초단위)
-		
-		clearInterval(tid); //타이머 해제
-	}
-
-}
-window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };
 
 </script>
 </head>
@@ -250,7 +207,7 @@ window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };
 <table id="foo-table" class="table table-bordered">
 	
 		<thead>
-			<tr><th>&nbsp;&nbsp;과목&nbsp;&nbsp;</th><th>번호</th><th>문제</th></tr>
+			<tr><th width="8%">&nbsp;&nbsp;과목&nbsp;&nbsp;</th><th width="10%">번호</th><th>문제</th></tr>
 		</thead>
 		<tbody>
 		<% for(probNum=0; probNum<problemList.size(); probNum++){ %>
@@ -260,16 +217,16 @@ window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };
 					<%=probNum+1 %>번
 					<br>
 					<%if(problemList.get(probNum).get("is_correct").equals("1")){ %>
-						결과 : 정답
+						
 						<br>
 					<% }else{ %>
-						결과 : 오답
+						
 						<br>
 						정답 : <%=problemList.get(probNum).get("ans_correct") %>번
 					<%} %>
 				</td>
 				<td>
-					<div><%=problemList.get(probNum).get("problem_text") %>&nbsp;&nbsp;<input type="checkbox"  name="probChk<%=probNum%>"></div>
+					<div id="div<%=probNum%>"><%=problemList.get(probNum).get("problem_text") %>&nbsp;&nbsp;<input type="checkbox"  name="probChk<%=probNum%>"></div>
 					<input type="hidden" id="paper_id" value="<%=problemList.get(probNum).get("paper_id") %>">
 					<input type="hidden" id="pro_id" value="<%=problemList.get(probNum).get("problem_id") %>">
 					<% if(problemList.get(probNum).get("check_num").equals("1")) {%>
@@ -287,12 +244,17 @@ window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };
 						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="2"><%=problemList.get(probNum).get("ans_2") %></div>
 						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="3" checked><%=problemList.get(probNum).get("ans_3") %></div>
 						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="4"><%=problemList.get(probNum).get("ans_4") %></div>
-						<%}else { %>
+						<%}else if(problemList.get(probNum).get("check_num").equals("4")){ %>
 						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="1"><%=problemList.get(probNum).get("ans_1") %></div>
 						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="2"><%=problemList.get(probNum).get("ans_2") %></div>
 						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="3"><%=problemList.get(probNum).get("ans_3") %></div>
 						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="4" checked><%=problemList.get(probNum).get("ans_4") %></div>
-						<% } %>
+						<% }else {%>
+						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="1"><%=problemList.get(probNum).get("ans_1") %></div>
+						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="2"><%=problemList.get(probNum).get("ans_2") %></div>
+						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="3"><%=problemList.get(probNum).get("ans_3") %></div>
+						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="4"><%=problemList.get(probNum).get("ans_4") %></div>
+						<%} %>
 					<input type="text" name="is_correct<%=probNum%>">
 					<div class="haeseol<%=probNum %>"></div>
 				</td>
@@ -316,7 +278,7 @@ window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };
 							<tr>
 								<td><input type="hidden" id="paper_id" value="<%=problemList.get(ansNum).get("paper_id") %>"></td>
 								<td><input type="hidden" id="pro_id" value="<%=problemList.get(ansNum).get("problem_id") %>"></td>
-								<td class="ansNum<%=problemList.get(ansNum).get("problem_id") %>"><b><%=ansNum+1 %>. |</b></td>
+								<td class="ansNum<%=problemList.get(ansNum).get("problem_id") %>"><button type="button" class="btn btn-outline-primary" data-id="<%=ansNum%>"><b><%=ansNum+1 %>. |</b></button></td>
 								<% if(problemList.get(ansNum).get("check_num").equals("1")) {%>
 									<td>&nbsp; 1<input type="radio" id="checknum" name="answer<%=ansNum %>" value="1" checked></td>
 									<td>&nbsp; 2<input type="radio" id="checknum" name="answer<%=ansNum %>" value="2"></td>
@@ -327,17 +289,22 @@ window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };
 									<td>&nbsp; 2<input type="radio" id="checknum" name="answer<%=ansNum %>" value="2" checked></td>
 									<td>&nbsp; 3<input type="radio" id="checknum" name="answer<%=ansNum %>" value="3"></td>
 									<td>&nbsp; 4<input type="radio" id="checknum" name="answer<%=ansNum %>" value="4"></td>
-								<% } else if(problemList.get(ansNum).get("check_num").equals("1")) { %>
+								<% } else if(problemList.get(ansNum).get("check_num").equals("3")) { %>
 									<td>&nbsp; 1<input type="radio" id="checknum" name="answer<%=ansNum %>" value="1"></td>
 									<td>&nbsp; 2<input type="radio" id="checknum" name="answer<%=ansNum %>" value="2"></td>
 									<td>&nbsp; 3<input type="radio" id="checknum" name="answer<%=ansNum %>" value="3" checked></td>
 									<td>&nbsp; 4<input type="radio" id="checknum" name="answer<%=ansNum %>" value="4"></td>
-								<% } else { %>
+								<% } else if(problemList.get(ansNum).get("check_num").equals("4")){ %>
 									<td>&nbsp; 1<input type="radio" id="checknum" name="answer<%=ansNum %>" value="1"></td>
 									<td>&nbsp; 2<input type="radio" id="checknum" name="answer<%=ansNum %>" value="2"></td>
 									<td>&nbsp; 3<input type="radio" id="checknum" name="answer<%=ansNum %>" value="3"></td>
 									<td>&nbsp; 4<input type="radio" id="checknum" name="answer<%=ansNum %>" value="4" checked></td>
-								<% }%>
+								<% }else {%>
+									<td>&nbsp; 1<input type="radio" id="checknum" name="answer<%=ansNum %>" value="1"></td>
+									<td>&nbsp; 2<input type="radio" id="checknum" name="answer<%=ansNum %>" value="2"></td>
+									<td>&nbsp; 3<input type="radio" id="checknum" name="answer<%=ansNum %>" value="3"></td>
+									<td>&nbsp; 4<input type="radio" id="checknum" name="answer<%=ansNum %>" value="4"></td>
+								<% } %>
 							</tr>
 							
 							<% } %>
@@ -348,7 +315,6 @@ window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };
 					<div class="ans_correct"></div>
 				</div>
 			</div>
-			<button class="btnScore">제출</button>
 		</div>
 	<!-- </div> -->
 </body>

@@ -44,7 +44,7 @@ public class PaperDAO {
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = "UPDATE PAPER " 
-					     +" SET IS_CORRECT = ? "  
+					     +" SET IS_CORRECT = NVL(?,0) "  
 						 +" WHERE PAPER_ID = ? "  
 					     +" AND PROBLEM_ID = ? "; 
 			pstmt = conn.prepareStatement(sql);
