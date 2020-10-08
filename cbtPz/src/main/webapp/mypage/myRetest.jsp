@@ -15,12 +15,12 @@ table {
   }
 </style>
 <script>
-function btnSelectSolve(id) {
+function btnSelectSolve(solve_id) {
 	if( confirm("응시문제를 확인 하시겠습니까?")) {
-		location.href=""+id;
+		location.href="${pageContext.request.contextPath}/mypage/myRetestSelect.do?solve_id="+solve_id;
 	} else {
 		alert("취소 되었습니다.");
-	}
+	}  
 }
 </script>
 </head>
