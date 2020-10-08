@@ -29,11 +29,20 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">    
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     
+<!-- studyPaper datatable link -->
+	<!-- <link rel="stylesheet" href="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.css"/> -->
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">    
+    
     <script src="${pageContext.request.contextPath}/js/jquery/jquery-2.2.4.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.min.js"></script>
 	
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.relocator.1.0.0.js"></script>
+	
+		<!-- studyPaper datatable link -->
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    
+    
 <decorator:head/>   
 
     
@@ -61,7 +70,7 @@
                     <!-- Logo -->
                     <a class="nav-brand" href="${pageContext.request.contextPath}/indexx.jsp">YDCBT</a>
 
-                    <!-- Navbar Toggler -->
+                     <!-- Navbar Toggler -->
                     <div class="classy-navbar-toggler">
                         <span class="navbarToggler"><span></span><span></span><span></span></span>
                     </div>
@@ -107,10 +116,12 @@
                                         <c:if test="${not empty sessionScope.check && sessionScope.check == 'T'}">
                                         <li><a href="${pageContext.request.contextPath}/mypage/insertLecForm.do">강의 등록</a></li>
                                         </c:if>
-                                        <li><a href="courses.html">오답노트</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/mypage/myRetest.do">오답노트</a></li>
                                         <li><a href="single-course.html">개인성적</a></li>
                                         <li><a href="instructors.html">즐겨찾기문제</a></li>
-                                        <li><a href="${pageContext.request.contextPath}/myInput.do">작성글</a></li>
+                                        <c:if test="${not empty sessionScope.check && sessionScope.check == 'M'}">
+                                        <li><a href="${pageContext.request.contextPath}/mypage/myInput.do">작성글</a></li>
+                                        </c:if>
                                     </ul>
                                 </li>
                                 <li><a href="${pageContext.request.contextPath}/pay/payment.jsp">멤버쉽</a></li>

@@ -109,10 +109,10 @@
                                         <c:if test="${not empty sessionScope.check && sessionScope.check == 'T'}">
                                         <li><a href="${pageContext.request.contextPath}/mypage/insertLecForm.do">강의 등록</a></li>
                                         </c:if>
-                                        <li><a href="courses.html">오답노트</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/mypage/myRetest.do">오답노트</a></li>
                                         <li><a href="single-course.html">개인성적</a></li>
                                         <li><a href="instructors.html">즐겨찾기문제</a></li>
-                                        <li><a href="${pageContext.request.contextPath}/myInput.do">작성글</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/mypage/myInput.do">작성글</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="${pageContext.request.contextPath}/pay/payment.jsp">멤버쉽</a></li>
@@ -156,9 +156,10 @@
     <!-- ##### Header Area End ##### -->
 
 
-	<div class="clever-catagory bg-img d-flex align-items-center justify-content-center p-3" >
+	<div style=" width: 100%;
+    height: 240px; background-image: url(../img/1.png)" class="  d-flex align-items-center justify-content-center p-3" >
        
-        <h1 style="color:#3762f0">${sessionScope.pageName}</h1>
+        <h1 style="color:#00000">${sessionScope.pageName}</h1>
     </div>
    
 <decorator:body/>

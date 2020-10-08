@@ -21,12 +21,14 @@
 </head>
 <body>
 	<!--자유게시판 목록  -->
+	
 	<article>
 		<div class="container">
 			<div class="table-responsive">
 				<br><br>
 				<table class="table table-striped table-sm">
 					<colgroup>
+						<col style="width: 1%;" />
 						<col style="width: 10%;" />
 						<col style="width: 30%;" />
 						<col style="width: 15%;" />
@@ -36,6 +38,7 @@
 					</colgroup>
 					<thead>
 						<tr align="center">
+							<th> </th>
 							<th>NO</th>
 							<th>글제목</th>
 							<th>작성자</th>
@@ -56,6 +59,9 @@
 							<c:when test="${!empty list}">
 								<c:forEach var="board" items="${list}">
 										<tr>
+										<td style="color:Tomato;">
+											<c:if test="${board.isNew == '1' }">NEW</c:if>
+										</td>
 										<td>${board.board_id}</td>
 									<td><a href="${pageContext.request.contextPath}/board/boardSelect.do?board_id=${board.board_id}">${board.board_title}</a></td>
 										<td>${board.member_id}</td>
@@ -73,7 +79,7 @@
 								
 				</table>
 				<p align="right">
-				<c:if test="${sessionScope.check=='M'||sessionScope.check=='A'}">
+				<c:if test="${sessionScope.check=='M'}">
 				<button class="btn btn-sm btn-primary"
 					onclick="location.href='${pageContext.request.contextPath}/board/boardInsert.jsp'">글쓰기</button>
 				</c:if>
@@ -94,5 +100,6 @@
 			</div>
 		</div>
 	</article>
+	
 </body>
 </html>

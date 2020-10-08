@@ -18,21 +18,21 @@ public class SolveDAO {
 			return instance;
 	}
 	
-	public void UpateSolve(SolveVO solveVO) {
+	public void UpateSolve(String a,String b) {
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = " UPDATE SOLVE " 
-					     + " SET SOLVE_SCORE = (SELECT p.IS_CORRECT from PAPER p ), " 
-					     + " SOLVE_SCORE = ,"
-					     + " SOLVE_TIME = ?, "
-					     + " SOLVE_CNT = ? "
-					     + " WHERE SOLVE_ID = ? ";
+			String sql = "UPDATE SOLVE " 
+						+" 		SET SOLVE_SCORE = " 
+						+"			( SELECT sum(NVL(IS_CORRECT,0)) " 
+						+"			  from PAPER " 
+						+"			  where solve_id = ? ), " 
+						+" 			SOLVE_TIME = ? " 						 
+						+" 			WHERE SOLVE_ID = ?";
 					
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, solveVO.getSolve_score());
-			pstmt.setString(2, solveVO.getSolve_time());
-			pstmt.setString(3, solveVO.getSolve_cnt());
-			pstmt.setString(4, solveVO.getSolve_id());
+			pstmt.setString(1, a);
+			pstmt.setString(2, b);
+			pstmt.setString(3, a);
 			
 			int r = pstmt.executeUpdate();
 			System.out.println(r + "건이 입력됨");

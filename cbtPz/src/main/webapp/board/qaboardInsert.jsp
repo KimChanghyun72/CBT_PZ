@@ -39,7 +39,6 @@
 			frm.pw.focus();
 			return false;
 		}
-		return true;
 	}
 </script> 
 <title>qaboardInsert.jsp</title>
@@ -61,7 +60,7 @@
 				
 				<div class="mb-3">
 					<input  class="form-control" type="text" name="qaboard_title" id="qaboard_title" placeholder="제목"> 
-					<input  class="form-control" type="text" name="member_id" id="member_id"  value="${sessionScope.name}" readonly="readonly"> 
+					<input  class="form-control" type="text" name="member_id" id="member_id"  value="${sessionScope.login.member_id}" readonly="readonly"> 
 					
 				</div>
 

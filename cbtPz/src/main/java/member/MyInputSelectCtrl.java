@@ -14,7 +14,7 @@ public class MyInputSelectCtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String path = "myInputSelect.jsp";
+		String path = "/mypage/myInputSelect.jsp";
 
 		BoardDAO dao = new BoardDAO();
 		String board_id = request.getParameter("board_id");
