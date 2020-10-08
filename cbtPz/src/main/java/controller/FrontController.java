@@ -153,7 +153,6 @@ public class FrontController extends HttpServlet {
     	list.put("/ajax/memIdFind.do", new member.MemIdFindCtrl()); //findId.jsp
     	list.put("/ajax/memPwFind.do", new member.MemPwFindCtrl()); //findId.jsp
     	
-    	
     	list.put("/lecturePage.do", new lecture.LecturePageCtrl()); //강의 전체리스트 메인 페이지 (전체 || 카테별 보여주는 서블릿)
     	list.put("/ajax/lectureLearnInsert.do", new lecture.LectureLearnInsert()); //강의 수강하기 버튼 클릭시 learn table 인서트
     	
@@ -161,9 +160,9 @@ public class FrontController extends HttpServlet {
     	list.put("/mypage/proUpdate.do", new teacher.ProfUpdateCtrl()); //강사 개인정보수정
     	list.put("/mypage/proDelete.do", new teacher.ProfDeleteCtrl()); //강사 탈퇴
     	
+    	list.put("/mypage/myRetestStat.do", new member.myRetestStatCtrl()); //마이페이지-개인통계
     	
-    	
-    	list.put("/ajax/fullCalendar.do", new member.FullCalendarCtrl()); //풀캘린더실험용
+    	//list.put("/ajax/fullCalendar.do", new member.FullCalendarCtrl()); //풀캘린더실험용
     	list.put("/mainCtrl.do", new common.MainCtrl()); // main.jsp 구동하는 서블릿 (indexx.jsp)
 	}
 

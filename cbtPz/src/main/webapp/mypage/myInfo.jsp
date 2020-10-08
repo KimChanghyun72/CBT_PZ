@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script>
+<% request.getSession().setAttribute("pageName", "개인 정보 수정"); %>
 	
 	function inputCheck() {
 		if (frm.member_id.value == "") {
@@ -201,8 +202,9 @@ padding: 10px;
 </style>
 </head>
 <body>
-	
-	<h1 class="page_title">개인 정보 수정</h1>
+
+<br><br>
+
 	<c:if test="${sessionScope.check == 'M'}">
 			<div class="container">
 			<div class="row justify-content-center">
@@ -419,11 +421,12 @@ padding: 10px;
 			
 			<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" id="tested_num"
-					name="tested_num" value="3회 이상"
+					name="tested_num" value="3"
 					<c:if test="${login.tested_num=='3'}"> checked="checked"</c:if>> 
  					<label class="form-check-label">3회 이상</label>
 			</div>
 		</div>
+		<!-- tested_num, data type = number. value 값 숫자 -->
 		<!-- name이 칼럼명과 같아야 함 -->
 
 			

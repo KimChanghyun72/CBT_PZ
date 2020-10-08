@@ -110,7 +110,7 @@
                                         <li><a href="${pageContext.request.contextPath}/mypage/insertLecForm.do">강의 등록</a></li>
                                         </c:if>
                                         <li><a href="${pageContext.request.contextPath}/mypage/myRetest.do">오답노트</a></li>
-                                        <li><a href="single-course.html">개인성적</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/mypage/myRetestStat.do">개인통계</a></li>
                                         <li><a href="instructors.html">즐겨찾기문제</a></li>
                                         <li><a href="${pageContext.request.contextPath}/mypage/myInput.do">작성글</a></li>
                                     </ul>

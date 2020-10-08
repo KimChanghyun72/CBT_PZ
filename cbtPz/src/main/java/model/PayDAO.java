@@ -21,8 +21,8 @@ public class PayDAO {
 	}//###인스턴스###
 	
 	//###입력###
-			public void insert(PayVO payVo) {
-				
+			public int insert(PayVO payVo) {
+				int r = 0;
 				try {
 					conn = ConnectionManager.getConnnect();
 					
@@ -33,7 +33,7 @@ public class PayDAO {
 					pstmt.setString(1, payVo.getPay_type());
 					pstmt.setInt(2, payVo.getPay_price());
 					pstmt.setString(3, payVo.getMember_id());
-					pstmt.executeUpdate();
+					r = pstmt.executeUpdate();
 					System.out.println("결제 1건이 결제되었습니다.");
 				
 				}catch(Exception e) {
@@ -41,6 +41,8 @@ public class PayDAO {
 				}finally {
 					ConnectionManager.close(null,pstmt,conn);
 				}
+				
+				return r;
 			}//###입력###
 			
 

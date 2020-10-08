@@ -246,9 +246,13 @@ public class BoardDAO {
 			// BOARD";
 
 			String sql = "select a.* from(select rownum rn,b.* from( "
-					+ " SELECT BOARD_ID,BOARD_TITLE,BOARD_CONTENTS,MEMBER_ID,BOARD_DATE,BOARD_VIEWS,BOARD_FILE"
-					+ " FROM BOARD" + where + " ORDER BY BOARD_ID DESC" + " )b ) a where rn between ? and ? ";
-
+					+ " SELECT BOARD_ID,BOARD_TITLE,BOARD_CONTENTS,MEMBER_ID,BOARD_DATE,BOARD_VIEWS,BOARD_FILE, "
+					+ " (case when sysdate - board_date<0.007 then 1 else 0 end) isNew"
+					+ " FROM BOARD"
+					+ where
+					+ " ORDER BY BOARD_ID DESC"
+					+ " )b ) a where rn between ? and ? ";
+					System.out.println(sql);
 			pstmt = conn.prepareStatement(sql);
 
 			int pos = 1;

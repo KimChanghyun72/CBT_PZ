@@ -198,6 +198,8 @@ public class LoginFilter implements Filter {
     	list.add("/mypage/proUpdate.do"); //강사 개인정보수정
     	list.add("/mypage/proDelete.do"); //강사 탈퇴
     	
+    	list.add("/mypage/myRetestStat.do"); //개인통계페이지
+    	
     	//list.add("/ajax/fullCalendar.do"); //풀캘린더실험용
     	//list.add("/mainCtrl.do"); // main.jsp 구동하는 서블릿 (indexx.jsp)
 	}
