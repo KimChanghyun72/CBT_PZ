@@ -421,11 +421,12 @@ padding: 10px;
 			
 			<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" id="tested_num"
-					name="tested_num" value="3회 이상"
+					name="tested_num" value="3"
 					<c:if test="${login.tested_num=='3'}"> checked="checked"</c:if>> 
  					<label class="form-check-label">3회 이상</label>
 			</div>
 		</div>
+		<!-- tested_num, data type = number. value 값 숫자 -->
 		<!-- name이 칼럼명과 같아야 함 -->
 
 			
