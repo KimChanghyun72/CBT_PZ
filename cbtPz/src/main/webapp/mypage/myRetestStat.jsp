@@ -6,14 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <link rel="css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700">
 
 <style>
 .chartdiv {
   font-family: "Open Sans", Arial;
-  background: #EDEDED;
+  background: #FFF;
   
 }
 main {
@@ -32,27 +32,29 @@ p {
   height: 500px;
   position: relative;
   margin: auto;
+  
 }
 #line-chart {
   width: 700px;
   height: 500px;
   position: relative;
   margin: auto;
+
 }
 #bar-chart::before, #line-chart::before {
   content: "";
   position: absolute;
   display: block;
-  width: 240px;
+  width: 250px;
   height: 30px;
-  left: 155px;
-  top: 254px;
+  left: 250px;
+  top: 421px;
   background: #FAFAFA;
   box-shadow: 1px 1px 0 0 #DDD;
 }
 #pie-chart {
-  width: 500px;
-  height: 250px;
+  width: 700px;
+  height: 350px;
   position: relative;
   margin: auto;
 }
@@ -62,7 +64,7 @@ p {
   display: block;
   width: 120px;
   height: 115px;
-  left: 315px;
+  left: 440px;
   top: 0;
   background: #FAFAFA;
   box-shadow: 1px 1px 0 0 #DDD;
@@ -71,8 +73,8 @@ p {
   content: "";
   position: absolute;
   display: block;
-  top: 260px;
-  left: 70px;
+  top: 370px;
+  left: 140px;
   width: 170px;
   height: 2px;
   background: rgba(0,0,0,0.1);
@@ -314,20 +316,20 @@ p {
 					<div class="page-content">
 						<h2 style="text-align: center;">Beautiful Google Charts</h2>
 						<div class="chartdiv">
+						<br><br>
 							<h5>Daily Page Hits</h5>
 							<div id="bar-chart"></div>
+							<br><br>
 							<h5>Traffic Over Time</h5>
 							<div id="line-chart"></div>
+							<br><br>
 							<h5>Page Hits per Country</h5>
 							<div id="pie-chart"></div>
-							<p>
-								Google Charts can be <a
-									href="https://google-developers.appspot.com/chart/">found
-									here</a>.
-							</p>
-							<p>An original pen by</p>
+						<br><br>
 						</div>
 					</div>
+						<div class="single-course-content section-padding-100">
+						</div>
 				</div>
 			</div>
 		</div>
