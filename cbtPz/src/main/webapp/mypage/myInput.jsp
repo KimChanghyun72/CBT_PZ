@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="my" tagdir="/WEB-INF/tags"%> 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +10,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div class="board">
 	<article>
 		<div class="container">
 			<div class="table-responsive">
@@ -28,7 +29,7 @@
 				<c:choose>
 					<c:when test="${empty board_list}">
 						<tr>
-							<td colspan="5" align="center">데이터가 없습니다.</td>
+							<td colspan="6" align="center">데이터가 없습니다.</td>
 						</tr>
 					</c:when>
 					<c:when test="${!empty board_list}">
@@ -52,6 +53,17 @@
 			</tbody>
 			
 		</table>
+		
+	<!-- 페이징 처리 영역 -->	
+   <my:paging paging="${paging}" jsfunc="gopage"/>
+    	<script>
+    	function gopage(p){
+
+    		location.href="${pageContext.request.contextPath}/mypage/myInput.do?p="+ p;
+    	
+    	};
+    	</script>	
+	<!-- 페이징 처리 영역 -->
 	</div>
 	</div>
 	</article>
