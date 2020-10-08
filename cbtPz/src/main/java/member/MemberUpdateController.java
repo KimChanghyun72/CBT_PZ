@@ -30,9 +30,10 @@ public class MemberUpdateController implements Controller {
 		System.out.println(payCheck);
 		String term = request.getParameter("term");
 		MemberVo pay_member = (MemberVo) request.getSession().getAttribute("login");
+		System.out.println("pay_member"+pay_member);
 		Calendar cal = Calendar.getInstance();
 		
-		if (pay.equals(payCheck)) {
+		if (pay.equals(payCheck)) { //회원 결제정보 업데이트
 			MemberDAO dao = new MemberDAO();
 			String is_pay = "Y"; //유료회원 판단 문자
 			int term2 = Integer.parseInt(term);
@@ -52,7 +53,7 @@ public class MemberUpdateController implements Controller {
 				cal.add(Calendar.DATE, term2); //기간 연장
 				pay_member.setPay_enddate(df.format(cal.getTime()));
 				dao.update(pay_member);
-			
+				
 			} else {									//유료회원 아닌 경우
 				/* Calendar cal = Calendar.getInstance(); */
 				pay_member.setIs_pay(is_pay);		//유료회원으로 전환
@@ -63,12 +64,12 @@ public class MemberUpdateController implements Controller {
 				dao.update(pay_member);
 			}
 			
-			request.setAttribute("paymsg", "결제가 완료되었습니다.");
-			request.setAttribute("paycode", 1);
 			String path = "indexx.jsp";
-			request.getRequestDispatcher(path).forward(request, response);
-		} else {
-
+			response.sendRedirect(path);
+			
+		}
+		
+		else { //결제를 제외한 회원 업데이트
 			
 		// Parameter 추출
 		String member_id = request.getParameter("member_id");//pay_member.getMember_id();
@@ -92,7 +93,8 @@ public class MemberUpdateController implements Controller {
 			response.sendRedirect("myInfo.do?member_id=" + member_id);
 			return;
 		}	
-			pay_enddate = pay_enddate.substring(0,10).replace("-", "/"); //포맷 변경
+			System.out.println("upd_99"+pay_enddate);
+			//pay_enddate = pay_enddate.substring(0,10).replace("-", "/"); //포맷 변경
 			DateFormat df = new SimpleDateFormat("YYYY/MM/dd");
 			try {
 				Date date = df.parse(pay_enddate);
@@ -129,6 +131,7 @@ public class MemberUpdateController implements Controller {
 							response.sendRedirect(path + member_id);
 						}
 		}
+		
 	}
 
 }

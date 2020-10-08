@@ -36,7 +36,7 @@ public class PayInsertCtrl implements Controller {
 		 * System.out.println(path);
 		 */
 		
-		request.getRequestDispatcher("/memberUpdate.do").forward(request, response);
+		request.getRequestDispatcher("/mypage/memberUpdate.do").forward(request, response);
 		
 	}
 
