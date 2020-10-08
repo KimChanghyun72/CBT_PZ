@@ -236,6 +236,7 @@ window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };
 		<% for(probNum=0; probNum<problemList.size(); probNum++){ %>
 			<tr>
 				<td><%=problemList.get(probNum).get("subject") %>
+				
 				<td class="probNum<%=probNum %>"><%=probNum+1 %>번</td>
 				<td>
 					<div><%=problemList.get(probNum).get("problem_text") %>&nbsp;&nbsp;<input type="checkbox"  name="probChk<%=probNum%>"></div>

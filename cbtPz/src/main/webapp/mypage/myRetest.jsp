@@ -23,7 +23,7 @@ function btnSelectSolve(solve_id) {
 	}  
 }
 </script>
-</head>
+</head> 
 <body>
 	<h1>test/ 오답문제 페이지</h1>
 	<div class="retest">
