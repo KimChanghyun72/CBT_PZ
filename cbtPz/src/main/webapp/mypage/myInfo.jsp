@@ -193,6 +193,12 @@
 	
 	
 </script>
+<style>
+#member_job
+{
+padding: 10px;
+}
+</style>
 </head>
 <body>
 	
@@ -304,7 +310,7 @@
 		<div class="col-12 col-lg-6">
         <div class="form-group">
         
-				<select id="member_job" name="member_job" class="form-control">
+				<select id="member_job" name="member_job" class="form-control" style ="padding:10px">
 						<option value="학생" <c:if test="${login.member_job=='학생'}"> selected="selected"</c:if>>학생</option>
 						<option value="취준생"<c:if test="${login.member_job=='취준생'}"> selected="selected"</c:if>>취준생</option>
 						<option value="직장인"<c:if test="${login.member_job=='직장인'}"> selected="selected"</c:if>>직장인</option>
@@ -323,11 +329,8 @@
 	        <div class="col-12 col-lg-6">
 	        <div class="form-group">
 		        <div class="form-check form-check-inline">
-				  <input class="form-check-input" type="radio" name="is_major" value="Y">
-<%-- =======
 				  <input class="form-check-input" type="radio" name="is_major" value="Y"
 				  <c:if test="${login.is_major=='Y'}"> checked="checked"</c:if>>
->>>>>>> branch 'master' of https://github.com/KimChanghyun72/CBT_PZ.git --%>
 				  <label class="form-check-label" for="is_major">예</label>
 				</div>
 				<div class="form-check form-check-inline">
@@ -393,41 +396,31 @@
 		<div class="col-12 col-lg-6">
 			<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" id="tested_num"
-					name="tested_num" value="0" checked="checked"> 
-<%-- =======
 					name="tested_num" value="0"
 					<c:if test="${login.tested_num=='0'}"> checked="checked"</c:if>> 
->>>>>>> branch 'master' of https://github.com/KimChanghyun72/CBT_PZ.git --%>
 					<label class="form-check-label">0회</label>
 			</div>	
 			
 			<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" id="tested_num"
-					name="tested_num" value="1"> 
-<%-- =======
 					name="tested_num" value="1"
 					<c:if test="${login.tested_num=='1'}"> checked="checked"</c:if>> 
->>>>>>> branch 'master' of https://github.com/KimChanghyun72/CBT_PZ.git --%>
+
 					<label class="form-check-label">1회</label>
 			</div>	
 			
 			<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" id="tested_num"
-					name="tested_num" value="2"> 
-<%-- =======
 					name="tested_num" value="2"
 					<c:if test="${login.tested_num=='2'}"> checked="checked"</c:if>> 
->>>>>>> branch 'master' of https://github.com/KimChanghyun72/CBT_PZ.git --%>
+
 					<label class="form-check-label">2회</label>
 			</div>	
 			
 			<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" id="tested_num"
-					name="tested_num" value="3"> 
-<%-- =======
 					name="tested_num" value="3회 이상"
 					<c:if test="${login.tested_num=='3'}"> checked="checked"</c:if>> 
->>>>>>> branch 'master' of https://github.com/KimChanghyun72/CBT_PZ.git--%>
  					<label class="form-check-label">3회 이상</label>
 			</div>
 		</div>
@@ -444,7 +437,7 @@
 
 		<form name="memDeleteFrm" action="memberDelete.do" method="post">
 			<input type="hidden" name="member_id" value="${login.member_id }" />
-			<button id="tdelete" class="btn clever-btn">회원 탈퇴</button>
+			<button id="tdelete" type="button" class="btn clever-btn" onclick="memDelete()">회원 탈퇴</button>
 		</form>
 		</div>
 		</div>
