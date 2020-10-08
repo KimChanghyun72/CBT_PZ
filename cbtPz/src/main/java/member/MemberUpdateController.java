@@ -35,7 +35,6 @@ public class MemberUpdateController implements Controller {
 		if (pay.equals(payCheck)) {
 			MemberDAO dao = new MemberDAO();
 			String is_pay = "Y"; //유료회원 판단 문자
-			System.out.println();
 			int term2 = Integer.parseInt(term);
 			
 			if(is_pay.equals(pay_member.getIs_pay())) { //유료회원의 경우

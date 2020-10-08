@@ -96,11 +96,26 @@ List<Map<String, Object>> problemList = (List<Map<String, Object>>)request.getSe
 int probNum;  //문제 번호
 int ansNum;  //오른쪽 문제번호
 int probSize = problemList.size();
+
 %>
 
 var size = <%=probSize%>;
 var is_submit=0;
 $(function(){
+	<%-- <% for(int i=0; i < probSize ; i++){%>
+	var i = <%=i %>;
+	var is_correct = <%=(String)problemList.get(i).get("is_correct") %>;
+	var ox="";
+ 		$("[name=answer"+i+"]").val([<%=(String)problemList.get(i).get("check_num") %>]);	
+ 		$("[name=problem"+i+"]").val([<%=(String)problemList.get(i).get("check_num") %>]);
+		if(is_correct=='Y'){
+			ox = ' : 정답';
+		}else{
+			ox = ' : 오답';
+		}
+			$(".probNum"+i).html($(".probNum"+i).html()+ox);
+	
+	<% }%> --%>
 	$(document).on("click", "#checknum", function () {
 	    var checkNum = $(this).val();
 	    var paper_id = $(this).closest("tr").find('#paper_id').val();
@@ -141,7 +156,6 @@ $(function(){ //for문은 번호를 설정해주는 역할만 하고 이벤트�
 		$('input:radio[name=problem'+j+']').val([v]); 
 	})
 	}
-	
 	
 	var cnt = 0; //문제 맞춘 갯수
 	//ajax로 답지 불러오는 함수.
@@ -230,22 +244,49 @@ window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };
 <table id="foo-table" class="table table-bordered">
 	
 		<thead>
-			<tr><th>과목</th><th>번호</th><th>문제</th></tr>
+			<tr><th>&nbsp;&nbsp;과목&nbsp;&nbsp;</th><th>번호</th><th>문제</th></tr>
 		</thead>
 		<tbody>
 		<% for(probNum=0; probNum<problemList.size(); probNum++){ %>
 			<tr>
 				<td><%=problemList.get(probNum).get("subject") %>
-				
-				<td class="probNum<%=probNum %>"><%=probNum+1 %>번</td>
+				<td class="probNum<%=probNum %>">
+					<%=probNum+1 %>번
+					<br>
+					<%if(problemList.get(probNum).get("is_correct").equals("1")){ %>
+						결과 : 정답
+						<br>
+					<% }else{ %>
+						결과 : 오답
+						<br>
+						정답 : <%=problemList.get(probNum).get("ans_correct") %>번
+					<%} %>
+				</td>
 				<td>
 					<div><%=problemList.get(probNum).get("problem_text") %>&nbsp;&nbsp;<input type="checkbox"  name="probChk<%=probNum%>"></div>
 					<input type="hidden" id="paper_id" value="<%=problemList.get(probNum).get("paper_id") %>">
 					<input type="hidden" id="pro_id" value="<%=problemList.get(probNum).get("problem_id") %>">
-					<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="1"><%=problemList.get(probNum).get("ans_1") %></div>
-					<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="2"><%=problemList.get(probNum).get("ans_2") %></div>
-					<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="3"><%=problemList.get(probNum).get("ans_3") %></div>
-					<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="4"><%=problemList.get(probNum).get("ans_4") %></div>
+					<% if(problemList.get(probNum).get("check_num").equals("1")) {%>
+						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="1" checked><%=problemList.get(probNum).get("ans_1") %></div>
+						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="2"><%=problemList.get(probNum).get("ans_2") %></div>
+						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="3"><%=problemList.get(probNum).get("ans_3") %></div>
+						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="4"><%=problemList.get(probNum).get("ans_4") %></div>
+						<%}else if(problemList.get(probNum).get("check_num").equals("2")) { %>
+						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="1"><%=problemList.get(probNum).get("ans_1") %></div>
+						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="2" checked><%=problemList.get(probNum).get("ans_2") %></div>
+						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="3"><%=problemList.get(probNum).get("ans_3") %></div>
+						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="4"><%=problemList.get(probNum).get("ans_4") %></div>
+						<%}else if(problemList.get(probNum).get("check_num").equals("3")) { %>
+						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="1"><%=problemList.get(probNum).get("ans_1") %></div>
+						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="2"><%=problemList.get(probNum).get("ans_2") %></div>
+						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="3" checked><%=problemList.get(probNum).get("ans_3") %></div>
+						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="4"><%=problemList.get(probNum).get("ans_4") %></div>
+						<%}else { %>
+						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="1"><%=problemList.get(probNum).get("ans_1") %></div>
+						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="2"><%=problemList.get(probNum).get("ans_2") %></div>
+						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="3"><%=problemList.get(probNum).get("ans_3") %></div>
+						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="4" checked><%=problemList.get(probNum).get("ans_4") %></div>
+						<% } %>
 					<input type="text" name="is_correct<%=probNum%>">
 					<div class="haeseol<%=probNum %>"></div>
 				</td>
@@ -270,10 +311,27 @@ window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };
 								<td><input type="hidden" id="paper_id" value="<%=problemList.get(ansNum).get("paper_id") %>"></td>
 								<td><input type="hidden" id="pro_id" value="<%=problemList.get(ansNum).get("problem_id") %>"></td>
 								<td class="ansNum<%=problemList.get(ansNum).get("problem_id") %>"><b><%=ansNum+1 %>. |</b></td>
-								<td>&nbsp; 1<input type="radio" id="checknum" name="answer<%=ansNum %>" value="1"></td>
-								<td>&nbsp; 2<input type="radio" id="checknum" name="answer<%=ansNum %>" value="2"></td>
-								<td>&nbsp; 3<input type="radio" id="checknum" name="answer<%=ansNum %>" value="3"></td>
-								<td>&nbsp; 4<input type="radio" id="checknum" name="answer<%=ansNum %>" value="4"></td>
+								<% if(problemList.get(ansNum).get("check_num").equals("1")) {%>
+									<td>&nbsp; 1<input type="radio" id="checknum" name="answer<%=ansNum %>" value="1" checked></td>
+									<td>&nbsp; 2<input type="radio" id="checknum" name="answer<%=ansNum %>" value="2"></td>
+									<td>&nbsp; 3<input type="radio" id="checknum" name="answer<%=ansNum %>" value="3"></td>
+									<td>&nbsp; 4<input type="radio" id="checknum" name="answer<%=ansNum %>" value="4"></td>
+								<% } else if(problemList.get(ansNum).get("check_num").equals("2")) { %>
+									<td>&nbsp; 1<input type="radio" id="checknum" name="answer<%=ansNum %>" value="1"></td>
+									<td>&nbsp; 2<input type="radio" id="checknum" name="answer<%=ansNum %>" value="2" checked></td>
+									<td>&nbsp; 3<input type="radio" id="checknum" name="answer<%=ansNum %>" value="3"></td>
+									<td>&nbsp; 4<input type="radio" id="checknum" name="answer<%=ansNum %>" value="4"></td>
+								<% } else if(problemList.get(ansNum).get("check_num").equals("1")) { %>
+									<td>&nbsp; 1<input type="radio" id="checknum" name="answer<%=ansNum %>" value="1"></td>
+									<td>&nbsp; 2<input type="radio" id="checknum" name="answer<%=ansNum %>" value="2"></td>
+									<td>&nbsp; 3<input type="radio" id="checknum" name="answer<%=ansNum %>" value="3" checked></td>
+									<td>&nbsp; 4<input type="radio" id="checknum" name="answer<%=ansNum %>" value="4"></td>
+								<% } else { %>
+									<td>&nbsp; 1<input type="radio" id="checknum" name="answer<%=ansNum %>" value="1"></td>
+									<td>&nbsp; 2<input type="radio" id="checknum" name="answer<%=ansNum %>" value="2"></td>
+									<td>&nbsp; 3<input type="radio" id="checknum" name="answer<%=ansNum %>" value="3"></td>
+									<td>&nbsp; 4<input type="radio" id="checknum" name="answer<%=ansNum %>" value="4" checked></td>
+								<% }%>
 							</tr>
 							
 							<% } %>

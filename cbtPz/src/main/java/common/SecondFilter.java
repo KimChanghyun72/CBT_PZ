@@ -30,15 +30,17 @@ public class SecondFilter implements Filter {
 		if (uri.indexOf("login") < 0) {
 			HttpSession session = ((HttpServletRequest) request).getSession();
 			String contextPath = ((HttpServletRequest) request).getContextPath();
-			if (session.getAttribute("login") == null) {
+			if ((session.getAttribute("login").equals("") || session.getAttribute("login").equals(null)) && session.isNew()==true) {
 				/* ((HttpServletResponse) response).sendRedirect("member/login"); */
+				System.out.println("세션만료조건 만족");
 				((HttpServletResponse) response).sendRedirect(contextPath + "/member/login.jsp");
-
+				
+			}else {
+				System.out.println("세션만료조건 불만족");
 			}
+			chain.doFilter(request, response);
 			return;
 		}
-		chain.doFilter(request, response);
-		System.out.println("second filter ���� ����");
 
 	}
 
