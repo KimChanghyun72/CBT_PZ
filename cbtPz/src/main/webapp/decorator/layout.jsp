@@ -117,7 +117,7 @@
                                         <li><a href="${pageContext.request.contextPath}/mypage/insertLecForm.do">강의 등록</a></li>
                                         </c:if>
                                         <li><a href="${pageContext.request.contextPath}/mypage/myRetest.do">오답노트</a></li>
-                                        <li><a href="${pageContext.request.contextPath}/myRetestStatList.do">개인통계</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/mypage/myRetestStat.do">개인통계</a></li>
                                         <li><a href="instructors.html">즐겨찾기문제</a></li>
                                         <c:if test="${not empty sessionScope.check && sessionScope.check == 'M'}">
                                         <li><a href="${pageContext.request.contextPath}/mypage/myInput.do">작성글</a></li>
@@ -143,11 +143,11 @@
                             <!-- Register / Login -->
                             <div class="register-login-area">
                                 <c:if test="${not empty sessionScope.name}">
-                                <c:if test="${sessionScope.check=='M'}">
-                                	<c:if test="${sessionScope.login.is_pay == 'Y' }">
-                                		<span class="badge badge-pill badge-warning">VIP</span>
-                                	</c:if>
-                                	</c:if>
+	                                <c:if test="${sessionScope.check=='M'}">
+	                                	<c:if test="${sessionScope.login.is_pay == 'Y' }">
+	                                		<span class="badge badge-pill badge-warning">VIP</span>
+	                                	</c:if>
+	                                </c:if>
 	                                ${sessionScope.name}님  
 	                                <a href="${pageContext.request.contextPath}/logout.do" class="btn active">Logout</a>
                                 </c:if>
