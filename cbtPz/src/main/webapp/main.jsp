@@ -62,54 +62,7 @@
 								calendarEl,
 								{
 									initialView : 'dayGridMonth',
-									/* initialDate: '2020-09-07',
-									headerToolbar: {
-									  left: 'prev',
-									  center: 'title',
-									  right: 'next today'
-									}, */
-									/* events: [
-									  {
-									    title: 'All Day Event',
-									    start: '2020-09-01'
-									  },
-									  {
-									    title: 'Long Event',
-									    start: '2020-09-07',
-									    end: '2020-09-10'
-									  },
-									  {
-									    groupId: '999',
-									    title: 'Repeating Event',
-									    start: '2020-09-09T16:00:00'
-									  },
-									  {
-									    groupId: '999',
-									    title: 'Repeating Event',
-									    start: '2020-09-16T16:00:00'
-									  },
-									  {
-									    title: 'Conference',
-									    start: '2020-09-11',
-									    end: '2020-09-13'
-									  },
-									  {
-									    title: 'Meeting',
-									    start: '2020-09-12T10:30:00',
-									    end: '2020-09-12T12:30:00'
-									  },
-									  {
-									    title: 'Lunch',
-									    start: '2020-09-12T12:00:00'
-									  },
-									  {
-									    title: 'Click for 구글',
-									    url: 'http://google.com/',
-									    start: '2020-09-28'
-									  }
-									] */
-
-									events : function(info, successCallback,
+									/* events : function(info, successCallback,
 											failureCallback) {
 											$.ajax({
 													url : '${pageContext.request.contextPath}/ajax/fullCalendar.do',
@@ -123,18 +76,18 @@
 														console.log(doc);
 														successCallback(doc);
 													}
-												});
-									},
+												}); */
+									
 									eventSources : [
-										{
-										url : '${pageContext.request.contextPath}/ajax/schedulerList.do',
-										data: function() { return }
-										//color : 'yellow',
-										//timeZone : 'UTC',
-										//editable : true,
-										//selectable : true,
-										}
-									]
+														{
+														url : '${pageContext.request.contextPath}/ajax/schedulerList.do',
+														data: function() { return }
+														//color : 'yellow',
+														//timeZone : 'UTC',
+														//editable : true,
+														//selectable : true,
+														}
+													],displayEventTime: false
 
 								});
 

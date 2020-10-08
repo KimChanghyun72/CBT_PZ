@@ -35,7 +35,6 @@
 																				start : dateStr
 																			},
 																			success : function(scheduler) {
-																				console.log(scheduler);
 																			}
 															
 																				});   
@@ -45,7 +44,7 @@
 																					.addEvent({
 																						title : Str,
 																						start : dateStr,
-																						allDay : true
+																						allDay : false
 																					});
 																			alert('Great. Now, update your database...');
 																		} else {
@@ -59,12 +58,12 @@
 														url : '${pageContext.request.contextPath}/ajax/schedulerList.do',
 														data: function() { return }
 														//color : 'yellow',
-														//timeZone : 'UTC',
+														//timeZone : 'UTC'
 														//editable : true,
 														//selectable : true,
 														}
-													]
-								
+													],
+														displayEventTime: false
 									});
 						
 							calendar.render();
