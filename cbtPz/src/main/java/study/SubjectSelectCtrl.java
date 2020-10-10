@@ -16,7 +16,8 @@ public class SubjectSelectCtrl implements Controller {
 		String path = "subjectList.jsp";
 		
 		request.getSession().setAttribute("pageName", "과목별");
-		request.getRequestDispatcher("/study/"+path).forward(request, response);
+		request.getRequestDispatcher(path).forward(request, response);
+		/* request.getRequestDispatcher("/study/"+path).forward(request, response); */
 	}
 
 }

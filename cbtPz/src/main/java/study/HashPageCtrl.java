@@ -17,7 +17,8 @@ public class HashPageCtrl implements Controller {
 			System.out.println("해쉬검색페이지로이동");
 			String path = "hashSelect.jsp";
 			
-			request.getRequestDispatcher("/study/"+path).forward(request, response);
+			request.getRequestDispatcher(path).forward(request, response);
+			//request.getRequestDispatcher("/study/"+path).forward(request, response);
 	}
 
 }

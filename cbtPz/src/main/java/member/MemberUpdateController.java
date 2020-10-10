@@ -94,7 +94,7 @@ public class MemberUpdateController implements Controller {
 			return;
 		}	
 			System.out.println("upd_99"+pay_enddate);
-			//pay_enddate = pay_enddate.substring(0,10).replace("-", "/"); //포맷 변경
+			pay_enddate = pay_enddate.substring(0,10).replace("-", "/"); //포맷 변경
 			DateFormat df = new SimpleDateFormat("YYYY/MM/dd");
 			try {
 				Date date = df.parse(pay_enddate);

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" isELIgnored="false" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,7 +38,7 @@
 	
 	
 	
-	<form action="problemSubject.do">	
+	<form action="${pageContext.request.contextPath}/problemSubject.do">	
 	1과목<button type="submit" name="subject" value="1과목">풀기</button><br>
 	2과목<button type="submit" name="subject" value="2과목">풀기</button><br>
 	3과목<button type="submit" name="subject" value="3과목">풀기</button><br>

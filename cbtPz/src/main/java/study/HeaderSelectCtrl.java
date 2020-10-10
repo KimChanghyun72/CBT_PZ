@@ -36,7 +36,8 @@ public class HeaderSelectCtrl implements Controller {
 		request.setAttribute("headlist", headlist);
 				
 		request.getSession().setAttribute("pageName", paper_type_cd);
-		request.getRequestDispatcher("/study/"+path).forward(request, response);
+		request.getRequestDispatcher(path).forward(request, response);
+		/* request.getRequestDispatcher("/study/"+path).forward(request, response); */
 		
 	}
 

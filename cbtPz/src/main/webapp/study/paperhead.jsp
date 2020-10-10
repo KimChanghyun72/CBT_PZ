@@ -30,7 +30,8 @@ th , td {
 	<input type="hidden" ${headlist.paperhead_id} />
 	<tr><td>${headlist.paper_type_cd} ${headlist.paper_round}</td>
 	<td>
-	<form action="problemHead.do">
+	
+	<form action="${pageContext.request.contextPath}/study/problemHead.do">
 	<button type="submit" name="paperhead_id" value="${headlist.paperhead_id}" class="btn btn-sm btn-primary">풀기</button>
 	</form>
 	</td>

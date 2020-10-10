@@ -23,17 +23,29 @@
 	
   	<!-- Custom styles for this template -->
   	<link href="${pageContext.request.contextPath}/css/modern-business.css" rel="stylesheet">
+	<!-- hashSelect.jsp 사용. -->
+        <!-- Favicon -->
+    <link rel="icon" href="${pageContext.request.contextPath}/img/core-img/favicon.ico">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
     <!-- Favicon -->
     <link rel="icon" href="${pageContext.request.contextPath}/img/core-img/favicon.ico">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">    
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     
+    
+    
     <script src="${pageContext.request.contextPath}/js/jquery/jquery-2.2.4.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.min.js"></script>
 
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.relocator.1.0.0.js"></script>
+    
+    <!-- hashSelect.jsp 사용. -->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/study/fancymetags.jQuery.js"></script>
     
  <decorator:head/>   
 
@@ -82,10 +94,10 @@
                                 <li><a href="${pageContext.request.contextPath}/board/noticeList.do">공지사항</a></li>
                                 <li><a href="${pageContext.request.contextPath}/study/studymain.jsp">학습하기</a>
                                     <ul class="dropdown">
-                                        <li><a href="${pageContext.request.contextPath}/haederSearch.do?paper_type_cd=기출">기출문제</a></li>
-                                        <li><a href="${pageContext.request.contextPath}/haederSearch.do?paper_type_cd=모의">모의고사</a></li>
-                                        <li><a href="${pageContext.request.contextPath}/subjectSearch.do">과목별</a></li>
-                                        <li><a href="/cbtPz/hashtagPage.do">태그별</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/study/haederSearch.do?paper_type_cd=기출">기출문제</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/study/haederSearch.do?paper_type_cd=모의">모의고사</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/study/subjectSearch.do">과목별</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/study/hashtagPage.do">태그별</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="${pageContext.request.contextPath}/lecturePage.do">동영상강의</a></li>
