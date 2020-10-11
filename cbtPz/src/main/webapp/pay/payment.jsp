@@ -53,7 +53,7 @@
 	text-align:center;
 }
 .btn-login {
-	background-color: #59B2E0;
+	background-color: #007BFF;
 	outline: none;
 	color: #fff;
 	font-size: 14px;
@@ -162,11 +162,11 @@ $(function(){
 	<!-- <input type="button" class="btnSubmit" value="결제하기"> -->
 	<br>
 		<div class="form-group">
-			<div class="row">
-				<div class="col-sm-6 col-sm-offset-3">
+			<!-- <div class="row">
+				<div class="col-sm-6 col-sm-offset-3"> -->
 					<input type="button" name="login-submit" id="tin-submit" tabindex="4" class="form-control btn btn-login" value="결제하기">
-				</div>
-			</div>
+				<!-- </div>
+			</div> -->
 		</div>
 	</div>
 </form>	

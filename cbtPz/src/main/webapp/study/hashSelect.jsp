@@ -61,7 +61,25 @@
         cursor: pointer;
         margin-left: 8px;
     }
-	
+	#hashbtn {
+		border-radius: 5px;
+		background-color: #007BFF;
+		outline: none;
+		color: #fff;
+		font-size: 20px;
+		height: auto;
+		font-weight: normal;
+		padding: 14px 0;
+		text-transform: uppercase;
+		border-color: #59B2E6;
+		width : 200px;
+	}
+	#hashbtn:hover,
+	#hashbtn:focus {
+		color: #fff;
+		background-color: #53A3CD;
+		border-color: #53A3CD;
+	}
 </style>
 
     
@@ -155,7 +173,7 @@ $(function(){
     <ul id="tag-list"></ul>
     <form id="hash" action="${pageContext.request.contextPath}/hashtagSelect.do">
 	    <input type="hidden" id="hashlist" name="hashtag_name">
-	    <input type="button" value="제출" id="hashbtn">
+	    		<input type="button" value="제 출" id="hashbtn">
     </form>
 	</div>
 </body>

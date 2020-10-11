@@ -6,6 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+	#tdelete {
+		display : block;
+		margin : 0 auto;
+		width : 160px;
+	}
+
+</style>
 <script>
 <% request.getSession().setAttribute("pageName", "개인 정보 수정"); %>
 	
@@ -437,11 +445,12 @@ padding: 10px;
 			</div>
 			</form>
 			
-
-		<form name="memDeleteFrm" action="memberDelete.do" method="post">
-			<input type="hidden" name="member_id" value="${login.member_id }" />
-			<button id="tdelete" type="button" class="btn clever-btn" onclick="memDelete()">회원 탈퇴</button>
-		</form>
+		<div class="btnArea">
+			<form name="memDeleteFrm" action="memberDelete.do" method="post">
+				<input type="hidden" name="member_id" value="${login.member_id }" />
+				<button id="tdelete" type="button" class="btn clever-btn" onclick="memDelete()">회원 탈퇴</button>
+			</form>
+		</div>
 		</div>
 		</div>
 		</div>
@@ -583,11 +592,13 @@ padding: 10px;
                                 </div>
 							</div>
                         </form>
+                        	<div class="btnArea">
 								<form action="${pageContext.request.contextPath}/mypage/proDelete.do" method="post"
 									id="tdfrm">
 									<!-- <input type="hidden" name="member_id" value="" /> -->
 									<button id="tdelete" class="btn clever-btn">회원 탈퇴</button>
 								</form>
+							</div>
                     </div>
                 </div>
             </div>
