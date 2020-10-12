@@ -77,7 +77,7 @@
                         <div class="course-content">
                             <h4></h4>
                             <div class="meta d-flex align-items-center">
-                                <a>멤버십 만료일 : ${sessionScope.login.pay_enddate}.substr(1,11);</a>
+                                <a>멤버십 만료일 : ${sessionScope.login.pay_enddate}</a>
                                 <span><i class="fa fa-circle" aria-hidden="true"></i></span>
                             </div>
                             <p>${lecture.lecture_info}</p>

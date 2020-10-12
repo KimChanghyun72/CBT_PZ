@@ -58,10 +58,14 @@
 	position : fixed;
 	bottom: 0;
     right: 0;
-	width: 25%;
+	float: right;
+	overflow : scroll;
+	width : 500px;
+	height : 500px;
 	/* background-color: #f1f1f1; */
 	padding-left: 20px;
 }
+
 /* Fake image */
 .fakeimg {
 	background-color: #aaa;
@@ -110,26 +114,6 @@ int probSize = problemList.size();
 
 var size = <%=probSize%>;
 var is_submit=0;
-$(function(){
-	$(document).on("click", "#checknum", function () {
-	    var checkNum = $(this).val();
-	    var paper_id = $(this).closest("tr").find('#paper_id').val();
-	    var pro_id = $(this).closest("tr").find('#pro_id').val();
-	    $.ajax({
-	        type: "POST",   
-	        url: "${pageContext.request.contextPath}/ajax/paperUpdate.do",
-	        dataType : "json",
-	        data: {
-	        	check_num : checkNum,
-	        	paper_id : paper_id,
-	        	problem_id : pro_id
-	        },
-	        success: function(data){
-	           
-	        },
-	    });
-	});
-})
 
 $(function(){ //for문은 번호를 설정해주는 역할만 하고 이벤트시에는 안 먹음.
 	for(var i=0; i<size; i++){
@@ -169,37 +153,37 @@ $(function(){ //for문은 번호를 설정해주는 역할만 하고 이벤트�
 						
 					}else{
 						$('input[name=problem'+i+']').closest("td").prev()
-								.append('<div id="ques_ox1"><img src="../img/x.png" style="width:35px; height:35px;"></div><div style="margin-top:35px">');
+								.append('<div id="ques_ox1"><img src="../img/x.png" style="width:35px; height:35px;"></div><div style="margin-top:35px">정답 :'+datas[i].ans_correct+'</div>');
 						
 					}
 				};
 			}
 		})
 	}
-	submitFunc(); //정답, ox 불러오는 함수 실행.
+	submitFunc();//정답, ox 불러오는 함수 실행.
+});
+</script>
+<script>
+$(document).ready(function(){
 
-	$(document).ready(function(){
+	$('.btn').click(function(){
+		var id = $(this).data("id");
+		var offset = $('#div'+id).offset();  //선택한 태그의 위치를 반환
+		offset.top-= 150;
+		console.log(offset);
+            //animate()메서드를 이용해서 선택한 태그의 스크롤 위치를 지정해서 0.4초 동안 부드럽게 해당 위치로 이동함 
 
-		$('.btn').click(function(){
-			var id = $(this).data("id");
-			var offset = $('#div'+id).offset(); //선택한 태그의 위치를 반환
-			offset.top-= 150;
-			console.log(offset);
-                //animate()메서드를 이용해서 선택한 태그의 스크롤 위치를 지정해서 0.4초 동안 부드럽게 해당 위치로 이동함 
-
-	        $('html').animate({scrollTop : offset.top}, 300);
-
-		});
+        $('html').animate({scrollTop : offset.top}, 300);
 
 	});
 
+});
 </script>
 </head>
 <body>
 	<div class="header">
 		<h1>${sessionScope.pageName} ${problemList[0].solve_type_cd} </h1>
-		<c:if test="">
-		</c:if>
+		<h4>${problemList[0].solve_score}/${problemList[0].solve_cnt}</h4>
 			<div id="ViewTimer"></div>
 	</div>
 <div class="leftcolumn">
@@ -310,12 +294,8 @@ $(function(){ //for문은 번호를 설정해주는 역할만 하고 이벤트�
 							<% } %>
 						</tbody>
 					</table>
-						<input type="hidden" id="solve_id" name="solve_id" value="${problemList[0].solve_id}">
-						<input type="hidden" id="testTime" name="testTime"> <!-- 테스트에 걸린 시간 -->
-					<div class="ans_correct"></div>
 				</div>
 			</div>
 		</div>
-	<!-- </div> -->
 </body>
 </html>

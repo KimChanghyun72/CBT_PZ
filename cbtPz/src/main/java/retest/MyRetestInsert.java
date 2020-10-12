@@ -9,24 +9,37 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
+import model.MemberVo;
 import model.PaperHeadDAO;
 import model.SearchVO;
 
-//오답노트  응시문제 재출력
-public class MyRetestSelect implements Controller {
+//오답노트  응시문제 재응시
+public class MyRetestInsert implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String path = "myRetestSelect.jsp";
+		String path = "studyPaper.jsp";
+		
+		MemberVo memberVo= (MemberVo) request.getSession().getAttribute("login");
 		SearchVO searchVO = new SearchVO();
-			
+		
+		String member_id = memberVo.getMember_id();
 		String solve_id = request.getParameter("solve_id");
 		
+		//VO에 담기		
+		searchVO.setMember_id(member_id);
 		searchVO.setSolve_id(solve_id);
-		System.out.println(searchVO);
+		
+		//문제등록 				
+		int next = PaperHeadDAO.getInstance().retest_Proc(searchVO);
+		
+		//문제조회
+		searchVO.setSolve_id(Integer.toString(next)); 
 		List<Map<String, Object>> selectproblem = PaperHeadDAO.getInstance().selectAllType(searchVO);
+
 		request.getSession().setAttribute("problemList", selectproblem);
-		request.getRequestDispatcher("/mypage/"+path).forward(request, response);
+		
+		request.getRequestDispatcher("/study/"+path).forward(request, response);
 	}
 
 }

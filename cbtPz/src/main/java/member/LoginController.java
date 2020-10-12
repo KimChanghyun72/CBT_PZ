@@ -48,6 +48,8 @@ public class LoginController implements Controller {
 	
 			// 2. 서비스 처리(DB)
 			MemberVo resultVo = MemberDAO.getInstance().selectOne(memberVo);
+			resultVo.setPay_enddate((resultVo.getPay_enddate()).substring(0,10));
+			
 	
 			// 3. 결과 저장
 			String page = "";

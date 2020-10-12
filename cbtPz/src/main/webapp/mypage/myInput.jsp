@@ -8,12 +8,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 </head>
 <body>
 	<article>
 		<div class="container">
 			<div class="table-responsive">
 				<br><br>
+				<form action="/cbtPz/mypage/myInputDel.do">
 		<table class="table table-hover">
 			<thead>
 				<tr align="center">
@@ -23,6 +25,7 @@
 					<th>작성자</th>
 					<th>조회수</th>
 					<th>작성일</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody align="center">
@@ -46,14 +49,20 @@
 					<td>${board.member_id}</td>
 					<td>${board.board_views}</td>
 					<td>${board.board_date}</td>
+					<td><input type="checkbox" id="" name="chkDelete" value="${board.board_id}"></td>
 				</tr>
+				
+				
 				</c:forEach>
 				</c:when>
 				</c:choose>
+				
 			</tbody>
 			
 		</table>
-		
+					<button class="btn btn-sm btn-primary">삭제</button>
+		</form>
+
 	<!-- 페이징 처리 영역 -->	
    <my:paging paging="${paging}" jsfunc="gopage"/>
     	<script>
@@ -66,6 +75,7 @@
 	<!-- 페이징 처리 영역 -->
 	</div>
 	</div>
+	
 	</article>
 </body>
 </html>

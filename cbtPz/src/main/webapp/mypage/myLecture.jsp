@@ -4,21 +4,139 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *Must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>Clever - Education &amp; Courses Template | Courses</title>
+
+    
+	<script>
+	<% request.getSession().setAttribute("pageName", "나의 강의(강사)"); %>
+	$(function(){
+
+		$(".free").on("click", function(){
+			var div = $(this).parent().parent().parent().parent();
+			var cancelChk = confirm("강의를 삭제하시겠습니까?");
+			if(cancelChk){
+				var lecture_id = $(this).prev().children().val();
+				function lecDel(){
+				$.ajax("${pageContext.request.contextPath}/ajax/teacherLectureDelete.do",{
+					dataType : "json",
+					data : {lecture_id : lecture_id},
+					success : function(data){
+						alert("강의가 삭제되었습니다.");
+						div.remove();
+					}
+				
+				});
+				}
+				
+				lecDel();
+			}
+			
+			
+		});
+	})
+	</script>
+</head>
+
+<body>
+<%request.getSession().setAttribute( "pageName","나의 강의"); %>
+    <!-- Preloader -->
+    <!-- <div id="preloader">
+        <div class="spinner"></div>
+    </div> -->
+
+    <!-- ##### Header Area Start ##### -->
+    <header class="header-area">
+
+        <!-- Navbar Area -->
+        
+    </header>
+    <!-- ##### Header Area End ##### -->
+
+    
+    <!-- ##### Breadcumb Area End ##### -->
+
+    <!-- ##### Popular Course Area Start ##### -->
+    <section class="popular-courses-area section-padding-100">
+        <div class="container">
+            <div class="row">
+    <c:forEach items="${ lecture_list }" var="lecture">
+                <!-- Single Popular Course -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="single-popular-course mb-100 wow fadeInUp" data-wow-delay="250ms">
+                        <img src="${pageContext.request.contextPath}/lectureSelect.do?lecture_image=${lecture.lecture_image}">
+                        <!-- Course Content -->
+                        <div class="course-content">
+                            <h4></h4>
+                            <div class="meta d-flex align-items-center">
+                            
+                                <span><i class="fa fa-circle" aria-hidden="true"></i></span>
+                            </div>
+                            <p>${lecture.lecture_info}</p>
+                        </div>
+                        <!-- Seat Rating Fee -->
+                        <div class="seat-rating-fee d-flex justify-content-between">
+                            <div class="course-fee h-100">
+                            	<form id="lecDel">
+                            		<input type="hidden" name="lecture_id" value="${lecture.lecture_id}">
+                                </form>
+                                	<a class="free">강의 삭제</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </c:forEach>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Popular Course Area End ##### -->
+
+    <!-- ##### Footer Area Start ##### -->
+    <footer class="footer-area">
+        <!-- Top Footer Area -->
+        <div class="top-footer-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <!-- Footer Logo -->
+                        <div class="footer-logo">
+                            <a href="index.html"><img src="${pageContext.request.contextPath}/img/core-img/logo2.png" alt=""></a>
+                        </div>
+                        <!-- Copywrite -->
+                        <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+    <!-- ##### Footer Area End ##### -->
+
+    
+</body>
+
+<%-- <!DOCTYPE html>
+<html>
+<head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
 /* 수정중ㅠ */
-/* test css */
 /*
 .grid-item {
 	border: 1px outset black;
 	background-color: white;
 	text-align: center;
 }
-
-.grid-item {
-	width: 200px;
-}
+.grid-item { width: 200px; }
 */
 .relocator {
 	width: 1200px;
@@ -81,13 +199,11 @@ a {
 	text-decoration: none;
 	color: #000;
 }
+
 </style>
 
 <!-- jQuery Relocator.js Plugin Demo -->
-<script type="text/javascript" src="js/jquery.relocator.1.0.0.js"></script>
 
-<!--<script
-	src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>-->
 
 <script>
 	$(document).ready(function() {
@@ -103,31 +219,34 @@ a {
 </head>
 
 <body>
-	<h3>등록한 강의</h3>
-	<!--
-		강의 썸네일 이미지를 클릭했을 때 강의 상세 정보를 보게 되는 방식
-		강의명-썸네일 이미지 하단
-		썸네일 이미지 mouseover시 강의명, 강의 설명, 
-		
-		강의명, 강의 설명, 링크, 썸네일 이미지
-		
-		컨테이너 박스에 이미지 비율 맞춤
-		강의 소개 컨테이너 화면 비율 맞춤
-	-->
-	<!-- <form action="lectureSearch.do" method="post"></form>  -->
+	<h3>수강한 강의</h3>
+<!--
+
+썸네일 이미지를 클릭했을 때 강의 상세 정보 띄움.
+
+강의명, 강의 설명, 링크, 썸네일 이미지
+
+컨테이너 박스에 이미지 비율 맞춤
+강의 소개 컨테이너 화면 비율 맞춤
+-->
+	<!--<form action="lectureSearch.do" method="post"></form>  -->
 
 	<form action="<%=application.getContextPath()%>/lectureSearch.do"
 		method="post"></form>
 
+
+
 	<div class="relocator" id="relocator">
 		<ul>
-			<c:forEach items="${ lecture_list }" var="lecture">
+			<c:forEach items="${ st_lecture_list }" var="lecture">
 				<li><a href="${lecture.lecture_link }"> <img style="width: 300px; height: 200px;"
-						src="lectureSelect.do?lecture_image=${lecture.lecture_image }"
-						data-title="${lecture.lecture_name }" data-desc="${lecture.lecture_info }">
+						src="${pageContext.request.contextPath}/lectureSelect.do?lecture_image=${lecture.lecture_image}"
+						data-title="${lecture.lecture_name}" data-desc="${lecture.lecture_info}">
 				</a></li>
 			</c:forEach>
 		</ul>
 	</div>
-</body>
+	
+	
+</body> --%>
 </html>

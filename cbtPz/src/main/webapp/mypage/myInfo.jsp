@@ -199,8 +199,7 @@
 			// 취소
 		}
 	}
-	
-	
+
 </script>
 <style>
 #member_job
@@ -247,8 +246,39 @@ padding: 10px;
             	<div class="form-group">
 					<input id="member_pw" name="member_pw"
 					type="password" value="${member.member_pw}">
+					<span id="newPwbtn" class="btn clever-btn btn-2">비밀번호 재설정</span>
 			</div>
 			</div>
+			                  <!-- 비밀번호 재설정 -->
+                              <div id="newPw_div" style="display: none;" class="col-12">
+                              <div class="row">
+                                <div class="col-12 col-lg-6">
+                                    <div class="form-group" style="text-align: center;">
+                                        <p>New Password (max 16)</p>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6">
+                                    <div class="form-group">
+										<input id="new_tpassword" name="new_password" type="password">
+									</div>
+                                </div>
+                                <div class="col-12 col-lg-6">
+                                    <div class="form-group" style="text-align: center;">
+                                        <p>Confirm Password</p>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6">
+                                    <div class="form-group">
+										<input id="confirm_password" name="confirm_password" type="password">
+										<span id="pw2_check"></span>
+									</div>
+                                </div>
+                              </div>
+                              </div>
+                              <!-- 비밀번호 재설정 끝 -->
+			
+			
+			
 			
 			
 			<div class="col-12 col-lg-6">

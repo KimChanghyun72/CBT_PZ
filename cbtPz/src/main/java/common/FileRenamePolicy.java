@@ -1,7 +1,6 @@
 package common;
 
 import java.io.File;
-import java.io.IOException;
 
 public class FileRenamePolicy {
 	public static File rename(File f) {             
@@ -29,12 +28,5 @@ public class FileRenamePolicy {
 	    }
 	    return f;
 	  }
-	 
-	  private boolean createNewFile(File f) {
-	    try {
-	      return f.createNewFile();                     
-	    }catch (IOException ignored) {
-	      return false;
-	    }
-	  }
+
 }

@@ -26,6 +26,7 @@
             <div class="row">
                 <!-- 기출문제 -->
                 	<div class="col-12 col-lg-6" >
+                	<a href="${pageContext.request.contextPath}/study/haederSearch.do?paper_type_cd=기출">
                     	<div class="area contact--info mt-30 mb-25" style="text-align : center">
                         	<br><br><br>
                 			<form action = "${pageContext.request.contextPath}/study/haederSearch.do">
@@ -35,9 +36,11 @@
                         	<h1 class="submit">기출문제</h1>
                         	<br><br><br>
                     	</div>
+                    	</a>
                 	</div>
                 <!-- 모의고사 -->
                 	<div class="col-12 col-lg-6">
+                	<a href="${pageContext.request.contextPath}/study/haederSearch.do?paper_type_cd=모의">
                     	<div class="area contact--info mt-30 mb-25" style="text-align : center">
                         	 <br><br><br>
                         	 <form action = "${pageContext.request.contextPath}/study/haederSearch.do">
@@ -47,29 +50,34 @@
                      	    </form>
                         	<br><br><br>
                     	</div>
+                    	</a>
                 	</div>
                 
                 <!-- 과목별 -->
                 	<div class="col-12 col-lg-6">
+                	<a href="${pageContext.request.contextPath}/study/subjectSearch.do">
                     	<div class="area contact--info mt-30 mb-25" style="text-align : center">
                          	<br><br><br>
                 			<form action ="${pageContext.request.contextPath}/study/subjectSearch.do">
                         	<%-- <a href="${pageContext.request.contextPath}/study/subjectSearch.do"></a> --%>
                         		<input type="hidden" name="subject" value="subject">
                         	
-                        	<a href="${pageContext.request.contextPath}/study/subjectSearch.do"><h1 class="submit">과목별</h1></a>
+                        	<h1 class="submit">과목별</h1>
                 			</form>	
                         	<br><br><br>
                     	</div>
+                    	</a>
                 	</div>
                 <!-- 해시태그 -->
                 	<div class="col-12 col-lg-6">
+                	<a href="${pageContext.request.contextPath}/study/hashtagPage.do">
                     	<div class="area contact--info mt-30 mb-25" style="text-align : center">
                     	<br><br><br>
                     		<!-- <div><button name="subject" value="subject">과목별</button></div> -->
-                        	<a href="${pageContext.request.contextPath}/study/hashtagPage.do"><h1>태그별</h1></a>
+                        	<h1>태그별</h1>
                         <br><br><br>
                     	</div>
+                    	</a>
                 	</div>
                 
      		 </div>
