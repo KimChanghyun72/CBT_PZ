@@ -315,7 +315,55 @@ public class LectureDAO {
 			}//selectCate
 		
 		
-			
+		//강의 조회
+			public ArrayList<LectureVO> selectLecSearch(LectureVO lectureVO){
+				LectureVO resultVO = null;
+				ResultSet rs = null;
+				ArrayList<LectureVO> list = new ArrayList<LectureVO>();
+				try {
+					conn = ConnectionManager.getConnnect();
+					String where ="";
+					if(lectureVO.getMember_id() != null) {
+						where += ", nvl((SELECT 1 from learn where lecture_id = LECTURE.lecture_id  AND member_id = ? ),0) lecture_yn";		
+					} else {
+						where += ", 0 lecture_yn ";
+					}
+					String sql = "SELECT LECTURE_ID, LECTURE_NAME, LECTURE_INFO, LECTURE_LINK, LECTURE_IMAGE,"
+								+ " LECTURE_LEVEL, LECTURE_SUBJECT, teacher_name"
+								+ where
+								+ " FROM LECTURE, teacher_member"
+								+ " WHERE lecture.teacher_id = teacher_member.teacher_id"
+								+ " AND LECTURE.LECTURE_NAME LIKE '%'||?||'%'"
+								+ " ORDER BY LECTURE_NAME"; 
+					//System.out.println(sql);
+					pstmt = conn.prepareStatement(sql);
+					if(lectureVO.getMember_id() != null) {
+						pstmt.setString(1, lectureVO.getMember_id());
+						pstmt.setString(2, lectureVO.getLecture_name());
+					}else {
+						pstmt.setString(1, lectureVO.getLecture_name());
+					}
+					rs = pstmt.executeQuery();
+					while(rs.next()) { //list니까 while문 사용
+						resultVO = new LectureVO();
+						resultVO.setLecture_id(rs.getString("lecture_id"));
+						resultVO.setTeacher_name(rs.getString("teacher_name"));
+						resultVO.setLecture_name(rs.getString("lecture_name"));
+						resultVO.setLecture_info(rs.getString("lecture_info"));
+						resultVO.setLecture_link(rs.getString("lecture_link"));
+						resultVO.setLecture_image(rs.getString("lecture_image"));
+						resultVO.setLecture_level(rs.getString("lecture_level"));
+						resultVO.setLecture_subject(rs.getString("lecture_subject"));
+						resultVO.setLecture_yn(rs.getString("lecture_yn"));
+						list.add(resultVO);
+					} 
+				} catch (Exception e) {
+					e.printStackTrace();
+				} finally {
+					ConnectionManager.close(rs, pstmt, conn);
+				}
+				return list;  //담은 list를 리턴.
+			}//selectLecSearch	
 			
 		
 }
