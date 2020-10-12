@@ -80,6 +80,7 @@ public class FrontController extends HttpServlet {
     	list.put("/mypage/myRetest.do", new retest.MyRetestCtrl());							// 오답노트 문제 출력
     	list.put("/mypage/myFavorite.do", new retest.MyFavoriteCtrl());						// 즐겨찾기 문제 출력
     	
+    	list.put("/ajax/teacherLectureDelete.do", new teacher.teacherLectureDel());		// 강사 강의 삭제
     	
     	
     	list.put("/mypage/myRetestSelect.do",new retest.MyRetestSelect());
