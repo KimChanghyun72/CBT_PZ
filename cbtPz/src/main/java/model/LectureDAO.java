@@ -132,6 +132,32 @@ public class LectureDAO {
 	}
 */
 		
+		public int lectureDelete(LectureVO lectureVO) {
+			int r =0;
+			try {
+				conn = ConnectionManager.getConnnect();
+				
+				String sql = "delete from lecture " + 
+						" where teacher_id = ? "+ 
+						"and lecture_id = ? ";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, lectureVO.getTeacher_id());
+				pstmt.setString(2, lectureVO.getLecture_id());		
+						
+				r = pstmt.executeUpdate();
+
+				// 3. 결과 처리
+				if (r == 1) {
+					System.out.println(r + "건이 처리됨");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				ConnectionManager.close(conn);
+			}
+			return r;
+		} // 강사 강의 삭제
+		
 		
 		
 		
