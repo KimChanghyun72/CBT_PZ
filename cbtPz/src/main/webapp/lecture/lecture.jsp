@@ -17,6 +17,30 @@
 		});
 			
 		
+		$('#searchbtn').on({
+			click : function(){
+				$('#frmdiv').hide();
+				var searchval = $('#search').val();
+				location.href="${pageContext.request.contextPath}/lectureSearch.do?search=" + searchval
+		    }
+	
+		});
+		
+		$('#search').on({
+	    keypress: function(key){
+	    	console.log("hi")
+		      if(key.keyCode==13){
+	    	    $('#frmdiv').hide();
+				var searchval = $('#search').val();
+				location.href="${pageContext.request.contextPath}/lectureSearch.do?search=" + searchval
+		      }
+		    }
+		});
+		
+		
+		
+		
+		
 		$('.blog-content button').on("click", function(){
 			var btn = $(this)
 			var lecid = $(this).next().val();
@@ -75,16 +99,17 @@
 						
                        
                     </div>
-                    
-                    
-                    <div class="search-area">
-                                <form action="#" method="post">
-                                    <input type="search" name="search" id="search" placeholder="Search">
-                                    <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-                                </form>
-                            </div>
-                    
-                </div>
+
+
+					<div class="searcharea">
+							<input type="text" name="search" id="search" placeholder="Search">
+							<button type="button" id="searchbtn">
+								<i class="fa fa-search" aria-hidden="true"></i>
+							</button>
+					</div>
+					<div>${nodata}</div>
+
+				</div>
             </div>
 
             <div class="row"  id="frmdiv">
