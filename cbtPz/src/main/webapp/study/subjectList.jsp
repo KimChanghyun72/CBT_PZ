@@ -16,6 +16,9 @@
 	td{
 		height : 100px;
 	}
+	.tagSub{
+		font-size : 30px;
+	}
 </style>
 </head>
 <body>
@@ -33,7 +36,7 @@
 		</tr>
 	<c:forEach var="i" begin="1" end="5">			
 	<input type="hidden"/>
-	<tr><td>${i}과목</td>
+	<tr><td class="tagSub"><b>${i} 과목</b></td>
 	<td>
 	<form action="${pageContext.request.contextPath}/problemSubject.do">
 	<button type="submit" name="subject" value="${i}과목" class="btn btn-sm btn-primary">풀기</button>
