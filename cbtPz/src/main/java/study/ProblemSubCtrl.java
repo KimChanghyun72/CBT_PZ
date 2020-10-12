@@ -18,8 +18,13 @@ public class ProblemSubCtrl implements Controller {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String path = "studyPaper.jsp";
+		String check = (String) request.getSession().getAttribute("check");
+		MemberVo memberVo = new MemberVo();
 		
-		MemberVo memberVo= (MemberVo) request.getSession().getAttribute("login");
+		//일반회원 여부 체크
+		if(check=="M") {
+			memberVo= (MemberVo) request.getSession().getAttribute("login");
+		
 		SearchVO searchVO = new SearchVO();
 		
 		String member_id = memberVo.getMember_id();
@@ -41,6 +46,12 @@ public class ProblemSubCtrl implements Controller {
 		request.getSession().setAttribute("problemList", selectproblem);
 		
 		request.getRequestDispatcher("/study/"+path).forward(request, response);
+		} else {
+			request.setAttribute("errcode", "1");
+			request.setAttribute("errmsg", "일반회원만 문제를 풀 수 있습니다.");
+			request.getRequestDispatcher("indexx.jsp").forward(request, response);
+			/* response.sendRedirect("indexx.jsp"); */
+		}
 	}
 
 }

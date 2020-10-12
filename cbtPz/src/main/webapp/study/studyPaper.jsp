@@ -188,7 +188,7 @@ $(function(){ //for문은 번호를 설정해주는 역할만 하고 이벤트�
 		})
 	}
 	
-	 v 
+	  
 	//문제 제출하면 ajax로 답지 불러오고 제출버튼 삭제.
 	$(document).on("click","#btnScore", function(){
 		is_submit = confirm("제출하시겠습니까?");
