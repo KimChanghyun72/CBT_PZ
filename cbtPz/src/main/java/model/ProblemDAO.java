@@ -157,7 +157,8 @@ public class ProblemDAO {
 			conn = ConnectionManager.getConnnect();
 			String sql = "SELECT member_id, SOLVE_ID, SOLVE_DATE, SOLVE_TIME, SOLVE_TYPE_CD, SOLVE_SCORE, SOLVE_CNT "  
 						+" FROM SOLVE "  
-						+" WHERE MEMBER_ID = ? ";
+						+" WHERE MEMBER_ID = ? "
+						+" ORDER BY SOLVE_DATE DESC ";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, solveVO.getMember_id()); // member_id를 기준으로  문제 출력
 			rs = pstmt.executeQuery();
