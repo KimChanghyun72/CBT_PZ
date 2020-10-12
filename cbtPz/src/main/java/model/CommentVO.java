@@ -11,4 +11,5 @@ public class CommentVO {
 	private String comment_contents;
 	private String comment_poster;
 	
+	
 }
