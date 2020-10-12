@@ -115,6 +115,38 @@ int probSize = problemList.size();
 var size = <%=probSize%>;
 var is_submit=0;
 
+//즐겨찾기 등록/해제
+$(function(){
+	$(document).on("change","#favorite",function() {
+		if($(this).is(":checked", true)) {
+		    var paper_id = $(this).closest("tr").find('#paper_id').val();
+		    $.ajax({
+		        type: "POST",   
+		        url: "${pageContext.request.contextPath}/ajax/myFavoriteInsert.do",
+		        dataType : "json",
+		        data: {
+		        	paper_id : paper_id,
+		        },
+		        success: function(data){
+		        },
+		    });
+		}
+		else if(($(this).is(":checked", false))){
+		    var paper_id = $(this).closest("tr").find('#paper_id').val();
+		    $.ajax({
+		        type: "POST",   
+		        url: "${pageContext.request.contextPath}/ajax/myFavoriteDelete.do",
+		        dataType : "json",
+		        data: {
+		        	paper_id : paper_id,
+		        },
+		        success: function(data){
+		        },
+		    });
+		}
+	})
+});
+
 $(function(){ //for문은 번호를 설정해주는 역할만 하고 이벤트시에는 안 먹음.
 	for(var i=0; i<size; i++){
 	$(document).on("change",'input[name=problem'+i+']', function(){
@@ -210,8 +242,8 @@ $(document).ready(function(){
 					<%} %>
 				</td>
 				<td>
-					<div id="div<%=probNum%>"><%=problemList.get(probNum).get("problem_text") %>&nbsp;&nbsp;<input type="checkbox"  name="probChk<%=probNum%>"></div>
-					<input type="hidden" id="paper_id" value="<%=problemList.get(probNum).get("paper_id") %>">
+					<div id="div<%=probNum%>"><%=problemList.get(probNum).get("problem_text") %>&nbsp;&nbsp;<input type="checkbox" id="favorite" name="probChk<%=probNum%>"></div>
+					<input type="text" id="paper_id" value="<%=problemList.get(probNum).get("paper_id") %>">
 					<input type="hidden" id="pro_id" value="<%=problemList.get(probNum).get("problem_id") %>">
 					<% if(problemList.get(probNum).get("check_num").equals("1")) {%>
 						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="1" checked><%=problemList.get(probNum).get("ans_1") %></div>
