@@ -63,7 +63,12 @@
 											<c:if test="${board.isNew == '1' }">NEW</c:if>
 										</td>
 										<td>${board.board_id}</td>
-									<td><a href="${pageContext.request.contextPath}/board/boardSelect.do?board_id=${board.board_id}">${board.board_title}</a></td>
+									<td><a href="${pageContext.request.contextPath}/board/boardSelect.do?board_id=${board.board_id}">
+									<Strong>${board.board_title}&nbsp;</Strong></a>
+									<c:if test="${board.cnt != 0 }">
+									<a style="color:Tomato;">[${board.cnt}]</a>
+									</c:if>
+									</td>
 										<td>${board.member_id}</td>
 										<td>${board.board_views}</td>
 										<td>${board.board_date}</td>

@@ -78,7 +78,7 @@ public class FrontController extends HttpServlet {
     	list.put("/mypage/myInput.do", new member.MyInputCtrl());						// 회원 작성글 조회 페이지
     	list.put("/mypage/myInputSelect.do", new member.MyInputSelectCtrl());			// 작성글 상세 페이지로 이동
     	list.put("/ajax/teacherLectureDelete.do", new teacher.teacherLectureDel());		// 강사 강의 삭제
-    	
+    	list.put("/mypage/myInputDel.do", new member.myInputDelete());					// 작성글 체크박스
     	
     	list.put("/ajax/myFavoriteInsert.do", new retest.MyFavoriteInsertCtrl());		// 즐겨찾기 등록		
     	list.put("/ajax/myFavoriteDelete.do", new retest.MyFavoriteDeleteCtrl());		// 즐겨찾기 해제	
@@ -164,6 +164,8 @@ public class FrontController extends HttpServlet {
     	list.put("/mypage/proDelete.do", new teacher.ProfDeleteCtrl()); //강사 탈퇴
     	
     	list.put("/mypage/myRetestStat.do", new member.myRetestStatCtrl()); //마이페이지-개인통계
+    	list.put("/ajax/myRetestStatLineChart.do", new member.myRetestStatLineChartCtrl()); // 개인통계-라인차트
+    	list.put("/ajax/myRetestStatBarChart.do", new member.myRetestStatBarChartCtrl()); // 개인통계-바차트
     	
     	//list.put("/ajax/fullCalendar.do", new member.FullCalendarCtrl()); //풀캘린더실험용
     	list.put("/mainCtrl.do", new common.MainCtrl()); // main.jsp 구동하는 서블릿 (indexx.jsp)

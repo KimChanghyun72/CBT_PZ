@@ -1,12 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" isELIgnored="false" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<script>
+$(function(){
+	$(location).attr('href',"${pageContext.request.contextPath}/mainCtrl.do");
+	
+});
+</script>
 <body>
-	<% response.sendRedirect(request.getContextPath() + "/mainCtrl.do"); %>
+<% response.sendRedirect(request.getContextPath() + "/mainCtrl.do"); %>	
 </body>
 </html>

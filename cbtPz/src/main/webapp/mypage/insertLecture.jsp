@@ -11,18 +11,18 @@
 	<div class="container">
             <div class="row justify-content-center">
                 <!-- Post A Comment -->
-                <div class="col-12 col-lg-6">
+                <div class="col-12 col-lg-8">
                     <div class="post-a-comments mb-70">
 						<br> <br>
 
                         <form action="${pageContext.request.contextPath}/mypage/insertLecture.do" method="post" enctype="multipart/form-data">
                             <div class="row">
-                                <div class="col-12 col-lg-6">
+                                <div class="col-12 col-lg-7">
                                     <div class="form-group">
                                         <input type="text" class="form-control" name="lecture_name" placeholder="Lecture Name">
                                     </div>
                                 </div>
-                                <div class="col-12 col-lg-6">
+                                <div class="col-12 col-lg-7">
                                     <div class="form-group">
                                         <input type="url" class="form-control" name="lecture_link" placeholder="Lecture Link">
                                     </div>

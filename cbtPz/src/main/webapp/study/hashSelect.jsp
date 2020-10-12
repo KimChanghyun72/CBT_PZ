@@ -80,6 +80,9 @@
 		background-color: #53A3CD;
 		border-color: #53A3CD;
 	}
+	.hashText{
+		text-align : center;
+	}
 </style>
 
     
@@ -166,6 +169,7 @@ $(function(){
                     </div>
                 </div>
             </div>
+            <div class="hashText">! 키워드 검색을 위해  "# + 키워드" 형태로 검색해주세요 (ex : #OSI 7계층) </div>
         </div>
     </section>
      

@@ -169,6 +169,7 @@ $(function(){ //for문은 번호를 설정해주는 역할만 하고 이벤트�
 	function submitFunc(){
 		var solve_id = $('#solve_id').val();
 		var testTime = $('#testTime').val();
+		console.log("함수 실행됨");
 		$.ajax("${pageContext.request.contextPath}/ajax/probScoringCtrl.do", {
 			data : {
 				 solve_id : solve_id,
@@ -192,8 +193,13 @@ $(function(){ //for문은 번호를 설정해주는 역할만 하고 이벤트�
 			}
 		})
 	}
+
+	/* $(function(){
+		 //$("#foo-table").DataTable();
+	}) */
 	submitFunc();//정답, ox 불러오는 함수 실행.
 });
+
 </script>
 <script>
 $(document).ready(function(){
