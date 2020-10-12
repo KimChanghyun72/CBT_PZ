@@ -7,11 +7,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import common.HttpUtil;
+import common.Paging;
 import controller.Controller;
 import model.MemberVo;
 import model.ProblemDAO;
-import model.ProblemVO;
 import model.SolveVO;
 
 public class MyRetestCtrl implements Controller {
@@ -19,6 +18,22 @@ public class MyRetestCtrl implements Controller {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String path = "myRetest.jsp";
+		
+		String p = request.getParameter("p");
+		
+		int page = 1;
+		if(p != null) {
+			page = Integer.parseInt(p);
+		}
+		
+		Paging paging = new Paging();
+		paging.setPageUnit(7);
+		paging.setPageSize(5);
+		paging.setPage(page);
+		
+		ProblemDAO dao = new ProblemDAO();
+		
+		
 		// Parameter 추출
 		MemberVo memberVo= (MemberVo) request.getSession().getAttribute("login");
 		SolveVO solveVo = new SolveVO();
@@ -28,11 +43,16 @@ public class MyRetestCtrl implements Controller {
 		
 		// VO에 담기
 		solveVo.setMember_id(member_id);
+		paging.setTotalRecord(dao.count(solveVo));
+		solveVo.setFirst(paging.getFirst());
+		solveVo.setLast(paging.getLast());
+		
 		
 		// DAO 객체의 메소드 호출
 		ArrayList<SolveVO> problem = ProblemDAO.getInstance().selectAllRetest(solveVo);
 		
 		// page 이동
+		request.setAttribute("paging", paging);
 		request.getSession().setAttribute("solvelist", problem);
 		request.getRequestDispatcher("/mypage/"+path).forward(request, response);
 	}

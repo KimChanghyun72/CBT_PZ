@@ -11,4 +11,7 @@ public class SolveVO {
 	private String solve_time;
 	private String solve_type_cd;
 	private String solve_cnt;
+	
+	private Integer first;
+	private Integer last;
 }
