@@ -155,6 +155,7 @@ public class FrontController extends HttpServlet {
     	
     	list.put("/lecturePage.do", new lecture.LecturePageCtrl()); //강의 전체리스트 메인 페이지 (전체 || 카테별 보여주는 서블릿)
     	list.put("/ajax/lectureLearnInsert.do", new lecture.LectureLearnInsert()); //강의 수강하기 버튼 클릭시 learn table 인서트
+    	list.put("/lectureSearch.do", new lecture.LectureSearchCtrl()); //강의검색
     	
     	list.put("/nostms/profilepicSelect.do", new teacher.ProfPicSelectCtrl()); //강사 프로필사진
     	list.put("/mypage/proUpdate.do", new teacher.ProfUpdateCtrl()); //강사 개인정보수정
