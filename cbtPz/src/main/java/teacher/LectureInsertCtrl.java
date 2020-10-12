@@ -53,11 +53,11 @@ public class LectureInsertCtrl implements Controller {
 
 		System.out.println(lecture_image);
 
-		if (lecture_image.isEmpty()) {
-			lecture.setLecture_id(null);
+		if (lecture_image==null || lecture_image.isEmpty()) {
+			lecture.setLecture_image("");
 		} else {
 			File renameFile = FileRenamePolicy.rename(new File(path, lecture_image));
-			part.write(renameFile.getName());
+			part.write(path + "/" + renameFile.getName());
 			lecture.setLecture_image(path + "/" + renameFile.getName());
 
 		}
