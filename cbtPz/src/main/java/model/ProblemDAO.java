@@ -155,12 +155,16 @@ public class ProblemDAO {
 		ArrayList<SolveVO> list = new ArrayList<SolveVO>();
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "SELECT member_id, SOLVE_ID, SOLVE_DATE, SOLVE_TIME, SOLVE_TYPE_CD, SOLVE_SCORE, SOLVE_CNT "  
+			String sql = "SELECT A.* FROM(SELECT B.*, ROWNUM RM FROM ( "
+						+ "SELECT member_id, SOLVE_ID, SOLVE_DATE, SOLVE_TIME, SOLVE_TYPE_CD, SOLVE_SCORE, SOLVE_CNT "  
 						+" FROM SOLVE "  
 						+" WHERE MEMBER_ID = ? "
-						+" ORDER BY SOLVE_DATE DESC ";
+						+" ORDER BY SOLVE_DATE DESC "
+						+" ) B) A WHERE RM BETWEEN ? AND ? ";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, solveVO.getMember_id()); // member_id를 기준으로  문제 출력
+			pstmt.setInt(2, solveVO.getFirst());
+			pstmt.setInt(3, solveVO.getLast());
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
@@ -182,7 +186,28 @@ public class ProblemDAO {
 		return list;
 	}
 	
-	
+	// 페이징 카운터
+	public int count(SolveVO solveVO) {
+		int cnt = 0;
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "SELECT count(member_id) " 
+						+"FROM SOLVE "
+						+"WHERE MEMBER_ID = ?";
+			pstmt = conn.prepareStatement(sql);
+			int pos = 1;
+			pstmt.setString(pos++, solveVO.getMember_id());
+
+			ResultSet rs = pstmt.executeQuery();
+			rs.next();
+			cnt = rs.getInt(1);		
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(conn);
+		}
+		return cnt;
+	}
 	
 	
 }

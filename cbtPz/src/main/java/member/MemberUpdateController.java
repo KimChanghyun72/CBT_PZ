@@ -74,6 +74,9 @@ public class MemberUpdateController implements Controller {
 		// Parameter 추출
 		String member_id = request.getParameter("member_id");//pay_member.getMember_id();
 		String member_pw = request.getParameter("member_pw");//pay_member.getMember_pw();//
+		
+		String confirm_pw = request.getParameter("confirm_password");
+		
 		String member_name = request.getParameter("member_name");//pay_member.getMember_name();//
 		String member_age = request.getParameter("member_age");//pay_member.getMember_age();//
 		String member_job = request.getParameter("member_job");//pay_member.getMember_job();//
@@ -105,8 +108,16 @@ public class MemberUpdateController implements Controller {
 			}
 			// VO 객체에 데이터 바인딩
 			MemberVo member = new MemberVo();
+			
+			// 비밀번호 재설정
+			if(confirm_pw == null || confirm_pw.equals("")) {
+				member.setMember_pw(member_pw);
+			} else {
+				member.setMember_pw(confirm_pw);
+			}
+			
 			member.setMember_id(member_id);
-			member.setMember_pw(member_pw);
+			
 			member.setMember_name(member_name);
 			member.setMember_age(member_age);
 			member.setMember_job(member_job);
@@ -120,6 +131,8 @@ public class MemberUpdateController implements Controller {
 			// DAO 객체의 메소드 호출
 			MemberDAO dao = MemberDAO.getInstance();
 			dao.update(member);
+			
+
 			
 			// Output View 페이지 이동\
 			String path = "";

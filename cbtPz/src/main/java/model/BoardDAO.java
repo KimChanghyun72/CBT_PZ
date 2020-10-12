@@ -42,12 +42,14 @@ public class BoardDAO {
 			
 			
 				String sql = "select a.* from(select rownum rn,b.* from( "
-						+ " SELECT BOARD_ID,BOARD_TITLE,BOARD_CONTENTS,MEMBER_ID,BOARD_DATE,BOARD_VIEWS,"
-						+ " (case when sysdate - board_date<0.007 then 1 else 0 end) isNew"
-						+ " FROM BOARD "
+						+ " SELECT BOARD.BOARD_ID,BOARD.BOARD_TITLE,BOARD.BOARD_CONTENTS,BOARD.MEMBER_ID,BOARD.BOARD_DATE,BOARD.BOARD_VIEWS,"
+						+ " (case when sysdate - board_date<0.007 then 1 else 0 end) isNew,"
+						+ " NVL(CNTS.CNT,0)as cnt"
+						+ " FROM BOARD,(SELECT BOARD_ID ID,COUNT(COMMENT_ID) CNT FROM COMMENTS GROUP BY BOARD_ID) CNTS "
 						+ where
-						+ " AND BOARD_ID NOT LIKE'A%'"
-						+ " ORDER BY TO_NUMBER(BOARD_ID) DESC"
+						+ " AND BOARD.BOARD_ID NOT LIKE'A%'"
+						+"	AND BOARD.BOARD_ID = CNTS.ID(+)"
+						+ " ORDER BY TO_NUMBER(BOARD.BOARD_ID) DESC"
 						+ " )b ) a where rn between ? and ? ";
 	
 			pstmt = conn.prepareStatement(sql);
@@ -70,6 +72,7 @@ public class BoardDAO {
 				resultVO.setBoard_date(rs.getString(6));
 				resultVO.setBoard_views(rs.getInt(7));
 				resultVO.setIsNew(rs.getString(8));
+				resultVO.setCnt(rs.getInt(9));
 				list.add(resultVO);
 
 			}

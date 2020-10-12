@@ -133,7 +133,7 @@
                                         <c:if test="${not empty sessionScope.check && sessionScope.check == 'T'}">
                                         <li><a href="${pageContext.request.contextPath}/mypage/insertLecForm.do">강의 등록</a></li>
                                         </c:if>
-                                        <li><a href="${pageContext.request.contextPath}/mypage/myRetest.do">오답노트</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/mypage/myRetestList.do">오답노트</a></li>
                                         <li><a href="${pageContext.request.contextPath}/mypage/myRetestStat.do">개인통계</a></li>
                                         <li><a href="instructors.html">즐겨찾기문제</a></li>
                                         <li><a href="${pageContext.request.contextPath}/mypage/myInput.do">작성글</a></li>
@@ -177,15 +177,13 @@
             </div>
         </div>
     </header>
-    <!-- ##### Header Area End ##### -->
-
-
+  
 	<div style=" width: 100%;
     height: 240px; background-image: url(../img/1.png)" class="  d-flex align-items-center justify-content-center p-3" >
-       
+
         <h1 style="color:#00000">${sessionScope.pageName}</h1>
     </div>
-   
+	
 <decorator:body/>
    
    <div class = "blank">

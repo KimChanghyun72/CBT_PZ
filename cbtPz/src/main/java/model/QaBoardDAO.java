@@ -42,7 +42,8 @@ public class QaBoardDAO {
 					where += " and title like '%' || ? || '%'";
 				}
 				String sql = "select a.* from(select rownum rn,b.* from( "
-						+ " SELECT QABOARD_ID,QABOARD_TITLE,QABOARD_CONTENTS,QABOARD_DATE,QABOARD_ANS,QABOARD_VIEWS,QABOARD_TYPE_CD,MEMBER_ID"
+						+ " SELECT QABOARD_ID,QABOARD_TITLE,QABOARD_CONTENTS,QABOARD_DATE,QABOARD_ANS,QABOARD_VIEWS,QABOARD_TYPE_CD,MEMBER_ID,"
+						+ " (case when sysdate - qaboard_date<0.007 then 1 else 0 end) isNew"
 						+ " FROM QABOARD"
 						+ where
 						+ " ORDER BY TO_NUMBER(QABOARD_ID) DESC"
@@ -66,6 +67,7 @@ public class QaBoardDAO {
 				resultVO.setQaboard_views(rs.getInt(7));
 				resultVO.setQaboard_type_cd(rs.getString(8));
 				resultVO.setMember_id(rs.getString(9));
+				resultVO.setIsNew(rs.getString(10));
 				list.add(resultVO);
 				
 			}

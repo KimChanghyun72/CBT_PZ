@@ -60,7 +60,7 @@
     right: 0;
 	float: right;
 	overflow : scroll;
-	width : 300px;
+	width : 500px;
 	height : 500px;
 	/* background-color: #f1f1f1; */
 	padding-left: 20px;
@@ -161,15 +161,15 @@ $(function(){ //for문은 번호를 설정해주는 역할만 하고 이벤트�
 			}
 		})
 	}
-		 submitFunc(); //정답, ox 불러오는 함수 실행.
-})
 
 	/* $(function(){
 		 //$("#foo-table").DataTable();
 	}) */
+	submitFunc();//정답, ox 불러오는 함수 실행.
+});
+
 </script>
 <script>
-
 $(document).ready(function(){
 
 	$('.btn').click(function(){
@@ -189,6 +189,7 @@ $(document).ready(function(){
 <body>
 	<div class="header">
 		<h1>${sessionScope.pageName} ${problemList[0].solve_type_cd} </h1>
+		<h4>${problemList[0].solve_score}/${problemList[0].solve_cnt}</h4>
 			<div id="ViewTimer"></div>
 	</div>
 <div class="leftcolumn">
