@@ -5,7 +5,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -198,13 +197,11 @@ public class PaperHeadDAO {
 	public void insert(PaperheadVO paperHeadVO) {
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "INSERT INTO PAPERHEAD (PAPERHEAD_ID, PAPER_TYPE_CD, PAPER_ROUND, EXCEL_FILE) "
-					+ "VALUES (?,?,?,?)";
+			String sql = "INSERT INTO PAPERHEAD (PAPERHEAD_ID, PAPER_TYPE_CD, PAPER_ROUND) "
+					+ "VALUES (PAPERHEAD_SEQ.NEXTVAL,?,?)";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, paperHeadVO.getPaperhead_id());
-			pstmt.setString(2, paperHeadVO.getPaper_type_cd());
-			pstmt.setString(3, paperHeadVO.getPaper_round());
-			pstmt.setString(4, paperHeadVO.getExcel_file());
+			pstmt.setString(1, paperHeadVO.getPaper_type_cd());
+			pstmt.setString(2, paperHeadVO.getPaper_round());
 			
 			int r = pstmt.executeUpdate();
 			System.out.println(r + "건이 입력됨");

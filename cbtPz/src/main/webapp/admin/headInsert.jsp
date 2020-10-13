@@ -38,7 +38,6 @@
 <form method="post" name="frm" id="frm" enctype="multipart/form-data"
    	  action="${pageContext.request.contextPath}/excelInsert.do">
 <h3>문제 분류</h3>
-	<input type="text" name="paperhead_id" id="paperhead_id"/><br>
 	<input type="radio" name="paper_type_cd" id="paper_type_cd" value="모의고사">모의고사 &nbsp;&nbsp; 
 	<input type="text" name="paper_round" id="paper_round" placeholder="연도회차를 입력하세요."/>&nbsp;&nbsp;
 	<button>등록</button>
@@ -51,7 +50,6 @@
    	  action="${pageContext.request.contextPath}/hashInsert.do"
    	  onsubmit = "return inputCheck()">
 <h3>해쉬태그 등록</h3>
-id   : <input type="text" name="hashtag_id" id="hashtag_id"/><br>
 name : <input type="text" name="hashtag_name" id="hashtag_name"/><br>
 code : <input type="text" name="classify_code_cd" id="classify_code_cd"/>
 	<button>등록</button>

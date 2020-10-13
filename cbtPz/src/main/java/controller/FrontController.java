@@ -128,7 +128,7 @@ public class FrontController extends HttpServlet {
     	list.put("/ajax/studyChart.do", new admin.StudyTermChartCtrl()); // 공부기간 차트
     	list.put("/ajax/majorChart.do", new admin.MajorChartCtrl()); // 전공유무 차트
     	
-    	list.put("/memberList.do", new admin.MemberListCtrl()); // 회원리스트
+    	list.put("/admin/memberList.do", new admin.MemberListCtrl()); // 회원리스트
     	list.put("/memberUpdateForm.do", new member.MemberUpdateFormCtrl());  // 회원 수정 (보류)
     	
     	list.put("/ajax/scheduler.do", new admin.SchedulerCtrl()); // 달력
