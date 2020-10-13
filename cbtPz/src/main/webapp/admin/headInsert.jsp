@@ -49,7 +49,7 @@
    	  onsubmit = "return inputCheck()">
 <h3>해쉬태그 등록</h3>
 id   : <input type="text" name="hashtag_id" id="hashtag_id"/><br>
-name : <input type="text" name="hashcode_name" id="hashcode_name"/><br>
+name : <input type="text" name="hashtag_name" id="hashtag_name"/><br>
 code : <input type="text" name="classify_code_cd" id="classify_code_cd"/>
 	<button>등록</button>
 </form>
