@@ -153,7 +153,7 @@ document.getElementByID("text").value ='';
 
 				<div class="board_info_box">
 
-					<span class="board_member_id">작성자: <c:out value="${board.member_id}"/>,</span><span class="board_date"><c:out value="${board.board_date}"/></span>
+					<span class="board_member_id">작성자: <c:out value="${board.member_id}"/></span><span class="board_date"><c:out value="${board.board_date}"/></span>
 
 				</div>
 				

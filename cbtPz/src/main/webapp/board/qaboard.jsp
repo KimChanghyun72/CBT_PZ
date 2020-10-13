@@ -100,7 +100,7 @@ $(function(){
 
 				<div class="board_info_box">
 
-					<span class="board_member_id">작성자: <c:out value="${qaboard.member_id}"/>,</span><span class="board_date"><c:out value="${qaboard.qaboard_date}"/></span>
+					<span class="board_member_id">작성자: <c:out value="${qaboard.member_id}"/></span><span class="board_date"><c:out value="${qaboard.qaboard_date}"/></span>
 
 				</div>
 				

@@ -167,7 +167,7 @@ public class BoardDAO {
 
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "UPDATE BOARD SET BOARD_TITLE = ?,BOARD_CONTENTS = ?,MEMBER_ID = ?,BOARD_DATE = sysdate,BOARD_FILE = ? WHERE BOARD_ID = ?";
+			String sql = "UPDATE BOARD SET BOARD_TITLE = ?,BOARD_CONTENTS = ?,MEMBER_ID = ?,BOARD_FILE = ? WHERE BOARD_ID = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, boardVo.getBoard_title());
 			pstmt.setString(2, boardVo.getBoard_contents());

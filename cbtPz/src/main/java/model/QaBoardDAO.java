@@ -129,8 +129,8 @@ public class QaBoardDAO {
 				conn = ConnectionManager.getConnnect();
 				
 				cstmt = conn.prepareCall("{call qaboard_ins(?,?,?,?)}");			
-				cstmt.setString(1, qaboardVo.getQaboard_contents());
-				cstmt.setString(2, qaboardVo.getQaboard_title());
+				cstmt.setString(1, qaboardVo.getQaboard_title());
+				cstmt.setString(2, qaboardVo.getQaboard_contents());
 				cstmt.setString(3, qaboardVo.getQaboard_type_cd());
 				cstmt.setString(4, qaboardVo.getMember_id());
 				cstmt.executeUpdate();

@@ -47,7 +47,7 @@ public class NoticeUpdateCtrl implements Controller {
 			board_id = board_id.substring(1);
 		}
 		
-		request.getRequestDispatcher("/ajax/noticeSelect.do?board_id="+board_id).forward(request, response);
+		request.getRequestDispatcher("/board/noticeSelect.do?board_id="+board_id).forward(request, response);
 		
 	}
 
