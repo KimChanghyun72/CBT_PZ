@@ -13,7 +13,9 @@
 		width : 160px;
 	}
 
+
 </style>
+
 <script>
 <% request.getSession().setAttribute("pageName", "개인 정보 수정"); %>
 	
@@ -475,8 +477,23 @@ padding: 10px;
 			</div>
 			</form>
 			
+
 		<div class="btnArea">
 			<form name="memDeleteFrm" action="memberDelete.do" method="post">
+			
+			<span class="more">
+				<span class="blind">회원 탈퇴</span>
+			</span>
+			
+			<p><b>회원 탈퇴 유의사항</b></p>
+			<p>1. 회원 탈퇴 시 회원님의 개인 정보와 문제 이용 내역이 파기됩니다.</p>
+			<p>2. 회원이 작성한 콘텐츠(동영상, 게시물, 댓글 등)는 자동적으로 삭제되지 않으며,
+			만일 삭제를 원하시면 탈퇴 이전에 삭제가 필요합니다.</p>
+			<p>3. 탈퇴 후 동일한 메일로 재가입이 가능하지만, 탈퇴 한 계정과 연동되지 않습니다.</p>
+			<p>4. 환불 신청을 하지 않거나 환불이 처리되기 전에 탈퇴하면 환불이 불가능합니다.</p>
+			<br>
+			<p>회원 탈퇴 시 해당 내용에 동의하는 것으로 간주됩니다.</p>
+			
 				<input type="hidden" name="member_id" value="${login.member_id }" />
 				<button id="tdelete" type="button" class="btn clever-btn" onclick="memDelete()">회원 탈퇴</button>
 			</form>
