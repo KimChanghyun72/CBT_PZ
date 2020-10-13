@@ -6,6 +6,41 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+.search-area input {
+    width: 100%;
+    border: 1px solid #ccc; 
+    height: 40px;
+    border-radius: 6px;
+    border: 1px solid #ebebeb;
+    padding: 0 15px 0 50px;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.35);
+    font-weight: 600;
+    -webkit-transition-duration: 500ms;
+    transition-duration: 500ms; 
+}
+
+.search-area button {
+    position: absolute;
+    width: 50px;
+    height: 40px;
+    background-color: transparent;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+}
+
+.mb-70 {
+    margin-bottom: 30px !important;
+}
+
+</style>
+
 
 <script>
 	$(document).ready(function(){
@@ -101,13 +136,15 @@
                     </div>
 
 
-					<div class="searcharea">
-							<input type="text" name="search" id="search" placeholder="Search">
+					<!-- Search Button -->
+					<div class="search-area" style="margin-bottom: 50px;">
+							<input type="search" name="search" id="search" placeholder="Search">
 							<button type="button" id="searchbtn">
 								<i class="fa fa-search" aria-hidden="true"></i>
 							</button>
 					</div>
 					<div>${nodata}</div>
+
 
 				</div>
             </div>

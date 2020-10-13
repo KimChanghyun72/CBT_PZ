@@ -23,9 +23,9 @@ public class ProblemHeadCtrl implements Controller {
 		String path = "studyPaper.jsp";
 		String check = (String) request.getSession().getAttribute("check");
 		
-		//일반회원일 경우
-		if(check=="M") {
-			memberVo= (MemberVo) request.getSession().getAttribute("login");
+		
+		
+		memberVo= (MemberVo) request.getSession().getAttribute("login");
 		
 		SearchVO searchVO = new SearchVO();
 		//문제 유형 세션에서 불러옴.
@@ -52,13 +52,6 @@ public class ProblemHeadCtrl implements Controller {
 		
 		request.getRequestDispatcher("/study/"+path).forward(request, response);
 		
-		}else {
-			request.setAttribute("errcode", "1");
-			request.setAttribute("errmsg", "일반회원만 문제를 풀 수 있습니다.");
-			
-			request.getRequestDispatcher("/indexx.jsp").forward(request, response);
-			/* response.sendRedirect("indexx.jsp"); */
-		}
 		
 	}
 

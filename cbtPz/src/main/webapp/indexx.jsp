@@ -6,12 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<script>
-$(function(){
-	$(location).attr('href',"${pageContext.request.contextPath}/mainCtrl.do");
-	
-});
-</script>
+
 <body>
 <% response.sendRedirect(request.getContextPath() + "/mainCtrl.do"); %>	
 </body>

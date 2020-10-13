@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 			<!--공백 체크 및 비밀번호 확인  -->
 	<script>
+	
 	function inputCheck() {
 
 		if (frm.board_title.value == "") {
@@ -29,14 +30,21 @@
 			frm.pw.focus();
 			return false;
 		}
-	
-		if (frm.pw.value != '${sessionScope.login.member_pw}') {
+	if('${session.check}'=='M'){
+		if (frm.pw.value != "${sessionScope.login.member_pw}") {
 			window.alert("비밀번호를 확인해주세요");
 			frm.pw.focus();
 			return false;
 		}
-		
-		
+	}
+	if('${session.check}'=='T'){
+		if (frm.pw.value != "${sessionScope.login.teacher_password}") {
+			window.alert("비밀번호를 확인해주세요");
+			frm.pw.focus();
+			return false;
+		}
+	}
+
 		return true;
 	}
 </script> 
@@ -48,8 +56,13 @@
 				<br><br>
 			<form id="frm" name="frm"  onsubmit="return inputCheck()" method="post" action="${pageContext.request.contextPath}/board/boardInsert.do" enctype="multipart/form-data">
 				<div class="mb-3">
-					<input  class="form-control" type="text" name="board_title" id="board_title" placeholder="제목"> 
-					<input  class="form-control" type="text" name="member_id" id="member_id"  value="${sessionScope.login.member_id}" readonly="readonly"> 
+					<input  class="form-control" type="text" name="board_title" id="board_title" placeholder="제목">
+					<c:if test="${sessionScope.check=='M'}"> 
+						<input  class="form-control" type="text" name="member_id" id="member_id"  value="${sessionScope.login.member_id}" readonly="readonly">
+					</c:if>
+					<c:if test="${sessionScope.check=='T'}">
+						<input  class="form-control" type="text" name="member_id" id="member_id"  value="${sessionScope.login.teacher_id}" readonly="readonly">
+					</c:if> 
 					<input type="file" id="board_file" name="board_file">
 				</div>
 
@@ -66,6 +79,8 @@
 			</p>
 			</div>
 			</form>
+		
+			
 		
 		</div>	
 

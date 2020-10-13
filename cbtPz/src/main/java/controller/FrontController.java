@@ -166,6 +166,7 @@ public class FrontController extends HttpServlet {
     	list.put("/mypage/myRetestStat.do", new member.myRetestStatCtrl()); //마이페이지-개인통계
     	list.put("/ajax/myRetestStatLineChart.do", new member.myRetestStatLineChartCtrl()); // 개인통계-라인차트
     	list.put("/ajax/myRetestStatBarChart.do", new member.myRetestStatBarChartCtrl()); // 개인통계-바차트
+    	list.put("/ajax/myRetestStatPieChart.do", new member.myRetestStatPieChartCtrl()); // 개인통계-파이차트
     	
     	//list.put("/ajax/fullCalendar.do", new member.FullCalendarCtrl()); //풀캘린더실험용
     	list.put("/mainCtrl.do", new common.MainCtrl()); // main.jsp 구동하는 서블릿 (indexx.jsp)
