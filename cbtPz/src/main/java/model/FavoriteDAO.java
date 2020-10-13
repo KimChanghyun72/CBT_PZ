@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import common.ConnectionManager;
 
@@ -27,12 +30,12 @@ public class FavoriteDAO {
 			conn = ConnectionManager.getConnnect();
 			
 			// 2. sql 구문 실행
-			String sql = "insert into favorite (FAVORITE_ID, PAPER_ID) "
-					   + " values(favorite_seq.nextval, ?)";
+			String sql = "insert into favorite (FAVORITE_ID, PROBLEM_ID, MEMBER_ID) "
+					   + " values(favorite_seq.nextval, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
 					
-			pstmt.setString(1, favoriteVO.getPaper_id());		
-					
+			pstmt.setString(1, favoriteVO.getProblem_id());		
+			pstmt.setString(2, favoriteVO.getMember_id());	
 			r = pstmt.executeUpdate();
 
 			// 3. 결과 처리
@@ -56,10 +59,13 @@ public class FavoriteDAO {
 			conn = ConnectionManager.getConnnect();
 			
 			// 2. sql 구문 실행
-			String sql = "DELETE FROM FAVORITE WHERE FAVORITE_ID = ?";
+			String sql = "DELETE FROM FAVORITE "
+						+"WHERE PROBLEM_ID = ?"
+						+"AND MEMBER_ID = ? ";
 			pstmt = conn.prepareStatement(sql);
 					
-			pstmt.setString(1, favoriteVO.getPaper_id());		
+			pstmt.setString(1, favoriteVO.getProblem_id());
+			pstmt.setString(2, favoriteVO.getMember_id());
 					
 			r = pstmt.executeUpdate();
 
@@ -77,45 +83,39 @@ public class FavoriteDAO {
 	} 
 		
 	// 즐겨찾기 문제 조회
-	public ArrayList<FavoriteVO> selectAllFavorite(SolveVO solveVO) {
-		FavoriteVO resultVO = null;
+	public List <Map<String,Object>> selectAllFavorite(FavoriteVO favoriteVO) {
 		ResultSet rs = null;
 
-		ArrayList<FavoriteVO> list = new ArrayList<FavoriteVO>();
+		List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "select * from problem,paper,solve"
-					+ " where problem.problem_id = paper.problem_id"
-					+ " and solve.solve_id = paper.solve_id"
-					+ " and paper.paper_id in (select paper_id from favorite)"
-					+ " and member_id = ?";
+			String sql ="SELECT A.* FROM(SELECT B.*, ROWNUM RM FROM ( "
+						+ "select p.problem_id, subject, haeseol, problem_text, ans_1, ans_2, ans_3, ans_4, ans_correct, problem_image " 
+						+ " from problem p, FAVORITE f " 
+						+ " where p.PROBLEM_ID = f.PROBLEM_ID " 
+						+ " and member_id = ?"
+						+" ORDER BY p.problem_id "
+						+" ) B) A WHERE RM BETWEEN ? AND ? "; 
 			// problem, paper 조회
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, solveVO.getMember_id());
+			pstmt.setString(1, favoriteVO.getMember_id());
+			pstmt.setInt(2, favoriteVO.getFirst());
+			pstmt.setInt(3, favoriteVO.getLast());
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				resultVO = new FavoriteVO();
-				resultVO.setProblem_id(rs.getString("problem_id"));
-				resultVO.setSubject(rs.getString("subject"));
-				resultVO.setHaeseol(rs.getString("haeseol"));
-				resultVO.setProblem_text(rs.getString("problem_text"));
-				resultVO.setAns_1(rs.getString("ans_1"));
-				resultVO.setAns_2(rs.getString("ans_2"));
-				resultVO.setAns_3(rs.getString("ans_3"));
-				resultVO.setAns_4(rs.getString("ans_4"));
-				resultVO.setAns_correct(rs.getString("ans_correct"));
-				resultVO.setPaperhead_id(rs.getString("paperhead_id"));
-				resultVO.setProblem_image(rs.getString("problem_image"));
-
-				resultVO.setPaper_id(rs.getString("paper_id"));
-				resultVO.setIs_correct(rs.getString("is_correct"));
-				resultVO.setCheck_num(rs.getString("check_num"));
-				resultVO.setIs_favorite(rs.getString("is_favorite"));
-				resultVO.setAns_order(rs.getString("ans_order"));
-				resultVO.setSolve_id(rs.getString("solve_id"));
-				// resultVO.setProblem_id(rs.getString("problem_id"));
-				list.add(resultVO);
+				Map<String,Object> map = new HashMap<String,Object>();
+				map.put("problem_id",rs.getString(1));
+				map.put("subject",rs.getString(2));
+				map.put("haeseol",rs.getString(3));
+				map.put("problem_text",rs.getString(4));
+				map.put("ans_1", rs.getString(5));
+				map.put("ans_2", rs.getString(6));
+				map.put("ans_3", rs.getString(7));
+				map.put("ans_4", rs.getString(8));
+				map.put("ans_correct", rs.getString(9));
+				map.put("problem_image", rs.getString(10));
+				list.add(map);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -123,5 +123,27 @@ public class FavoriteDAO {
 			ConnectionManager.close(rs, pstmt, conn);
 		}
 		return list;
+	}
+
+	public int count(FavoriteVO favoriteVO) {
+		int cnt = 0;
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "SELECT count(member_id) " 
+						+"FROM favorite "
+						+"WHERE MEMBER_ID = ?";
+			pstmt = conn.prepareStatement(sql);
+			int pos = 1;
+			pstmt.setString(pos++, favoriteVO.getMember_id());
+
+			ResultSet rs = pstmt.executeQuery();
+			rs.next();
+			cnt = rs.getInt(1);		
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(conn);
+		}
+		return cnt;
 	}
 }

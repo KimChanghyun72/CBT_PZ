@@ -101,6 +101,12 @@
 	 background-image: url(&quot;./img/re_o.gif&quot;);
 }
 
+
+.checkbox-wrap { cursor: pointer; }
+.checkbox-wrap .check-icon  { display: inline-block; width: 20px; height: 18px; background: url(../img/fav0.svg) left center no-repeat; vertical-align: middle; transition-duration: .4s; }
+.checkbox-wrap input[type=checkbox] { display: none; }
+.checkbox-wrap input[type=checkbox]:checked + .check-icon { background-image: url(../img/fav1.svg); }
+ 
 </style>
 
 <script>
@@ -119,26 +125,26 @@ var is_submit=0;
 $(function(){
 	$(document).on("change","#favorite",function() {
 		if($(this).is(":checked", true)) {
-		    var paper_id = $(this).closest("tr").find('#paper_id').val();
-		    $.ajax({
+		    var problem_id = $(event.target).parent().next().val();
+		    $.ajax({	
 		        type: "POST",   
 		        url: "${pageContext.request.contextPath}/ajax/myFavoriteInsert.do",
 		        dataType : "json",
 		        data: {
-		        	paper_id : paper_id,
+		        	problem_id : problem_id,
 		        },
 		        success: function(data){
 		        },
 		    });
 		}
-		else if(($(this).is(":checked", false))){
-		    var paper_id = $(this).closest("tr").find('#paper_id').val();
+		else {
+			var problem_id = $(event.target).parent().next().val();
 		    $.ajax({
 		        type: "POST",   
 		        url: "${pageContext.request.contextPath}/ajax/myFavoriteDelete.do",
 		        dataType : "json",
 		        data: {
-		        	paper_id : paper_id,
+		        	problem_id : problem_id,
 		        },
 		        success: function(data){
 		        },
@@ -182,11 +188,11 @@ $(function(){ //for문은 번호를 설정해주는 역할만 하고 이벤트�
 					$(".haeseol"+i).html(datas[i].haeseol); //헤설 출력
 					if(datas[i].ans_correct == $('input[name=problem'+i+']:checked').val()){
 						$('input[name=problem'+i+']').closest("td").prev()
-								.append('<div id="ques_ox1"><img src="../img/o.png" style="width:35px; height:35px;"></div>');
+								.append('<div id="ques_ox1"><img src="../img/o1.png" style="width:300x; height:70px;"></div>');
 						
 					}else{
 						$('input[name=problem'+i+']').closest("td").prev()
-								.append('<div id="ques_ox1"><img src="../img/x.png" style="width:35px; height:35px;"></div><div style="margin-top:35px">정답 :'+datas[i].ans_correct+'</div>');
+								.append('<div id="ques_ox1"><img src="../img/x1.png" style="width:50px; height:35px;"></div>');
 						
 					}
 				};
@@ -227,7 +233,7 @@ $(document).ready(function(){
 <div class="leftcolumn">
 	<form id="testResult" name="testResult" action="ScoreInsert.do">
 <table id="foo-table" class="table table-bordered">
-	
+		
 		<thead>
 			<tr><th width="8%">&nbsp;&nbsp;과목&nbsp;&nbsp;</th><th width="10%">번호</th><th>문제</th></tr>
 		</thead>
@@ -248,8 +254,11 @@ $(document).ready(function(){
 					<%} %>
 				</td>
 				<td>
-					<div id="div<%=probNum%>"><%=problemList.get(probNum).get("problem_text") %>&nbsp;&nbsp;<input type="checkbox" id="favorite" name="probChk<%=probNum%>"></div>
-					<input type="text" id="paper_id" value="<%=problemList.get(probNum).get("paper_id") %>">
+					<div id="div<%=probNum%>"><%=problemList.get(probNum).get("problem_text") %>&nbsp;&nbsp;
+						<label class="checkbox-wrap"><input type="checkbox" id="favorite" name="probChk<%=probNum%>"><i class="check-icon"></i></label>
+						<input type="text" id="problem_id" value="<%=problemList.get(probNum).get("problem_id") %>">
+					</div>
+					<input type="hidden" id="paper_id" value="<%=problemList.get(probNum).get("paper_id") %>">
 					<input type="hidden" id="pro_id" value="<%=problemList.get(probNum).get("problem_id") %>">
 					<% if(problemList.get(probNum).get("check_num").equals("1")) {%>
 						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="1" checked><%=problemList.get(probNum).get("ans_1") %></div>
@@ -277,7 +286,7 @@ $(document).ready(function(){
 						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="3"><%=problemList.get(probNum).get("ans_3") %></div>
 						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="4"><%=problemList.get(probNum).get("ans_4") %></div>
 						<%} %>
-					<input type="text" name="is_correct<%=probNum%>">
+					<input type="hidden" name="is_correct<%=probNum%>">
 					<div class="haeseol<%=probNum %>"></div>
 				</td>
 			</tr>
