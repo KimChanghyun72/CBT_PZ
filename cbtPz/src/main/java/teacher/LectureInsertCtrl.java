@@ -14,6 +14,7 @@ import common.HttpUtil;
 import controller.Controller;
 import model.LectureDAO;
 import model.LectureVO;
+import model.TeacherVO;
 
 public class LectureInsertCtrl implements Controller {
 
@@ -25,7 +26,8 @@ public class LectureInsertCtrl implements Controller {
 		String lecture_link = request.getParameter("lecture_link");
 		String path = "D:/upload"; // 썸네일 이미지 추가
 
-		String teacher_id = "tuser1"; // teacher_member table teacher_id column에서 가져옴
+		TeacherVO teacher = (TeacherVO) request.getSession().getAttribute("login");
+		String teacher_id = teacher.getTeacher_id(); // teacher_member table teacher_id column에서 가져옴
 
 		System.out.println(path);
 		LectureVO lecture = new LectureVO();
@@ -45,17 +47,17 @@ public class LectureInsertCtrl implements Controller {
 		// 유효성 체크
 		if (lecture_name.isEmpty() || lecture_info.isEmpty() || lecture_link.isEmpty()) {
 			request.setAttribute("error", "모든 항목을 빠짐없이 입력해주시기 바랍니다.");
-			HttpUtil.forward(request, response, "/insertLecture.jsp");
+			HttpUtil.forward(request, response, "/mypage/insertLecture.jsp");
 			return;
 		}
 
 		System.out.println(lecture_image);
 
-		if (lecture_image.isEmpty()) {
-			lecture.setLecture_id(null);
+		if (lecture_image==null || lecture_image.isEmpty()) {
+			lecture.setLecture_image("");
 		} else {
 			File renameFile = FileRenamePolicy.rename(new File(path, lecture_image));
-			part.write(renameFile.getName());
+			part.write(path + "/" + renameFile.getName());
 			lecture.setLecture_image(path + "/" + renameFile.getName());
 
 		}

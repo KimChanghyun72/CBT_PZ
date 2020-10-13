@@ -32,7 +32,7 @@ public class PaperHeadDAO {
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = "SELECT p.paper_id, NVL(p.is_correct,0) as is_correct, NVL(p.check_num,0) as check_num, p.PROBLEM_ID, s.solve_type_cd, SUBJECT, HAESEOL, PROBLEM_TEXT, ANS_1, ANS_2, ANS_3, " 
-						+ " ANS_4, ANS_CORRECT, PAPERHEAD_ID, PROBLEM_IMAGE, p.solve_id, p.paper_id "  
+						+ " ANS_4, ANS_CORRECT, PAPERHEAD_ID, PROBLEM_IMAGE, p.solve_id, p.paper_id, s.solve_score, s.solve_cnt "  
 					    + " FROM paper p, PROBLEM b, SOLVE s " 
 					    + " where p.problem_id = b.problem_id "  
 					    + " and p.solve_id = s.solve_id "
@@ -63,6 +63,8 @@ public class PaperHeadDAO {
 				map.put("problem_image", rs.getString(15));
 				map.put("solve_id", rs.getString(16));
 				map.put("paper_id", rs.getString(17));
+				map.put("solve_score", rs.getString(18));
+				map.put("solve_cnt", rs.getString(19));
 				list.add(map);
 			}
 			
@@ -106,7 +108,34 @@ public class PaperHeadDAO {
 		return next;
 	}
 	
-	
+	//프로시져로 solve_id로 오답노트 재응시
+		public int retest_Proc(SearchVO searchVO) {			
+			int next = 0;
+			CallableStatement cstmt = null;
+			try {
+				conn = ConnectionManager.getConnnect();
+				conn.setAutoCommit(false);
+				
+				cstmt = conn.prepareCall("{call RETEST_SOLVE_PAPER(?,?,?)}");
+				cstmt.setString(1,searchVO.getSolve_id());
+				cstmt.setString(2,searchVO.getMember_id());		
+				cstmt.registerOutParameter(3, java.sql.Types.NUMERIC);
+				cstmt.executeUpdate();
+				conn.commit();
+				next = cstmt.getInt(3);
+				
+			} catch(Exception e) {
+				try {
+					conn.rollback();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+				e.printStackTrace();
+			} finally {
+				ConnectionManager.close(rs, pstmt, conn);
+			}
+			return next;
+		}
 	
 			
 	// 모의/기출 검색

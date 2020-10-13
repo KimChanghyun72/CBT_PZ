@@ -16,6 +16,7 @@ public class myRetestStatCtrl implements Controller {
 		//response.sendRedirect(request.getContextPath() +"/mypage/myRetestStat.jsp");
 		//request.getRequestDispatcher("/mypage/myRetestStat.jsp").forward(request, response);
 		HttpUtil.forward(request, response, "/mypage/myRetestStat.jsp");
+		
 
 	}
 

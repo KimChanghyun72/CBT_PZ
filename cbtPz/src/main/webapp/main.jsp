@@ -31,6 +31,7 @@
 	font-size: 40px;
 	text-shadow: 2px 2px 6px #F8F8FF;
 }
+
 </style>
 
 
@@ -49,6 +50,8 @@
 											location.href = "${pageContext.request.contextPath}/board/noticeSelect.do?board_id="
 													+ b_id;
 										});
+						
+					
 
 					});
 

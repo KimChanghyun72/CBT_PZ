@@ -60,10 +60,13 @@
 	bottom: 0;
     right: 0;
 	float: right;
-	width: 25%;
+	overflow : scroll;
+	width : 500px;
+	height : 500px;
 	/* background-color: #f1f1f1; */
 	padding-left: 20px;
 }
+
 /* Fake image */
 .fakeimg {
 	background-color: #aaa;
@@ -134,7 +137,7 @@ $(function(){
 	
 
 $(function(){
-	 $("#foo-table").DataTable();
+	//$("#foo-table").DataTable();
 })
 $(function(){ //for문은 번호를 설정해주는 역할만 하고 이벤트시에는 안 먹음.
 	for(var i=0; i<size; i++){
@@ -179,15 +182,14 @@ $(function(){ //for문은 번호를 설정해주는 역할만 하고 이벤트�
 						
 					}
 				};
-					alert("ooo"+solve_id);
+					alert("제출완료");
 					location.href="${pageContext.request.contextPath}/mypage/myRetestSelect.do?solve_id=" + solve_id; 
-			}
+			}	
 		})
 	}
-	
-	
+
 	//문제 제출하면 ajax로 답지 불러오고 제출버튼 삭제.
-	$(document).on("click",".btnScore", function(){
+	$(document).on("click","#btnScore", function(){
 		is_submit = confirm("제출하시겠습니까?");
 		if(is_submit){
 			submitFunc();
@@ -315,7 +317,7 @@ $(document).ready(function(){
 					<div class="ans_correct"></div>
 				</div>
 			</div>
-			<button class="btnScore">제출</button>
+			<button id="btnScore" class="btn btn-primary btn-lg btn-block">제출</button>
 		</div>
 	<!-- </div> -->
 </body>

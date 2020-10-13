@@ -12,7 +12,7 @@ import controller.Controller;
 import model.PaperHeadDAO;
 import model.SearchVO;
 
-//오답노트에서 응시했던 문제 재출력
+//오답노트  응시문제 재출력
 public class MyRetestSelect implements Controller {
 
 	@Override

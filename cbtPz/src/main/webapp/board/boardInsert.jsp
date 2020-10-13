@@ -46,7 +46,7 @@
 		<!--자유게시판 입력 폼  -->
 		<div class="container" role="main">
 				<br><br>
-			<form id="frm" name="frm" id="frm" onsubmit="return inputCheck()" method="post" action="${pageContext.request.contextPath}/board/boardInsert.do" enctype="multipart/form-data">
+			<form id="frm" name="frm"  onsubmit="return inputCheck()" method="post" action="${pageContext.request.contextPath}/board/boardInsert.do" enctype="multipart/form-data">
 				<div class="mb-3">
 					<input  class="form-control" type="text" name="board_title" id="board_title" placeholder="제목"> 
 					<input  class="form-control" type="text" name="member_id" id="member_id"  value="${sessionScope.login.member_id}" readonly="readonly"> 

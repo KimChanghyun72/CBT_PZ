@@ -17,4 +17,6 @@ public class QaBoardVO {
 	private Integer last;
 	private String comments;
 	private String admin;
+	private String isNew;
+	private Integer cnt;
 }

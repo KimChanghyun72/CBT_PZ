@@ -19,6 +19,63 @@ public class FavoriteDAO {
 		return instance;
 	}
 	
+	// 즐겨찾기 등록
+	public int insertFavorite(FavoriteVO favoriteVO) {
+		int r =0;
+		try {
+			// 1. DB연결
+			conn = ConnectionManager.getConnnect();
+			
+			// 2. sql 구문 실행
+			String sql = "insert into favorite (FAVORITE_ID, PAPER_ID) "
+					   + " values(favorite_seq.nextval, ?)";
+			pstmt = conn.prepareStatement(sql);
+					
+			pstmt.setString(1, favoriteVO.getPaper_id());		
+					
+			r = pstmt.executeUpdate();
+
+			// 3. 결과 처리
+			if (r == 1) {
+				System.out.println(r + "건이 처리(즐겨찾기등록)");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			// 4. 연결 해제 (연결횟수제한으로인해 해제까지 해줘야함)
+			ConnectionManager.close(conn);
+		}
+		return r;
+	} 
+	
+	// 즐겨찾기 해제
+	public int deleteFavorite(FavoriteVO favoriteVO) {
+		int r =0;
+		try {
+			// 1. DB연결
+			conn = ConnectionManager.getConnnect();
+			
+			// 2. sql 구문 실행
+			String sql = "DELETE FROM FAVORITE WHERE FAVORITE_ID = ?";
+			pstmt = conn.prepareStatement(sql);
+					
+			pstmt.setString(1, favoriteVO.getPaper_id());		
+					
+			r = pstmt.executeUpdate();
+
+			// 3. 결과 처리
+			if (r == 1) {
+				System.out.println(r + "건 삭제(즐겨찾기해제)");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			// 4. 연결 해제 (연결횟수제한으로인해 해제까지 해줘야함)
+			ConnectionManager.close(conn);
+		}
+		return r;
+	} 
+		
 	// 즐겨찾기 문제 조회
 	public ArrayList<FavoriteVO> selectAllFavorite(SolveVO solveVO) {
 		FavoriteVO resultVO = null;

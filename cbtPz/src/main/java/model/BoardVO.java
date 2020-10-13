@@ -15,4 +15,5 @@ public class BoardVO {
 	private String board_file;
 	private String id_rownum;
 	private String isNew;
+	private Integer cnt;
 }

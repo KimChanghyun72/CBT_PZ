@@ -18,7 +18,6 @@ public class BoardListCtrl implements Controller {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		BoardDAO dao = new BoardDAO();
-		
 		String p = request.getParameter("p");	
 		
 		
