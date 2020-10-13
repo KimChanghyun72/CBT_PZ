@@ -135,7 +135,6 @@ public class MyStatDAO {
 	}
 	
 	
-	
 	//해시태그 통계 파이 차트 htagPieChart
 	public ArrayList<MyStatVO> htagPieChart(MyStatVO myStateVo) {
 		MyStatVO resultVo = null;
@@ -177,5 +176,61 @@ public class MyStatDAO {
 	}
 	
 	
+	
+	
+	//바차트 평균 날짜
+		public MyStatVO selectBarDay(MyStatVO myStateVo) {
+			MyStatVO resultVo = null;
+			ResultSet rs = null;
+			try {
+				conn = ConnectionManager.getConnnect();
+				String sql = "select to_char(min(solve_date),'yyyy-mm-dd') minday, to_char(max(solve_date),'yyyy-mm-dd') maxday "
+							+ "from solve where member_id=? and solve_type_cd in ( '1과목', '2과목', '3과목', '4과목', '5과목')";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, myStateVo.getMember_id());
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					resultVo = new MyStatVO();
+					resultVo.setMinday(rs.getString("minday"));
+					resultVo.setMaxday(rs.getString("maxday"));
+				} else {
+					//System.out.println("Teacher ID no data");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				ConnectionManager.close(rs, pstmt, conn);
+			}
+			return resultVo;
+		} //selectBarDay
+	
+	
+	//파이차트 평균 날짜
+		public MyStatVO selectPieDay(MyStatVO myStateVo) {
+			MyStatVO resultVo = null;
+			ResultSet rs = null;
+			try {
+				conn = ConnectionManager.getConnnect();
+				String sql = "select min(solve_date) minday, max(solve_date) maxday "
+							+ "from solve where member_id=? and solve_type_cd like '%#%'";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, myStateVo.getMember_id());
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					resultVo = new MyStatVO();
+					resultVo.setMinday(rs.getString("minday"));
+					resultVo.setMaxday(rs.getString("maxday"));
+				} else {
+					//System.out.println("Teacher ID no data");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				ConnectionManager.close(rs, pstmt, conn);
+			}
+			return resultVo;
+		} //selectPieDay	
+		
+		
 	
 }

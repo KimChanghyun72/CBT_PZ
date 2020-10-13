@@ -86,33 +86,23 @@ p {
 </style>
 
 <script>
+
 	<% request.getSession().setAttribute("pageName", "개인 통계"); %>
 	
+	var color = ['cornflowerblue','tomato','pink','green','yellow']
 	
 	google.load("visualization", "1", {packages:["corechart"]});
 	google.setOnLoadCallback(drawCharts);
 	function drawCharts() {
 	  
 	  // BEGIN BAR CHART
-	  /*
-	  // create zero data so the bars will 'grow'
-	  var barZeroData = google.visualization.arrayToDataTable([
-	    ['Day', 'Page Views', 'Unique Views'],
-	    ['Sun',  0,      0],
-	    ['Mon',  0,      0],
-	    ['Tue',  0,      0],
-	    ['Wed',  0,      0],
-	    ['Thu',  0,      0],
-	    ['Fri',  0,      0],
-	    ['Sat',  0,      0]
-	  ]);
-		*/
+
 	  // actual bar chart data
-	  
         
 	var data = new google.visualization.DataTable();
 		data.addColumn('string', '과목');
 		data.addColumn('number', '과목별 평균 점수');
+		data.addColumn({type:'string', role:'style'});
         var datatable = [];
 		
        	$.ajax({
@@ -120,9 +110,9 @@ p {
         	url :"${pageContext.request.contextPath}/ajax/myRetestStatBarChart.do",
         	dataType : "json",
         	success : function(datas){
-        		//console.log(datas);
+        		console.log(datas);
         		for(i=0; i<datas.length; i++){
-        			datatable.push([datas[i].solve_type_cd, parseInt(datas[i].avg)]);
+        			datatable.push([datas[i].solve_type_cd, parseInt(datas[i].avg),'color:'+color[i]]);
         		}
         	}
         });
@@ -322,13 +312,15 @@ p {
 						<h2 style="text-align: center;">개인 통계 차트</h2>
 						<div class="chartdiv">
 						<br><br>
-							<h5>과목별 평균 차트</h5>
+							<h5>과목별 평균 차트 </h5><h6 style="color: gray"> (${barday.minday} ~ ${barday.maxday})</h6>
+							<br><br>
 							<div id="bar-chart"></div>
 							<br><br>
 							<h5>일별 모의고사/기출고사 평균 차트</h5>
 							<div id="line-chart"></div>
 							<br><br>
-							<h5>해시태그 차트</h5>
+							<h5>해시태그 차트</h5><h6 style="color: gray"> (${pieday.minday} ~ ${pieday.maxday})</h6>
+							<br><br>
 							<div id="pie-chart"></div>
 						<br><br>
 						</div>
