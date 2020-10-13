@@ -165,6 +165,10 @@ $(function(){
 				<button type="button" onclick="location.href='${pageContext.request.contextPath}/board/boardUpdateForm.do?board_id='+${board.board_id}" class="btn btn-sm btn-primary" id="btnUpdate">수정</button>
 				<button type="button" onclick="location.href='${pageContext.request.contextPath}/board/boardDelete.do?board_id='+${board.board_id}" class="btn btn-sm btn-primary" id="btnDelete">삭제</button>
 				</c:if>
+				<c:if test="${sessionScope.login.teacher_id == board.member_id}">
+				<button type="button" onclick="location.href='${pageContext.request.contextPath}/board/boardUpdateForm.do?board_id='+${board.board_id}" class="btn btn-sm btn-primary" id="btnUpdate">수정</button>
+				<button type="button" onclick="location.href='${pageContext.request.contextPath}/board/boardDelete.do?board_id='+${board.board_id}" class="btn btn-sm btn-primary" id="btnDelete">삭제</button>
+				</c:if>
 				<button type="button" onclick="location.href='${pageContext.request.contextPath}/board/boardList.do'" class="btn btn-sm btn-primary" id="btnList">목록</button>
 			</p>
 			</div>
@@ -178,7 +182,12 @@ $(function(){
 <textarea class="form-control" rows="3" placeholder="댓글을 입력해 주세요" id = "text" name="comment_contents"></textarea>
 </div>
 <div class="col-sm-2">
+	<c:if test="${sessionScope.check=='M'}"> 
 	<input type="text" class="form-control" id="comment_poster" name="comment_poster" value="${sessionScope.login.member_id}" readonly="readonly"/>
+	</c:if>
+	<c:if test="${sessionScope.check=='T'}"> 
+	<input type="text" class="form-control" id="comment_poster" name="comment_poster" value="${sessionScope.login.teacher_id}" readonly="readonly"/>
+	</c:if>
 	<input type="hidden" name="board_id" value="${board.board_id}"/>
 	<button type="button" onclick="inputCheck()"  class="btn btn-sm btn-primary" name="btnSave" style="width: 100%; margin-top: 10px" id="btnSave">저장</button>
 </div>

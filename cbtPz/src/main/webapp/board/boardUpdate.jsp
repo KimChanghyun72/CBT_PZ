@@ -24,15 +24,19 @@
 			frm.board_contents.focus();
 			return false;
 		}
-		if (frm.pw.value == "") {
-			window.alert("비밀번호 입력하세요");
-			frm.pw.focus();
-			return false;
+		if('${session.check}'=='M'){
+			if (frm.pw.value != "${sessionScope.login.member_pw}") {
+				window.alert("비밀번호를 확인해주세요");
+				frm.pw.focus();
+				return false;
+			}
 		}
-		if (frm.pw.value != '${sessionScope.login.member_pw}') {
-			window.alert("비밀번호를 확인해주세요");
-			frm.pw.focus();
-			return false;
+		if('${session.check}'=='T'){
+			if (frm.pw.value != "${sessionScope.login.teacher_password}") {
+				window.alert("비밀번호를 확인해주세요");
+				frm.pw.focus();
+				return false;
+			}
 		}
 	
 		return true;
@@ -49,7 +53,12 @@
 			<input  type="hidden" name="board_id" value="${board.board_id}"> 
 				<div class="mb-3">
 					<input  class="form-control" type="text" name="board_title" id="board_title" value="${board.board_title}" placeholder="제목"> 
-					<input  class="form-control" type="text" name="member_id" id="member_id" value="${sessionScope.login.member_id}" readonly="readonly"> 
+					<c:if test="${sessionScope.check=='M'}"> 
+						<input  class="form-control" type="text" name="member_id" id="member_id"  value="${sessionScope.login.member_id}" readonly="readonly">
+					</c:if>
+					<c:if test="${sessionScope.check=='T'}">
+						<input  class="form-control" type="text" name="member_id" id="member_id"  value="${sessionScope.login.teacher_id}" readonly="readonly">
+					</c:if> 
 					<input type="file" id="file" name="file">
 				</div>
 
