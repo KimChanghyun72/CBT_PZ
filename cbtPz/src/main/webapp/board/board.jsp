@@ -175,6 +175,7 @@ $(function(){
 		<div data-id="4" data-goods="book" id="divid"></div>
 
 <!---------------------댓글 입력폼------------------------->
+	<c:if test="${sessionScope.check=='M'}"> 
 <div class="my-3 p-3 bg-white rounded shadow-sm" style="padding-top: 10px">
 <form id="frm1" name="frm1" >
 <div class="row">
@@ -182,18 +183,30 @@ $(function(){
 <textarea class="form-control" rows="3" placeholder="댓글을 입력해 주세요" id = "text" name="comment_contents"></textarea>
 </div>
 <div class="col-sm-2">
-	<c:if test="${sessionScope.check=='M'}"> 
-	<input type="text" class="form-control" id="comment_poster" name="comment_poster" value="${sessionScope.login.member_id}" readonly="readonly"/>
-	</c:if>
-	<c:if test="${sessionScope.check=='T'}"> 
-	<input type="text" class="form-control" id="comment_poster" name="comment_poster" value="${sessionScope.login.teacher_id}" readonly="readonly"/>
-	</c:if>
+	<input type="text" class="form-control" id="comment_poster" name="comment_poster" value="${sessionScope.login.member_id}" readonly="readonly"/>	
 	<input type="hidden" name="board_id" value="${board.board_id}"/>
 	<button type="button" onclick="inputCheck()"  class="btn btn-sm btn-primary" name="btnSave" style="width: 100%; margin-top: 10px" id="btnSave">저장</button>
 </div>
 </div>
 </form>
 </div>
+	</c:if>
+		<c:if test="${sessionScope.check=='T'}"> 
+<div class="my-3 p-3 bg-white rounded shadow-sm" style="padding-top: 10px">
+<form id="frm1" name="frm1" >
+<div class="row">
+<div class="col-sm-10">
+<textarea class="form-control" rows="3" placeholder="댓글을 입력해 주세요" id = "text" name="comment_contents"></textarea>
+</div>
+<div class="col-sm-2">
+	<input type="text" class="form-control" id="comment_poster" name="comment_poster" value="${sessionScope.login.teacher_id}" readonly="readonly"/>	
+	<input type="hidden" name="board_id" value="${board.board_id}"/>
+	<button type="button" onclick="inputCheck()"  class="btn btn-sm btn-primary" name="btnSave" style="width: 100%; margin-top: 10px" id="btnSave">저장</button>
+</div>
+</div>
+</form>
+</div>
+	</c:if>
 
 <!--------------------댓글 리스트------------------------>
 	<div class="my-3 p-3 bg-white rounded shadow-sm" style="padding-top: 10px">			
