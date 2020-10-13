@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import controller.Controller;
 import model.FavoriteDAO;
 import model.FavoriteVO;
+import model.MemberVo;
 
+//즐겨찾기 등록
 public class MyFavoriteInsertCtrl implements Controller {
 
 	@Override
@@ -17,14 +19,17 @@ public class MyFavoriteInsertCtrl implements Controller {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
-		//파라미터 변수에 저장
-		String paper_id = request.getParameter("paper_id");
+		MemberVo memberVo= (MemberVo) request.getSession().getAttribute("login");
 		
+		//파라미터 변수에 저장
+		String problem_id = request.getParameter("problem_id");
+		String member_id = memberVo.getMember_id();
 		
 		//VO에 담기
 		FavoriteVO favoriteVO = new FavoriteVO();
 		
-		favoriteVO.setPaper_id(paper_id);
+		favoriteVO.setProblem_id(problem_id);
+		favoriteVO.setMember_id(member_id);
 		
 		//서비스		
 		FavoriteDAO.getInstance().insertFavorite(favoriteVO);		

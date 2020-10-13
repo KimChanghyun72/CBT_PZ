@@ -12,4 +12,6 @@ public class TeacherVO {
 	private String teacher_certificate;
 	private String teacher_email;
 	private String is_pay;
+	private String member_pw;
+	private String member_id;
 }

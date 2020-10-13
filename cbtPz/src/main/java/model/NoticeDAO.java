@@ -40,12 +40,15 @@ public class NoticeDAO {
 			
 				
 					String sql = "select a.* from(select rownum rn,b.* from( "
-							+ " SELECT TO_NUMBER(SUBSTR(BOARD_ID,2)) BOARD_ID,BOARD_TITLE,MEMBER_ID,BOARD_DATE"
+							+ " SELECT TO_NUMBER(SUBSTR(BOARD_ID,2)) BOARD_ID,BOARD_TITLE,MEMBER_ID,BOARD_DATE,"
+							+ " (case when sysdate - board_date<0.007 then 1 else 0 end) isNew"
 							+ " FROM BOARD"
 							+ where
 							+ " AND BOARD_ID LIKE'A%'"
 							+ " ORDER BY BOARD_ID DESC"
 							+ " )b ) a where rn between ? and ? ";
+				
+					
 				pstmt = conn.prepareStatement(sql);
 				
 				int pos = 1;
@@ -63,6 +66,7 @@ public class NoticeDAO {
 					resultVO.setBoard_title(rs.getString(3));
 					resultVO.setMember_id(rs.getString(4));
 					resultVO.setBoard_date(rs.getString(5));
+					resultVO.setIsNew(rs.getString(6));
 					list.add(resultVO);
 					
 				}	
@@ -211,7 +215,7 @@ public class NoticeDAO {
 
 				try {
 					conn = ConnectionManager.getConnnect();
-					String sql = "UPDATE BOARD SET BOARD_TITLE = ?,BOARD_CONTENTS = ?,BOARD_DATE = sysdate,BOARD_FILE = ? WHERE BOARD_ID = ?";
+					String sql = "UPDATE BOARD SET BOARD_TITLE = ?,BOARD_CONTENTS = ?,BOARD_FILE = ? WHERE BOARD_ID = ?";
 					pstmt = conn.prepareStatement(sql);
 					pstmt.setString(1, boardVo.getBoard_title());
 					pstmt.setString(2, boardVo.getBoard_contents());

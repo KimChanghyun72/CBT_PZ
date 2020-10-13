@@ -5,6 +5,22 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<script>
+// 파일 업로드 이미지 미리보기
+function setThumbnail(event) {
+	var reader = new FileReader();
+	
+	reader.onload = function(event) {
+		var img = document.createElement("img");
+		img.setAttribute("src", event.target.result);
+		document.querySelector("div#image_container").appendChild(img);
+	};
+	
+	reader.readAsDataURL(event.target.files[0]);
+}
+</script>
+
 </head>
 <body>
 <%request.getSession().setAttribute("pageName","강의 등록"); %>
@@ -27,9 +43,22 @@
                                         <input type="url" class="form-control" name="lecture_link" placeholder="Lecture Link">
                                     </div>
                                 </div>
+                                <div class="col-12 col-lg-7">
+                                <div class="form-group">
+	                                <select id="lecture_subject" name="lecture_subject" class="form-control" style ="padding:10px; color:gray;">
+											<option value="1과목">1과목</option>
+											<option value="2과목">2과목</option>
+											<option value="3과목">3과목</option>
+											<option value="4과목">4과목</option>
+											<option value="5과목">5과목</option>
+									</select>
+								</div>
+								</div>
                                 <div class="col-12 col-lg-6">
                                     <div class="form-group">
-                                        <input type="file" id="lecture_image" name="lecture_image">
+                                        <input type="file" id="lecture_image" name="lecture_image" accept="image/*" onchange="setThumbnail(event);">
+                                        <div id="image_container"></div>
+                                        
                                     </div>
                                 </div>
                                 <div class="col-12">

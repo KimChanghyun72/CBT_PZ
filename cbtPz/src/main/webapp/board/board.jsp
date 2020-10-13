@@ -26,6 +26,7 @@
 				dataType:"json",
 				data : $("form").serialize(),
 				success : function(data){
+					$("#text").val("")
 					var del = "";
 					if(data.comment_poster =="${sessionScope.login.member_id}"){
 						del=$("<a style='color:#007bff;'>").html("삭제").addClass("btnDel")
@@ -36,6 +37,7 @@
 					.data("comment_id", data.comment_id)
 					.append("&emsp;")
 					.append(del)
+					.append($("<h6 class='border-bottom pb-2 mb-0'/>"))
 					.appendTo($("#list"))
 				}
 			});
@@ -85,7 +87,9 @@ $(function(){
 		});
 	});
 });
-</script>	
+
+</script>
+
 <style>
 .board_title {
 
@@ -146,7 +150,7 @@ $(function(){
 
 				<div class="board_info_box">
 
-					<span class="board_member_id">작성자: <c:out value="${board.member_id}"/>,</span><span class="board_date"><c:out value="${board.board_date}"/></span>
+					<span class="board_member_id">작성자: <c:out value="${board.member_id}"/></span><span class="board_date"><c:out value="${board.board_date}"/></span>
 
 				</div>
 				
@@ -161,6 +165,10 @@ $(function(){
 				<button type="button" onclick="location.href='${pageContext.request.contextPath}/board/boardUpdateForm.do?board_id='+${board.board_id}" class="btn btn-sm btn-primary" id="btnUpdate">수정</button>
 				<button type="button" onclick="location.href='${pageContext.request.contextPath}/board/boardDelete.do?board_id='+${board.board_id}" class="btn btn-sm btn-primary" id="btnDelete">삭제</button>
 				</c:if>
+				<c:if test="${sessionScope.login.teacher_id == board.member_id}">
+				<button type="button" onclick="location.href='${pageContext.request.contextPath}/board/boardUpdateForm.do?board_id='+${board.board_id}" class="btn btn-sm btn-primary" id="btnUpdate">수정</button>
+				<button type="button" onclick="location.href='${pageContext.request.contextPath}/board/boardDelete.do?board_id='+${board.board_id}" class="btn btn-sm btn-primary" id="btnDelete">삭제</button>
+				</c:if>
 				<button type="button" onclick="location.href='${pageContext.request.contextPath}/board/boardList.do'" class="btn btn-sm btn-primary" id="btnList">목록</button>
 			</p>
 			</div>
@@ -171,10 +179,15 @@ $(function(){
 <form id="frm1" name="frm1" >
 <div class="row">
 <div class="col-sm-10">
-<textarea class="form-control" rows="3" placeholder="댓글을 입력해 주세요" name="comment_contents"></textarea>
+<textarea class="form-control" rows="3" placeholder="댓글을 입력해 주세요" id = "text" name="comment_contents"></textarea>
 </div>
 <div class="col-sm-2">
+	<c:if test="${sessionScope.check=='M'}"> 
 	<input type="text" class="form-control" id="comment_poster" name="comment_poster" value="${sessionScope.login.member_id}" readonly="readonly"/>
+	</c:if>
+	<c:if test="${sessionScope.check=='T'}"> 
+	<input type="text" class="form-control" id="comment_poster" name="comment_poster" value="${sessionScope.login.teacher_id}" readonly="readonly"/>
+	</c:if>
 	<input type="hidden" name="board_id" value="${board.board_id}"/>
 	<button type="button" onclick="inputCheck()"  class="btn btn-sm btn-primary" name="btnSave" style="width: 100%; margin-top: 10px" id="btnSave">저장</button>
 </div>

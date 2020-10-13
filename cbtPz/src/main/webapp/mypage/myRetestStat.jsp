@@ -86,32 +86,25 @@ p {
 </style>
 
 <script>
+
 	<% request.getSession().setAttribute("pageName", "개인 통계"); %>
 	
+	var color = ['cornflowerblue','tomato','pink','green','yellow']
 	
 	google.load("visualization", "1", {packages:["corechart"]});
 	google.setOnLoadCallback(drawCharts);
 	function drawCharts() {
 	  
 	  // BEGIN BAR CHART
-	  /*
-	  // create zero data so the bars will 'grow'
-	  var barZeroData = google.visualization.arrayToDataTable([
-	    ['Day', 'Page Views', 'Unique Views'],
-	    ['Sun',  0,      0],
-	    ['Mon',  0,      0],
-	    ['Tue',  0,      0],
-	    ['Wed',  0,      0],
-	    ['Thu',  0,      0],
-	    ['Fri',  0,      0],
-	    ['Sat',  0,      0]
-	  ]);
-		*/
+
 	  // actual bar chart data
-	  
-	  var datatableBar = [];
-		datatableBar.push(['subject', '평균', 'i']);
         
+	var data = new google.visualization.DataTable();
+		data.addColumn('string', '과목');
+		data.addColumn('number', '과목별 평균 점수');
+		data.addColumn({type:'string', role:'style'});
+        var datatable = [];
+		
        	$.ajax({
         	async : false,
         	url :"${pageContext.request.contextPath}/ajax/myRetestStatBarChart.do",
@@ -119,28 +112,20 @@ p {
         	success : function(datas){
         		console.log(datas);
         		for(i=0; i<datas.length; i++){
-        			datatableBar.push([datas[i].solve_type_cd, parseInt(datas[i].avg)], i);
+        			datatable.push([datas[i].solve_type_cd, parseInt(datas[i].avg),'color:'+color[i]]);
         		}
         	}
         });
-       	var barData = google.visualization.arrayToDataTable(datatableBar);
+       	
+       	data.addRows(datatable);
+       	//var barData = google.visualization.arrayToDataTable(datatableBar);
 	  
 	  
-	  /* var barData = google.visualization.arrayToDataTable([
-	    ['Day', 'Page Views', 'Unique Views'],
-	    ['Sun',  1050,      600],
-	    ['Mon',  1370,      910],
-	    ['Tue',  660,       400],
-	    ['Wed',  1030,      540],
-	    ['Thu',  1000,      480],
-	    ['Fri',  1170,      960],
-	    ['Sat',  660,       320]
-	  ]); */
 	  // set bar chart options
 	  var barOptions = {
 	    focusTarget: 'category',
 	    backgroundColor: 'transparent',
-	    colors: ['cornflowerblue', 'tomato'],
+	    colors: ['cornflowerblue', 'tomato','pink','green','yellow'],
 	    fontName: 'Open Sans',
 	    chartArea: {
 	      left: 50,
@@ -183,47 +168,9 @@ p {
 	  // draw bar chart twice so it animates
 	  //barChart.draw(barZeroData, barOptions);
 	  var barChart = new google.visualization.ColumnChart(document.getElementById('bar-chart'));
-	  barChart.draw(barData, barOptions);
+	  barChart.draw(data, barOptions);
 	  
 	  // BEGIN LINE GRAPH
-	  
-				  /* function randomNumber(base, step) {
-				    return Math.floor((Math.random()*step)+base);
-				  }
-				  function createData(year, start1, start2, step, offset) {
-				    var ar = [];
-				    for (var i = 0; i < 12; i++) {
-				      ar.push([new Date(year, i), randomNumber(start1, step)+offset, randomNumber(start2, step)+offset]);
-				    }
-				    return ar;
-				  }
-				  var randomLineData = [
-				    ['Year', 'Page Views', 'Unique Views']
-				  ];
-				  for (var x = 0; x < 7; x++) {
-				    var newYear = createData(2007+x, 10000, 5000, 4000, 800*Math.pow(x,2));
-				    for (var n = 0; n < 12; n++) {
-				      randomLineData.push(newYear.shift());
-				    }
-				  } */
-				  
-				  
-					/*
-				  var animLineData = [
-				    ['Year', 'Page Views', 'Unique Views']
-				  ];
-				  for (var x = 0; x < 7; x++) {
-				    var zeroYear = createData(2007+x, 0, 0, 0, 0);
-				    for (var n = 0; n < 12; n++) {
-				      animLineData.push(zeroYear.shift());
-				    }
-				  }
-				  var zeroLineData = google.visualization.arrayToDataTable(animLineData);
-					*/
-					
-					//lineData.addColumn('string', 'day');
-					//lineData.addColumn('number', '기출');
-					//lineData.addColumn('number', '모의');
         var datatable = [];
         datatable.push(['day', '기출', '모의']);
         
@@ -232,14 +179,13 @@ p {
         	url :"${pageContext.request.contextPath}/ajax/myRetestStatLineChart.do",
         	dataType : "json",
         	success : function(datas){
-        		console.log(datas);
+        		//console.log(datas);
         		for(i=0; i<datas.length; i++){
         			datatable.push([datas[i].day, parseInt(datas[i].avg1), parseInt(datas[i].avg2)]);
         		}
         	}
         });
        	var lineData = google.visualization.arrayToDataTable(datatable);
-      	//lineData.addRows(datatable);
 		
 		
 	  var lineOptions = {
@@ -289,21 +235,12 @@ p {
 	  };
 
 	  var lineChart = new google.visualization.LineChart(document.getElementById('line-chart'));
-	  //lineChart.draw(zeroLineData, lineOptions);
 	  lineChart.draw(lineData, lineOptions);
 	  
 	  // BEGIN PIE CHART
 	  
 	  // pie chart data
-	  var pieData = google.visualization.arrayToDataTable([
-	    ['Country', 'Page Hits'],
-	    ['USA',      7242],
-	    ['Canada',   4563],
-	    ['Mexico',   1345],
-	    ['Sweden',    946],
-	    ['Germany',  2150]
-	  ]);
-	  // pie chart options
+	
 	  var pieOptions = {
 	    backgroundColor: 'transparent',
 	    pieHole: 0.4,
@@ -317,7 +254,7 @@ p {
 	              "forestgreen", 
 	              "navy", 
 	              "gray"],
-	    pieSliceText: 'value',
+	    pieSliceText: 'key',
 	    tooltip: {
 	      text: 'percentage'
 	    },
@@ -332,9 +269,28 @@ p {
 	      }
 	    }
 	  };
-	  // draw pie chart
-	  var pieChart = new google.visualization.PieChart(document.getElementById('pie-chart'));
-	  pieChart.draw(pieData, pieOptions);
+	  
+	  var datatablepie = [];
+	  datatablepie.push(['hash_tag', 'cnt']);
+      
+     	$.ajax({
+      	async : false,
+      	url :"${pageContext.request.contextPath}/ajax/myRetestStatPieChart.do",
+      	dataType : "json",
+      	success : function(datas){
+      		console.log(datas);
+      		for(i=0; i<datas.length; i++){
+      			datatablepie.push([datas[i].hashtag_name, parseInt(datas[i].cnt)]);
+      		}
+      	}
+      });
+     	var pieData = google.visualization.arrayToDataTable(datatablepie);
+	  
+     	var pieChart = new google.visualization.PieChart(document.getElementById('pie-chart'));
+  	  pieChart.draw(pieData, pieOptions);
+	  
+	  
+	  
 	}	
 	
 	
@@ -356,13 +312,15 @@ p {
 						<h2 style="text-align: center;">개인 통계 차트</h2>
 						<div class="chartdiv">
 						<br><br>
-							<h5>Daily Page Hits</h5>
+							<h5>과목별 평균 차트 </h5><h6 style="color: gray"> (${barday.minday} ~ ${barday.maxday})</h6>
+							<br><br>
 							<div id="bar-chart"></div>
 							<br><br>
-							<h5>일별 모의고사/기출고사 평균 차트</h5>
+							<h5>일별 모의고사/기출고사 평균 차트 </h5><h6 style="color: gray"> (최근 7일치)</h6>
 							<div id="line-chart"></div>
 							<br><br>
-							<h5>Page Hits per Country</h5>
+							<h5>해시태그 차트</h5><h6 style="color: gray"> (${pieday.minday} ~ ${pieday.maxday})</h6>
+							<br><br>
 							<div id="pie-chart"></div>
 						<br><br>
 						</div>

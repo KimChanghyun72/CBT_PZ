@@ -54,11 +54,15 @@
 	.top-footer-area {
 
     width:100%;
-
+    height : 140px;
+    
+	
 }
 /* study의 모의, 기출 유형이 늘어나면 160px로 변경 */
 	.blank{
 	height : 450px;
+	/*float 속성을 건 뒤 clear:both로 해제해줘야 길이가 제대로 먹는다.*/
+	clear:both;
 	
 }
 	
@@ -135,7 +139,7 @@
                                         </c:if>
                                         <li><a href="${pageContext.request.contextPath}/mypage/myRetestList.do">오답노트</a></li>
                                         <li><a href="${pageContext.request.contextPath}/mypage/myRetestStat.do">개인통계</a></li>
-                                        <li><a href="instructors.html">즐겨찾기문제</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/mypage/myFavorite.do">즐겨찾기문제</a></li>
                                         <li><a href="${pageContext.request.contextPath}/mypage/myInput.do">작성글</a></li>
                                     </ul>
                                 </li>
@@ -183,14 +187,14 @@
 
         <h1 style="color:#00000">${sessionScope.pageName}</h1>
     </div>
-	
+	<div>
 <decorator:body/>
-   
+   </div>
    <div class = "blank">
    </div>
     <!-- ##### All Javascript Script ##### -->
 	<!-- Top Footer Area -->
-		<div class="top-footer-area">
+		<%-- <div class="top-footer-area">
 			<div class="container">
 				<div class="row">
 					<div class="col-12">
@@ -211,7 +215,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> --%>
 	
 
     <!-- All Plugins js -->

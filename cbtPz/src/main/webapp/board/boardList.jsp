@@ -1,3 +1,4 @@
+<%@page import="model.TeacherVO"%>
 <%@page import="model.BoardDAO"%>
 <%@page import="model.BoardVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" 
@@ -20,8 +21,7 @@
 </script>
 </head>
 <body>
-	<!--자유게시판 목록  -->
-	
+
 	<article>
 		<div class="container">
 			<div class="table-responsive">
@@ -84,7 +84,7 @@
 								
 				</table>
 				<p align="right">
-				<c:if test="${sessionScope.check=='M'}">
+				<c:if test="${sessionScope.check=='M'||sessionScope.check=='T'}">
 				<button class="btn btn-sm btn-primary"
 					onclick="location.href='${pageContext.request.contextPath}/board/boardInsert.jsp'">글쓰기</button>
 				</c:if>
