@@ -26,6 +26,7 @@
 				dataType:"json",
 				data : $("form").serialize(),
 				success : function(data){
+					$("#text").val("")
 					var del = "";
 					if(data.comment_poster =="${sessionScope.login.member_id}"){
 						del=$("<a style='color:#007bff;'>").html("삭제").addClass("btnDel")
@@ -36,6 +37,7 @@
 					.data("comment_id", data.comment_id)
 					.append("&emsp;")
 					.append(del)
+					.append($("<h6 class='border-bottom pb-2 mb-0'/>"))
 					.appendTo($("#list"))
 				}
 			});
@@ -85,7 +87,12 @@ $(function(){
 		});
 	});
 });
-</script>	
+
+</script>
+<script type="text/javascript">
+
+document.getElementByID("text").value ='';
+</script>
 <style>
 .board_title {
 
@@ -171,7 +178,7 @@ $(function(){
 <form id="frm1" name="frm1" >
 <div class="row">
 <div class="col-sm-10">
-<textarea class="form-control" rows="3" placeholder="댓글을 입력해 주세요" name="comment_contents"></textarea>
+<textarea class="form-control" rows="3" placeholder="댓글을 입력해 주세요" id = "text" name="comment_contents"></textarea>
 </div>
 <div class="col-sm-2">
 	<input type="text" class="form-control" id="comment_poster" name="comment_poster" value="${sessionScope.login.member_id}" readonly="readonly"/>
