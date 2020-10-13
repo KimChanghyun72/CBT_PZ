@@ -16,6 +16,8 @@ public class MemberVo {
 	private String is_pay;
 	private String pay_enddate;
 	private String email;
+	private String teacher_password;
+	private String teacher_id;
 	private String cnt;
 	
 	public Object get(String string) {

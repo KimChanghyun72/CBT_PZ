@@ -19,6 +19,8 @@ public class MyStatVO {
 	private String cnt;
 	private String rownum;
 	private String hashtag_name;
+	private String minday;
+	private String maxday;
 	
 	
 	

@@ -28,8 +28,8 @@ public class LectureDAO {
 			conn = ConnectionManager.getConnnect();
 
 			// 2.sql 구문 실행
-			String sql = "insert into lecture (lecture_id, lecture_name, lecture_info, lecture_link, lecture_image, teacher_id)"
-					+ "values (lecture_seq.nextval, ?, ?, ?, ?, ?)";
+			String sql = "insert into lecture (lecture_id, lecture_name, lecture_info, lecture_link, lecture_image, teacher_id, lecture_subject)"
+					+ "values (lecture_seq.nextval, ?, ?, ?, ?, ?, ?)";
 			// 			String sql = "insert into lecture (lecture_id, lecture_name, lecture_info, lecture_link, lecture_image, teacher_id)"
 			// + "values (lecture_seq.nextval, ?, ?, ?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
@@ -38,6 +38,7 @@ public class LectureDAO {
 			pstmt.setString(3, lectureVO.getLecture_link());
 			pstmt.setString(4, lectureVO.getLecture_image());
 			pstmt.setString(5, lectureVO.getTeacher_id());
+			pstmt.setString(6, lectureVO.getLecture_subject());
 			// create sequence lecture_seq;
 			// 
 

@@ -22,11 +22,11 @@ public class myRetestStatBarChartCtrl implements Controller {
 		myStatVO.setMember_id(memid);
 		
 		ArrayList<MyStatVO> list = MyStatDAO.getInstance().subjectBarChart(myStatVO);
-		System.out.println(list);
+		//System.out.println(list);
 		
 		String str = JSONArray.fromObject(list).toString();
 		response.getWriter().print(str);
-
+		
 	}
 
 }

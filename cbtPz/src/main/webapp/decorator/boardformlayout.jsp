@@ -127,20 +127,21 @@
                                 <c:if test="${not empty sessionScope.check && sessionScope.check != 'A'}">
                                 <li><a href="${pageContext.request.contextPath}/mypage/myInfo.do" >마이페이지</a>
                                 	<ul class="dropdown">
-                                        <li><a href="${pageContext.request.contextPath}/mypage/myInfo.do">개인정보수정</a></li>
+                                        	<li><a href="${pageContext.request.contextPath}/mypage/myInfo.do">개인정보수정</a></li>
                                         <c:if test="${not empty sessionScope.check && sessionScope.check == 'T'}">
-                                        <li><a href="${pageContext.request.contextPath}/mypage/myLecture.do">나의 강의</a></li>
+                                        	<li><a href="${pageContext.request.contextPath}/mypage/myLecture.do">나의 강의</a></li>
                                         </c:if>
                                         <c:if test="${not empty sessionScope.check && sessionScope.check == 'M'}">
-                                        <li><a href="${pageContext.request.contextPath}/mypage/memLecture.do">나의 강의</a></li>
+	                                        <li><a href="${pageContext.request.contextPath}/mypage/memLecture.do">나의 강의</a></li>
+	                                        <li><a href="${pageContext.request.contextPath}/mypage/myRetestList.do">오답노트</a></li>
+	                                        <li><a href="${pageContext.request.contextPath}/mypage/myRetestStat.do">개인통계</a></li>
+	                                        <li><a href="${pageContext.request.contextPath}/mypage/myFavorite.do">즐겨찾기문제</a></li>
                                         </c:if>
                                         <c:if test="${not empty sessionScope.check && sessionScope.check == 'T'}">
-                                        <li><a href="${pageContext.request.contextPath}/mypage/insertLecForm.do">강의 등록</a></li>
+                                        	<li><a href="${pageContext.request.contextPath}/mypage/insertLecForm.do">강의 등록</a></li>
                                         </c:if>
-                                        <li><a href="${pageContext.request.contextPath}/mypage/myRetestList.do">오답노트</a></li>
-                                        <li><a href="${pageContext.request.contextPath}/mypage/myRetestStat.do">개인통계</a></li>
-                                        <li><a href="instructors.html">즐겨찾기문제</a></li>
-                                        <li><a href="${pageContext.request.contextPath}/mypage/myInput.do">작성글</a></li>
+                                        
+                                        	<li><a href="${pageContext.request.contextPath}/mypage/myInput.do">작성글</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="${pageContext.request.contextPath}/pay/payment.jsp">멤버쉽</a></li>
@@ -194,7 +195,7 @@
    </div>
     <!-- ##### All Javascript Script ##### -->
 	<!-- Top Footer Area -->
-		<div class="top-footer-area">
+		<%-- <div class="top-footer-area">
 			<div class="container">
 				<div class="row">
 					<div class="col-12">
@@ -215,7 +216,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> --%>
 	
 
     <!-- All Plugins js -->

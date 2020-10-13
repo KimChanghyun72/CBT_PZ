@@ -92,17 +92,22 @@ $(document).on("click", ".del-btn", function (e) {
     $(this).parent().remove();
 });
 
-
+var check = "${sessionScope.check}";
 $(function(){
 	$(document).on("click", "#hashbtn", function () {
-		var list = $(".tag-item")
-		var listAry = "";
-		for(i=0; i<list.length; i++) {
-			listAry += "\'"+ $(list[i]).find(".hashtext").html()+"\',";
-			$("#hashlist").val(listAry);
+		if(check == "M"){
+			var list = $(".tag-item")
+			var listAry = "";
+			for(i=0; i<list.length; i++) {
+				listAry += "\'"+ $(list[i]).find(".hashtext").html()+"\',";
+				$("#hashlist").val(listAry);
+			}
+			console.log(listAry);
+			$("#hash").submit();
+		
+		}else{
+			alert("학생회원만 문제를 풀 수 있습니다.");
 		}
-		console.log(listAry);
-		$("#hash").submit();
 	});
 	
 	$("#testInput").autocomplete({
@@ -162,8 +167,7 @@ $(function(){
 	                    <!-- Search Button -->
 	                    <div class="search-area">
 	                       	<form>
-	  	                        <input type="text" id="testInput"  placeholder="Search" >
-	                            <button type="button"><i class="fa fa-search" aria-hidden="true"></i></button>
+	  	                        <input type="text" id="testInput" placeholder="Search"><button type="button"><i class="fa fa-search" aria-hidden="true"></i></button>
 	                        </form>
 	                    </div>
                     </div>
@@ -177,8 +181,8 @@ $(function(){
     <ul id="tag-list"></ul>
     <form id="hash" action="${pageContext.request.contextPath}/hashtagSelect.do">
 	    <input type="hidden" id="hashlist" name="hashtag_name">
-	    		<input type="button" value="제 출" id="hashbtn">
     </form>
+		<input type="button" value="제 출" id="hashbtn">
 	</div>
 </body>
 </html>
