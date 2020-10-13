@@ -24,6 +24,7 @@ public class LectureInsertCtrl implements Controller {
 		String lecture_name = request.getParameter("lecture_name");
 		String lecture_info = request.getParameter("lecture_info");
 		String lecture_link = request.getParameter("lecture_link");
+		String lecture_subject = request.getParameter("lecture_subject");
 		String path = "D:/upload"; // 썸네일 이미지 추가
 
 		TeacherVO teacher = (TeacherVO) request.getSession().getAttribute("login");
@@ -32,6 +33,7 @@ public class LectureInsertCtrl implements Controller {
 		System.out.println(path);
 		LectureVO lecture = new LectureVO();
 
+		lecture.setLecture_subject(lecture_subject);
 		lecture.setLecture_name(lecture_name);
 		lecture.setLecture_info(lecture_info);
 		lecture.setLecture_link(lecture_link);
