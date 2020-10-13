@@ -245,17 +245,15 @@ public class BoardDAO {
 			if (boardVo.getBoard_title() != null) {
 				where += " and title like '%' || ? || '%'";
 			}
-			// String sql = "SELECT BOARD_ID,TITLE,CONTENTS,MEMBER_ID,BOARD_DATE,VIEWS FROM
-			// BOARD";
-
+		
 			String sql = "select a.* from(select rownum rn,b.* from( "
-					+ " SELECT BOARD_ID,BOARD_TITLE,BOARD_CONTENTS,MEMBER_ID,BOARD_DATE,BOARD_VIEWS,BOARD_FILE, "
-					+ " (case when sysdate - board_date<0.007 then 1 else 0 end) isNew"
+					+ " SELECT BOARD_ID,BOARD_TITLE,BOARD_CONTENTS,MEMBER_ID,BOARD_DATE,BOARD_VIEWS,BOARD_FILE"
 					+ " FROM BOARD"
 					+ where
+					+ " AND BOARD_ID NOT LIKE'A%'"
 					+ " ORDER BY BOARD_ID DESC"
 					+ " )b ) a where rn between ? and ? ";
-					System.out.println(sql);
+					
 			pstmt = conn.prepareStatement(sql);
 
 			int pos = 1;
@@ -287,6 +285,36 @@ public class BoardDAO {
 		}
 		return list;
 	}// 회원 작성글 조회
+	// ###작성글 페이징 카운터###
+		public int mycount(BoardVO boardVo) {
+			int cnt = 0;
+			try {
+				conn = ConnectionManager.getConnnect();
+				String where = " where 1 = 1 and member_id = ?";
+				if (boardVo.getBoard_title() != null) {
+					where += " and TITLE like '%' || ? || '%'";
+				}
+				String sql = "select count(BOARD_ID) from board" + where +"AND BOARD_ID NOT LIKE 'A%'";
+				pstmt = conn.prepareStatement(sql);
+				int pos = 1;
+				pstmt.setString(pos++, boardVo.getMember_id());
+				if (boardVo.getBoard_title() != null) {
+					pstmt.setString(pos++, boardVo.getBoard_title());
+				}
+
+				ResultSet rs = pstmt.executeQuery();
+				rs.next();
+				cnt = rs.getInt(1);
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				ConnectionManager.close(conn);
+			}
+			return cnt;
+		}
+		// ###페이징 카운터###
+	
+	
 	
 	
 }
