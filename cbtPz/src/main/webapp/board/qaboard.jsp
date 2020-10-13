@@ -32,6 +32,7 @@ $(function(){
 					dataType:"json",
 					data : $("form").serialize(),
 					success : function(data){
+						$("#text").val("")
 						$("b").remove();
 						boardList();
 					
@@ -99,7 +100,7 @@ $(function(){
 
 				<div class="board_info_box">
 
-					<span class="board_member_id">작성자: <c:out value="${qaboard.member_id}"/>,</span><span class="board_date"><c:out value="${qaboard.qaboard_date}"/></span>
+					<span class="board_member_id">작성자: <c:out value="${qaboard.member_id}"/></span><span class="board_date"><c:out value="${qaboard.qaboard_date}"/></span>
 
 				</div>
 				
@@ -122,7 +123,7 @@ $(function(){
 <form>
 <div class="row">
 <div class="col-sm-10">
-<textarea class="form-control" rows="3" placeholder="댓글을 입력해 주세요" name="qaboard_ans"></textarea>
+<textarea class="form-control" rows="3" placeholder="댓글을 입력해 주세요" id = "text" name="qaboard_ans"></textarea>
 </div>
 <div class="col-sm-2">
 	

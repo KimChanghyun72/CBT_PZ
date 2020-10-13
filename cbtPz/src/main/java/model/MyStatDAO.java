@@ -26,21 +26,26 @@ public class MyStatDAO {
 		ArrayList<MyStatVO> list = new ArrayList<MyStatVO>();
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "select PAPERHEAD.PAPER_TYPE_CD , to_char(SOLVE_DATE, 'yyyy-mm-dd') as day, "
-						+ "round(avg(nvl( case when paper_type_cd = '기출' then  solve_score else null end ,0)),0) as avg1, "
-						+ "round(avg(nvl( case when paper_type_cd = '모의' then  solve_score else null end ,0)),0) as avg2 "
-						+ "from solve , PAPERHEAD " 
-						+ "where PAPERHEAD.PAPERHEAD_ID = solve.SOLVE_TYPE_CD " 
-						+ "AND solve_date >= trunc(sysdate)-7 " 
-						+ "AND solve.MEMBER_ID= ? " 
-						+ "group by PAPERHEAD.PAPER_TYPE_CD, to_char(SOLVE_DATE, 'yyyy-mm-dd') " 
-						+ "order by PAPERHEAD.PAPER_TYPE_CD, day";
+			String sql = "select  day, sum(case when PAPER_TYPE_CD='기출' then nvl(round((score/cnt)*100,0), 0) else 0 end) as avg1, "
+						+ "sum(case when PAPER_TYPE_CD='모의' then nvl(round((score/cnt)*100,0), 0) else 0 end) as avg2 "
+						+ "from( "
+						+ "		select PAPERHEAD.PAPER_TYPE_CD PAPER_TYPE_CD, " 
+						+ "				to_char(SOLVE_DATE, 'yyyy-mm-dd') as day, " 
+						+ "				sum(solve.solve_score) as score, "
+						+ "				sum(solve.solve_cnt) as cnt " 
+						+ "		from solve , PAPERHEAD " 
+						+ "		where PAPERHEAD.PAPERHEAD_ID = solve.SOLVE_TYPE_CD " 
+						+ "		and member_id = ? and PAPER_TYPE_CD in ('기출','모의') "
+						+ "		AND solve.solve_date >= trunc(sysdate)-7 "
+						+ "		group by  PAPERHEAD.PAPER_TYPE_CD, to_char(SOLVE_DATE, 'yyyy-mm-dd') "
+						+ "		order by PAPERHEAD.PAPER_TYPE_CD, day) "
+						+ "group by day "
+						+ "order by day ";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, myStateVo.getMember_id());
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				resultVo = new MyStatVO();
-				resultVo.setPaper_type_cd(rs.getString("paper_type_cd"));
 				resultVo.setDay(rs.getString("day"));
 				resultVo.setAvg1(rs.getString("avg1"));
 				resultVo.setAvg2(rs.getString("avg2"));
@@ -80,7 +85,7 @@ public class MyStatDAO {
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				resultVo = new MyStatVO();
-				resultVo.setSubject1("subject1");
+				resultVo.setSubject1(rs.getString("subject1"));
 				resultVo.setSubject2("subject2");
 				resultVo.setSubject3("subject3");
 				resultVo.setSubject4("subject4");
@@ -108,7 +113,7 @@ public class MyStatDAO {
 			String sql = "select solve_type_cd, round((score/cnt)*100,0) as avg "
 						+ "from (select solve_type_cd, sum(solve_score) as score, sum(solve_cnt) as cnt "
 						+ "		from solve "
-						+ "		where member_id='hi' and solve_type_cd in ( '1과목', '2과목', '3과목', '4과목', '5과목') " 
+						+ "		where member_id=? and solve_type_cd in ( '1과목', '2과목', '3과목', '4과목', '5과목') " 
 						+ "		group by SOLVE_TYPE_CD " 
 						+ "		order by SOLVE_TYPE_CD)";
 			pstmt = conn.prepareStatement(sql);
@@ -116,8 +121,50 @@ public class MyStatDAO {
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				resultVo = new MyStatVO();
-				resultVo.setAvg("avg");
-				resultVo.setSolve_type_cd("solve_type_cd");
+				resultVo.setAvg(rs.getString("avg"));
+				resultVo.setSolve_type_cd(rs.getString("solve_type_cd"));
+				list.add(resultVo);
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return list;
+	}
+	
+	
+	
+	//해시태그 통계 파이 차트 htagPieChart
+	public ArrayList<MyStatVO> htagPieChart(MyStatVO myStateVo) {
+		MyStatVO resultVo = null;
+		ResultSet rs = null;
+		ArrayList<MyStatVO> list = new ArrayList<MyStatVO>();
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "select rownum, cnt , hashtag_name "
+						+ "from ( "
+						+ "		select count(paper.paper_id) cnt, hashtag.HASHTAG_name hashtag_name "
+						+ "		from solve, paper, problem, problem_hashtag, hashtag "
+						+ "		where solve.solve_id = paper.paper_id "
+						+ "		and solve.member_id = ? "
+						+ " 	and solve.solve_type_cd like '%#%' "
+						+ "		and paper.problem_id = problem.problem_id "
+						+ "		and problem.problem_id = problem_hashtag.PROBLEM_ID "
+						+ "		and problem_hashtag.HASHTAG_ID = hashtag.hashtag_id "
+						+ "		group by hashtag.hashtag_name " 
+						+ "		order by cnt DESC "
+						+ " 	) " 
+						+ "where rownum<=5 ";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, myStateVo.getMember_id());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				resultVo = new MyStatVO();
+				resultVo.setRownum(rs.getString("rownum"));
+				resultVo.setCnt(rs.getString("cnt"));
+				resultVo.setHashtag_name(rs.getString("hashtag_name"));
 				list.add(resultVo);
 			}
 			

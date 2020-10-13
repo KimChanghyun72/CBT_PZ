@@ -37,16 +37,18 @@ public class QaBoardDAO {
 				
 				conn = ConnectionManager.getConnnect();
 				String where =" where 1 = 1";
-				//String sql = "SELECT QABOARD_ID,QABOARD_TITLE,QABOARD_CONTENTS,QABOARD_DATE,QABOARD_ANS,QABOARD_VIEWS,QABOARD_TYPE_CD,MEMBER_ID FROM QABOARD";
+				
 				if(qaboardVo.getQaboard_title() != null) {
 					where += " and title like '%' || ? || '%'";
 				}
 				String sql = "select a.* from(select rownum rn,b.* from( "
-						+ " SELECT QABOARD_ID,QABOARD_TITLE,QABOARD_CONTENTS,QABOARD_DATE,QABOARD_ANS,QABOARD_VIEWS,QABOARD_TYPE_CD,MEMBER_ID,"
-						+ " (case when sysdate - qaboard_date<0.007 then 1 else 0 end) isNew"
-						+ " FROM QABOARD"
+						+ " SELECT QABOARD.QABOARD_ID,QABOARD.QABOARD_TITLE,QABOARD.QABOARD_CONTENTS,QABOARD.QABOARD_DATE,QABOARD.QABOARD_ANS,QABOARD.QABOARD_VIEWS,QABOARD.QABOARD_TYPE_CD,QABOARD.MEMBER_ID,"
+						+ " (case when sysdate - qaboard_date<0.007 then 1 else 0 end) isNew,cnts.cnt"
+						+ " FROM QABOARD ,(select qaboard_id id,Count(QABOARD_ANS) cnt from qaboard"
+						+ " GROUP BY QABOARD_ID)cnts"
 						+ where
-						+ " ORDER BY TO_NUMBER(QABOARD_ID) DESC"
+						+ " AND QABOARD.QABOARD_ID = cnts.id(+)"
+						+ " ORDER BY TO_NUMBER(QABOARD.QABOARD_ID) DESC"
 						+ " )b ) a where rn between ? and ?";		
 			pstmt = conn.prepareStatement(sql);
 			int pos = 1;
@@ -68,6 +70,7 @@ public class QaBoardDAO {
 				resultVO.setQaboard_type_cd(rs.getString(8));
 				resultVO.setMember_id(rs.getString(9));
 				resultVO.setIsNew(rs.getString(10));
+				resultVO.setCnt(rs.getInt(11));
 				list.add(resultVO);
 				
 			}
@@ -126,8 +129,8 @@ public class QaBoardDAO {
 				conn = ConnectionManager.getConnnect();
 				
 				cstmt = conn.prepareCall("{call qaboard_ins(?,?,?,?)}");			
-				cstmt.setString(1, qaboardVo.getQaboard_contents());
-				cstmt.setString(2, qaboardVo.getQaboard_title());
+				cstmt.setString(1, qaboardVo.getQaboard_title());
+				cstmt.setString(2, qaboardVo.getQaboard_contents());
 				cstmt.setString(3, qaboardVo.getQaboard_type_cd());
 				cstmt.setString(4, qaboardVo.getMember_id());
 				cstmt.executeUpdate();
