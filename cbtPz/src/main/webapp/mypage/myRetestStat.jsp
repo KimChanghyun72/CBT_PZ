@@ -125,7 +125,7 @@ p {
 	  var barOptions = {
 	    focusTarget: 'category',
 	    backgroundColor: 'transparent',
-	    colors: ['cornflowerblue', 'tomato'],
+	    colors: ['cornflowerblue', 'tomato','pink','green','yellow'],
 	    fontName: 'Open Sans',
 	    chartArea: {
 	      left: 50,
@@ -316,7 +316,7 @@ p {
 							<br><br>
 							<div id="bar-chart"></div>
 							<br><br>
-							<h5>일별 모의고사/기출고사 평균 차트</h5>
+							<h5>일별 모의고사/기출고사 평균 차트 </h5><h6 style="color: gray"> (최근 7일치)</h6>
 							<div id="line-chart"></div>
 							<br><br>
 							<h5>해시태그 차트</h5><h6 style="color: gray"> (${pieday.minday} ~ ${pieday.maxday})</h6>
