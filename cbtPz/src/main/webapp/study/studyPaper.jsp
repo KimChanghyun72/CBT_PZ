@@ -62,7 +62,7 @@
 	float: right;
 	overflow : scroll;
 	width : 500px;
-	height : 500px;
+	height : 600px;
 	/* background-color: #f1f1f1; */
 	padding-left: 20px;
 }
@@ -272,7 +272,7 @@ $(document).ready(function(){
 				<td class="probNum<%=probNum %>"><%=probNum+1 %>번
 				</td>
 				<td>
-					<div id="div<%=probNum%>"><%=problemList.get(probNum).get("problem_text") %>&nbsp;&nbsp;<input type="checkbox"  name="probChk<%=probNum%>"></div>
+					<div id="div<%=probNum%>"><%=problemList.get(probNum).get("problem_text") %>&nbsp;&nbsp;</div>
 					<input type="hidden" id="paper_id" value="<%=problemList.get(probNum).get("paper_id") %>">
 					<input type="hidden" id="pro_id" value="<%=problemList.get(probNum).get("problem_id") %>">
 					<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="1"><%=problemList.get(probNum).get("ans_1") %></div>

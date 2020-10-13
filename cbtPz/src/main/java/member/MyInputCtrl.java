@@ -48,7 +48,7 @@ public class MyInputCtrl implements Controller {
 		paging.setPageSize(3);
 		paging.setPage(page);
 		
-		paging.setTotalRecord(dao.count(boardvo));
+		paging.setTotalRecord(dao.mycount(boardvo));
 		boardvo.setFirst(paging.getFirst());
 		boardvo.setLast(paging.getLast());
 		// boardvo에 담음
