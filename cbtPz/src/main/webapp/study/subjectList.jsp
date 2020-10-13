@@ -20,6 +20,18 @@
 		font-size : 30px;
 	}
 </style>
+<script>
+var check = "${sessionScope.check}";
+$(function(){
+	$("[name=subject]").on("click", function(){
+		if(check == "M"){
+			$(this).prev().submit();
+		}else{
+			alert("학생회원만 문제를 풀 수 있습니다.");
+		}
+	});
+})
+</script>
 </head>
 <body>
 	
@@ -39,8 +51,8 @@
 	<tr><td class="tagSub"><b>${i} 과목</b></td>
 	<td>
 	<form action="${pageContext.request.contextPath}/problemSubject.do">
-	<button type="submit" name="subject" value="${i}과목" class="btn btn-sm btn-primary">풀기</button>
 	</form>
+	<button name="subject" value="${i}과목" class="btn btn-sm btn-primary">풀기</button>
 	</td>
 	</tr>
 	<br>

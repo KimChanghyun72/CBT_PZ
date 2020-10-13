@@ -12,6 +12,18 @@ th , td {
 }
 
 </style>
+<script>
+var check = "${sessionScope.check}";
+	$(function(){
+		$("[name=paperhead_id]").on("click", function(){
+			if(check == "M"){
+				$(this).prev().submit();
+			}else{
+				alert("학생회원만 문제를 풀 수 있습니다.");
+			}
+		});
+	})
+</script>
 </head>
 <body>
 
@@ -33,8 +45,8 @@ th , td {
 	<td>
 	
 	<form action="${pageContext.request.contextPath}/study/problemHead.do">
-	<button type="submit" name="paperhead_id" value="${headlist.paperhead_id}" class="btn btn-sm btn-primary">풀기</button>
 	</form>
+	<button type="submit" name="paperhead_id" value="${headlist.paperhead_id}" class="btn btn-sm btn-primary">풀기</button>
 	</td>
 	</tr>
 	<br>
