@@ -255,8 +255,16 @@ $(document).ready(function(){
 				</td>
 				<td>
 					<div id="div<%=probNum%>"><%=problemList.get(probNum).get("problem_text") %>&nbsp;&nbsp;
-						<label class="checkbox-wrap"><input type="checkbox" id="favorite" name="probChk<%=probNum%>"><i class="check-icon"></i></label>
-						<input type="text" id="problem_id" value="<%=problemList.get(probNum).get("problem_id") %>">
+						<% if(problemList.get(probNum).get("fav").equals(0)) {%>
+						<label class="checkbox-wrap">
+						<input type="checkbox" id="favorite" name="probChk<%=probNum%>"><i class="check-icon"></i>
+						</label>
+						<%} else { %>
+						<label class="checkbox-wrap">
+						<input type="checkbox" id="favorite" name="probChk<%=probNum%>" checked><i class="check-icon"></i>
+						</label>
+						<%} %>
+						<input type="hidden" id="problem_id" value="<%=problemList.get(probNum).get("problem_id") %>">
 					</div>
 					<input type="hidden" id="paper_id" value="<%=problemList.get(probNum).get("paper_id") %>">
 					<input type="hidden" id="pro_id" value="<%=problemList.get(probNum).get("problem_id") %>">
