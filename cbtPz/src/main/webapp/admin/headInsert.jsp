@@ -6,6 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	<%request.getSession().setAttribute("pageName", "회차 문제");%>
+</script>
 </head>
 <script>
 	function checkForm() {

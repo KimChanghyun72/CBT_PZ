@@ -82,6 +82,9 @@
         chart1.draw(data, options1);
       }
       </script>
+      <script type="text/javascript">
+		<%request.getSession().setAttribute("pageName", "회원 통계");%>
+	  </script>
   </head>
   <body>
     <div id="chart_div"></div>
