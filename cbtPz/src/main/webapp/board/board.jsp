@@ -89,10 +89,7 @@ $(function(){
 });
 
 </script>
-<script type="text/javascript">
 
-document.getElementByID("text").value ='';
-</script>
 <style>
 .board_title {
 

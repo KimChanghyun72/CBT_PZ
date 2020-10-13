@@ -23,7 +23,7 @@
 <script>
 var check = "${sessionScope.check}";
 $(function(){
-	$("[name=subject]").on("click", function(){
+	$("[name=btnSubmit]").on("click", function(){
 		if(check == "M"){
 			$(this).prev().submit();
 		}else{
@@ -51,8 +51,9 @@ $(function(){
 	<tr><td class="tagSub"><b>${i} 과목</b></td>
 	<td>
 	<form action="${pageContext.request.contextPath}/problemSubject.do">
+		<input type="hidden" name="subject" value="${i}과목">
 	</form>
-	<button name="subject" value="${i}과목" class="btn btn-sm btn-primary">풀기</button>
+	<button name="btnSubmit" value="${i}과목" class="btn btn-sm btn-primary">풀기</button>
 	</td>
 	</tr>
 	<br>

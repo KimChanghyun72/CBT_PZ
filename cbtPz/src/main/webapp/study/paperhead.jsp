@@ -15,7 +15,7 @@ th , td {
 <script>
 var check = "${sessionScope.check}";
 	$(function(){
-		$("[name=paperhead_id]").on("click", function(){
+		$("[name=btnSubmit]").on("click", function(){
 			if(check == "M"){
 				$(this).prev().submit();
 			}else{
@@ -45,8 +45,9 @@ var check = "${sessionScope.check}";
 	<td>
 	
 	<form action="${pageContext.request.contextPath}/study/problemHead.do">
+	<input type="hidden" name="paperhead_id" value="${headlist.paperhead_id}">
 	</form>
-	<button type="submit" name="paperhead_id" value="${headlist.paperhead_id}" class="btn btn-sm btn-primary">풀기</button>
+	<button  name="btnSubmit" value="${headlist.paperhead_id}" class="btn btn-sm btn-primary">풀기</button>
 	</td>
 	</tr>
 	<br>
