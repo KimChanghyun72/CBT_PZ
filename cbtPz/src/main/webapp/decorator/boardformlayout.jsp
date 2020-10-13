@@ -50,7 +50,19 @@
  <decorator:head/>   
 
     
+<style>
+	.top-footer-area {
 
+    width:100%;
+
+}
+/* study의 모의, 기출 유형이 늘어나면 160px로 변경 */
+	.blank{
+	height : 450px;
+	
+}
+	
+</style>
 </head>
 
 <body>
@@ -165,20 +177,42 @@
             </div>
         </div>
     </header>
-    <!-- ##### Header Area End ##### -->
-
-
+  
 	<div style=" width: 100%;
     height: 240px; background-image: url(../img/1.png)" class="  d-flex align-items-center justify-content-center p-3" >
-       
+
         <h1 style="color:#00000">${sessionScope.pageName}</h1>
     </div>
-   
+	
 <decorator:body/>
    
-   
+   <div class = "blank">
+   </div>
     <!-- ##### All Javascript Script ##### -->
-
+	<!-- Top Footer Area -->
+		<div class="top-footer-area">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<!-- Footer Logo -->
+						<div class="footer-logo">
+							<a href="${pageContext.request.contextPath}/indexx.jsp"
+								style="color: white;">YDCBT</a>
+						</div>
+						<!-- Copywrite -->
+						<p>
+							<a href="#">
+								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+								Copyright &copy;2020 yedam vocational training institute | This
+								template is made with <i class="fa fa-heart-o"
+								aria-hidden="true"></i> by <a href="https://colorlib.com"
+								target="_blank">Colorlib</a> <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	
 
     <!-- All Plugins js -->
     <script src="${pageContext.request.contextPath}/js/plugins/plugins.js"></script>
