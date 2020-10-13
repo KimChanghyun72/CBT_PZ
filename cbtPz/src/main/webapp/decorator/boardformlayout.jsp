@@ -135,7 +135,7 @@
                                         </c:if>
                                         <li><a href="${pageContext.request.contextPath}/mypage/myRetestList.do">오답노트</a></li>
                                         <li><a href="${pageContext.request.contextPath}/mypage/myRetestStat.do">개인통계</a></li>
-                                        <li><a href="instructors.html">즐겨찾기문제</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/mypage/myFavorite.do">즐겨찾기문제</a></li>
                                         <li><a href="${pageContext.request.contextPath}/mypage/myInput.do">작성글</a></li>
                                     </ul>
                                 </li>
@@ -190,7 +190,7 @@
    </div>
     <!-- ##### All Javascript Script ##### -->
 	<!-- Top Footer Area -->
-		<div class="top-footer-area">
+		<%-- <div class="top-footer-area">
 			<div class="container">
 				<div class="row">
 					<div class="col-12">
@@ -211,7 +211,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> --%>
 	
 
     <!-- All Plugins js -->
