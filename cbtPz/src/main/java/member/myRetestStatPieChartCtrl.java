@@ -12,7 +12,7 @@ import model.MyStatDAO;
 import model.MyStatVO;
 import net.sf.json.JSONArray;
 
-public class myRetestStatBarChartCtrl implements Controller {
+public class myRetestStatPieChartCtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -21,7 +21,7 @@ public class myRetestStatBarChartCtrl implements Controller {
 		MyStatVO myStatVO = new MyStatVO();
 		myStatVO.setMember_id(memid);
 		
-		ArrayList<MyStatVO> list = MyStatDAO.getInstance().subjectBarChart(myStatVO);
+		ArrayList<MyStatVO> list = MyStatDAO.getInstance().htagPieChart(myStatVO);
 		System.out.println(list);
 		
 		String str = JSONArray.fromObject(list).toString();
