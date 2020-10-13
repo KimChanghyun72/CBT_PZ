@@ -11,12 +11,14 @@
 </head>
 <body>
 <article>
-		<!--공지사항 목록  -->
+		<!-- 공지사항 목록  -->
 		<div class="container">
 			<div class="table-responsive">
 				<br><br>
 				<table class="table table-striped table-sm">
+					
 					<colgroup>
+						<col style="width: 1%;" />
 						<col style="width: 10%;" />
 						<col style="width: 30%;" />
 						<col style="width: 10%;" />
@@ -24,6 +26,7 @@
 					</colgroup>
 					<thead>
 						<tr align="center">
+							<th> </th>
 							<th>NO</th>
 							<th>글제목</th>
 							<th>작성자</th>
@@ -40,6 +43,9 @@
 							<c:when test="${!empty list}">
 								<c:forEach var="notice" items="${list}">
 										<tr>
+										<td style="color:Tomato;">
+											<c:if test="${notice.isNew == '1' }">NEW</c:if>
+										</td>
 										<td>${notice.board_id}</td>
 									<td><a href="${pageContext.request.contextPath}/board/noticeSelect.do?board_id=${notice.board_id}">${notice.board_title}</a></td>
 										<td>${notice.member_id}</td>
