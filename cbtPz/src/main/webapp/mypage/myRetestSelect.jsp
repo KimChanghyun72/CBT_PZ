@@ -48,15 +48,15 @@
 
 /* Create two unequal columns that floats next to each other */
 /* Left column */
-.leftcolumn {
-	float: left;
-	width: 75%;
+  .leftcolumn {
+	float: left; 
+ 	width: 75%; 
 }
-
+  
 /* Right column */
 .rightcolumn {
 	position : fixed;
-	bottom: 0;
+	bottom: 150px;
     right: 0;
 	float: right;
 	overflow : scroll;

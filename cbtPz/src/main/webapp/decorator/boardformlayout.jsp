@@ -54,11 +54,15 @@
 	.top-footer-area {
 
     width:100%;
-
+    height : 140px;
+    
+	
 }
 /* study의 모의, 기출 유형이 늘어나면 160px로 변경 */
 	.blank{
 	height : 450px;
+	/*float 속성을 건 뒤 clear:both로 해제해줘야 길이가 제대로 먹는다.*/
+	clear:both;
 	
 }
 	
@@ -183,9 +187,9 @@
 
         <h1 style="color:#00000">${sessionScope.pageName}</h1>
     </div>
-	
+	<div>
 <decorator:body/>
-   
+   </div>
    <div class = "blank">
    </div>
     <!-- ##### All Javascript Script ##### -->
