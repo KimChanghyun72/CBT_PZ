@@ -80,14 +80,14 @@ public class FrontController extends HttpServlet {
     	list.put("/ajax/teacherLectureDelete.do", new teacher.teacherLectureDel());		// 강사 강의 삭제
     	list.put("/mypage/myInputDel.do", new member.myInputDelete());					// 작성글 체크박스
     	
+    	
+    	
     	list.put("/ajax/myFavoriteInsert.do", new retest.MyFavoriteInsertCtrl());		// 즐겨찾기 등록		
     	list.put("/ajax/myFavoriteDelete.do", new retest.MyFavoriteDeleteCtrl());		// 즐겨찾기 해제	
     	list.put("/mypage/myFavorite.do", new retest.MyFavoriteCtrl());					// 즐겨찾기 문제 출력
     	list.put("/mypage/myRetestList.do", new retest.MyRetestCtrl());					// 오답노트 응시리스트 출력
     	list.put("/mypage/myRetestSelect.do",new retest.MyRetestSelect());				// 오답노트 재응시 문제조회
     	list.put("/mypage/myRetest.do",new retest.MyRetestInsert());					// 오답노트 재응시
-    	
-    	
     	
     	
     	

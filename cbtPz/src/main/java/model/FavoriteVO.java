@@ -6,6 +6,7 @@ import lombok.Data;
 public class FavoriteVO {
 	private String favorite_id;
 	private String paper_id;
+	private String member_id;
 	
 	private String is_correct;
 	private String check_num;
@@ -24,4 +25,7 @@ public class FavoriteVO {
 	private String ans_correct;
 	private String Paperhead_id;
 	private String problem_image;
+	
+	private Integer first;
+	private Integer last;
 }

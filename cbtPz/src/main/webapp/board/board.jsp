@@ -165,12 +165,17 @@ $(function(){
 				<button type="button" onclick="location.href='${pageContext.request.contextPath}/board/boardUpdateForm.do?board_id='+${board.board_id}" class="btn btn-sm btn-primary" id="btnUpdate">수정</button>
 				<button type="button" onclick="location.href='${pageContext.request.contextPath}/board/boardDelete.do?board_id='+${board.board_id}" class="btn btn-sm btn-primary" id="btnDelete">삭제</button>
 				</c:if>
+				<c:if test="${sessionScope.login.teacher_id == board.member_id}">
+				<button type="button" onclick="location.href='${pageContext.request.contextPath}/board/boardUpdateForm.do?board_id='+${board.board_id}" class="btn btn-sm btn-primary" id="btnUpdate">수정</button>
+				<button type="button" onclick="location.href='${pageContext.request.contextPath}/board/boardDelete.do?board_id='+${board.board_id}" class="btn btn-sm btn-primary" id="btnDelete">삭제</button>
+				</c:if>
 				<button type="button" onclick="location.href='${pageContext.request.contextPath}/board/boardList.do'" class="btn btn-sm btn-primary" id="btnList">목록</button>
 			</p>
 			</div>
 		<div data-id="4" data-goods="book" id="divid"></div>
 
 <!---------------------댓글 입력폼------------------------->
+	<c:if test="${sessionScope.check=='M'}"> 
 <div class="my-3 p-3 bg-white rounded shadow-sm" style="padding-top: 10px">
 <form id="frm1" name="frm1" >
 <div class="row">
@@ -178,13 +183,30 @@ $(function(){
 <textarea class="form-control" rows="3" placeholder="댓글을 입력해 주세요" id = "text" name="comment_contents"></textarea>
 </div>
 <div class="col-sm-2">
-	<input type="text" class="form-control" id="comment_poster" name="comment_poster" value="${sessionScope.login.member_id}" readonly="readonly"/>
+	<input type="text" class="form-control" id="comment_poster" name="comment_poster" value="${sessionScope.login.member_id}" readonly="readonly"/>	
 	<input type="hidden" name="board_id" value="${board.board_id}"/>
 	<button type="button" onclick="inputCheck()"  class="btn btn-sm btn-primary" name="btnSave" style="width: 100%; margin-top: 10px" id="btnSave">저장</button>
 </div>
 </div>
 </form>
 </div>
+	</c:if>
+		<c:if test="${sessionScope.check=='T'}"> 
+<div class="my-3 p-3 bg-white rounded shadow-sm" style="padding-top: 10px">
+<form id="frm1" name="frm1" >
+<div class="row">
+<div class="col-sm-10">
+<textarea class="form-control" rows="3" placeholder="댓글을 입력해 주세요" id = "text" name="comment_contents"></textarea>
+</div>
+<div class="col-sm-2">
+	<input type="text" class="form-control" id="comment_poster" name="comment_poster" value="${sessionScope.login.teacher_id}" readonly="readonly"/>	
+	<input type="hidden" name="board_id" value="${board.board_id}"/>
+	<button type="button" onclick="inputCheck()"  class="btn btn-sm btn-primary" name="btnSave" style="width: 100%; margin-top: 10px" id="btnSave">저장</button>
+</div>
+</div>
+</form>
+</div>
+	</c:if>
 
 <!--------------------댓글 리스트------------------------>
 	<div class="my-3 p-3 bg-white rounded shadow-sm" style="padding-top: 10px">			
