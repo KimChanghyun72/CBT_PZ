@@ -35,7 +35,7 @@ public class BoardInsertCtrl implements Controller {
 		Part part = request.getPart("board_file");
 		String board_file = getFileName(part);
 
-		System.out.println(board_file);
+		System.out.println(part);
 
 		if (board_file != null && !board_file.isEmpty()) {
 			File renameFile = FileRenamePolicy.rename(new File(path,board_file));

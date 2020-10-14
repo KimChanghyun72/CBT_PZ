@@ -24,14 +24,14 @@
 			frm.board_contents.focus();
 			return false;
 		}
-		if('${session.check}'=='M'){
+		if('${sessionScope.check}'=='M'){
 			if (frm.pw.value != "${sessionScope.login.member_pw}") {
 				window.alert("비밀번호를 확인해주세요");
 				frm.pw.focus();
 				return false;
 			}
 		}
-		if('${session.check}'=='T'){
+		if('${sessionScope.check}'=='T'){
 			if (frm.pw.value != "${sessionScope.login.teacher_password}") {
 				window.alert("비밀번호를 확인해주세요");
 				frm.pw.focus();
