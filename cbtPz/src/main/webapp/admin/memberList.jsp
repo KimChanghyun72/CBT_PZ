@@ -8,6 +8,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	<%request.getSession().setAttribute("pageName", "회원 관리");%>
+</script>
 </head>
 <body>
 <h3>회원목록</h3>
@@ -24,7 +27,7 @@
   	<tr>
     	<td>${member.getMember_id()}</td>
     	<td>${member.getMember_name()}</td>
-    	<td><button type="button" onclick="location.href='memberUpdateForm.do?member_id=${member.member_id}'">삭제</button></td>    
+    	<%-- <td><button type="button" onclick="location.href='memberUpdateForm.do?member_id=${member.member_id}'">삭제</button></td>   --%>  
   	</tr>
 </c:forEach>
    </tbody>

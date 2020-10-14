@@ -5,6 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	<%request.getSession().setAttribute("pageName", "개별 문제");%>
+</script>
 </head>
 <body>
 <form method="post" name="frm" id="frm" 

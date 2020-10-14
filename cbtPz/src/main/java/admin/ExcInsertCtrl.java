@@ -18,6 +18,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
   
 import common.FileRenamePolicy;   
 import controller.Controller;
+import model.PaperHeadDAO;
+import model.PaperheadVO;
 import model.ProblemDAO;
 import model.ProblemVO;
 
@@ -27,16 +29,16 @@ public class ExcInsertCtrl implements Controller {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// paperhead table insert
 		
-		/*
-		 * String paperhead_id = request.getParameter("paperhead_id"); String
-		 * paper_type_cd = request.getParameter("paper_type_cd"); String paper_round =
-		 * request.getParameter("paper_round");
-		 * 
-		 * PaperheadVO paper = new PaperheadVO(); paper.setPaperhead_id(paperhead_id);
-		 * paper.setPaper_type_cd(paper_type_cd); paper.setPaper_round(paper_round);
-		 * 
-		 * PaperHeadDAO.getInstance().insert(paper);
-		 */
+		
+		String paperhead_id = request.getParameter("paperhead_id"); 
+		String paper_type_cd = request.getParameter("paper_type_cd"); 
+		String paper_round = request.getParameter("paper_round");
+		  
+		PaperheadVO paper = new PaperheadVO(); 
+		paper.setPaperhead_id(paperhead_id);
+		paper.setPaper_type_cd(paper_type_cd); paper.setPaper_round(paper_round);
+		PaperHeadDAO.getInstance().insert(paper);
+		 
 		
 
 		// problem table insert
@@ -49,7 +51,7 @@ public class ExcInsertCtrl implements Controller {
 		String ans_3 = request.getParameter("ans_3");
 		String ans_4 = request.getParameter("ans_4");
 		String ans_correct = request.getParameter("ans_correct");
-		String paperhead_id = request.getParameter("paperhead_id");
+		paperhead_id = request.getParameter("paperhead_id");
 		String problem_image = request.getParameter("problem_image");
 
 		String path = "C:/upload";
