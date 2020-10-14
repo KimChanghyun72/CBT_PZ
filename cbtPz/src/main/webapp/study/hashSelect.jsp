@@ -121,7 +121,13 @@ $(document).on("click", ".del-btn", function (e) {
     var index = $(this).attr("idx");    
     $(this).parent().remove();
 });
-
+/*
+$(document).on("keypress", "#testInput", function (e) {
+	if (e.keyCode == 13) {
+		$("#testInput").val("");
+	}
+});
+*/
 var check = "${sessionScope.check}";
 $(function(){
 	$(document).on("click", "#hashbtn", function () {
@@ -140,6 +146,15 @@ $(function(){
 		}
 	});
 	
+	
+	$("#testInput").keydown(function(key) {
+		if (key.keyCode == 13) {
+			$("#testInput").val("");
+		}
+	});
+	
+
+	
 	$("#testInput").autocomplete({
 		source : function(request, response) {
 			$.ajax({
@@ -156,7 +171,7 @@ $(function(){
 					})); //response
 				},//success
 				error : function() { //실패
-					//alert("통신에 실패했습니다.");
+					//alert("통신에 실패했습니다."); 
 				}
 			});
 		},
@@ -178,7 +193,7 @@ $(function(){
 		return false;
 		},
 		close : function(evt) {
-			$("#testInput").val("");
+			
 		}
 	});
 

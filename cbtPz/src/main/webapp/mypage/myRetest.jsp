@@ -51,16 +51,17 @@ function btnRetest(solve_id) {
 </head> 
 <body>
 	<h1>test/ 오답문제 페이지</h1>
-	<div class="retest">
-			<div>
+	<br><br>	
+	<div class="container">
+			<div class="table-responsive">
 				<table border="1"  class="table table-hover" id="dev-table">
-				<tr>
-					<td>응시날짜</td>
-					<td>응시소모시간</td>
-					<td>응시유형</td>
-					<td>채점결과</td>
-					<td>문제확인</td>
-					<td>재응시</td>
+				<tr align="center" bgcolor="lightblue">
+					<th>응시날짜</th>
+					<th>응시소모시간</th>
+					<th>응시유형</th>
+					<th>채점결과</th>
+					<th>문제확인</th>
+					<th>재응시</th>
 				</tr>
 				<c:forEach items="${solvelist}" var="solvelist">
 				<tr>

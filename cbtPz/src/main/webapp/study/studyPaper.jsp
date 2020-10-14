@@ -137,7 +137,7 @@ $(function(){
 	
 
 $(function(){
-	//$("#foo-table").DataTable();
+	$("#foo-table").DataTable();
 })
 $(function(){ //for문은 번호를 설정해주는 역할만 하고 이벤트시에는 안 먹음.
 	for(var i=0; i<size; i++){
