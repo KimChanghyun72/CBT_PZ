@@ -33,7 +33,7 @@ public class LectureSearchCtrl implements Controller {
 			lecturelist = LectureDAO.getInstance().selectLectureAll(vo); //강의전체
 		} else {
 			LectureVO lectureVO = new LectureVO();
-			if(request.getSession().getAttribute("login") != null) {
+			if(request.getSession().getAttribute("login") != null && request.getSession().getAttribute("check") == "M") {
 				lectureVO.setMember_id(((MemberVo)request.getSession().getAttribute("login")).getMember_id());
 			}
 			lectureVO.setLecture_name(search);

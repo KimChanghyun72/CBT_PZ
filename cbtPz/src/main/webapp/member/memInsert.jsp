@@ -394,6 +394,9 @@ function nCheck(){
 </head>
 
 <body>
+
+<br><br>
+
 	<div class="container">
 		<div class="row">
 			<form class="form-horizontal" name="frm" method="post" id="frm" 
@@ -523,10 +526,10 @@ function nCheck(){
 					<div class="form-group">
 						<label class="col-md-4 control-label" for="is_major">전공확인</label>
 						<div class="col-md-5">
-							<label class="radio-inline" for="is_major-0">
+							<label class="radio-inline" for="is_major">
 								<input type="radio" name="is_major" id="gender-0" value="Y" checked="checked"> 예
 							</label> 
-							<label class="radio-inline" for="is_major-1">
+							<label class="radio-inline" for="is_major">
 								<input type="radio" name="is_major" id="gender-1" value="N">아니오
 							</label>
 						</div>
@@ -537,13 +540,13 @@ function nCheck(){
 					<div class="form-group">
 						<label class="col-md-4 control-label" for="study_term">공부기간</label>
 						<div class="col-md-5">
-							<label class="radio-inline" for="gender-0"> 
+							<label class="radio-inline" for="study_term"> 
 								<input type="radio" name="study_term" id="study_term-0" value="1개월 미만" checked="checked">1개월 미만
 							</label> 
-							<label class="radio-inline" for="gender-1">
+							<label class="radio-inline" for="study_term">
 								<input type="radio" name="study_term" id="study_term-1" value="1~3개월 미만">1~3개월 미만
 							</label>
-							<label class="radio-inline" for="gender-1">
+							<label class="radio-inline" for="study_term">
 								<input type="radio" name="study_term" id="study_term-2" value="3개월 이상">3개월 이상
 							</label>
 							<!-- <label class="radio-inline" for="gender-1">
@@ -556,16 +559,16 @@ function nCheck(){
 					<div class="form-group">
 						<label class="col-md-4 control-label" for="tested_num">시험횟수</label>
 						<div class="col-md-5">
-							<label class="radio-inline" for="gender-0"> 
+							<label class="radio-inline" for="tested_num"> 
 								<input type="radio" name="tested_num" id="tested_num-0" value="0" checked="checked"> 0회
 							</label> 
-							<label class="radio-inline" for="gender-1">
+							<label class="radio-inline" for="tested_num">
 								<input type="radio" name="tested_num" id="tested_num-1" value="1">1회
 							</label>
-							<label class="radio-inline" for="gender-1">
+							<label class="radio-inline" for="tested_num">
 								<input type="radio" name="tested_num" id="tested_num-2" value="2">2회
 							</label>
-							<label class="radio-inline" for="gender-1">
+							<label class="radio-inline" for="tested_num">
 								<input type="radio" name="tested_num" id="tested_num-3" value="3">3회 이상
 							</label>
 						</div>

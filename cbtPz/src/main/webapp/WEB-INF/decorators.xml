@@ -18,7 +18,7 @@
 		<pattern>/mypage/*</pattern>
 		<pattern>/pay/*</pattern>
 		<pattern>/admin/*</pattern>
-		<pattern>/admin/memberList.do</pattern>
+		<pattern>/memberList.do</pattern>
 		
 		<pattern>/study/studymain.jsp</pattern>
 		<pattern>/study/haederSearch.do</pattern>

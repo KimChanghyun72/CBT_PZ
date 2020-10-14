@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 <style>
 	#tdelete {
 		display : block;
@@ -14,6 +15,40 @@
 	}
 
 
+
+
+	.more {
+		display:block;
+		width:55 px;
+		height: 16 px;
+		background-image: url('/cbtPz/img/up-chevron.png');
+	}
+
+	.blind {
+
+		overflow: hidden;
+
+
+		width: 20px;
+		height: 10px;
+	}
+
+	.more:hover, .close:hober {
+		cursor:pointer;
+	}
+	
+	.close {
+		display:block;
+		width: 42px;
+		height: 16px;
+		background-image:url('/cbtPz/img/down-chevron.png');
+		background-position: -166px -78px;
+	}
+	
+	.chevron {
+		display: none;
+	}
+	
 </style>
 
 <script>
@@ -192,6 +227,9 @@
     }
 	
 	
+	
+	
+	
 	//회원탈퇴 확인 메시지 창
 	function memDelete() {
 		var r = confirm("탈퇴하시겠습니까?");
@@ -202,6 +240,28 @@
 		}
 	}
 
+	//회원탈퇴 메뉴 접기, 펼치기
+	$(document).ready(function(){
+		$('.more').click(function(){
+			$('.chevron').toggle(400);
+		
+			if(   $('#open').attr("src") =='/cbtPz/img/up-chevron.png')
+				$('#open').attr("src", "/cbtPz/img/down-chevron.png")
+			else 
+				$('#open').attr("src", "/cbtPz/img/up-chevron.png")
+			
+/* 			if($('.more').hasClass('more')){
+				$('.more').addClass('close').removeClass('more');
+				
+				$('.chevron').css('display', 'block');
+				} else if($('.close').hasClass('close')){
+					$('.close').addClass('more').removeClass('close');
+					
+					$('.chevron').;
+				} */
+		});
+	});
+	
 </script>
 <style>
 #member_job
@@ -477,13 +537,19 @@ padding: 10px;
 			</div>
 			</form>
 			
+	
+		<div class="btnArea" >
+		
+			
 
-		<div class="btnArea">
 			<form name="memDeleteFrm" action="memberDelete.do" method="post">
 			
+			
 			<span class="more">
-				<span class="blind">회원 탈퇴</span>
+				<span class="blind" style="font-size: 20px; font-weight: bold;">회원 탈퇴</span><span><img id="open" src="/cbtPz/img/up-chevron.png" width="14" height="14" style="float: right;"></span>
 			</span>
+			
+			<div class="chevron">
 			
 			<p><b>회원 탈퇴 유의사항</b></p>
 			<p>1. 회원 탈퇴 시 회원님의 개인 정보와 문제 이용 내역이 파기됩니다.</p>
@@ -496,12 +562,16 @@ padding: 10px;
 			
 				<input type="hidden" name="member_id" value="${login.member_id }" />
 				<button id="tdelete" type="button" class="btn clever-btn" onclick="memDelete()">회원 탈퇴</button>
+			
+			</div>
+			
 			</form>
 		</div>
 		</div>
 		</div>
 		</div>
 		</div>
+
 	</c:if>
 	
 	

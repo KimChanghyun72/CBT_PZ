@@ -4,7 +4,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+<script type="text/javascript">
+	<%request.getSession().setAttribute("pageName", "일정 관리");%>
+</script>
 <script
 	src="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.2/main.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.2/main.css"
@@ -73,10 +75,22 @@
 </head>
 
 <body>
-	<div class="col-12 col-lg-6">
-		<div class="single-blog-area mb-100 wow fadeInUp"
-			data-wow-delay="500ms">
-			<div id='calendar'></div>
+<br><br>
+	<div class="regular-page-area">
+		<div class="container">
+			
+				<div class="col-12">
+					<div class="page-content">
+						<br><br>
+							<div class="single-blog-area mb-100 wow fadeInUp"
+								data-wow-delay="500ms">
+								<div id='calendar'></div>
+							</div>
+						
+					</div>
+					<div class="single-course-content section-padding-100"></div>
+				</div>
+			
 		</div>
 	</div>
 </body>
