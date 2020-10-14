@@ -38,13 +38,13 @@
     
     
     <script src="${pageContext.request.contextPath}/js/jquery/jquery-2.2.4.min.js"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.min.js"></script>
 
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.relocator.1.0.0.js"></script>
     
     <!-- hashSelect.jsp 사용. -->
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/study/fancymetags.jQuery.js"></script>
     
  <decorator:head/>   
@@ -66,6 +66,16 @@
 	
 }
 	
+	ul {
+        padding: 16px 0;
+    }
+
+    ul li {
+        display: inline-block;
+        margin: 0 5px;
+        font-size: 14px;
+        letter-spacing: -.5px;
+    }
 </style>
 </head>
 

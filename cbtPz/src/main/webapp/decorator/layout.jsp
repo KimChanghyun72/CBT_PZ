@@ -45,6 +45,19 @@
     
 <decorator:head/>   
 
+<style>
+	
+	ul {
+        padding: 16px 0;
+    }
+
+    ul li {
+        display: inline-block;
+        margin: 0 5px;
+        font-size: 14px;
+        letter-spacing: -.5px;
+    }
+</style>
     
 
 </head>

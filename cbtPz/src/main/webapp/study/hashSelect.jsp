@@ -4,19 +4,19 @@
 <!DOCTYPE html>
 <html>
 <head>
- 	<meta charset="UTF-8">
+ 	<!-- <meta charset="UTF-8">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
+      -->
     <!-- Title -->
     <title>hash select</title>
 
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script type="text/javascript" src="fancymetags.jQuery.js"></script>
-    
+<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
+<!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+<!-- <script type="text/javascript" src="fancymetags.jQuery.js"></script> -->
+  
 
 <style>    
 	.center {
@@ -83,6 +83,36 @@
 	.hashText{
 		text-align : center;
 	}
+	
+	.search-area input {
+	    width: 100%;
+	    border: 1px solid #ccc; 
+	    height: 40px;
+	    border-radius: 6px;
+	    border: 1px solid #ebebeb;
+	    padding: 0 15px 0 50px;
+	    font-size: 14px;
+	    color: rgba(0, 0, 0, 0.35);
+	    font-weight: 600;
+	    -webkit-transition-duration: 500ms;
+	    transition-duration: 500ms; 
+	}
+
+	.search-area button {
+	    position: absolute;
+	    width: 50px;
+	    height: 40px;
+	    background-color: transparent;
+	    top: 0;
+	    left: 0;
+	    z-index: 10;
+	    border: none;
+	    text-align: center;
+	    cursor: pointer;
+	    outline: none;
+	}
+	
+	
 </style>
 
     
@@ -130,6 +160,11 @@ $(function(){
 				}
 			});
 		},
+		open: function(evt, ui) {
+            $(this).autocomplete("widget").css({
+                "width": 1000
+            });
+        },
 		minLength : 1,
 		autoFocus : false,
 		select : function(evt, ui) {
@@ -162,13 +197,11 @@ $(function(){
 			<!-- <div class="center"><h1>HashTag</h1></div> -->
             <div class="row">
                 <!-- Single Cool Facts Area -->
-                <div class="col-12 col-sm-6 col-lg-3">
+                <div class="col-12 ">
                     <div class="single-cool-facts-area text-center mb-100 wow fadeInUp" data-wow-delay="250ms">
 	                    <!-- Search Button -->
 	                    <div class="search-area">
-	                       	<form>
 	  	                        <input type="text" id="testInput" placeholder="Search"><button type="button"><i class="fa fa-search" aria-hidden="true"></i></button>
-	                        </form>
 	                    </div>
                     </div>
                 </div>
