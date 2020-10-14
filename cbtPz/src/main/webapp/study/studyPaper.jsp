@@ -279,7 +279,7 @@ $(document).ready(function(){
 					<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="2"><%=problemList.get(probNum).get("ans_2") %></div>
 					<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="3"><%=problemList.get(probNum).get("ans_3") %></div>
 					<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="4"><%=problemList.get(probNum).get("ans_4") %></div>
-					<input type="text" name="is_correct<%=probNum%>">
+					<input type="hidden" name="is_correct<%=probNum%>">
 					<div class="haeseol<%=probNum %>"></div>
 				</td>
 			</tr>
