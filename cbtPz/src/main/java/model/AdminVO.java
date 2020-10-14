@@ -11,4 +11,6 @@ public class AdminVO {
 	private String is_pay;
 	private String member_id;
 	private String member_pw;
+	private String teacher_id;
+	private String teacher_password;
 }

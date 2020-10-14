@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 			<!--공백 체크 및 비밀번호 확인  -->
-	<script>
+<script>
 	
 	function inputCheck() {
 
@@ -30,14 +30,14 @@
 			frm.pw.focus();
 			return false;
 		}
-	if('${session.check}'=='M'){
+	if('${sessionScope.check}'=='M'){
 		if (frm.pw.value != "${sessionScope.login.member_pw}") {
 			window.alert("비밀번호를 확인해주세요");
 			frm.pw.focus();
 			return false;
 		}
 	}
-	if('${session.check}'=='T'){
+	 if('${sessionScope.check}'=='T'){
 		if (frm.pw.value != "${sessionScope.login.teacher_password}") {
 			window.alert("비밀번호를 확인해주세요");
 			frm.pw.focus();
@@ -69,6 +69,7 @@
 				<div class="mb-3">
 					<textarea class="form-control" rows="10" name="board_contents" id="board_contents" placeholder="내용을 입력하세요"></textarea>
 				</div>
+				
 				<div class="mb-3">
 					<input class="form-control" type="password" name="pw" id="pw" placeholder="비밀번호를 입력하세요">
 				</div>
