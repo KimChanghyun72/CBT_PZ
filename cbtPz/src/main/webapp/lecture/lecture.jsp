@@ -110,6 +110,8 @@
 		});
 		
 		
+		
+		
 	});
 </script>
 
@@ -156,7 +158,8 @@
                     <div class="single-blog-area mb-100 wow fadeInUp">
 	                        <img 
 	                        	src="lectureSelect.do?lecture_image=${lecture_list.lecture_image }"
-								data-title="${lecture_list.lecture_name }" data-desc="${lecture_list.lecture_info}">
+								data-title="${lecture_list.lecture_name }" data-desc="${lecture_list.lecture_info}"
+								onerror="this.src='${pageContext.request.contextPath}/img/cottonbro.jpg'">
                 
                 		<!-- Blog Content -->
 							<div class="blog-content">
@@ -179,6 +182,7 @@
 									<p>${lecture_list.lecture_info}</p>
 								</div>
 
+								
 								<c:if test="${sessionScope.login == null || sessionScope.check == 'M'}">
 									<button type="button" id="btn" class="btn btn-outline-success">
 										<c:if test="${lecture_list.lecture_yn == 1}">             

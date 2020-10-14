@@ -206,7 +206,7 @@ $(function(){
 </head>
 
 <body>
-<% request.getSession().setAttribute("pageName", "HashTag"); %>
+<% request.getSession().setAttribute("pageName", "HashTag별 학습하기"); %>
  <section class="cool-facts-area section-padding-100-0">
         <div class="container">
 			<!-- <div class="center"><h1>HashTag</h1></div> -->

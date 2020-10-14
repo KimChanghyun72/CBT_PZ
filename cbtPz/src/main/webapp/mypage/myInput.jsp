@@ -11,6 +11,7 @@
 
 </head>
 <body>
+	<%request.getSession().setAttribute("pageName","나의 작성글"); %>
 	<article>
 		<div class="container">
 			<div class="table-responsive">
