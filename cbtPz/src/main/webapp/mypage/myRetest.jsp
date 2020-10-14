@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="my" tagdir="/WEB-INF/tags" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,7 +69,11 @@ function btnRetest(solve_id) {
 				<c:forEach items="${solvelist}" var="solvelist">
 				<tr>
 					<td>${solvelist.solve_date}</td>
-					<td>${solvelist.solve_time}</td>
+					
+					
+					<fmt:parseNumber var="percent" value="65.153454" integerOnly="true" />
+					
+					<td><fmt:formatNumber value="${solvelist.solve_time/60}" pattern="0"/>분 ${solvelist.solve_time%60}초</td>
 					<td>${solvelist.solve_type_cd}</td>
 					<td>${solvelist.solve_score}/${solvelist.solve_cnt}</td>
 					<td><button type="button" class="btn btn-outline-primary" onclick="btnSelectSolve('${solvelist.solve_id}')">문제확인</button></td>
