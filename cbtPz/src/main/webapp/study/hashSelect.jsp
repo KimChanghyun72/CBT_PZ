@@ -121,13 +121,7 @@ $(document).on("click", ".del-btn", function (e) {
     var index = $(this).attr("idx");    
     $(this).parent().remove();
 });
-/*
-$(document).on("keypress", "#testInput", function (e) {
-	if (e.keyCode == 13) {
-		$("#testInput").val("");
-	}
-});
-*/
+
 var check = "${sessionScope.check}";
 $(function(){
 	$(document).on("click", "#hashbtn", function () {
