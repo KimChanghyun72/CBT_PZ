@@ -17,7 +17,7 @@
 
 
 
-	.more {
+	/* .more {
 		display:block;
 		width:55 px;
 		height: 16 px;
@@ -47,7 +47,7 @@
 	
 	.chevron {
 		display: none;
-	}
+	} */
 	
 </style>
 
@@ -598,7 +598,7 @@ padding: 10px;
                                 </div>
                                 <div class="col-12 col-lg-7">
                                     <div class="form-group">
-										<input id="teacher_id" name="teacher_id" type="text" value="${teacher.teacher_id}" readonly="readonly">
+										<input id="teacher_id" name="teacher_id" type="text" value="${teacher.teacher_id}" readonly="readonly" class="form-control">
 									</div>
                                 </div>
                                 <div class="col-12 col-lg-5">
@@ -608,7 +608,7 @@ padding: 10px;
                                 </div>
                                 <div class="col-12 col-lg-7">
                                     <div class="form-group">
-										<input id="teacher_password" name="teacher_password" type="password" value="${teacher.teacher_password}" readonly="readonly">
+										<input id="teacher_password" name="teacher_password" type="password" value="${teacher.teacher_password}" readonly="readonly" class="form-control">
 										<span id="newPwbtn" class="btn clever-btn btn-2">비밀번호 재설정</span>
 									</div>
                                 </div>
@@ -622,7 +622,7 @@ padding: 10px;
                                 </div>
                                 <div class="col-12 col-lg-7">
                                     <div class="form-group">
-										<input id="new_tpassword" name="new_password" type="password">
+										<input id="new_tpassword" name="new_password" type="password" class="form-control">
 									</div>
                                 </div>
                                 <div class="col-12 col-lg-5">
@@ -632,7 +632,7 @@ padding: 10px;
                                 </div>
                                 <div class="col-12 col-lg-7">
                                     <div class="form-group">
-										<input id="confirm_password" name="confirm_password" type="password">
+										<input id="confirm_password" name="confirm_password" type="password" class="form-control">
 										<span id="pw2_check"></span>
 									</div>
                                 </div>
@@ -647,7 +647,7 @@ padding: 10px;
                                 </div>
                                 <div class="col-12 col-lg-7">
                                     <div class="form-group">
-										<input type="text" name="teacher_name" value="${teacher.teacher_name}" readonly="readonly">
+										<input type="text" name="teacher_name" value="${teacher.teacher_name}" readonly="readonly" class="form-control">
 									</div>
                                 </div>
                                 <div class="col-12 col-lg-5">
@@ -657,7 +657,7 @@ padding: 10px;
                                 </div>
                                 <div class="col-12 col-lg-7">
                                     <div class="form-group">
-                                    	<input type="text" id="teacher_email" name="teacher_email" value="${teacher.teacher_email }" readonly="readonly">
+                                    	<input type="text" id="teacher_email" name="teacher_email" value="${teacher.teacher_email }" readonly="readonly" class="form-control">
                                     	<!-- <span id="em_check"></span> -->
 									</div>
                                 </div>
