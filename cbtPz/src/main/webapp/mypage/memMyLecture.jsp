@@ -6,10 +6,10 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+<!--     <meta charset="UTF-8">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
     <!-- The above 4 meta tags *Must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
@@ -72,7 +72,8 @@
                 <!-- Single Popular Course -->
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="single-popular-course mb-100 wow fadeInUp" data-wow-delay="250ms">
-                        <img src="${pageContext.request.contextPath}/lectureSelect.do?lecture_image=${lecture.lecture_image}">
+                        <img src="${pageContext.request.contextPath}/lectureSelect.do?lecture_image=${lecture.lecture_image}"
+                        	onerror="this.src='${pageContext.request.contextPath}/img/cottonbro.jpg'">
                         <!-- Course Content -->
                         <div class="course-content">
                             <h4></h4>

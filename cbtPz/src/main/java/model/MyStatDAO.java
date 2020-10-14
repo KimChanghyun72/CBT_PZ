@@ -146,7 +146,7 @@ public class MyStatDAO {
 						+ "from ( "
 						+ "		select count(paper.paper_id) cnt, hashtag.HASHTAG_name hashtag_name "
 						+ "		from solve, paper, problem, problem_hashtag, hashtag "
-						+ "		where solve.solve_id = paper.paper_id "
+						+ "		where solve.solve_id = paper.solve_id "
 						+ "		and solve.member_id = ? "
 						+ " 	and solve.solve_type_cd like '%#%' "
 						+ "		and paper.problem_id = problem.problem_id "
@@ -211,7 +211,7 @@ public class MyStatDAO {
 			ResultSet rs = null;
 			try {
 				conn = ConnectionManager.getConnnect();
-				String sql = "select min(solve_date) minday, max(solve_date) maxday "
+				String sql = "select to_char(min(solve_date),'yyyy-mm-dd') minday, to_char(max(solve_date),'yyyy-mm-dd') maxday "
 							+ "from solve where member_id=? and solve_type_cd like '%#%'";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, myStateVo.getMember_id());
