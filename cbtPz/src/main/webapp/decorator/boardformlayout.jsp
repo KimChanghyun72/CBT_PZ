@@ -34,6 +34,9 @@
     <link rel="icon" href="${pageContext.request.contextPath}/img/core-img/favicon.ico">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">    
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- studyPaper datatable link -->
+	<!-- <link rel="stylesheet" href="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.css"/> -->
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">    
     
     
     
@@ -47,6 +50,8 @@
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/study/fancymetags.jQuery.js"></script>
     
+    <!-- studyPaper datatable link -->
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
  <decorator:head/>   
 
     
