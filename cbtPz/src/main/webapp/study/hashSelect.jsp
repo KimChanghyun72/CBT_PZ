@@ -167,8 +167,7 @@ $(function(){
 	                    <!-- Search Button -->
 	                    <div class="search-area">
 	                       	<form>
-	  	                        <input type="text" id="testInput"  placeholder="Search" >
-	                            <button type="button"><i class="fa fa-search" aria-hidden="true"></i></button>
+	  	                        <input type="text" id="testInput" placeholder="Search"><button type="button"><i class="fa fa-search" aria-hidden="true"></i></button>
 	                        </form>
 	                    </div>
                     </div>
