@@ -27,10 +27,11 @@ public class HashtagDAO {
 			conn = ConnectionManager.getConnnect();
 			
 			// 2. sql 구문 실행
-			String sql = "INSERT INTO HASHTAG(HASHTAG_ID, CLASSIFY_CODE_CD)"
-					 	+ "VALUES (?,?)";
+			String sql = "INSERT INTO HASHTAG(HASHTAG_ID, CLASSIFY_CODE_CD, HASHTAG_NAME)"
+					 	+ "VALUES (HASH_SEQ.nextval,?,?)";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, HashtagVo.getHashtag_id());	
+			pstmt.setString(1, HashtagVo.getClassify_code_cd());
+			pstmt.setString(2, HashtagVo.getHashtag_name());
 			r = pstmt.executeUpdate();
 
 			// 3. 결과 처리

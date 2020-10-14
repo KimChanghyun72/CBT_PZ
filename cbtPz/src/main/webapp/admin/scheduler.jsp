@@ -4,7 +4,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+<script type="text/javascript">
+	<%request.getSession().setAttribute("pageName", "일정 관리");%>
+</script>
 <script
 	src="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.2/main.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.2/main.css"

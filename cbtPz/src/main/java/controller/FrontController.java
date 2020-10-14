@@ -119,19 +119,19 @@ public class FrontController extends HttpServlet {
     	
     	
     	//철희
-    	list.put("/problemInsert.do", new admin.ProblemInsertCtrl());
+    	list.put("/problemInsert.do", new admin.ProblemInsertCtrl()); // 개별문제
 
 
-    	list.put("/hashInsert.do", new admin.HashInsertCtrl());
-    	list.put("/excelInsert.do", new admin.ExcInsertCtrl());
+    	list.put("/hashInsert.do", new admin.HashInsertCtrl()); // 해쉬태그 등록
+    	list.put("/excelInsert.do", new admin.ExcInsertCtrl()); // 엑셀 문제 등록
     	
-    	list.put("/ajax/studyChart.do", new admin.StudyTermChartCtrl());
-    	list.put("/ajax/majorChart.do", new admin.MajorChartCtrl());
+    	list.put("/ajax/studyChart.do", new admin.StudyTermChartCtrl()); // 공부기간 차트
+    	list.put("/ajax/majorChart.do", new admin.MajorChartCtrl()); // 전공유무 차트
     	
-    	list.put("/memberList.do", new admin.MemberListCtrl());
-    	list.put("/memberUpdateForm.do", new member.MemberUpdateFormCtrl());
+    	list.put("/admin/memberList.do", new admin.MemberListCtrl()); // 회원리스트
+    	list.put("/memberUpdateForm.do", new member.MemberUpdateFormCtrl());  // 회원 수정 (보류)
     	
-    	list.put("/ajax/scheduler.do", new admin.SchedulerCtrl());
+    	list.put("/ajax/scheduler.do", new admin.SchedulerCtrl()); // 달력
     	list.put("/ajax/schedulerList.do", new admin.SchedulerSelectCtrl());
     	
     	
