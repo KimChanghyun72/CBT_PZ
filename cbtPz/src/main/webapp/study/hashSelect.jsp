@@ -147,7 +147,7 @@ $(function(){
 	});
 	
 	
-	$("#testInput").keydown(function(key) {
+	$(".search-area").keydown(function(key) {
 		if (key.keyCode == 13) {
 			$("#testInput").val("");
 		}
