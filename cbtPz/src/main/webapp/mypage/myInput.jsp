@@ -19,13 +19,13 @@
 					<table class="table table-hover">
 						<thead>
 							<tr align="center">
-								<th></th>
+								<!-- <th></th> -->
 								<th>NO</th>
 								<th>제목</th>
 								<th>작성자</th>
 								<th>조회수</th>
 								<th>작성일</th>
-								
+								<th></th>
 							</tr>
 						</thead>
 						<tbody align="center">
