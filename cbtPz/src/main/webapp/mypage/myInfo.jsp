@@ -32,11 +32,11 @@
 		width: 20px;
 		height: 10px;
 	}
-
+	*/
 	.more:hover, .close:hober {
 		cursor:pointer;
 	}
-	
+	/*
 	.close {
 		display:block;
 		width: 42px;
@@ -44,7 +44,7 @@
 		background-image:url('/cbtPz/img/down-chevron.png');
 		background-position: -166px -78px;
 	}
-	
+	*/
 	.chevron {
 		display: none;
 	} */
