@@ -201,9 +201,9 @@ $(function(){ //for문은 번호를 설정해주는 역할만 하고 이벤트�
 		})
 	}
 
-	/* $(function(){
-		 //$("#foo-table").DataTable();
-	}) */
+	 $(function(){
+		$("#foo-table").DataTable();
+	}); 
 	submitFunc();//정답, ox 불러오는 함수 실행.
 });
 
