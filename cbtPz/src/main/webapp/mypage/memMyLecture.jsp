@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,6 +16,12 @@
     <!-- Title -->
     <title>Clever - Education &amp; Courses Template | Courses</title>
 
+    <style>
+	div.row2 {
+		text-align: center;
+	}
+	</style>
+    
     
 	<script>
 	<% request.getSession().setAttribute("pageName", "나의 강의(학생)"); %>
@@ -67,6 +74,12 @@
     <!-- ##### Popular Course Area Start ##### -->
     <section class="popular-courses-area section-padding-100">
         <div class="container">
+        
+        <div class="row2">
+        <h4>수강한 총 강의 수는 ${fn:length(st_lecture_list)} 건 입니다.</h4>
+        </div>
+        <br> <br>
+        
             <div class="row">
     <c:forEach items="${ st_lecture_list }" var="lecture">
                 <!-- Single Popular Course -->

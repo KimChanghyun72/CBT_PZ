@@ -48,7 +48,6 @@ public class LoginController implements Controller {
 	
 			// 2. 서비스 처리(DB)
 			MemberVo resultVo = MemberDAO.getInstance().selectOne(memberVo);
-			resultVo.setPay_enddate((resultVo.getPay_enddate()).substring(0,10));
 			
 	
 			// 3. 결과 저장
@@ -63,6 +62,7 @@ public class LoginController implements Controller {
 				request.getRequestDispatcher(page).forward(request, response);
 			} else { // 있으면 패스워드 일치 확인
 				if (memberVo.getMember_pw().equals(resultVo.getMember_pw())) { // 로그인성공
+					resultVo.setPay_enddate((resultVo.getPay_enddate()).substring(0,10));
 					request.getSession().setAttribute("login", resultVo);
 					request.getSession().setAttribute("name", resultVo.getMember_name());
 					request.getSession().setAttribute("loginId", resultVo.getMember_id());
