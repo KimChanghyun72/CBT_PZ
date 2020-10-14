@@ -75,10 +75,22 @@
 </head>
 
 <body>
-	<div class="col-12 col-lg-6">
-		<div class="single-blog-area mb-100 wow fadeInUp"
-			data-wow-delay="500ms">
-			<div id='calendar'></div>
+<br><br>
+	<div class="regular-page-area">
+		<div class="container">
+			
+				<div class="col-12">
+					<div class="page-content">
+						<br><br>
+							<div class="single-blog-area mb-100 wow fadeInUp"
+								data-wow-delay="500ms">
+								<div id='calendar'></div>
+							</div>
+						
+					</div>
+					<div class="single-course-content section-padding-100"></div>
+				</div>
+			
 		</div>
 	</div>
 </body>
