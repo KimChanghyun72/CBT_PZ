@@ -293,7 +293,7 @@ padding: 10px;
 					<div class="col-12 col-lg-6">
 						<div class="form-group">
 						<input id="member_id" name="member_id"
-						type="text" value="${member.member_id}" readonly="readonly">
+						type="text" value="${member.member_id}" disabled="disabled">
 			</div>
 			</div>
 			
@@ -307,7 +307,7 @@ padding: 10px;
 			<div class="col-12 col-lg-6">
             	<div class="form-group">
 					<input id="member_pw" name="member_pw"
-					type="password" value="${member.member_pw}" readonly="readonly">
+					type="password" value="${member.member_pw}" disabled="disabled">
 					<span id="newPwbtn" class="btn clever-btn btn-2">비밀번호 재설정</span>
 			</div>
 			</div>
@@ -350,7 +350,7 @@ padding: 10px;
 				</div>
 					<div class="col-12 col-lg-6">
                     	<div class="form-group">
-					<input type="text" name="member_name" value="${member.member_name}" readonly="readonly">
+					<input type="text" name="member_name" value="${member.member_name}" disabled="disabled">
 				</div>
 			</div>
 			
@@ -365,7 +365,7 @@ padding: 10px;
 			<div class="col-12 col-lg-6">
 			<div class="form-group">
 				<input type="text" name="member_age"
-				value="${member.member_age }" readonly>
+				value="${member.member_age }" disabled="disabled">
 			</div>
 			</div>
 			
