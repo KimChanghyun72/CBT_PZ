@@ -74,39 +74,54 @@
 		
 		
 		
+		/* function tmemDelete() {
+			var r = confirm("탈퇴하시겠습니까?");
+			if (r == true) {
+				tdfrm.submit()
+			} else {
+				// 취소
+			}
+		} */
+		
+		
 		
 		
 		$('.blog-content button').on("click", function(){
-			var btn = $(this)
-			var lecid = $(this).next().val();
-			var mempay = "${sessionScope.login.is_pay}";
-			var check = "${sessionScope.check}";
-			console.log(lecid);
-			console.log(mempay);
-			//if(check == "M"){
-				if( mempay == "Y" ){
-					$.ajax({
-				        type:"POST",
-				        url:"${pageContext.request.contextPath}/ajax/lectureLearnInsert.do",
-				        data : {lectureid : lecid},
-				        dataType : "json",
-				        success: function(data){
-				        	if(data == 1){
-				        		btn.text("수강중");
-				    			alert("수강되었습니다.");
-				    		}else if(data == 0){
-				    			alert("이미 등록된 강의입니다.");
-				    		}
-				        }
-				    });
-					
-				} else {
-					alert("                      동영상강의는 유료회원 전용입니다. \n                            멤버쉽 가입을 해주세요!");
-				}
-			//} 
-			/* else if(check == "A" || check == "T") {
-				alert("회원만 등록 가능합니다^^");
-			} */
+				var btn = $(this)
+				var lecid = $(this).next().val();
+				var lecname = $(this).next().next().val();
+				var mempay = "${sessionScope.login.is_pay}";
+				var check = "${sessionScope.check}";
+				console.log(lecid);
+				console.log(mempay);
+				//if(check == "M"){
+					if( mempay == "Y" ){
+							var r = confirm("선택하신 강의는 ' " + lecname + " ' 입니다  \n" + "해당 강의를 수강하시겠습니까?");
+			    			if (r == true) {
+								$.ajax({
+							        type:"POST",
+							        url:"${pageContext.request.contextPath}/ajax/lectureLearnInsert.do",
+							        data : {lectureid : lecid},
+							        dataType : "json",
+							        success: function(data){
+							        	if(data == 1){
+							        		btn.text("수강중");
+							    			alert("수강되었습니다.");
+							    		}else if(data == 0){
+							    			alert("이미 등록된 강의입니다.");
+							    		}
+							        }
+							    });
+			    			}
+						} else {
+							alert("                      동영상강의는 유료회원 전용입니다. \n                            멤버쉽 가입을 해주세요!");
+						}
+				//} 
+				/* else if(check == "A" || check == "T") {
+					alert("회원만 등록 가능합니다^^");
+				} */
+				
+			
 		});
 		
 		
@@ -202,6 +217,7 @@
 									</button>
                            		</c:if>
 								<input type="hidden" value="${lecture_list.lecture_id}">
+								<input type="hidden" value="${lecture_list.lecture_name}">
 
 							</div>
 						</div>
