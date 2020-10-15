@@ -60,7 +60,7 @@
     right: 0;
 	float: right;
 	overflow : scroll;
-	width : 500px;
+	width : 380px;
 	height : 500px;
 	/* background-color: #f1f1f1; */
 	padding-left: 20px;
@@ -201,9 +201,9 @@ $(function(){ //for문은 번호를 설정해주는 역할만 하고 이벤트�
 		})
 	}
 
-	/* $(function(){
-		 //$("#foo-table").DataTable();
-	}) */
+	 $(function(){
+		$("#foo-table").DataTable();
+	}); 
 	submitFunc();//정답, ox 불러오는 함수 실행.
 });
 

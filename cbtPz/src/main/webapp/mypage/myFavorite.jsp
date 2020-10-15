@@ -9,14 +9,16 @@
 <title>Insert title here</title>
 </head>
 <body>
+	
 	<h1>test/ 즐겨찾기 문제 페이지</h1>
-	<div class="favorite">
+	<br><br>
+	<div class="container">
 		<form>
-			<div>
+			<div class="table-responsive">
 				<table border="1"  class="table table-hover" id="dev-table">
-					<tr style="background-color:lightblue">
-						<td width="10%"><h4>과목</h4></td>
-						<td><h4>문제</h4></td>
+					<tr style="background-color:lightblue" align="center">
+						<th width="10%">과목</th>
+						<th>문제</th>
 					</tr>			
 					<c:forEach items="${problemList}" var="favorite">
 					<tr>

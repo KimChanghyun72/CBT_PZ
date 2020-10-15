@@ -21,6 +21,42 @@ public class LectureDAO {
 		return instance;
 	}
 	
+	//
+	public LectureVO selectOne(LectureVO lectureVO) {
+		LectureVO resultVO = new LectureVO();
+		ResultSet rs = null;
+		
+		try {
+			conn = ConnectionManager.getConnnect();
+
+			String sql = "SELECT LECTURE_ID, teacher_id, LECTURE_NAME, LECTURE_INFO, LECTURE_LINK, LECTURE_IMAGE, "
+						+ " LECTURE_LEVEL, LECTURE_SUBJECT"
+					+ " FROM LECTURE WHERE lecture_id = ?"; // sql문 + 앞에 " " 공백
+
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, lectureVO.getLecture_id());
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) { //list니까 while문 사용
+				resultVO.setLecture_id(rs.getString("lecture_id"));
+				resultVO.setTeacher_id(rs.getString("teacher_id"));
+				resultVO.setLecture_name(rs.getString("lecture_name"));
+				resultVO.setLecture_info(rs.getString("lecture_info"));
+				resultVO.setLecture_link(rs.getString("lecture_link"));
+				resultVO.setLecture_image(rs.getString("lecture_image"));
+				resultVO.setLecture_level(rs.getString("lecture_level"));
+				resultVO.setLecture_subject(rs.getString("lecture_subject"));
+				
+			} 
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return resultVO;  //담은 list를 리턴.
+	}
+	
 	public int insert(LectureVO lectureVO) {
 		int r = 0;
 		try {

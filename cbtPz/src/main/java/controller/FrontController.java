@@ -55,7 +55,8 @@ public class FrontController extends HttpServlet {
     	list.put("/ajax/probScoringCtrl.do", new study.ProbScoringCtrl());
     	list.put("/payInsertCtrl.do", new pay.PayInsertCtrl());
     	list.put("/ajax/deleteLecture.do", new member.MemLectureDeleteCtrl());
-    	
+    	list.put("/lecture/lectureDetailSelect.do", new lecture.LectureDetailCtrl());
+    	list.put("/ajax/lec_commentList.do", new lecture.Lec_CommentListCtrl());
     	
     	
     	
@@ -102,7 +103,7 @@ public class FrontController extends HttpServlet {
     	list.put("/ajax/hashtagAutoSearch.do", new study.HashAutoSearchCtrl());
     	
     	list.put("/ajax/paperUpdate.do", new study.PaperUpdateCtrl());
-
+    	list.put("/study/problemView.do", new study.ProblemViewCtrl());
     	
     	
     	

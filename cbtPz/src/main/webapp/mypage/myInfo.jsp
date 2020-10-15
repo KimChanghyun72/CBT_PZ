@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 
 <style>
-	#tdelete {
+	#tdelete, #tdelete1 {
 		display : block;
 		margin : 0 auto;
 		width : 160px;
@@ -17,7 +17,7 @@
 
 
 
-	.more {
+	/* .more {
 		display:block;
 		width:55 px;
 		height: 16 px;
@@ -32,11 +32,11 @@
 		width: 20px;
 		height: 10px;
 	}
-
+	*/
 	.more:hover, .close:hober {
 		cursor:pointer;
 	}
-	
+	/*
 	.close {
 		display:block;
 		width: 42px;
@@ -44,10 +44,10 @@
 		background-image:url('/cbtPz/img/down-chevron.png');
 		background-position: -166px -78px;
 	}
-	
+	*/
 	.chevron {
 		display: none;
-	}
+	} */
 	
 </style>
 
@@ -114,12 +114,6 @@
 		}); 
 		
 		
-		//탈퇴
-		$('#tdelete').on("click", function(){
-			$('#tdfrm').submit();
-		});
-		
-		
 		
 		//패스워드 재설정 버튼
 		$('#newPwbtn').on("click", function(){
@@ -146,35 +140,6 @@
 				$('#confirm_password').val("");
 			} else $('#pw2_check').hide();
 		});
-		
-		
-		//email 체크
-		/* $('#teacher_email').on("focusout", function(){
-			var regex=/^[-A-Za-z0-9_]+[-A-Za-z0-9_.]*[@]{1}[-A-Za-z0-9_]+[-A-Za-z0-9_.]*[.]{1}[A-Za-z]{1,5}$/;
-			var v = $(this).val();
-			if( !regex.test(v) ) {
-				alert("정확한 email을 입력하세요");
-				$(this).val("");
-			} else {
-			
-				$.ajax({
-			        type:"POST",
-			        url:"${pageContext.request.contextPath}/ajax/memEmailCheck.do",
-			        data : {teacher_email : v},
-			        dataType : "json",
-			        success: function(data){
-			        	console.log(data);
-			            if(data == 1){
-			    			$('#teacher_email').val("");
-			    			$('#em_check').css('color', 'red');
-			    			$('#em_check').text('가입한 이력이 있습니다');
-			    		} else{
-			    			$('#em_check').text('사용 가능한 이메일입니다');
-			    		} 
-			        }
-			    });
-			}
-		}); */
 		
 		
 		
@@ -227,7 +192,15 @@
     }
 	
 	
-	
+	//강사회원탈퇴 확인 메시지 창
+	function tmemDelete() {
+		var r = confirm("탈퇴하시겠습니까?");
+		if (r == true) {
+			tdfrm.submit()
+		} else {
+			// 취소
+		}
+	}
 	
 	
 	//회원탈퇴 확인 메시지 창
@@ -293,7 +266,7 @@ padding: 10px;
 					<div class="col-12 col-lg-6">
 						<div class="form-group">
 						<input id="member_id" name="member_id"
-						type="text" value="${member.member_id}" readonly="readonly">
+						type="text" value="${member.member_id}" disabled="disabled">
 			</div>
 			</div>
 			
@@ -307,7 +280,7 @@ padding: 10px;
 			<div class="col-12 col-lg-6">
             	<div class="form-group">
 					<input id="member_pw" name="member_pw"
-					type="password" value="${member.member_pw}" readonly="readonly">
+					type="password" value="${member.member_pw}" disabled="disabled">
 					<span id="newPwbtn" class="btn clever-btn btn-2">비밀번호 재설정</span>
 			</div>
 			</div>
@@ -350,7 +323,7 @@ padding: 10px;
 				</div>
 					<div class="col-12 col-lg-6">
                     	<div class="form-group">
-					<input type="text" name="member_name" value="${member.member_name}" readonly="readonly">
+					<input type="text" name="member_name" value="${member.member_name}" disabled="disabled">
 				</div>
 			</div>
 			
@@ -365,7 +338,7 @@ padding: 10px;
 			<div class="col-12 col-lg-6">
 			<div class="form-group">
 				<input type="text" name="member_age"
-				value="${member.member_age }" readonly>
+				value="${member.member_age }" disabled="disabled">
 			</div>
 			</div>
 			
@@ -550,7 +523,7 @@ padding: 10px;
 			</span>
 			
 			<div class="chevron">
-			
+			<br>
 			<p><b>회원 탈퇴 유의사항</b></p>
 			<p>1. 회원 탈퇴 시 회원님의 개인 정보와 문제 이용 내역이 파기됩니다.</p>
 			<p>2. 회원이 작성한 콘텐츠(동영상, 게시물, 댓글 등)는 자동적으로 삭제되지 않으며,
@@ -598,7 +571,7 @@ padding: 10px;
                                 </div>
                                 <div class="col-12 col-lg-7">
                                     <div class="form-group">
-										<input id="teacher_id" name="teacher_id" type="text" value="${teacher.teacher_id}" readonly="readonly">
+										<input id="teacher_id" name="teacher_id" type="text" value="${teacher.teacher_id}" readonly="readonly" class="form-control">
 									</div>
                                 </div>
                                 <div class="col-12 col-lg-5">
@@ -608,7 +581,7 @@ padding: 10px;
                                 </div>
                                 <div class="col-12 col-lg-7">
                                     <div class="form-group">
-										<input id="teacher_password" name="teacher_password" type="password" value="${teacher.teacher_password}" readonly="readonly">
+										<input id="teacher_password" name="teacher_password" type="password" value="${teacher.teacher_password}" readonly="readonly" class="form-control">
 										<span id="newPwbtn" class="btn clever-btn btn-2">비밀번호 재설정</span>
 									</div>
                                 </div>
@@ -622,7 +595,7 @@ padding: 10px;
                                 </div>
                                 <div class="col-12 col-lg-7">
                                     <div class="form-group">
-										<input id="new_tpassword" name="new_password" type="password">
+										<input id="new_tpassword" name="new_password" type="password" class="form-control">
 									</div>
                                 </div>
                                 <div class="col-12 col-lg-5">
@@ -632,7 +605,7 @@ padding: 10px;
                                 </div>
                                 <div class="col-12 col-lg-7">
                                     <div class="form-group">
-										<input id="confirm_password" name="confirm_password" type="password">
+										<input id="confirm_password" name="confirm_password" type="password" class="form-control">
 										<span id="pw2_check"></span>
 									</div>
                                 </div>
@@ -647,7 +620,7 @@ padding: 10px;
                                 </div>
                                 <div class="col-12 col-lg-7">
                                     <div class="form-group">
-										<input type="text" name="teacher_name" value="${teacher.teacher_name}" readonly="readonly">
+										<input type="text" name="teacher_name" value="${teacher.teacher_name}" readonly="readonly" class="form-control">
 									</div>
                                 </div>
                                 <div class="col-12 col-lg-5">
@@ -657,7 +630,7 @@ padding: 10px;
                                 </div>
                                 <div class="col-12 col-lg-7">
                                     <div class="form-group">
-                                    	<input type="text" id="teacher_email" name="teacher_email" value="${teacher.teacher_email }" readonly="readonly">
+                                    	<input type="text" id="teacher_email" name="teacher_email" value="${teacher.teacher_email }" readonly="readonly" class="form-control">
                                     	<!-- <span id="em_check"></span> -->
 									</div>
                                 </div>
@@ -710,12 +683,48 @@ padding: 10px;
 							</div>
                         </form>
                         	<div class="btnArea">
-								<form action="${pageContext.request.contextPath}/mypage/proDelete.do" method="post"
-									id="tdfrm">
-									<!-- <input type="hidden" name="member_id" value="" /> -->
-									<button id="tdelete" class="btn clever-btn">회원 탈퇴</button>
-								</form>
-							</div>
+
+
+
+							<form action="${pageContext.request.contextPath}/mypage/proDelete.do" method="post"
+									name="tdfrm">
+
+
+								<span class="more"> <span class="blind"
+									style="font-size: 20px; font-weight: bold;">회원 탈퇴</span><span><img
+										id="open" src="/cbtPz/img/up-chevron.png" width="14"
+										height="14" style="float: right;"></span>
+								</span>
+
+								<div class="chevron">
+									<br>
+									<p>
+										<b>회원 탈퇴 유의사항</b>
+									</p>
+									<p>1. 회원 탈퇴 시 회원님의 개인 정보와 등록 강의 내역이 파기됩니다.</p>
+									<p>2. 회원이 작성한 콘텐츠(게시물, 댓글 등)는 자동적으로 삭제되지 않으며, 만일 삭제를
+										원하시면 탈퇴 이전에 삭제가 필요합니다.</p>
+									<p>3. 탈퇴 후 동일한 메일로 재가입이 가능하지만, 탈퇴 한 계정과 연동되지 않습니다.</p>
+									
+									<br>
+									<p>회원 탈퇴 시 해당 내용에 동의하는 것으로 간주됩니다.</p>
+
+									<input type="hidden" name="member_id" />
+									<button id="tdelete1" type="button" class="btn clever-btn" onclick="tmemDelete()">회원 탈퇴</button>
+
+								</div>
+
+							</form>
+
+
+
+							<%-- <form
+								action="${pageContext.request.contextPath}/mypage/proDelete.do"
+								method="post" id="tdfrm">
+								<!-- <input type="hidden" name="member_id" value="" /> -->
+								<button id="tdelete" class="btn clever-btn">회원 탈퇴</button>
+							</form> --%>
+						</div>
                     </div>
                 </div>
             </div>

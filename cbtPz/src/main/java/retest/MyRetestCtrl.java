@@ -52,6 +52,7 @@ public class MyRetestCtrl implements Controller {
 		ArrayList<SolveVO> problem = ProblemDAO.getInstance().selectAllRetest(solveVo);
 		
 		// page 이동
+		request.getSession().setAttribute("pageName", "오답노트");
 		request.setAttribute("paging", paging);
 		request.getSession().setAttribute("solvelist", problem);
 		request.getRequestDispatcher("/mypage/"+path).forward(request, response);

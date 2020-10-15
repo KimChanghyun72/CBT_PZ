@@ -45,6 +45,19 @@
     
 <decorator:head/>   
 
+<style>
+	
+	ul {
+        padding: 16px 0;
+    }
+
+    ul li {
+        display: inline-block;
+        margin: 0 5px;
+        font-size: 14px;
+        letter-spacing: -.5px;
+    }
+</style>
     
 
 </head>
@@ -115,14 +128,14 @@
                                         </c:if>
                                         <c:if test="${not empty sessionScope.check && sessionScope.check == 'T'}">
 	                                        <li><a href="${pageContext.request.contextPath}/mypage/insertLecForm.do">강의 등록</a></li>
-	                                        <li><a href="${pageContext.request.contextPath}/mypage/myInput.do">작성글</a></li>
+	                                        <li><a href="${pageContext.request.contextPath}/mypage/myInput.do">나의 작성글</a></li>
                                         </c:if>
                                         <c:if test="${not empty sessionScope.check && sessionScope.check == 'M'}">
 	                                        <li><a href="${pageContext.request.contextPath}/mypage/myRetestList.do">오답노트</a></li>
 	                                        <li><a href="${pageContext.request.contextPath}/mypage/myRetestStat.do">개인통계</a></li>
 	                                        <li><a href="${pageContext.request.contextPath}/mypage/myFavorite.do">즐겨찾기문제</a></li>
                                         </c:if>
-	                                        <li><a href="${pageContext.request.contextPath}/mypage/myInput.do">작성글</a></li>
+
                                     </ul>
                                 </li>
                                 <li><a href="${pageContext.request.contextPath}/pay/payment.jsp">멤버쉽</a></li>

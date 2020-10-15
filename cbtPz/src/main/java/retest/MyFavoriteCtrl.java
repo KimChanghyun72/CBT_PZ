@@ -49,6 +49,7 @@ public class MyFavoriteCtrl implements Controller {
 		List<Map<String, Object>> favorite = FavoriteDAO.getInstance().selectAllFavorite(favoriteVO);
 		
 		// page 이동
+		request.getSession().setAttribute("pageName", "즐겨찾기문제");
 		request.setAttribute("paging", paging);
 		request.getSession().setAttribute("problemList", favorite);
 		request.getRequestDispatcher("/mypage/"+path).forward(request, response);
