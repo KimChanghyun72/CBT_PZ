@@ -17,6 +17,15 @@
 					+ $("input:checkbox[id='ck']:checked").val();
 		}
 	}
+		//체크박스 선택시 라디오박스 처럼 사용 하는 기능
+	$(document).ready(function(){
+		$('input[type="checkbox"][name="ck"]').click(function(){
+			if($(this).prop('checked')){
+			$('input[type="checkbox"][name="ck"]').prop('checked',false);
+			$(this).prop('checked',true);		
+			}
+		});
+		});		
 </script>
 
 </head>
@@ -82,7 +91,7 @@
 					</tbody>
 
 				</table>
-				<p align="right">
+					<div style=" float:right;">
 					<c:if test="${sessionScope.check=='M'}">
 					<button class="btn btn-sm btn-primary"
 						onclick="location.href='${pageContext.request.contextPath}/board/qaboardInsert.jsp'">글쓰기</button>
@@ -90,7 +99,7 @@
 					<c:if test="${sessionScope.check=='A'}">
 						<button id="del" class="btn btn-sm btn-primary" onclick="check()">삭제</button>
 					</c:if>
-				</p>
+				</div>
 				<!-- 페이징 처리 영역 -->
 				<my:paging paging="${paging}" jsfunc="gopage" />
 				<script>

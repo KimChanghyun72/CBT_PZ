@@ -104,9 +104,8 @@ $(function(){
 
 				</div>
 				
-				<div class="board_content">${qaboard.qaboard_contents}</div>
-				
-					
+				<div class="board_content" style="white-space:pre;"><c:out value="${qaboard.qaboard_contents}"/></div>
+							
 				</div>
 			<div style="margin-top : 20px">
 			 <p align="right">	
