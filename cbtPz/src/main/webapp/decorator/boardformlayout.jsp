@@ -148,7 +148,7 @@
                                         </c:if>
                                         <c:if test="${not empty sessionScope.check && sessionScope.check == 'M'}">
 	                                        <li><a href="${pageContext.request.contextPath}/mypage/memLecture.do">나의 강의</a></li>
-	                                        <li><a href="${pageContext.request.contextPath}/mypage/myRetestList.do">오답노트</a></li>
+	                                        <li><a href="${pageContext.request.contextPath}/mypage/myRetestList.do">응시이력</a></li>
 	                                        <li><a href="${pageContext.request.contextPath}/mypage/myRetestStat.do">개인통계</a></li>
 	                                        <li><a href="${pageContext.request.contextPath}/mypage/myFavorite.do">즐겨찾기문제</a></li>
                                         </c:if>
