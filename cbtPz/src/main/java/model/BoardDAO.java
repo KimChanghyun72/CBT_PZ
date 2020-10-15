@@ -38,11 +38,13 @@ public class BoardDAO {
 				String where =" where 1 = 1";
 				if(boardVo.getBoard_title() != null) {
 					where += " and BOARD_title like '%' || ? || '%'";
+				}else {
+					where += " and MEMBER_ID like '%' || ? || '%'";
 				}
 			
 			
 				String sql = "select a.* from(select rownum rn,b.* from( "
-						+ " SELECT BOARD.BOARD_ID,BOARD.BOARD_TITLE,BOARD.BOARD_CONTENTS,BOARD.MEMBER_ID,BOARD.BOARD_DATE,BOARD.BOARD_VIEWS,"
+						+ " SELECT BOARD.BOARD_ID,BOARD.BOARD_TITLE,BOARD.BOARD_CONTENTS,BOARD.MEMBER_ID,BOARD.BOARD_DATE,BOARD.BOARD_VIEWS,BOARD.BOARD_FILE,"
 						+ " (case when sysdate - board_date<0.007 then 1 else 0 end) isNew,"
 						+ " NVL(CNTS.CNT,0)as cnt"
 						+ " FROM BOARD,(SELECT BOARD_ID ID,COUNT(COMMENT_ID) CNT FROM COMMENTS GROUP BY BOARD_ID) CNTS "
@@ -57,6 +59,8 @@ public class BoardDAO {
 			int pos = 1;
 			if (boardVo.getBoard_title() != null) {
 				pstmt.setString(pos++, boardVo.getBoard_title());
+			}else {
+				pstmt.setString(pos++, boardVo.getMember_id());
 			}
 			pstmt.setInt(pos++, boardVo.getFirst());
 			pstmt.setInt(pos++, boardVo.getLast());
@@ -71,10 +75,11 @@ public class BoardDAO {
 				resultVO.setMember_id(rs.getString(5));
 				resultVO.setBoard_date(rs.getString(6));
 				resultVO.setBoard_views(rs.getInt(7));
-				resultVO.setIsNew(rs.getString(8));
-				resultVO.setCnt(rs.getInt(9));
+				resultVO.setBoard_file(rs.getString(8));
+				resultVO.setIsNew(rs.getString(9));
+				resultVO.setCnt(rs.getInt(10));
 				list.add(resultVO);
-
+ 
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -192,14 +197,20 @@ public class BoardDAO {
 			conn = ConnectionManager.getConnnect();
 			String where = " where 1 = 1";
 			if (boardVo.getBoard_title() != null) {
-				where += " and TITLE like '%' || ? || '%'";
+				where += " and BOARD_title like '%' || ? || '%'";		
+			}else {
+				where += " and MEMBER_ID like '%' || ? || '%'";
 			}
+			
 			String sql = "select count(BOARD_ID) from board" + where +"AND BOARD_ID NOT LIKE 'A%'";
 			pstmt = conn.prepareStatement(sql);
 			int pos = 1;
 			if (boardVo.getBoard_title() != null) {
 				pstmt.setString(pos++, boardVo.getBoard_title());
+			}else {
+				pstmt.setString(pos++, boardVo.getMember_id());
 			}
+			
 
 			ResultSet rs = pstmt.executeQuery();
 			rs.next();

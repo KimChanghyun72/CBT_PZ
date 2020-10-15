@@ -77,7 +77,10 @@
 										<td>${board.board_id}</td>
 										<td><a href="${pageContext.request.contextPath}/board/boardSelect.do?board_id=${board.board_id}">
 												<Strong>${board.board_title}&nbsp;</Strong>
-										</a> <c:if test="${board.cnt != 0 }">
+										<c:if test="${board.board_file != null}">
+										<img src="../img/사진.png">
+										</c:if>
+										</a><c:if test="${board.cnt != 0 }">
 												<a style="color: Tomato;">[${board.cnt}]</a>
 											</c:if></td>
 										<td>${board.member_id}</td>
@@ -112,7 +115,11 @@
 					<form method="post">
 						<table style="text-align: center; width: 600px; height: 100px;">
 							<tr>
-								<td><input name="search" id = "search" placeholder="검색어를 입력하세요"
+								<td><SELECT name="select" id="select" style="height: 30px; padding: 5px 10px; font-size: 12px;">
+												<OPTION value="searchtitle">제목</OPTION>
+												<OPTION value="searchposter">작성자</OPTION>
+											</SELECT>
+									<input name="search" id = "search" placeholder="검색어를 입력하세요"
 									style="height: 30px; padding: 5px 10px; font-size: 12px; line-height: 1.5; "
 									type="text" /> 
 								<input class="btn btn-sm btn-primary" type="submit" value=" 검색 " />
