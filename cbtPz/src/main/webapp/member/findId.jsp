@@ -197,11 +197,12 @@ $(function() {
 	        url:"${pageContext.request.contextPath}/ajax/memPwFind.do",
 	        data : {idfind : idf, id : userid, em : pemail},
 	        dataType : "json",
-	        success: function(data){
+	        success: function(data){ 
+	        	console.log(data);
 	        	if(data != null){
-	        		if(data.member_pw != null){
+	        		if(data.member_pw != ""){
 			    		$('#findmyidmodal').text("새로 발급받은 비밀번호는 " + data.member_pw + " 입니다." + " 로그인 후 비밀번호를 변경해주시기 바랍니다.");
-	        		} else if(data.teacher_password != null) {
+	        		} else if(data.teacher_password != "") {
 			    		$('#findmyidmodal').text("새로 발급받은 비밀번호는 " + data.teacher_password + " 입니다." + " 로그인 후 비밀번호를 변경해주시기 바랍니다.");
 	        		}
 	        	} else {
