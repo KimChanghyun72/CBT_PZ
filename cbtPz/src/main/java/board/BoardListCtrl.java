@@ -19,7 +19,7 @@ public class BoardListCtrl implements Controller {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		BoardDAO dao = new BoardDAO();
 		String p = request.getParameter("p");	
-		
+		String board_title = request.getParameter("search");
 		
 		int page = 1;
 		if(p != null) {
@@ -35,7 +35,7 @@ public class BoardListCtrl implements Controller {
 		paging.setTotalRecord(dao.count(board));
 		board.setFirst(paging.getFirst());
 		board.setLast(paging.getLast());
-		
+		board.setBoard_title(board_title);
 		ArrayList<BoardVO> list = dao.selectAll(board);
 		request.getSession().setAttribute("pageName", "자유게시판");
 		request.setAttribute("list", list);

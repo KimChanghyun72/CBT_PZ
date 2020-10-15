@@ -87,7 +87,8 @@
 
 	</dependencies>
 	<build>
-					<finalName>cbtPz</finalName>
+
+		<finalName>cbtPz</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-eclipse-plugin</artifactId>

@@ -37,7 +37,7 @@ public class BoardDAO {
 				conn = ConnectionManager.getConnnect();
 				String where =" where 1 = 1";
 				if(boardVo.getBoard_title() != null) {
-					where += " and title like '%' || ? || '%'";
+					where += " and BOARD_title like '%' || ? || '%'";
 				}
 			
 			
@@ -84,6 +84,8 @@ public class BoardDAO {
 		return list;
 	}// ###전체조회###
 
+		
+		
 	// ###단건조회###
 	public BoardVO selectOne(BoardVO boardVo) {
 
@@ -211,6 +213,7 @@ public class BoardDAO {
 	}
 	// ###페이징 카운터###
 
+	
 	// ###조회수 카운터###
 	public void updateBoardCnt(BoardVO vo) {
 
@@ -312,7 +315,7 @@ public class BoardDAO {
 			}
 			return cnt;
 		}
-		// ###페이징 카운터###
+		// ###작성글페이징 카운터###
 	
 	
 	
