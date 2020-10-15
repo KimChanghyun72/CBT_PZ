@@ -128,7 +128,10 @@
                                 <li><a href="${pageContext.request.contextPath}/pay/payment.jsp">멤버쉽</a></li>
                               </c:if>
                               <c:if test="${not empty sessionScope.check && sessionScope.check == 'A'}">
-                                <li><a href="${pageContext.request.contextPath}admin/memberList.do">관리자메뉴</a>
+                                <li><a href="${pageContext.request.contextPath}\
+                                \">관리자메뉴</a>
+                                
+                                
                                 	<ul class="dropdown">
                                         <li><a href="${pageContext.request.contextPath}/admin/quizInsert.jsp">개별문제</a></li>
                                         <li><a href="${pageContext.request.contextPath}/admin/headInsert.jsp">회차문제</a></li>
@@ -165,15 +168,8 @@
         </div>
     </header>
     <!-- ##### Header Area End ##### -->
-
 <decorator:body/>
-
-
-   
-   
-   
     <!-- ##### All Javascript Script ##### -->
-
 
     <!-- All Plugins js -->
     <script src="${pageContext.request.contextPath}/js/plugins/plugins.js"></script>
