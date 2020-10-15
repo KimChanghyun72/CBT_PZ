@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
-import model.HashtagVO;
 import model.MemberVo;
 import model.PaperHeadDAO;
 import model.SearchVO;
@@ -19,7 +18,6 @@ public class HashSelectCtrl implements Controller {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("해쉬검색");
-		String path = "studyPaper.jsp";
 		
 		MemberVo memberVo= (MemberVo) request.getSession().getAttribute("login");
 		SearchVO searchVO = new SearchVO();
@@ -36,20 +34,12 @@ public class HashSelectCtrl implements Controller {
 		
 		//문제등록 				
 		int next = PaperHeadDAO.getInstance().insert_Proc(searchVO);
-		
-		//서비스		
-		/*
-		 * PaperHeadDAO dao = new PaperHeadDAO(); List<Map<String, Object>> hashSelect =
-		 * dao.selectHash(hash); System.out.println("hash = " + hash);
-		 * System.out.println("hashtag_name = " + hashtag_name);
-		 */
+		//서비스				
 		searchVO.setSolve_id(Integer.toString(next)); 
 		List<Map<String, Object>> selectproblem = PaperHeadDAO.getInstance().selectAllType(searchVO);
-
 		//조회결과를 저장후에 결과페이지로 포워드
 		request.getSession().setAttribute("problemList", selectproblem);
-							 
-		request.getRequestDispatcher("/study/"+path).forward(request, response);
+		response.sendRedirect(request.getContextPath()+"/study/problemView.do?solve_id="+next);
 		
 	}
 

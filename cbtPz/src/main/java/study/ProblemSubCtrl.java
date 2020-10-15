@@ -17,7 +17,6 @@ public class ProblemSubCtrl implements Controller {
 	/**과목별 문제 불러오기**/
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String path = "studyPaper.jsp";
 		String check = (String) request.getSession().getAttribute("check");
 		MemberVo memberVo = new MemberVo();
 		
@@ -45,7 +44,8 @@ public class ProblemSubCtrl implements Controller {
 
 		request.getSession().setAttribute("problemList", selectproblem);
 		
-		request.getRequestDispatcher("/study/"+path).forward(request, response);
+		response.sendRedirect(request.getContextPath()+"/study/problemView.do?solve_id="+next);
+
 		} else {
 			request.setAttribute("errcode", "1");
 			request.setAttribute("errmsg", "일반회원만 문제를 풀 수 있습니다.");

@@ -104,7 +104,7 @@ public class FrontController extends HttpServlet {
     	
     	list.put("/ajax/paperUpdate.do", new study.PaperUpdateCtrl());
     	list.put("/study/problemView.do", new study.ProblemViewCtrl());
-    	
+    	list.put("/ajax/timeUpdate.do", new study.SolveTimeUpdateCtrl());
     	
     	
     	
