@@ -53,11 +53,18 @@ function closePopup() {
 	    <h4>( "${name}"님의 만료날짜 : ${login.pay_enddate} )</h4> 
 	    <h3>서비스를 계속 이용하시려면 연장해주세요!</h3>
 	    <br />
-		<input type="checkbox" id="check" onclick="closePopup();">
-		오늘하루동안 닫기
-	    <br />
-    </div>
+	    <div class="col-12">
+			<div class="row">
 
- 
+					<input type="checkbox" id="check" onclick="closePopup();">
+					오늘하루동안 닫기
+					<a href="${pageContext.request.contextPath}/pay/payment.jsp" target="_blank">결제페이지로 가기</a>
+					<button type="button" id="exit" onclick="closePopup();">
+					창 닫기
+					</button>
+			</div>
+		</div>
+	</div>
+
 </body>
 </html>

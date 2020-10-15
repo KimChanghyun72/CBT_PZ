@@ -258,53 +258,53 @@ padding: 10px;
 		action="<%=application.getContextPath()%>/mypage/memberUpdate.do"
 			onsubmit="inputCheck()" enctype="multipart/form-data">
 			<div class="row">
-				<div class="col-12 col-lg-6">
+				<div class="col-12 col-lg-5">
 					<div class="form-group" style="text-align: center;">
-						<p>ID</p>
+						<p>Id</p>
 						</div>
 					</div>
-					<div class="col-12 col-lg-6">
+					<div class="col-12 col-lg-7">
 						<div class="form-group">
 						<input id="member_id" name="member_id"
-						type="text" value="${member.member_id}" disabled="disabled">
+						type="text" value="${member.member_id}" readonly="readonly" class="form-control">
 			</div>
 			</div>
 			
 			
 			
-			<div class="col-12 col-lg-6">
+			<div class="col-12 col-lg-5">
 				<div class="form-group" style="text-align: center;">
 					<p>Password</p>
 				</div>
 			</div>
-			<div class="col-12 col-lg-6">
+			<div class="col-12 col-lg-7">
             	<div class="form-group">
 					<input id="member_pw" name="member_pw"
-					type="password" value="${member.member_pw}" disabled="disabled">
+					type="password" value="${member.member_pw}" readonly="readonly" class="form-control">
 					<span id="newPwbtn" class="btn clever-btn btn-2">비밀번호 재설정</span>
 			</div>
 			</div>
 			                  <!-- 비밀번호 재설정 -->
                               <div id="newPw_div" style="display: none;" class="col-12">
                               <div class="row">
-                                <div class="col-12 col-lg-6">
+                                <div class="col-12 col-lg-5">
                                     <div class="form-group" style="text-align: center;">
                                         <p>New Password (max 16)</p>
                                     </div>
                                 </div>
-                                <div class="col-12 col-lg-6">
+                                <div class="col-12 col-lg-7">
                                     <div class="form-group">
-										<input id="new_tpassword" name="new_password" type="password">
+										<input id="new_tpassword" name="new_password" type="password" class="form-control">
 									</div>
                                 </div>
-                                <div class="col-12 col-lg-6">
+                                <div class="col-12 col-lg-5">
                                     <div class="form-group" style="text-align: center;">
                                         <p>Confirm Password</p>
                                     </div>
                                 </div>
-                                <div class="col-12 col-lg-6">
+                                <div class="col-12 col-lg-7">
                                     <div class="form-group">
-										<input id="confirm_password" name="confirm_password" type="password">
+										<input id="confirm_password" name="confirm_password" type="password" class="form-control">
 										<span id="pw2_check"></span>
 									</div>
                                 </div>
@@ -316,29 +316,29 @@ padding: 10px;
 			
 			
 			
-			<div class="col-12 col-lg-6">
+			<div class="col-12 col-lg-5">
 				<div class="form-group" style="text-align: center;">
 					<p>Name</p>
 					</div>
 				</div>
-					<div class="col-12 col-lg-6">
+					<div class="col-12 col-lg-7">
                     	<div class="form-group">
-					<input type="text" name="member_name" value="${member.member_name}" disabled="disabled">
+					<input type="text" name="member_name" value="${member.member_name}" readonly="readonly" class="form-control">
 				</div>
 			</div>
 			
 			
 			
 			
-		<div class="col-12 col-lg-6">
+		<div class="col-12 col-lg-5">
 			<div class="form-group" style="text-align: center;">
 				<p>Age</p>
 		</div>
 			</div>
-			<div class="col-12 col-lg-6">
+			<div class="col-12 col-lg-7">
 			<div class="form-group">
 				<input type="text" name="member_age"
-				value="${member.member_age }" disabled="disabled">
+				value="${member.member_age }" readonly="readonly" class="form-control">
 			</div>
 			</div>
 			
@@ -347,28 +347,28 @@ padding: 10px;
 
 			
 			
-		<div class="col-12 col-lg-6">
+		<div class="col-12 col-lg-5">
 		<div class="form-group" style="text-align: center;">
 				<p>Phone number</p>
 		</div>
 		</div>
-			<div class="col-12 col-lg-6">
+			<div class="col-12 col-lg-7">
 			<div class="form-group">
 				<input type="text" id="phone_number"
-				name="phone_number" value="${member.phone_number}">
+				name="phone_number" value="${member.phone_number}" class="form-control">
 			</div>
 			</div>
 			
 			
-		<div class="col-12 col-lg-6">
+		<div class="col-12 col-lg-5">
 		<div class="form-group" style="text-align: center;">
 				<p>Email</p> 
 			</div>
 			</div>
-		<div class="col-12 col-lg-6">
+		<div class="col-12 col-lg-7">
 		<div class="form-group">
 				<input type="text" id="email"
-				name="email" value="${member.email }">
+				name="email" value="${member.email }" class="form-control">
 			</div>
 			</div>
 			
@@ -377,12 +377,12 @@ padding: 10px;
 			
 			
 			
-		<div class="col-12 col-lg-6">
+		<div class="col-12 col-lg-5">
 		<div class="form-group" style="text-align: center;">
 				<p>Job</p>
 			</div>
 			</div>
-		<div class="col-12 col-lg-6">
+		<div class="col-12 col-lg-7">
         <div class="form-group">
         
 				<select id="member_job" name="member_job" class="form-control" style ="padding:10px">
@@ -396,12 +396,12 @@ padding: 10px;
 			
 			
 			
-		<div class="col-12 col-lg-6">
+		<div class="col-12 col-lg-5">
 		<div class="form-group" style="text-align: center;">
 				<p>전공 여부</p>
 		</div>
         </div>
-	        <div class="col-12 col-lg-6">
+	        <div class="col-12 col-lg-7">
 	        <div class="form-group">
 		        <div class="form-check form-check-inline">
 				  <input class="form-check-input" type="radio" name="is_major" value="Y"
@@ -421,13 +421,13 @@ padding: 10px;
 			
 			
 			
-		<div class="col-12 col-lg-6">
+		<div class="col-12 col-lg-5">
 		<div class="form-group" style="text-align: center;">
 				<p>공부기간</p>
 		</div>
 		</div>
 		
-			<div class="col-12 col-lg-6">
+			<div class="col-12 col-lg-7">
 			<div class="form-group">
 			
 				<div class="form-check disabled">
@@ -463,12 +463,12 @@ padding: 10px;
 
 			
 			
-		<div class="col-12 col-lg-6">
+		<div class="col-12 col-lg-5">
 		<div class="form-group" style="text-align: center;">
-			<label class="col-md-4 control-label" for="tested_num">시험 응시 횟수</label>
+			<label class="col-md-5 control-label" for="tested_num">시험 응시 횟수</label>
 			</div>
 			</div>
-		<div class="col-12 col-lg-6">
+		<div class="col-12 col-lg-7">
 			<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" id="tested_num"
 					name="tested_num" value="0"
