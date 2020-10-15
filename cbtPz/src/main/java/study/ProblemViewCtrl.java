@@ -16,20 +16,7 @@ public class ProblemViewCtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String path = "studyPaper.jsp";
-		SearchVO searchVO = new SearchVO();
-		String solve_id = request.getParameter("solve_id");
 		
-		searchVO.setSolve_id(solve_id);
-		//문제조회
-
- 
-		List<Map<String, Object>> selectproblem = PaperHeadDAO.getInstance().selectAllType(searchVO);
-		
-		//조회결과를 저장후에 결과페이지로 포워드
-		request.getSession().setAttribute("problemList", selectproblem);
-		
-		request.getRequestDispatcher("/study/"+path).forward(request, response);
 	}
 
 }
