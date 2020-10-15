@@ -200,9 +200,9 @@ $(function() {
 	        success: function(data){
 	        	if(data != null){
 	        		if(data.member_pw != null){
-			    		$('#findmyidmodal').text("회원가입시 사용한 비밀번호는 " + data.member_pw + " 입니다.");
+			    		$('#findmyidmodal').text("새로 발급받은 비밀번호는 " + data.member_pw + " 입니다." + " 로그인 후 비밀번호를 변경해주시기 바랍니다.");
 	        		} else if(data.teacher_password != null) {
-			    		$('#findmyidmodal').text("회원가입시 사용한 비밀번호는 " + data.teacher_password + " 입니다.");
+			    		$('#findmyidmodal').text("새로 발급받은 비밀번호는 " + data.teacher_password + " 입니다." + " 로그인 후 비밀번호를 변경해주시기 바랍니다.");
 	        		}
 	        	} else {
 		    		//$('#myModal').modal();
