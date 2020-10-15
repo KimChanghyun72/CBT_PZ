@@ -60,7 +60,7 @@
     right: 0;
 	float: right;
 	overflow : scroll;
-	width : 500px;
+	width : 380px;
 	height : 500px;
 	/* background-color: #f1f1f1; */
 	padding-left: 20px;

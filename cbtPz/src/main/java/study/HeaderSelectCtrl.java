@@ -35,7 +35,7 @@ public class HeaderSelectCtrl implements Controller {
 		//조회결과를 저장후에 결과페이지로 포워드
 		request.setAttribute("headlist", headlist);
 				
-		request.getSession().setAttribute("pageName", paper_type_cd);
+		request.getSession().setAttribute("pageName", paper_type_cd + "별 학습하기");
 		request.getRequestDispatcher(path).forward(request, response);
 		/* request.getRequestDispatcher("/study/"+path).forward(request, response); */
 		

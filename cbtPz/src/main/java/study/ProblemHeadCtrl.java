@@ -50,8 +50,8 @@ public class ProblemHeadCtrl implements Controller {
 		//조회결과를 저장후에 결과페이지로 포워드
 		request.getSession().setAttribute("problemList", selectproblem);
 		
-		request.getRequestDispatcher("/study/"+path).forward(request, response);
-		
+		//request.getRequestDispatcher("/study/"+path).forward(request, response);
+		response.sendRedirect(request.getContextPath()+"/study/studyPaper.jsp");
 		
 	}
 

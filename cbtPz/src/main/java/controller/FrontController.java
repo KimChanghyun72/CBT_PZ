@@ -104,7 +104,7 @@ public class FrontController extends HttpServlet {
     	list.put("/ajax/hashtagAutoSearch.do", new study.HashAutoSearchCtrl());
     	
     	list.put("/ajax/paperUpdate.do", new study.PaperUpdateCtrl());
-
+    	list.put("/study/problemView.do", new study.ProblemViewCtrl());
     	
     	
     	

@@ -110,6 +110,8 @@
 		});
 		
 		
+		
+		
 	});
 </script>
 
@@ -154,13 +156,18 @@
                 <c:forEach items="${lecturelist}" var="lecture_list">
                 <div class="col-12 col-lg-6" >
                     <div class="single-blog-area mb-100 wow fadeInUp">
-	                        	<form id="frm" action="${pageContext.request.contextPath}/lecture/lectureDetailSelect.do">
+	                        	<%-- <form id="frm" action="${pageContext.request.contextPath}/lecture/lectureDetailSelect.do">
 	                        		<input type="text" name="lecture_id" value="${lecture_list.lecture_id}">
 	                        	</form>
 	                        		 <a href="${pageContext.request.contextPath}/lecture/lectureDetailSelect.do?lecture_id=${lecture_list.lecture_id}">
 	                        		 	<img src="lectureSelect.do?lecture_image=${lecture_list.lecture_image }"
 									data-title="${lecture_list.lecture_name }" data-desc="${lecture_list.lecture_info}">
 								</a>
+								 --%>
+	                        <img 
+	                        	src="lectureSelect.do?lecture_image=${lecture_list.lecture_image }"
+								data-title="${lecture_list.lecture_name }" data-desc="${lecture_list.lecture_info}"
+								onerror="this.src='${pageContext.request.contextPath}/img/cottonbro.jpg'">
                 
                 		<!-- Blog Content -->
 							<div class="blog-content">
@@ -183,6 +190,7 @@
 									<p>${lecture_list.lecture_info}</p>
 								</div>
 
+								
 								<c:if test="${sessionScope.login == null || sessionScope.check == 'M'}">
 									<button type="button" id="btn" class="btn btn-outline-success">
 										<c:if test="${lecture_list.lecture_yn == 1}">             

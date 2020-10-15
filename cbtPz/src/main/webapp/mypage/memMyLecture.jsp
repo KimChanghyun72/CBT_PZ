@@ -1,20 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+<!--     <meta charset="UTF-8">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
     <!-- The above 4 meta tags *Must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
     <title>Clever - Education &amp; Courses Template | Courses</title>
 
+    <style>
+	div.row2 {
+		text-align: center;
+	}
+	</style>
+    
     
 	<script>
 	<% request.getSession().setAttribute("pageName", "나의 강의(학생)"); %>
@@ -67,12 +74,19 @@
     <!-- ##### Popular Course Area Start ##### -->
     <section class="popular-courses-area section-padding-100">
         <div class="container">
+        
+        <div class="row2">
+        <h4>수강한 총 강의 수는 ${fn:length(st_lecture_list)} 건 입니다.</h4>
+        </div>
+        <br> <br>
+        
             <div class="row">
     <c:forEach items="${ st_lecture_list }" var="lecture">
                 <!-- Single Popular Course -->
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="single-popular-course mb-100 wow fadeInUp" data-wow-delay="250ms">
-                        <img src="${pageContext.request.contextPath}/lectureSelect.do?lecture_image=${lecture.lecture_image}">
+                        <img src="${pageContext.request.contextPath}/lectureSelect.do?lecture_image=${lecture.lecture_image}"
+                        	onerror="this.src='${pageContext.request.contextPath}/img/cottonbro.jpg'">
                         <!-- Course Content -->
                         <div class="course-content">
                             <h4></h4>
