@@ -24,21 +24,7 @@
 			frm.board_contents.focus();
 			return false;
 		}
-		if('${sessionScope.check}'=='M'){
-			if (frm.pw.value != "${sessionScope.login.member_pw}") {
-				window.alert("비밀번호를 확인해주세요");
-				frm.pw.focus();
-				return false;
-			}
-		}
-		if('${sessionScope.check}'=='T'){
-			if (frm.pw.value != "${sessionScope.login.teacher_password}") {
-				window.alert("비밀번호를 확인해주세요");
-				frm.pw.focus();
-				return false;
-			}
-		}
-	
+		
 		return true;
 	}
 </script> 
@@ -65,9 +51,7 @@
 				<div class="mb-3">
 					<textarea class="form-control" rows="10" name="board_contents" id="board_contents" placeholder="내용을 입력하세요">${board.board_contents}</textarea>
 				</div>
-				<div class="mb-3">
-					<input class="form-control" type="password" name="pw" id="pw" placeholder="비밀번호를 입력하세요">
-				</div>
+			
 			<div>
 			<p align="right">
 				<button type="submit" class="btn btn-sm btn-primary" >저장</button>

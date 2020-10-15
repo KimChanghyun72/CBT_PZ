@@ -53,7 +53,7 @@ public class NoticeUpdateCtrl implements Controller {
 
 	private String getFileName(Part part) throws UnsupportedEncodingException {
 		for (String cd : part.getHeader("Content-Disposition").split(";")) {
-			if (cd.trim().startsWith("board_file")) {
+			if (cd.trim().startsWith("filename")) {
 				return cd.substring(cd.indexOf('=') + 1).trim().replace("\"", "");
 			}
 		}

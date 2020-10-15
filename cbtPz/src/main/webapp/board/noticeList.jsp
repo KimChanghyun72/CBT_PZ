@@ -59,10 +59,10 @@
 								
 				</table>
 				<c:if test="${sessionScope.check=='A'}">
-				<p align="right">
+				<div style=" float:right;">
 				<button class="btn btn-sm btn-primary"
 					onclick="location.href='${pageContext.request.contextPath}/board/noticeInsert.jsp'">글쓰기</button>
-				</p>
+				</div>
 				</c:if>
 	<!-- 페이징 처리 영역 -->	
    <my:paging paging="${paging}" jsfunc="gopage"/>

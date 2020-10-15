@@ -154,12 +154,14 @@ $(function(){
 
 				</div>
 				
-				<div class="board_content">${board.board_contents}</div>
+				<div class="board_content" style="white-space:pre;"><c:out value="${board.board_contents}"/></div>
 				<c:if test="${board.board_file != null}">
 				<div class="board_file"><img src="${pageContext.request.contextPath}/filenameDownload.do?board_file=${board.board_file}" style="width:500px"/></div>
 				</c:if>	
 				</div>
+				
 			<div style="margin-top : 20px">
+			
 			 <p align="right">	
 				<c:if test="${sessionScope.login.member_id == board.member_id}">
 				<button type="button" onclick="location.href='${pageContext.request.contextPath}/board/boardUpdateForm.do?board_id='+${board.board_id}" class="btn btn-sm btn-primary" id="btnUpdate">수정</button>
