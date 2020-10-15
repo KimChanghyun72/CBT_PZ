@@ -94,6 +94,7 @@ $(function(){
 <article>
 	<div class="container" role="main">
 	<div>
+		<div>강의 번호 : ${lectureInfo.lecture_id}</div>
 		<div>강의명 : ${lectureInfo.lecture_name}</div>
 		<div> 강의 링크 : <a href="${lectureInfo.lecture_link}"><img src="${pageContext.request.contextPath}/lectureSelect.do?lecture_image=${lectureInfo.lecture_image}" width="250px" height="300px"></a>
 		</div>

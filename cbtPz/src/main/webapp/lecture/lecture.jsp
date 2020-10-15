@@ -164,10 +164,15 @@
 									data-title="${lecture_list.lecture_name }" data-desc="${lecture_list.lecture_info}">
 								</a>
 								 --%>
+							<form id="frm" action="${pageContext.request.contextPath}/lecture/lectureDetailSelect.do">
+	                        	<input type="text" name="lecture_id" value="${lecture_list.lecture_id}">
+	                        </form>
+							<a href="${pageContext.request.contextPath}/lecture/lectureDetailSelect.do?lecture_id=${lecture_list.lecture_id}">
 	                        <img 
 	                        	src="lectureSelect.do?lecture_image=${lecture_list.lecture_image }"
 								data-title="${lecture_list.lecture_name }" data-desc="${lecture_list.lecture_info}"
 								onerror="this.src='${pageContext.request.contextPath}/img/cottonbro.jpg'">
+							</a>
                 
                 		<!-- Blog Content -->
 							<div class="blog-content">
