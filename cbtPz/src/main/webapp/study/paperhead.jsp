@@ -41,7 +41,7 @@ var check = "${sessionScope.check}";
 		</tr>
 	<c:forEach items="${headlist}" var="headlist">			
 	<input type="hidden" ${headlist.paperhead_id} />
-	<tr><td>${headlist.paper_type_cd} ${headlist.paper_round}</td>
+	<tr><td>${headlist.commoncode_name} ${headlist.paper_round}</td>
 	<td>
 	
 	<form action="${pageContext.request.contextPath}/study/problemHead.do">

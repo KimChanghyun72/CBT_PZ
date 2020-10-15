@@ -125,8 +125,8 @@
                                 <li><a href="${pageContext.request.contextPath}/board/noticeList.do">공지사항</a></li>
                                 <li><a href="${pageContext.request.contextPath}/study/studymain.jsp">학습하기</a>
                                     <ul class="dropdown">
-                                        <li><a href="${pageContext.request.contextPath}/study/haederSearch.do?paper_type_cd=기출">기출문제</a></li>
-                                        <li><a href="${pageContext.request.contextPath}/study/haederSearch.do?paper_type_cd=모의">모의고사</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/study/haederSearch.do?paper_type_cd=a1">기출문제</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/study/haederSearch.do?paper_type_cd=a2">모의고사</a></li>
                                         <li><a href="${pageContext.request.contextPath}/study/subjectSearch.do">과목별</a></li>
                                         <li><a href="${pageContext.request.contextPath}/study/hashtagPage.do">태그별</a></li>
                                     </ul>
