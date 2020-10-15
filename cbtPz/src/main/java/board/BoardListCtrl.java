@@ -22,6 +22,7 @@ public class BoardListCtrl implements Controller {
 		String select = request.getParameter("select");	
 		String board_title = null;
 		String member_id = null ;
+		BoardVO best = null;
 		
 		if(("searchtitle").equals(select)) {
 			board_title = request.getParameter("search");
@@ -46,6 +47,10 @@ public class BoardListCtrl implements Controller {
 		board.setLast(paging.getLast());
 		board.setBoard_title(board_title);
 		board.setMember_id(member_id);
+		
+		best = dao.bestSelect(board);
+		request.setAttribute("best", best);
+		
 		ArrayList<BoardVO> list = dao.selectAll(board);
 		request.getSession().setAttribute("pageName", "자유게시판");
 		request.setAttribute("list", list);

@@ -79,7 +79,7 @@ public class BoardDAO {
 				resultVO.setIsNew(rs.getString(9));
 				resultVO.setCnt(rs.getInt(10));
 				list.add(resultVO);
- 
+
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -123,7 +123,40 @@ public class BoardDAO {
 		}
 		return resultVO;
 	}// ###단건조회###
+	// ###최고조회수###
+		public BoardVO bestSelect(BoardVO boardVo) {
 
+			BoardVO resultVO = null;
+			ResultSet rs = null;
+
+			try {
+				conn = ConnectionManager.getConnnect();
+				String sql = "select a.* from(select rownum rn,b.* from(SELECT BOARD_ID,BOARD_TITLE,BOARD_CONTENTS,MEMBER_ID,BOARD_DATE,BOARD_VIEWS,BOARD_FILE,ROW_NUMBER()OVER(ORDER BY BOARD_VIEWS DESC) as RANK\r\n" + 
+						"FROM BOARD\r\n" + 
+						"WHERE BOARD_ID NOT LIKE'A%')b)a where rn = 1";
+				pstmt = conn.prepareStatement(sql);
+				
+				rs = pstmt.executeQuery();
+
+				if (rs.next()) {
+
+					resultVO = new BoardVO();
+					resultVO.setBoard_id(rs.getString("BOARD_ID"));
+					resultVO.setBoard_title(rs.getString("BOARD_TITLE"));
+					resultVO.setBoard_contents(rs.getString("BOARD_CONTENTS"));
+					resultVO.setMember_id(rs.getString("MEMBER_ID"));
+					resultVO.setBoard_date(rs.getString("BOARD_DATE"));
+					resultVO.setBoard_views(rs.getInt("BOARD_VIEWS"));
+					resultVO.setBoard_file(rs.getString("BOARD_FILE"));
+
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				ConnectionManager.close(rs, pstmt, conn);
+			}
+			return resultVO;
+		}// ###최고조회수###
 	// ###입력###
 	public int insert(BoardVO boardVo) {
 		int r = 0;

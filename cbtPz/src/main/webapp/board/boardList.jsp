@@ -70,13 +70,24 @@
 								</tr>
 							</c:when>
 							<c:when test="${!empty list}">
+							<!-- 조회수 1위글  -->
+							<td></td>
+							<td><img src="../img/1등.png"></td>
+							<td><a href="${pageContext.request.contextPath}/board/boardSelect.do?board_id=${best.board_id}"><strong>${best.board_title}</strong></a></td>
+							<td><strong>${best.board_id}</strong></td>
+							<td><strong>${best.board_views}</strong></td>
+							<td>${best.board_date}</td>
+								<c:if test="${sessionScope.check=='A'}">
+											<td><input id="ck" name="ck" type="checkbox" value="${best.board_id}"></td>
+							    </c:if>
+							<!-- 조회수 1위글  -->			
 								<c:forEach var="board" items="${list}">
 									<tr>
 										<td style="color: Tomato;"><c:if
 												test="${board.isNew == '1' }">NEW</c:if></td>
 										<td>${board.board_id}</td>
 										<td><a href="${pageContext.request.contextPath}/board/boardSelect.do?board_id=${board.board_id}">
-												<Strong>${board.board_title}&nbsp;</Strong>
+												${board.board_title}&nbsp;
 										<c:if test="${board.board_file != null}">
 										<img src="../img/사진.png">
 										</c:if>
