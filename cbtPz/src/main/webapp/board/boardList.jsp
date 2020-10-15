@@ -70,14 +70,28 @@
 								</tr>
 							</c:when>
 							<c:when test="${!empty list}">
+							<!-- 조회수 1위글  -->
+							<td></td>
+							<td><img src="../img/1등.png"></td>
+							<td><a href="${pageContext.request.contextPath}/board/boardSelect.do?board_id=${best.board_id}"><strong>${best.board_title}</strong></a></td>
+							<td><strong>${best.board_id}</strong></td>
+							<td><strong>${best.board_views}</strong></td>
+							<td>${best.board_date}</td>
+								<c:if test="${sessionScope.check=='A'}">
+											<td><input id="ck" name="ck" type="checkbox" value="${best.board_id}"></td>
+							    </c:if>
+							<!-- 조회수 1위글  -->			
 								<c:forEach var="board" items="${list}">
 									<tr>
 										<td style="color: Tomato;"><c:if
 												test="${board.isNew == '1' }">NEW</c:if></td>
 										<td>${board.board_id}</td>
 										<td><a href="${pageContext.request.contextPath}/board/boardSelect.do?board_id=${board.board_id}">
-												<Strong>${board.board_title}&nbsp;</Strong>
-										</a> <c:if test="${board.cnt != 0 }">
+												${board.board_title}&nbsp;
+										<c:if test="${board.board_file != null}">
+										<img src="../img/사진.png">
+										</c:if>
+										</a><c:if test="${board.cnt != 0 }">
 												<a style="color: Tomato;">[${board.cnt}]</a>
 											</c:if></td>
 										<td>${board.member_id}</td>
@@ -112,7 +126,11 @@
 					<form method="post">
 						<table style="text-align: center; width: 600px; height: 100px;">
 							<tr>
-								<td><input name="search" id = "search" placeholder="검색어를 입력하세요"
+								<td><SELECT name="select" id="select" style="height: 30px; padding: 5px 10px; font-size: 12px;">
+												<OPTION value="searchtitle">제목</OPTION>
+												<OPTION value="searchposter">작성자</OPTION>
+											</SELECT>
+									<input name="search" id = "search" placeholder="검색어를 입력하세요"
 									style="height: 30px; padding: 5px 10px; font-size: 12px; line-height: 1.5; "
 									type="text" /> 
 								<input class="btn btn-sm btn-primary" type="submit" value=" 검색 " />

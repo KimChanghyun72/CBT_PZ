@@ -231,5 +231,29 @@ public class TeacherDAO {
 			} //교사 탈퇴
 		
 		
-	
+			
+			
+			// 비밀번호 재설정
+			public int UpdatePwOne(TeacherVO teacherVO) {
+				int r=0;
+				TeacherVO resultVo = null;
+				ResultSet rs = null;
+				try {
+					conn = ConnectionManager.getConnnect();
+					String sql = "UPDATE TEACHER_MEMBER SET TEACHER_PASSWORD = 'v3FeG`Yw' "
+								+ " WHERE TEACHER_ID = ?";
+					pstmt = conn.prepareStatement(sql);
+				/*	pstmt.setString(1, teacherVO.getTeacher_password());*/
+					pstmt.setString(1, teacherVO.getTeacher_id());
+					r = pstmt.executeUpdate(); // 이때는 executeUpdate()에 sql안들어감.
+					System.out.println(r + "건이 수정됨");
+				} catch (Exception e) {
+					e.printStackTrace();
+				} finally {
+					ConnectionManager.close(conn);
+				}
+				return r;
+			}
+			
+			
 }

@@ -198,7 +198,7 @@ function readURL(input) {
 					action="${pageContext.request.contextPath}/nostms/profInsert.do" enctype="multipart/form-data">
 				<fieldset>
 					<br>
-					<h3>교사 회원가입</h3>
+					<h3>강사 회원가입</h3>
 					<!-- Text input-->
 					<div class="form-group">
 						<label class="col-md-4 control-label" for="Name">ID</label>

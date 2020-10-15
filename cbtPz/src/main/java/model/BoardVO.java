@@ -16,5 +16,5 @@ public class BoardVO {
 	private String id_rownum;
 	private String isNew;
 	private Integer cnt;
-	
+	private String select;
 }

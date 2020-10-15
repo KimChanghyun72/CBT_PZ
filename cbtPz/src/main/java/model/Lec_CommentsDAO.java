@@ -52,6 +52,7 @@ public class Lec_CommentsDAO {
 			resultVO.setLec_comments_contents(rs.getString("lec_comments_contents"));
 			resultVO.setLec_comments_poster(rs.getString("lec_comments_poster"));
 			resultVO.setLecture_id(rs.getString("lecture_id"));
+			list.add(resultVO);
 		}
 	} catch (Exception e) {
 		e.printStackTrace();

@@ -47,7 +47,7 @@
 											<c:if test="${notice.isNew == '1' }">NEW</c:if>
 										</td>
 										<td>${notice.board_id}</td>
-									<td><a href="${pageContext.request.contextPath}/board/noticeSelect.do?board_id=${notice.board_id}">${notice.board_title}</a></td>
+									<td><a href="${pageContext.request.contextPath}/board/noticeSelect.do?board_id=${notice.board_id}"><img src="../img/사이렌.png">${notice.board_title}</a></td>
 										<td>${notice.member_id}</td>
 										<td>${notice.board_date}</td>
 									  </tr>
