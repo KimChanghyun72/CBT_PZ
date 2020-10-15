@@ -61,7 +61,7 @@
     right: 0;
 	float: right;
 	overflow : scroll;
-	width : 500px;
+	width : 380px;
 	height : 600px;
 	/* background-color: #f1f1f1; */
 	padding-left: 20px;
@@ -115,9 +115,12 @@ int probSize = problemList.size();
 var size = <%=probSize%>;
 var is_submit=0;
 $(function(){
-	$(document).on("click", "#checknum", function () {
-	    var checkNum = $(this).val();
-	    var paper_id = $(this).closest("tr").find('#paper_id').val();
+	$(document).on("click", "#check", function () {
+		$(this).children("#checknum").prop("checked", true); 			//div영역 클릭시 라디오버튼 체크
+	    var checkNum = $(this).children("#checknum").val();				//checkNum에 클릭한 위치의 라디오버튼 값 담기
+	    var j= $(this).children("#checknum").attr('name').substring(7); //j에 클릭한 위치의 라디오버튼 값 담기
+	    $('input:radio[name=answer'+j+']').val([checkNum]);				//오른쪽 영역에 check동시에 표기
+	    var paper_id = $(this).closest("tr").find('#paper_id').val();	  
 	    var pro_id = $(this).closest("tr").find('#pro_id').val();
 	    $.ajax({
 	        type: "POST",   
@@ -129,7 +132,7 @@ $(function(){
 	        	problem_id : pro_id
 	        },
 	        success: function(data){
-	           
+	        	     	
 	        },
 	    });
 	});
@@ -137,17 +140,18 @@ $(function(){
 	
 
 $(function(){
-	//$("#foo-table").DataTable();
+	$("#foo-table").DataTable();
 })
+
 $(function(){ //for문은 번호를 설정해주는 역할만 하고 이벤트시에는 안 먹음.
 	for(var i=0; i<size; i++){
-	$(document).on("change",'input[name=problem'+i+']', function(){
+/*	$(document).on("change",'input[name=problem'+i+']', function(){
 		var j= $(this).attr('name').substring(7);
 		var v =$(this).val();
 		
 		$('input:radio[name=answer'+j+']').val([v]);
 	})
-	
+*/	
 	$(document).on("change",'input[name=answer'+i+']', function(){
 		var j= $(this).attr('name').substring(6);
 		var v =$(this).val();
@@ -155,7 +159,7 @@ $(function(){ //for문은 번호를 설정해주는 역할만 하고 이벤트�
 		$('input:radio[name=problem'+j+']').val([v]); 
 	})
 	}
-	
+
 	
 	var cnt = 0; //문제 맞춘 갯수
 	//ajax로 답지 불러오는 함수.
@@ -194,10 +198,8 @@ $(function(){ //for문은 번호를 설정해주는 역할만 하고 이벤트�
 		if(is_submit){
 			submitFunc();
 			$(this).remove();
-			$(".rightcolumn").append("<button class='btnFinish'>확인</button>");
 			//타이머 시간 고정.
-			
-			}
+				}
 	});
 	
 	$(document).on("click", ".btnFinish", function(){
@@ -263,7 +265,7 @@ $(document).ready(function(){
 <table id="foo-table" class="table table-bordered">
 	
 		<thead>
-			<tr><th>과목</th><th>번호</th><th>문제</th></tr>
+			<tr><th width="7%">과목</th><th width="7%">번호</th><th>문제</th></tr>
 		</thead>
 		<tbody>
 		<% for(probNum=0; probNum<problemList.size(); probNum++){ %>				
@@ -275,10 +277,10 @@ $(document).ready(function(){
 					<div id="div<%=probNum%>"><%=problemList.get(probNum).get("problem_text") %>&nbsp;&nbsp;</div>
 					<input type="hidden" id="paper_id" value="<%=problemList.get(probNum).get("paper_id") %>">
 					<input type="hidden" id="pro_id" value="<%=problemList.get(probNum).get("problem_id") %>">
-					<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="1"><%=problemList.get(probNum).get("ans_1") %></div>
-					<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="2"><%=problemList.get(probNum).get("ans_2") %></div>
-					<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="3"><%=problemList.get(probNum).get("ans_3") %></div>
-					<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="4"><%=problemList.get(probNum).get("ans_4") %></div>
+					<div id="check"><input type="radio" id="checknum" name="problem<%=probNum%>" value="1"><%=problemList.get(probNum).get("ans_1") %></div>
+					<div id="check"><input type="radio" id="checknum" name="problem<%=probNum%>" value="2"><%=problemList.get(probNum).get("ans_2") %></div>
+					<div id="check"><input type="radio" id="checknum" name="problem<%=probNum%>" value="3"><%=problemList.get(probNum).get("ans_3") %></div>
+					<div id="check"><input type="radio" id="checknum" name="problem<%=probNum%>" value="4"><%=problemList.get(probNum).get("ans_4") %></div>
 					<input type="hidden" name="is_correct<%=probNum%>">
 					<div class="haeseol<%=probNum %>"></div>
 				</td>
@@ -303,10 +305,10 @@ $(document).ready(function(){
 								<td><input type="hidden" id="paper_id" value="<%=problemList.get(ansNum).get("paper_id") %>"></td>
 								<td><input type="hidden" id="pro_id" value="<%=problemList.get(ansNum).get("problem_id") %>"></td>
 								<td class="ansNum<%=problemList.get(ansNum).get("problem_id") %>"><button type="button" class="btn btn-outline-primary" data-id="<%=ansNum%>"><b><%=ansNum+1 %>. |</b></button></td>
-								<td>&nbsp; 1<input type="radio" id="checknum" name="answer<%=ansNum %>" value="1"></td>
-								<td>&nbsp; 2<input type="radio" id="checknum" name="answer<%=ansNum %>" value="2"></td>
-								<td>&nbsp; 3<input type="radio" id="checknum" name="answer<%=ansNum %>" value="3"></td>
-								<td>&nbsp; 4<input type="radio" id="checknum" name="answer<%=ansNum %>" value="4"></td>
+								<td id="check">&nbsp; 1<input type="radio" id="checknum" name="answer<%=ansNum %>" value="1"></td>
+								<td id="check">&nbsp; 2<input type="radio" id="checknum" name="answer<%=ansNum %>" value="2"></td>
+								<td id="check">&nbsp; 3<input type="radio" id="checknum" name="answer<%=ansNum %>" value="3"></td>
+								<td id="check">&nbsp; 4<input type="radio" id="checknum" name="answer<%=ansNum %>" value="4"></td>
 							</tr>
 							
 							<% } %>

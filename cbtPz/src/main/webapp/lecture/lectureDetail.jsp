@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>board.jsp</title>
+<title>Insert title here</title>
 <script>
 
 	function inputCheck() {
@@ -47,20 +47,20 @@
 /*-----------------------댓글 리스트 출력 기능 --------------------- */
 $(function(){
 	function boardList(){
-		$.ajax("${pageContext.request.contextPath}/ajax/commentList.do",{
+		$.ajax("${pageContext.request.contextPath}/ajax/lec_commentList.do",{
 			dataType : "json",
-			data:{board_id : "${board.board_id}"},
+			data:{lecture_id : "${lectureInfo.lecture_id}"},
 			success : function(datas){
 				for(i=0; i<datas.length; i++){
 							var del = "";
-							if(datas[i].comment_poster =="${sessionScope.login.member_id}"){
+							if(datas[i].lec_comments_poster =="${sessionScope.login.member_id}"){
 								del=$("<a style='color:#007bff;'>").html("삭제").addClass("btnDel")
 							}
 					
-					$("<div>").append($("<b>").append(datas[i].comment_poster))
+					$("<div>").append($("<b>").append(datas[i].lec_comments_poster))
 							.append($("<br>"))
-							.append(datas[i].comment_contents)
-							.data("comment_id", datas[i].comment_id)
+							.append(datas[i].lec_comments_contents)
+							.data("lec_comments_id", datas[i].lec_comments_id)
 							.append("&emsp;")
 							.append(del)
 							.append($("<h6 class='border-bottom pb-2 mb-0'/>"))
@@ -89,94 +89,28 @@ $(function(){
 });
 
 </script>
-
-<style>
-.board_title {
-
-	font-weight : 700;
-
-	font-size : 22pt;
-
-	margin : 10pt;
-
-}
-
-.board_info_box {
-
-	color : #6B6B6B;
-
-	margin : 10pt;
-
-}
-
-.board_member_id {
-
-	font-size : 10pt;
-
-	margin-right : 10pt;
-
-}
-
-.board_date {
-
-	font-size : 10pt;
-
-}
-
-.board_content {
-
-	color : #444343;
-
-	font-size : 12pt;
-
-	margin : 10pt;
-
-}
-</style>
-
 </head>
 <body>
-	<!-- 자유게시판 상세조회 페이지  -->
 <article>
-
-		<div class="container" role="main">
-
-				<br><br>
-			<input type="hidden" id="title" value="자유게시판">
-			
-			<div class="bg-white rounded shadow-sm">
-
-				<div class="board_title"><c:out value="${board.board_title}"/></div>
-
-				<div class="board_info_box">
-
-					<span class="board_member_id">작성자: <c:out value="${board.member_id}"/></span><span class="board_date"><c:out value="${board.board_date}"/></span>
-
-				</div>
-				
-				<div class="board_content" style="white-space:pre;"><c:out value="${board.board_contents}"/></div>
-				<c:if test="${board.board_file != null}">
-				<div class="board_file"><img src="${pageContext.request.contextPath}/filenameDownload.do?board_file=${board.board_file}" style="width:500px"/></div>
-				</c:if>	
-				</div>
-				
-			<div style="margin-top : 20px">
-			
-			 <p align="right">	
-				<c:if test="${sessionScope.login.member_id == board.member_id}">
-				<button type="button" onclick="location.href='${pageContext.request.contextPath}/board/boardUpdateForm.do?board_id='+${board.board_id}" class="btn btn-sm btn-primary" id="btnUpdate">수정</button>
-				<button type="button" onclick="location.href='${pageContext.request.contextPath}/board/boardDelete.do?board_id='+${board.board_id}" class="btn btn-sm btn-primary" id="btnDelete">삭제</button>
-				</c:if>
-				<c:if test="${sessionScope.login.teacher_id == board.member_id}">
-				<button type="button" onclick="location.href='${pageContext.request.contextPath}/board/boardUpdateForm.do?board_id='+${board.board_id}" class="btn btn-sm btn-primary" id="btnUpdate">수정</button>
-				<button type="button" onclick="location.href='${pageContext.request.contextPath}/board/boardDelete.do?board_id='+${board.board_id}" class="btn btn-sm btn-primary" id="btnDelete">삭제</button>
-				</c:if>
-				<button type="button" onclick="location.href='${pageContext.request.contextPath}/board/boardList.do'" class="btn btn-sm btn-primary" id="btnList">목록</button>
-			</p>
-			</div>
-		<div data-id="4" data-goods="book" id="divid"></div>
-
-<!---------------------댓글 입력폼------------------------->
+	<div class="container" role="main">
+	<div>
+		<div>강의명 : ${lectureInfo.lecture_name}</div>
+		<div> 강의 링크 : <a href="${lectureInfo.lecture_link}"><img src="${pageContext.request.contextPath}/lectureSelect.do?lecture_image=${lectureInfo.lecture_image}" width="250px" height="300px"></a>
+		</div>
+		
+		<div> 강사 상세정보입니다.</div>
+		<div>강사 이름 : ${teacherInfo.teacher_name}	</div>
+		<div> 프로필 사진 :${teacherInfo.teacher_picture} <img src="${pageContext.request.contextPath}/nostms/profilepicSelect.do?teacher_picture=${teacherInfo.teacher_picture}" width="250px" height="300px"></div>
+		<div> 약력 : ${teacherInfo.teacher_record}</div>
+		<div > 자격증 : ${teacherInfo.teacher_certificate}</div>
+		<div > 이메일  : ${teacherInfo.teacher_email}</div>
+		
+		
+		<div class="lec_comments"></div>
+	</div>
+	
+	
+	<!---------------------댓글 입력폼------------------------->
 	<c:if test="${sessionScope.check=='M'}"> 
 <div class="my-3 p-3 bg-white rounded shadow-sm" style="padding-top: 10px">
 <form id="frm1" name="frm1" >
@@ -209,15 +143,14 @@ $(function(){
 </form>
 </div>
 	</c:if>
-
 <!--------------------댓글 리스트------------------------>
 	<div class="my-3 p-3 bg-white rounded shadow-sm" style="padding-top: 10px">			
 	<h6 class="border-bottom pb-2 mb-0">Reply list</h6>
 	<div id="list"></div>
 	</div>
-<!--------------------댓글 리스트------------------------>			
-		</div>
-	</article>
+<!--------------------댓글 리스트------------------------>
+</div>
+</article>			
+	
 </body>
-
 </html>

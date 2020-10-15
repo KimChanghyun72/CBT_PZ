@@ -4,6 +4,12 @@
 <html>
 <head>
 <style>
+
+#payFrm{
+	border : 1px grey;
+}
+
+
 .box {
 	width:500px;
 	height:200px;
@@ -74,7 +80,7 @@
 <meta charset="UTF-8">
 <title>결제 페이지</title>
 <script>
-<% request.getSession().setAttribute("pageName", "결 제");%>
+
 $(function(){
 	var term;
 	var payment;
@@ -122,8 +128,11 @@ $(function(){
 </script>
 </head>
 <body>
+
+<div class="container">
 <form id="payFrm" name="payFrm" action="<%=application.getContextPath()%>/payInsertCtrl.do">
-	<div class="box2"><p>선택 옵션</p></div>
+	
+	<div class="box2"><p><b>선택 옵션</b></p></div>
 	<div class="box">
 	<p>
 	<!-- 유료회원 기간 선택 -->
@@ -133,13 +142,13 @@ $(function(){
 	<input type="radio" name="term" value="180">6개월(165000원)
 	</div>
 	<!-- 지불 가격 선택 -->
-	<div class="box2"><p>결제 가격</p></div>
+	<div class="box2"><p><b>결제 가격</b></p></div>
 	<div class="box">
 	<p class="price"></p>
 	<input type="hidden" name="price">
 	</div>
 	
-	<div class="box2"><p>결제 수단</p></div>
+	<div class="box2"><p><b>결제 수단</b></p></div>
 	<div class="box">
 	<p>
 	<span class="aaa"></span>
@@ -170,5 +179,6 @@ $(function(){
 		</div>
 	</div>
 </form>	
+</div>
 </body>
 </html>

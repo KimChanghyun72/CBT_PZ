@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="my" tagdir="/WEB-INF/tags" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,22 +52,28 @@ function btnRetest(solve_id) {
 
 </head> 
 <body>
+
 	<h1>test/ 오답문제 페이지</h1>
-	<div class="retest">
-			<div>
+	<br><br>	
+	<div class="container">
+			<div class="table-responsive">
 				<table border="1"  class="table table-hover" id="dev-table">
-				<tr>
-					<td>응시날짜</td>
-					<td>응시소모시간</td>
-					<td>응시유형</td>
-					<td>채점결과</td>
-					<td>문제확인</td>
-					<td>재응시</td>
+				<tr align="center" bgcolor="lightblue">
+					<th>응시날짜</th>
+					<th>응시소모시간</th>
+					<th>응시유형</th>
+					<th>채점결과</th>
+					<th>문제확인</th>
+					<th>재응시</th>
 				</tr>
 				<c:forEach items="${solvelist}" var="solvelist">
 				<tr>
 					<td>${solvelist.solve_date}</td>
-					<td>${solvelist.solve_time}</td>
+					
+					
+					<fmt:parseNumber var="percent" value="65.153454" integerOnly="true" />
+					
+					<td><fmt:formatNumber value="${solvelist.solve_time/60}" pattern="0"/>분 ${solvelist.solve_time%60}초</td>
 					<td>${solvelist.solve_type_cd}</td>
 					<td>${solvelist.solve_score}/${solvelist.solve_cnt}</td>
 					<td><button type="button" class="btn btn-outline-primary" onclick="btnSelectSolve('${solvelist.solve_id}')">문제확인</button></td>

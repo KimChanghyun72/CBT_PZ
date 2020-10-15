@@ -258,7 +258,7 @@ function readURL(input) {
 					<div class="form-group">
 					<label class="col-md-4 control-label" for="address">프로필 사진</label>
 						<div>
-							<img id="preImage" src="" >
+							<img id="preImage" style="width: 150px; height: 115.5px;">
 						</div>
 					</div>
 					
