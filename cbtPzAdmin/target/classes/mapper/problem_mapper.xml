@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dbal.app.problem.mapper.ProblemMapper">
+	<select id="getPro"  parameterType="member">
+		 SELECT 
+		 		 problem_id,
+		 		 subject,
+		 		 haeseol,
+		 		 problem_text,
+		 		 ans_1,
+		 		 ans_2,
+		 		 ans_3,
+		 		 ans_4,
+		FROM  problems
+		WHERE problem_id = #{problemId}
+	</select>
+	<insert id="insertPro" parameterType="member">
+		INSERT INTO PROBLEMS (
+								problem_id,
+		 		 				subject,
+		 						haeseol,
+		 						problem_text,
+		 			 			ans_1,
+						 		ans_2,
+						 		ans_3,
+						 		ans_4,
+						 		ans_correct
+							 )
+					 VALUES  (
+					 			PROBLEM_SEQ.nextval,
+					 			#{subject},
+					 			#{haeseol},
+					 			#{problem_text},
+					 			#{ans_1},
+					 			#{ans_2},
+					 			#{ans_3},
+					 			#{ans_4},
+					 			#{ans_correct}
+					 		 )
+		
+	</insert>
+</mapper>

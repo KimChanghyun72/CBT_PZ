@@ -54,7 +54,7 @@ public class PaperDAO {
 	}
 	
 	public ArrayList<PaperVO> selectAll(PaperVO paperVO) {
-		ArrayList<PaperVO> list = new ArrayList<>();
+		ArrayList<PaperVO> list = new ArrayList<PaperVO>();
 		PaperVO resultVO = null;
 		ResultSet rs = null;
 		try {
