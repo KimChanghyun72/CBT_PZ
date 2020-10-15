@@ -50,8 +50,25 @@
 											location.href = "${pageContext.request.contextPath}/board/noticeSelect.do?board_id="
 													+ b_id;
 										});
-						
-					
+						var check = "${check}";
+						console.log(check);
+						if(check == 'M'){
+							var is_pay = "${login.is_pay}";
+							if(is_pay == 'Y'){
+									
+								var end_date = "${login.pay_enddate}";
+								var dateArray = end_date.split("-");
+								var dateObj = new Date(dateArray[0], Number(dateArray[1])-1, dateArray[2]); 
+								var today = new Date();
+								var betweenDay = ((today.getTime() - dateObj.getTime())/1000/60/60/24);
+								//console.log(end_date);
+								console.log(Math.floor(betweenDay));
+								
+								if(Math.floor(betweenDay) > -3){
+									openPopup('${pageContext.request.contextPath}/nostms/payDatePopup.do');
+								}
+							}
+						}
 
 					});
 
@@ -95,12 +112,36 @@
 								});
 
 						calendar.render();
-					});
+	}); //캘린더
+	
+	
+	function getCookie(name) { 
+		var cookie = document.cookie; 
+		if (document.cookie != "") { 
+			var cookie_array = cookie.split("; "); 
+			for ( var index in cookie_array) { 
+				var cookie_name = cookie_array[index].split("="); 
+				if (cookie_name[0] == "popupYN") { 
+					return cookie_name[1]; } } } 
+		return ; 
+	} 
+	
+	function openPopup(url) { 
+		var cookieCheck = getCookie("popupYN"); 
+		var _width = '450';
+	    var _height = '250';
+		var _left = Math.ceil(( window.screen.width - _width )/2);
+	    var _top = Math.ceil(( window.screen.width - _height )/7);
+		if (cookieCheck != "N") window.open(url, 'payDatePopup', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top) 
+	}
+	
+	
 </script>
 
 </head>
 
 <body>
+
 
 
 

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>myRetestStat</title>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 <link rel="css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700">
@@ -62,8 +62,8 @@ p {
   content: "";
   position: absolute;
   display: block;
-  width: 120px;
-  height: 115px;
+  width: 175px;
+  height: 120px;
   left: 440px;
   top: 0;
   background: #FAFAFA;

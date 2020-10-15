@@ -48,6 +48,13 @@ function btnRetest(solve_id) {
 		alert("취소 되었습니다.");
 	}  
 }		
+function btnContinueTest(solve_id) {
+	if( confirm("계속해서 문제를 응시 하시겠습니까?")) {
+		location.href="${pageContext.request.contextPath}/study/problemView.do?solve_id="+solve_id;
+	} else {
+		alert("취소 되었습니다.");
+	}  
+}
 </script>
 
 </head> 
@@ -59,15 +66,15 @@ function btnRetest(solve_id) {
 			<div class="table-responsive">
 				<table border="1"  class="table table-hover" id="dev-table">
 				<tr align="center" bgcolor="lightblue">
-					<th>응시날짜</th>
-					<th>응시소모시간</th>
+					<th width="20%">응시날짜</th>
+					<th width="15%">응시소모시간</th>
 					<th>응시유형</th>
-					<th>채점결과</th>
-					<th>문제확인</th>
-					<th>재응시</th>
+					<th width="15%">채점결과</th>
+					<th width="15%">문제확인</th>
+					<th width="15%">재응시</th>
 				</tr>
 				<c:forEach items="${solvelist}" var="solvelist">
-				<tr>
+				<tr align="center">
 					<td>${solvelist.solve_date}</td>
 					
 					
@@ -75,9 +82,24 @@ function btnRetest(solve_id) {
 					
 					<td><fmt:formatNumber value="${solvelist.solve_time/60}" pattern="0"/>분 ${solvelist.solve_time%60}초</td>
 					<td>${solvelist.solve_type_cd}</td>
-					<td>${solvelist.solve_score}/${solvelist.solve_cnt}</td>
-					<td><button type="button" class="btn btn-outline-primary" onclick="btnSelectSolve('${solvelist.solve_id}')">문제확인</button></td>
-					<td><button type="button" class="btn btn-outline-primary" onclick="btnRetest('${solvelist.solve_id}')">재응시</button></td>
+					<td>
+						<c:if test="${solvelist.solve_submit=='Y'}">
+						${solvelist.solve_score}/${solvelist.solve_cnt}
+						</c:if>						
+					</td>		
+					<td>
+						<c:if test="${solvelist.solve_submit=='Y'}">
+						<button type="button" class="btn btn-outline-primary" onclick="btnSelectSolve('${solvelist.solve_id}')">문제  확인</button>
+						</c:if>
+						<c:if test="${solvelist.solve_submit=='N'}">
+						<button type="button" class="btn btn-outline-danger" onclick="btnContinueTest('${solvelist.solve_id}')">이어서풀기</button>
+						</c:if>
+					</td>
+					<td>
+						<c:if test="${solvelist.solve_submit=='Y'}">
+						<button type="button" class="btn btn-outline-primary" onclick="btnRetest('${solvelist.solve_id}')">재응시</button>
+						</c:if>
+					</td>
 				</tr>
 				</c:forEach>
 				</table>

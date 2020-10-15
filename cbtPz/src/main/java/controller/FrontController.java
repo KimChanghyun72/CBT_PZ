@@ -104,7 +104,7 @@ public class FrontController extends HttpServlet {
     	
     	list.put("/ajax/paperUpdate.do", new study.PaperUpdateCtrl());
     	list.put("/study/problemView.do", new study.ProblemViewCtrl());
-    	
+    	list.put("/ajax/timeUpdate.do", new study.SolveTimeUpdateCtrl());
     	
     	
     	
@@ -168,7 +168,7 @@ public class FrontController extends HttpServlet {
     	list.put("/ajax/myRetestStatBarChart.do", new member.myRetestStatBarChartCtrl()); // 개인통계-바차트
     	list.put("/ajax/myRetestStatPieChart.do", new member.myRetestStatPieChartCtrl()); // 개인통계-파이차트
     	
-    	//list.put("/ajax/fullCalendar.do", new member.FullCalendarCtrl()); //풀캘린더실험용
+    	list.put("/nostms/payDatePopup.do", new member.payDatePopupCtrl()); //만료날짜
     	list.put("/mainCtrl.do", new common.MainCtrl()); // main.jsp 구동하는 서블릿 (indexx.jsp)
 	}
 
