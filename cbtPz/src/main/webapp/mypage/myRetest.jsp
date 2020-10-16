@@ -60,7 +60,7 @@ function btnContinueTest(solve_id) {
 </head> 
 <body>
 
-	<br><br>	
+	<br><br><br><br>	
 	<div class="container">
 			<div class="table-responsive">
 				<table border="1"  class="table table-hover" id="dev-table">

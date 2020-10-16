@@ -104,12 +104,20 @@ public class LectureDAO {
 			try {
 				conn = ConnectionManager.getConnnect();
 
+<<<<<<< HEAD
 				String sql = "SELECT lecture_on, lecture.LECTURE_ID, teacher_id, LECTURE_NAME, LECTURE_INFO, LECTURE_LINK, LECTURE_IMAGE,"
 						+ " LECTURE_LEVEL, LECTURE_SUBJECT, nvl(lec_cnt.cnts2,0) as cnts"
 					+ " FROM LECTURE, (select  lecture_id, count(learn_id)  as cnts2 from learn group by lecture_id) lec_cnt"
 					+ " WHERE lecture_on = 'Y'"
 					+ " and lecture.lecture_id = lec_cnt.lecture_id(+)"
 					+ " and teacher_id = ?"; // sql문 + 앞에 " " 공백
+=======
+				String sql = "SELECT lecture.LECTURE_ID, teacher_id, LECTURE_NAME, LECTURE_INFO, LECTURE_LINK, LECTURE_IMAGE,"
+							+ " LECTURE_LEVEL, LECTURE_SUBJECT, nvl(lec_cnt.cnts2,0) as cnts"
+						+ " FROM LECTURE, (select  lecture_id, count(learn_id)  as cnts2 from learn group by lecture_id) lec_cnt"
+						+ " WHERE lecture.lecture_id = lec_cnt.lecture_id(+)"
+						+ " and teacher_id = ?"; // sql문 + 앞에 " " 공백
+>>>>>>> branch 'master' of https://github.com/KimChanghyun72/CBT_PZ.git
 
 				pstmt = conn.prepareStatement(sql);
 				
@@ -128,7 +136,10 @@ public class LectureDAO {
 					resultVO.setLecture_level(rs.getString("lecture_level"));
 					resultVO.setLecture_subject(rs.getString("lecture_subject"));
 					resultVO.setCnts(rs.getString("cnts"));
+<<<<<<< HEAD
 					resultVO.setLecture_on(rs.getString("lecture_on"));
+=======
+>>>>>>> branch 'master' of https://github.com/KimChanghyun72/CBT_PZ.git
 					list.add(resultVO); //resultVo를 list에 담음
 				} 
 			} catch (Exception e) {
