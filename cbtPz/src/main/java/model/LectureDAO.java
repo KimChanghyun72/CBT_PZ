@@ -169,14 +169,12 @@ public class LectureDAO {
 	}
 */
 		
-		public int lectureDelete(LectureVO lectureVO) {
+		public int lectureDeleteB(LectureVO lectureVO) {
 			int r =0;
 			try {
 				conn = ConnectionManager.getConnnect();
 				
-				String sql = "delete from lecture " + 
-						" where teacher_id = ? "+ 
-						"and lecture_id = ? ";
+				String sql = "update lecture set lecture_link = null, lecture_on = 'N' where TEACHER_ID = ? and LETURE_ID = ?"; 
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, lectureVO.getTeacher_id());
 				pstmt.setString(2, lectureVO.getLecture_id());		
@@ -193,7 +191,7 @@ public class LectureDAO {
 				ConnectionManager.close(conn);
 			}
 			return r;
-		} // 강사 강의 삭제
+		} // 강사 강의 삭제전처리 (완전삭제는 스케줄러)
 		
 		
 		

@@ -27,7 +27,7 @@ public class teacherLectureDel implements Controller {
 		lectureVO.setLecture_id(lecture_id);
 		lectureVO.setTeacher_id(teacher_id);
 
-		int resultDel = LectureDAO.getInstance().lectureDelete(lectureVO);
+		int resultDel = LectureDAO.getInstance().lectureDeleteB(lectureVO);
 		String result = JSONArray.fromObject(resultDel).toString();
 		System.out.println(result);
 		response.getWriter().print(result);
