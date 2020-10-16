@@ -90,7 +90,15 @@ public class FavoriteDAO {
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql ="SELECT A.* FROM(SELECT B.*, ROWNUM RM FROM ( "
-						+ "select p.problem_id, subject, haeseol, problem_text, ans_1, ans_2, ans_3, ans_4, ans_correct, problem_image " 
+						+ "select p.problem_id, subject,"
+						+ " (CASE "  
+						+"        WHEN SUBSTR(subject,2,1) = '1' then '1과목' "  
+						+"        WHEN SUBSTR(subject,2,1) = '2' then '2과목' "  
+						+"        WHEN SUBSTR(subject,2,1) = '3' then '3과목' "  
+						+"        WHEN SUBSTR(subject,2,1) = '4' then '4과목' "  
+						+"        WHEN SUBSTR(subject,2,1) = '5' then '5과목' "  
+						+"       END) as SUBJECT_NAME"
+						+ ", haeseol, problem_text, ans_1, ans_2, ans_3, ans_4, ans_correct, problem_image " 
 						+ " from problem p, FAVORITE f " 
 						+ " where p.PROBLEM_ID = f.PROBLEM_ID " 
 						+ " and member_id = ?"
@@ -107,14 +115,15 @@ public class FavoriteDAO {
 				Map<String,Object> map = new HashMap<String,Object>();
 				map.put("problem_id",rs.getString(1));
 				map.put("subject",rs.getString(2));
-				map.put("haeseol",rs.getString(3));
-				map.put("problem_text",rs.getString(4));
-				map.put("ans_1", rs.getString(5));
-				map.put("ans_2", rs.getString(6));
-				map.put("ans_3", rs.getString(7));
-				map.put("ans_4", rs.getString(8));
-				map.put("ans_correct", rs.getString(9));
-				map.put("problem_image", rs.getString(10));
+				map.put("subject_name", rs.getString(3));
+				map.put("haeseol",rs.getString(4));
+				map.put("problem_text",rs.getString(5));
+				map.put("ans_1", rs.getString(6));
+				map.put("ans_2", rs.getString(7));
+				map.put("ans_3", rs.getString(8));
+				map.put("ans_4", rs.getString(9));
+				map.put("ans_correct", rs.getString(10));
+				map.put("problem_image", rs.getString(11));
 				list.add(map);
 			}
 		} catch (Exception e) {

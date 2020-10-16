@@ -191,12 +191,13 @@ $(function(){ //for문은 번호를 설정해주는 역할만 하고 이벤트�
 					if(datas[i].ans_correct == $('input[name=problem'+i+']:checked').val()){
 						$('input[name=problem'+i+']').closest("td").prev()
 								.append('<div id="ques_ox1"><img src="../img/o1.png" style="width:300x; height:70px;"></div>');
+								
 						
 					}else{
 						$('input[name=problem'+i+']').closest("td").prev()
 								.append('<div id="ques_ox1"><img src="../img/x1.png" style="width:50px; height:35px;"></div>');
 						console.log($('input[name=problem'+i+']').eq(datas[i].ans_correct-1).parent().css("color","red"));
-						
+
 					}
 				};
 			}

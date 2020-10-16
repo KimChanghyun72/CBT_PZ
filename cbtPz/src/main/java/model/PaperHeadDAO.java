@@ -149,7 +149,8 @@ public class PaperHeadDAO {
 			String sql = "SELECT PAPERHEAD_ID, PAPER_TYPE_CD, PAPER_ROUND, COMMONCODE_NAME "
 						+ " FROM PAPERHEAD p, commoncode c"
 						+ " WHERE p.PAPER_TYPE_CD = c.COMMONCODE_ID "
-						+ " and PAPER_TYPE_CD = ? ";
+						+ " and PAPER_TYPE_CD = ? "
+						+ " ORDER BY PAPER_ROUND";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, paperheadVO.getPaper_type_cd());
 			rs = pstmt.executeQuery();
