@@ -28,6 +28,7 @@
     <link rel="icon" href="${pageContext.request.contextPath}/img/core-img/favicon.ico">
     <!-- Stylesheet -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">
+    
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
     <!-- Favicon -->
@@ -48,6 +49,7 @@
     <!-- hashSelect.jsp 사용. -->
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	
     <script type="text/javascript" src="${pageContext.request.contextPath}/study/fancymetags.jQuery.js"></script>
     
     <!-- studyPaper datatable link -->
@@ -197,13 +199,42 @@
             </div>
         </div>
     </header>
-  
-	<div style=" width: 100%;
-    height: 240px; background-image: url(../img/2.jpg)" class="  d-flex align-items-center justify-content-center p-3" >
-
+	
+	<c:choose>
+		<c:when test="${sessionScope.pageName == '공지사항'}">
+	<div style=" width: 100%; height: 240px; background-image: url(../img/test1.jpg)" class="  d-flex align-items-center justify-content-center p-3" >
+        <h1 style="color:#00000">${sessionScope.pageName}</h1>
+    </div>   
+    </c:when>
+    <c:when test="${sessionScope.pageName == '자유게시판'}">
+    <div style=" width: 100%; height: 240px; background-image: url(../img/학생.jpg)" class="  d-flex align-items-center justify-content-center p-3" >
+        <h1 style="color:#00000">${sessionScope.pageName}</h1>
+    </div> 
+    </c:when>
+     <c:when test="${sessionScope.pageName == 'Q&A 게시판'}">
+    <div style=" width: 100%; height: 240px; background-image: url(../img/학생.jpg)" class="  d-flex align-items-center justify-content-center p-3" >
         <h1 style="color:#00000">${sessionScope.pageName}</h1>
     </div>
+    </c:when>
+    <c:when test="${sessionScope.pageName == '멤버쉽'}">
+    <div style=" width: 100%; height: 240px; background-image: url(../img/member.jpg)" class="  d-flex align-items-center justify-content-center p-3" >
+        <h1 style="color:#00000">${sessionScope.pageName}</h1>
+    </div>
+    </c:when>
+   
+   
+    <c:otherwise>
+    <div style=" width: 100%; height: 240px; background-image: url(../img/학습.jpg)" class="  d-flex align-items-center justify-content-center p-3" >
+        <h1 style="color:#00000">${sessionScope.pageName}</h1>
+    </div>
+    </c:otherwise>
+	</c:choose>
+
 	<div>
+	
+
+
+
 <decorator:body/>
    </div>
    <div class = "blank">

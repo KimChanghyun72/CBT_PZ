@@ -12,7 +12,7 @@ import model.LearnVO;
 import model.MemberVo;
 import net.sf.json.JSONArray;
 
-public class MemLectureDeleteCtrl implements Controller {
+public class MemLearnDeleteCtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

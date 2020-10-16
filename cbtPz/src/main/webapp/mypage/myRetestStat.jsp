@@ -110,7 +110,7 @@ p {
         	url :"${pageContext.request.contextPath}/ajax/myRetestStatBarChart.do",
         	dataType : "json",
         	success : function(datas){
-        		console.log(datas);
+        		//console.log(datas);
         		for(i=0; i<datas.length; i++){
         			datatable.push([datas[i].solve_type_cd, parseInt(datas[i].avg),'color:'+color[i]]);
         		}
@@ -179,9 +179,12 @@ p {
         	url :"${pageContext.request.contextPath}/ajax/myRetestStatLineChart.do",
         	dataType : "json",
         	success : function(datas){
-        		//console.log(datas);
+        		//console.log(datas.length);
         		for(i=0; i<datas.length; i++){
         			datatable.push([datas[i].day, parseInt(datas[i].avg1), parseInt(datas[i].avg2)]);
+        		}
+        		if(datas.length==0){
+        			datatable.push(['no data', 0, 0]);
         		}
         	}
         });
@@ -278,7 +281,7 @@ p {
       	url :"${pageContext.request.contextPath}/ajax/myRetestStatPieChart.do",
       	dataType : "json",
       	success : function(datas){
-      		console.log(datas);
+      		//console.log(datas);
       		for(i=0; i<datas.length; i++){
       			datatablepie.push([datas[i].hashtag_name, parseInt(datas[i].cnt)]);
       		}

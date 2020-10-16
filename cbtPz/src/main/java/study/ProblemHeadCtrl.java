@@ -14,7 +14,7 @@ import model.PaperHeadDAO;
 import model.SearchVO;
 
 public class ProblemHeadCtrl implements Controller {
-	/**(모의/기출) 문제 불러오기**/
+	/**(모의/기출) 문제 등록**/
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");

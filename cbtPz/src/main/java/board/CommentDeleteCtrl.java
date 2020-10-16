@@ -19,9 +19,11 @@ public class CommentDeleteCtrl implements Controller {
 		String comment_id = request.getParameter("comment_id");
 		CommentVO vo = new CommentVO();
 		vo.setComment_id(comment_id);
+		
 		CommentVO resultVO = CommentDAO.getInstance().selectOne(vo);
 		String result = JSONObject.fromObject(resultVO).toString();
 		response.getWriter().print(result);
+		
 		
 		CommentDAO.getInstance().delete(vo);
 		
