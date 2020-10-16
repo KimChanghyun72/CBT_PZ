@@ -199,7 +199,7 @@
     </header>
   
 	<div style=" width: 100%;
-    height: 240px; background-image: url(../img/1.png)" class="  d-flex align-items-center justify-content-center p-3" >
+    height: 240px; background-image: url(../img/2.jpg)" class="  d-flex align-items-center justify-content-center p-3" >
 
         <h1 style="color:#00000">${sessionScope.pageName}</h1>
     </div>
