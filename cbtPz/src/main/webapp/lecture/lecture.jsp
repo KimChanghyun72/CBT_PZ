@@ -39,6 +39,17 @@
     margin-bottom: 30px !important;
 }
 
+.blog-content .badge {
+	font-size: 20px;
+	padding-top: .35em;
+	margin-right: 10px;
+}
+
+.blog-c {
+	padding-bottom: .25em;
+}
+
+
 /* [name=btnLink]{
 	display:none;
 } */
@@ -198,17 +209,22 @@
                 
                 		<!-- Blog Content -->
 							<div class="blog-content">
-								<c:if
-									test="${sessionScope.login != null && sessionScope.login.is_pay == 'Y' || sessionScope.check == 'A' || sessionScope.check == 'T'}">
-									<a href="${lecture_list.lecture_link}" class="blog-headline"
-										target="_blank">
+								<div class="blog-c row">
+									<c:if test="${lecture_list.lecture_on == 'N'}">
+		                            	<span class="badge badge-danger">폐강</span>
+		                            </c:if>
+									<c:if
+										test="${sessionScope.login != null && sessionScope.login.is_pay == 'Y' || sessionScope.check == 'A' || sessionScope.check == 'T'}">
+										<a href="${lecture_list.lecture_link}" class="blog-headline"
+											target="_blank">
+											<h4>${lecture_list.lecture_name}</h4>
+										</a>
+									</c:if>
+									<c:if
+										test="${sessionScope.login == null || sessionScope.check == 'M' && sessionScope.login.is_pay != 'Y'}">
 										<h4>${lecture_list.lecture_name}</h4>
-									</a>
-								</c:if>
-								<c:if
-									test="${sessionScope.login == null || sessionScope.check == 'M' && sessionScope.login.is_pay != 'Y'}">
-									<h4>${lecture_list.lecture_name}</h4>
-								</c:if>
+									</c:if>
+								</div>
 								<div class="meta d-flex align-items-center">
 									<span><i class="fa fa-circle" aria-hidden="true"></i></span>
 									<div>담당 강사 : ${lecture_list.teacher_name}</div>

@@ -270,7 +270,7 @@ public class LectureDAO {
 					} else {
 						where += ", 0 lecture_yn ";
 					}
-					String sql = "SELECT LECTURE_ID, LECTURE_NAME, LECTURE_INFO, LECTURE_LINK, LECTURE_IMAGE,"
+					String sql = "SELECT LECTURE_ON, LECTURE_ID, LECTURE_NAME, LECTURE_INFO, LECTURE_LINK, LECTURE_IMAGE,"
 								+ " LECTURE_LEVEL, LECTURE_SUBJECT, teacher_name "
 								+ where
 								+ " FROM LECTURE, teacher_member"
@@ -293,6 +293,7 @@ public class LectureDAO {
 						resultVO.setLecture_level(rs.getString("lecture_level"));
 						resultVO.setLecture_subject(rs.getString("lecture_subject"));
 						resultVO.setLecture_yn(rs.getString("lecture_yn"));
+						resultVO.setLecture_on(rs.getString("lecture_on"));
 						list.add(resultVO); //resultVo를 list에 담음
 					} 
 				} catch (Exception e) {
@@ -321,7 +322,7 @@ public class LectureDAO {
 					} else {
 						where += ", 0 lecture_yn ";
 					}
-					String sql = "SELECT LECTURE_ID, LECTURE_NAME, LECTURE_INFO, LECTURE_LINK, LECTURE_IMAGE,"
+					String sql = "SELECT LECTURE_ON, LECTURE_ID, LECTURE_NAME, LECTURE_INFO, LECTURE_LINK, LECTURE_IMAGE,"
 								+ " LECTURE_LEVEL, LECTURE_SUBJECT, teacher_name"
 								+ where
 								+ " FROM LECTURE, teacher_member"
