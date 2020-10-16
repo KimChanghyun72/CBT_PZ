@@ -20,6 +20,10 @@
 	div.row2 {
 		text-align: center;
 	}
+	
+	h4{
+		display : inline;
+	}
 	</style>
     
     
@@ -29,6 +33,8 @@
 
 		$(".free").on("click", function(){
 			var div = $(this).parent().parent().parent().parent();
+			var learnCnt = $(".learnCnt").html();
+			
 			var cancelChk = confirm("수강을 취소하시겠습니까?");
 			if(cancelChk){
 				var lecture_id = $(this).prev().children().val();
@@ -39,6 +45,8 @@
 					success : function(data){
 						alert("수강이 취소되었습니다.");
 						div.remove();
+						learnCnt--;
+						$(".learnCnt").html(learnCnt);
 					}
 				
 				});
@@ -76,7 +84,7 @@
         <div class="container">
         
         <div class="row2">
-        <h4>수강한 총 강의 수는 ${fn:length(st_lecture_list)} 건 입니다.</h4>
+        <h4>수강한 총 강의 수는 </h4><h4 class="learnCnt">${fn:length(st_lecture_list)}</h4> <h4>건 입니다.</h4>
         </div>
         <br> <br>
         

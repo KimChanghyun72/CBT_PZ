@@ -184,6 +184,7 @@ $(function(){ //for문은 번호를 설정해주는 역할만 하고 이벤트�
 				},
 			dataType : "json",
 			success : function(datas){
+				console.log(datas.length);
 				for(i=0; i<datas.length; i++){
 					console.log(datas.length)       //데이터 길이 콘솔출력
 					$(".haeseol"+i).html(datas[i].haeseol); //헤설 출력
@@ -194,6 +195,7 @@ $(function(){ //for문은 번호를 설정해주는 역할만 하고 이벤트�
 					}else{
 						$('input[name=problem'+i+']').closest("td").prev()
 								.append('<div id="ques_ox1"><img src="../img/x1.png" style="width:50px; height:35px;"></div>');
+						console.log($('input[name=problem'+i+']').eq(datas[i].ans_correct-1).parent().css("color","red"));
 						
 					}
 				};

@@ -104,6 +104,11 @@
                         </div>
                         <!-- Seat Rating Fee -->
                         <div class="seat-rating-fee d-flex justify-content-between">
+                        	<div class="seat-rating h-100 d-flex align-items-center">
+                        		<div class="seat">
+                                	<i class="fa fa-user" aria-hidden="true"></i> 수강인원 : ${lecture.cnts} 명
+                            	</div>
+                            </div>
                             <div class="course-fee h-100">
                             	<form id="lecDel">
                             		<input type="hidden" name="lecture_id" value="${lecture.lecture_id}">
