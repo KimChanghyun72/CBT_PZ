@@ -238,7 +238,7 @@
                          		</c:if>
 								<input type="hidden" value="${lecture_list.lecture_id}">
 								<input type="hidden" value="${lecture_list.lecture_name}">
-
+	
 							</div>
 						</div>
 					</div>

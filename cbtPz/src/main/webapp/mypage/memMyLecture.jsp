@@ -97,7 +97,7 @@
                         	onerror="this.src='${pageContext.request.contextPath}/img/cottonbro.jpg'">
                         <!-- Course Content -->
                         <div class="course-content">
-                            <h4></h4>
+                            <h4>강의명 : ${lecture.lecture_name}</h4>
                             <div class="meta d-flex align-items-center">
                             <c:if test="${lecture.lecture_on == 'N'}">
                             	<p>|| 폐강 ||</p>
