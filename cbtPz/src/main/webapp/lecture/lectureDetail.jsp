@@ -97,6 +97,15 @@ $(function(){
 			}
 		});
 	});
+	
+	$(".btnLearn").on("click", function(){
+		if("${login.is_pay}"=="Y"){
+			location.href="${lectureInfo.lecture_link}";			
+		}else{
+			alert("유료회원 전용 서비스입니다.");
+		}
+	});
+	
 });
 
 </script>
@@ -129,7 +138,7 @@ $(function(){
                                             <h5>강의명 : ${lectureInfo.lecture_name}</h5>
 											<div> 과목 : ${lectureInfo.lecture_subject}</div>
                                            	<div>강의 정보 : ${lectureInfo.lecture_info}</div>
-											<div> 강의 링크 : <a href="${lectureInfo.lecture_link}">수강하러가기</a></div>
+											<div> 강의 링크 : <a href="#" class="btnLearn">수강하러가기</a></div>
                                         </div>
 
                                         <!-- All Instructors -->
