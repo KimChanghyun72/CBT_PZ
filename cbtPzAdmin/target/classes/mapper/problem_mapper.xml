@@ -17,6 +17,9 @@
 		WHERE problem_id = #{problemId}
 	</select>
 	<insert id="insertPro" parameterType="member">
+	<selectKey keyProperty="problem_id" resultType="string" order="BEFORE">
+    	SELECT PROBLEM_SEQ.NEXTVAL FROM DUAL
+  	</selectKey>
 		INSERT INTO PROBLEMS (
 								problem_id,
 		 		 				subject,
@@ -29,7 +32,7 @@
 						 		ans_correct
 							 )
 					 VALUES  (
-					 			PROBLEM_SEQ.nextval,
+					 			#{problem_id},
 					 			#{subject},
 					 			#{haeseol},
 					 			#{problem_text},
