@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 
 <style>
+
 	#tdelete, #tdelete1 {
 		display : block;
 		margin : 0 auto;
@@ -237,9 +238,25 @@
 	
 </script>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+
+
 #member_job
 {
 padding: 10px;
+}
+
+#MemberDeletefont p
+{
+
+}
+
+#MemberDeleteFont2 span
+{
+
 }
 </style>
 </head>
@@ -518,11 +535,11 @@ padding: 10px;
 			<form name="memDeleteFrm" action="memberDelete.do" method="post">
 			
 			
-			<span class="more">
+			<span class="more" id="MemberDeleteFont2">
 				<span class="blind" style="font-size: 20px; font-weight: bold;">회원 탈퇴</span><span><img id="open" src="/cbtPz/img/up-chevron.png" width="14" height="14" style="float: right;"></span>
 			</span>
 			
-			<div class="chevron">
+			<div class="chevron" id="MemberDeletefont">
 			<br>
 			<p><b>회원 탈퇴 유의사항</b></p>
 			<p>1. 회원 탈퇴 시 회원님의 개인 정보와 문제 이용 내역이 파기됩니다.</p>
