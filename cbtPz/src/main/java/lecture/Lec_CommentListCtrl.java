@@ -21,14 +21,17 @@ public class Lec_CommentListCtrl implements Controller {
 		// TODO Auto-generated method stub
 		
 		String lecture_id = request.getParameter("lecture_id");
+		System.out.println("lecture_id :"+lecture_id);
 		Lec_CommentsVO lec_commentsVO = new Lec_CommentsVO();
 		ArrayList<Lec_CommentsVO> lec_commentsList = new ArrayList<Lec_CommentsVO>();
 		
 		lec_commentsVO.setLecture_id(lecture_id);
+		
 		lec_commentsList = Lec_CommentsDAO.getInstance().selectAll(lec_commentsVO);
+		System.out.println("lec_commentsList : " + lec_commentsList);
 		
 		String result = JSONArray.fromObject(lec_commentsList).toString();
-		System.out.println(result);
+		System.out.println("제이슨 스트링"+result);
 		response.getWriter().print(result);
 		
 

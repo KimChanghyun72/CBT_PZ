@@ -28,6 +28,7 @@
     <link rel="icon" href="${pageContext.request.contextPath}/img/core-img/favicon.ico">
     <!-- Stylesheet -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">
+    
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
     <!-- Favicon -->
@@ -47,6 +48,7 @@
     
     <!-- hashSelect.jsp 사용. -->
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	
     <script type="text/javascript" src="${pageContext.request.contextPath}/study/fancymetags.jQuery.js"></script>
     
     <!-- studyPaper datatable link -->
@@ -124,8 +126,8 @@
                                 <li><a href="${pageContext.request.contextPath}/board/noticeList.do">공지사항</a></li>
                                 <li><a href="${pageContext.request.contextPath}/study/studymain.jsp">학습하기</a>
                                     <ul class="dropdown">
-                                        <li><a href="${pageContext.request.contextPath}/study/haederSearch.do?paper_type_cd=기출">기출문제</a></li>
-                                        <li><a href="${pageContext.request.contextPath}/study/haederSearch.do?paper_type_cd=모의">모의고사</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/study/haederSearch.do?paper_type_cd=a1">기출문제</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/study/haederSearch.do?paper_type_cd=a2">모의고사</a></li>
                                         <li><a href="${pageContext.request.contextPath}/study/subjectSearch.do">과목별</a></li>
                                         <li><a href="${pageContext.request.contextPath}/study/hashtagPage.do">태그별</a></li>
                                     </ul>
@@ -147,7 +149,7 @@
                                         </c:if>
                                         <c:if test="${not empty sessionScope.check && sessionScope.check == 'M'}">
 	                                        <li><a href="${pageContext.request.contextPath}/mypage/memLecture.do">나의 강의</a></li>
-	                                        <li><a href="${pageContext.request.contextPath}/mypage/myRetestList.do">오답노트</a></li>
+	                                        <li><a href="${pageContext.request.contextPath}/mypage/myRetestList.do">응시이력</a></li>
 	                                        <li><a href="${pageContext.request.contextPath}/mypage/myRetestStat.do">개인통계</a></li>
 	                                        <li><a href="${pageContext.request.contextPath}/mypage/myFavorite.do">즐겨찾기문제</a></li>
                                         </c:if>
@@ -155,7 +157,7 @@
                                         	<li><a href="${pageContext.request.contextPath}/mypage/insertLecForm.do">강의 등록</a></li>
                                         </c:if>
                                         
-                                        	<li><a href="${pageContext.request.contextPath}/mypage/myInput.do">작성글</a></li>
+                                        	<li><a href="${pageContext.request.contextPath}/mypage/myInput.do">나의 작성글</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="${pageContext.request.contextPath}/pay/payment.jsp">멤버쉽</a></li>
@@ -196,13 +198,42 @@
             </div>
         </div>
     </header>
-  
-	<div style=" width: 100%;
-    height: 240px; background-image: url(../img/1.png)" class="  d-flex align-items-center justify-content-center p-3" >
-
+	
+	<c:choose>
+		<c:when test="${sessionScope.pageName == '공지사항'}">
+	<div style=" width: 100%; height: 240px; background-image: url(../img/test1.jpg)" class="  d-flex align-items-center justify-content-center p-3" >
+        <h1 style="color:#00000">${sessionScope.pageName}</h1>
+    </div>   
+    </c:when>
+    <c:when test="${sessionScope.pageName == '자유게시판'}">
+    <div style=" width: 100%; height: 240px; background-image: url(../img/학생.jpg)" class="  d-flex align-items-center justify-content-center p-3" >
+        <h1 style="color:#00000">${sessionScope.pageName}</h1>
+    </div> 
+    </c:when>
+     <c:when test="${sessionScope.pageName == 'Q&A 게시판'}">
+    <div style=" width: 100%; height: 240px; background-image: url(../img/학생.jpg)" class="  d-flex align-items-center justify-content-center p-3" >
         <h1 style="color:#00000">${sessionScope.pageName}</h1>
     </div>
+    </c:when>
+    <c:when test="${sessionScope.pageName == '멤버쉽'}">
+    <div style=" width: 100%; height: 240px; background-image: url(../img/member.jpg)" class="  d-flex align-items-center justify-content-center p-3" >
+        <h1 style="color:#00000">${sessionScope.pageName}</h1>
+    </div>
+    </c:when>
+   
+   
+    <c:otherwise>
+    <div style=" width: 100%; height: 240px; background-image: url(../img/학습.jpg)" class="  d-flex align-items-center justify-content-center p-3" >
+        <h1 style="color:#00000">${sessionScope.pageName}</h1>
+    </div>
+    </c:otherwise>
+	</c:choose>
+
 	<div>
+	
+
+
+
 <decorator:body/>
    </div>
    <div class = "blank">

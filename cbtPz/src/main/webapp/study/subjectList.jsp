@@ -43,17 +43,16 @@ $(function(){
 		<col style="width:100px; " />
 	</colgroup>
 		<tr>
-		<th>문제 유형</th>
-		<th>&nbsp;&nbsp;&nbsp;</th>
+		<th bgcolor="lightblue" colspan="2"><h2>문제 유형</h2></th>
 		</tr>
-	<c:forEach var="i" begin="1" end="5">			
+	<c:forEach items="${subjectlist}" var="subjectlist">			
 	<input type="hidden"/>
-	<tr><td class="tagSub"><b>${i} 과목</b></td>
+	<tr><td class="tagSub"><b>${subjectlist.commoncode_name}</b></td>
 	<td>
 	<form action="${pageContext.request.contextPath}/problemSubject.do">
-		<input type="hidden" name="subject" value="${i}과목">
+		<input type="hidden" name="subject" value="${subjectlist.commoncode_id}">
 	</form>
-	<button name="btnSubmit" value="${i}과목" class="btn btn-sm btn-primary">풀기</button>
+	<button name="btnSubmit" value="${subjectlist.commoncode_id}" class="btn btn-sm btn-primary">풀기</button>
 	</td>
 	</tr>
 	<br>
@@ -62,17 +61,5 @@ $(function(){
 	</table>
 	</div>
 	</article>
-	
-	
-	
-	
-	<%-- <form action="${pageContext.request.contextPath}/problemSubject.do">	
-	1과목<button type="submit" name="subject" value="1과목">풀기</button><br>
-	2과목<button type="submit" name="subject" value="2과목">풀기</button><br>
-	3과목<button type="submit" name="subject" value="3과목">풀기</button><br>
-	4과목<button type="submit" name="subject" value="4과목">풀기</button><br>
-	5과목<button type="submit" name="subject" value="5과목">풀기</button><br>
-	</form>
-	<br> --%>
 </body>
 </html>

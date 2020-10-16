@@ -13,5 +13,6 @@ public class LearnVO {
 	private String lecture_subject;
 	private String lecture_image;
 	private String lecture_link;
-	
+	private String cnts;
+	private String lecture_on;
 }

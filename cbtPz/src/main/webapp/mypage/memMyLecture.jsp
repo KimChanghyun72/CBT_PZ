@@ -20,6 +20,16 @@
 	div.row2 {
 		text-align: center;
 	}
+	
+	h4{
+		display : inline;
+	}
+	
+	.single-popular-course .course-content .meta span {
+	    color: rgba(255, 255, 255, 1);
+	    font-size: 15px;
+	}
+	
 	</style>
     
     
@@ -29,16 +39,20 @@
 
 		$(".free").on("click", function(){
 			var div = $(this).parent().parent().parent().parent();
+			var learnCnt = $(".learnCnt").html();
+			
 			var cancelChk = confirm("수강을 취소하시겠습니까?");
 			if(cancelChk){
 				var lecture_id = $(this).prev().children().val();
 				function lecDel(){
-				$.ajax("${pageContext.request.contextPath}/ajax/deleteLecture.do",{
+				$.ajax("${pageContext.request.contextPath}/ajax/deleteMemLearn.do",{
 					dataType : "json",
 					data : {lecture_id : lecture_id},
 					success : function(data){
 						alert("수강이 취소되었습니다.");
 						div.remove();
+						learnCnt--;
+						$(".learnCnt").html(learnCnt);
 					}
 				
 				});
@@ -76,7 +90,7 @@
         <div class="container">
         
         <div class="row2">
-        <h4>수강한 총 강의 수는 ${fn:length(st_lecture_list)} 건 입니다.</h4>
+        <h4>수강한 총 강의 수는 </h4><h4 class="learnCnt">${fn:length(st_lecture_list)}</h4> <h4>건 입니다.</h4>
         </div>
         <br> <br>
         
@@ -89,8 +103,11 @@
                         	onerror="this.src='${pageContext.request.contextPath}/img/cottonbro.jpg'">
                         <!-- Course Content -->
                         <div class="course-content">
-                            <h4></h4>
+                            <h4>강의명 : ${lecture.lecture_name}</h4>
                             <div class="meta d-flex align-items-center">
+                            <c:if test="${lecture.lecture_on == 'N'}">
+                            	<span class="badge badge-danger">폐강</span>
+                            </c:if>
                                 <a>멤버십 만료일 : ${sessionScope.login.pay_enddate}</a>
                                 <span><i class="fa fa-circle" aria-hidden="true"></i></span>
                             </div>
@@ -98,11 +115,17 @@
                         </div>
                         <!-- Seat Rating Fee -->
                         <div class="seat-rating-fee d-flex justify-content-between">
+                        	 <div class="seat-rating h-100 d-flex align-items-center">
+                        		<div class="seat">
+                                	<i class="fa fa-user" aria-hidden="true"></i> 수강인원 : ${lecture.cnts} 명
+                            	</div>
+                            </div>
+
                             <div class="course-fee h-100">
                             	<form id="lecDel">
-                            		<input type="hidden" name="lecture_id" value="${lecture.lecture_id}">
+                            		<input type="hidden" name="lecture_id" value="${lecture.lecture_id}" >
                                 </form>
-                                	<a class="free">수강취소</a>
+                                	<a class="free">수강취소</a> 
                             </div>
                         </div>
                     </div>

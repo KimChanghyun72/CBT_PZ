@@ -156,10 +156,12 @@ public class ProblemDAO {
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = "SELECT A.* FROM(SELECT B.*, ROWNUM RM FROM ( "
-						+ "SELECT member_id, SOLVE_ID, SOLVE_DATE, SOLVE_TIME, SOLVE_TYPE_CD, SOLVE_SCORE, SOLVE_CNT "  
-						+" FROM SOLVE "  
-						+" WHERE MEMBER_ID = ? "
-						+" ORDER BY SOLVE_DATE DESC "
+						+ "SELECT member_id, SOLVE_ID, SOLVE_DATE, SOLVE_TIME, SOLVE_TYPE_CD, " 
+					    + " SOLVE_TYPE_CHANGE(SOLVE_TYPE_CD) as SOLVE_TYPE_NAME, " 
+						+ " SOLVE_SCORE, SOLVE_CNT, SOLVE_SUBMIT " 
+						+ " FROM SOLVE s " 
+						+ " where MEMBER_ID = ? " 
+						+ " ORDER BY SOLVE_DATE DESC "
 						+" ) B) A WHERE RM BETWEEN ? AND ? ";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, solveVO.getMember_id()); // member_id를 기준으로  문제 출력
@@ -174,8 +176,10 @@ public class ProblemDAO {
 				resultVO.setSolve_date(rs.getString("solve_date"));
 				resultVO.setSolve_time(rs.getString("solve_time"));
 				resultVO.setSolve_type_cd(rs.getString("solve_type_cd"));
+				resultVO.setSolve_type_name(rs.getString("solve_type_name"));
 				resultVO.setSolve_score(rs.getString("solve_score"));
 				resultVO.setSolve_cnt(rs.getString("solve_cnt"));
+				resultVO.setSolve_submit(rs.getString("solve_submit"));
 				list.add(resultVO);
 			}
 		} catch (Exception e) {

@@ -101,11 +101,19 @@
 	 background-image: url(&quot;./img/re_o.gif&quot;);
 }
 
+.astyle { 
+	text-decoration: none; box-shadow: 0 -18px rgba(255, 0, 0, 0.3) inset;
+}
+#fa { 
+	text-decoration: none; 
+	border: rgba(75, 112, 253, 0.3) solid; 
+	border-width: 0 0 6px 0; 
+}
 
 .checkbox-wrap { cursor: pointer; }
-.checkbox-wrap .check-icon  { display: inline-block; width: 20px; height: 18px; background: url(../img/fav0.svg) left center no-repeat; vertical-align: middle; transition-duration: .4s; }
+.checkbox-wrap .check-icon  { display: inline-block; width: 20px; height: 18px; background: url(../img/fav0.png) left center no-repeat; vertical-align: middle; transition-duration: .4s; }
 .checkbox-wrap input[type=checkbox] { display: none; }
-.checkbox-wrap input[type=checkbox]:checked + .check-icon { background-image: url(../img/fav1.svg);}
+.checkbox-wrap input[type=checkbox]:checked + .check-icon { background-image: url(../img/fav1.png);}
  
  
 </style>
@@ -189,22 +197,27 @@ $(function(){ //for문은 번호를 설정해주는 역할만 하고 이벤트�
 					$(".haeseol"+i).html(datas[i].haeseol); //헤설 출력
 					if(datas[i].ans_correct == $('input[name=problem'+i+']:checked').val()){
 						$('input[name=problem'+i+']').closest("td").prev()
-								.append('<div id="ques_ox1"><img src="../img/o1.png" style="width:300x; height:70px;"></div>');
+								/*.append('<div id="ques_ox1"><img src="../img/o1.png" style="width:300x; height:70px;"></div>');*/
+								
 						
 					}else{
 						$('input[name=problem'+i+']').closest("td").prev()
-								.append('<div id="ques_ox1"><img src="../img/x1.png" style="width:50px; height:35px;"></div>');
-						
+								/*.append('<div id="ques_ox1"><img src="../img/x1.png" style="width:50px; height:35px;"></div>');*/
+						/*$('input[name=problem'+i+']').eq(i).div()
+						<div style="color:white; background-color:red;">
+						*/
 					}
 				};
 			}
 		})
 	}
+	submitFunc();//정답, ox 불러오는 함수 실행.
 
+	$(document).on("change", "#foo-table", submitFunc());
+	
 	 $(function(){
 		$("#foo-table").DataTable();
-	}); 
-	submitFunc();//정답, ox 불러오는 함수 실행.
+	});  
 });
 
 </script>
@@ -227,31 +240,31 @@ $(document).ready(function(){
 </head>
 <body>
 	<div class="header">
-		<h1>${sessionScope.pageName} ${problemList[0].solve_type_cd} </h1>
+		<h1>${problemList[0].solve_type_name} </h1>
 		<h4>${problemList[0].solve_score}/${problemList[0].solve_cnt}</h4>
 			<div id="ViewTimer"></div>
 	</div>
 <div class="leftcolumn">
+<div>&emsp;&emsp;<a id="fa"><img src="../img/fav0.png">클릭시 즐겨찾기 추가</a></div><br><br>		
 	<form id="testResult" name="testResult" action="ScoreInsert.do">
 <table id="foo-table" class="table table-bordered">
-		
 		<thead>
 			<tr><th width="8%">&nbsp;&nbsp;과목&nbsp;&nbsp;</th><th width="10%">번호</th><th>문제</th></tr>
 		</thead>
 		<tbody>
 		<% for(probNum=0; probNum<problemList.size(); probNum++){ %>
 			<tr>
-				<td><%=problemList.get(probNum).get("subject") %>
+				<td><%=problemList.get(probNum).get("subject_name") %>
 				<td class="probNum<%=probNum %>">
 					<%=probNum+1 %>번
 					<br>
 					<%if(problemList.get(probNum).get("is_correct").equals("1")){ %>
-						
+						<div id="ques_ox1"><img src="../img/o1.png" style="width:300x; height:70px;"></div>
 						<br>
 					<% }else{ %>
-						
+	 					<div id="ques_ox1"><img src="../img/x1.png" style="width:50px; height:35px;"></div>
 						<br>
-						정답 : <%=problemList.get(probNum).get("ans_correct") %>번
+						
 					<%} %>
 				</td>
 				<td>
@@ -270,31 +283,35 @@ $(document).ready(function(){
 					<input type="hidden" id="paper_id" value="<%=problemList.get(probNum).get("paper_id") %>">
 					<input type="hidden" id="pro_id" value="<%=problemList.get(probNum).get("problem_id") %>">
 					<% if(problemList.get(probNum).get("check_num").equals("1")) {%>
-						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="1" checked><%=problemList.get(probNum).get("ans_1") %></div>
-						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="2"><%=problemList.get(probNum).get("ans_2") %></div>
-						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="3"><%=problemList.get(probNum).get("ans_3") %></div>
-						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="4"><%=problemList.get(probNum).get("ans_4") %></div>
+						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="1" checked><a><%=problemList.get(probNum).get("ans_1") %></a></div>
+						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="2"><a><%=problemList.get(probNum).get("ans_2") %></a></div>
+						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="3"><a><%=problemList.get(probNum).get("ans_3") %></a></div>
+						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="4"><a><%=problemList.get(probNum).get("ans_4") %></a></div>
 						<%}else if(problemList.get(probNum).get("check_num").equals("2")) { %>
-						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="1"><%=problemList.get(probNum).get("ans_1") %></div>
-						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="2" checked><%=problemList.get(probNum).get("ans_2") %></div>
-						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="3"><%=problemList.get(probNum).get("ans_3") %></div>
-						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="4"><%=problemList.get(probNum).get("ans_4") %></div>
+						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="1"><a><%=problemList.get(probNum).get("ans_1") %></a></div>
+						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="2" checked><a><%=problemList.get(probNum).get("ans_2") %></a></div>
+						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="3"><a><%=problemList.get(probNum).get("ans_3") %></a></div>
+						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="4"><a><%=problemList.get(probNum).get("ans_4") %></a></div>
 						<%}else if(problemList.get(probNum).get("check_num").equals("3")) { %>
-						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="1"><%=problemList.get(probNum).get("ans_1") %></div>
-						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="2"><%=problemList.get(probNum).get("ans_2") %></div>
-						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="3" checked><%=problemList.get(probNum).get("ans_3") %></div>
-						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="4"><%=problemList.get(probNum).get("ans_4") %></div>
+						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="1"><a><%=problemList.get(probNum).get("ans_1") %></a></div>
+						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="2"><a><%=problemList.get(probNum).get("ans_2") %></a></div>
+						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="3" checked><a><%=problemList.get(probNum).get("ans_3") %></a></div>
+						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="4"><a><%=problemList.get(probNum).get("ans_4") %></a></div>
 						<%}else if(problemList.get(probNum).get("check_num").equals("4")){ %>
-						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="1"><%=problemList.get(probNum).get("ans_1") %></div>
-						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="2"><%=problemList.get(probNum).get("ans_2") %></div>
-						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="3"><%=problemList.get(probNum).get("ans_3") %></div>
-						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="4" checked><%=problemList.get(probNum).get("ans_4") %></div>
+						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="1"><a><%=problemList.get(probNum).get("ans_1") %></a></div>
+						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="2"><a><%=problemList.get(probNum).get("ans_2") %></a></div>
+						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="3"><a><%=problemList.get(probNum).get("ans_3") %></a></div>
+						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="4" checked><a><%=problemList.get(probNum).get("ans_4") %></a></div>
 						<% }else {%>
-						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="1"><%=problemList.get(probNum).get("ans_1") %></div>
-						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="2"><%=problemList.get(probNum).get("ans_2") %></div>
-						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="3"><%=problemList.get(probNum).get("ans_3") %></div>
-						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="4"><%=problemList.get(probNum).get("ans_4") %></div>
+						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="1"><a><%=problemList.get(probNum).get("ans_1") %></a></div>
+						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="2"><a><%=problemList.get(probNum).get("ans_2") %></a></div>
+						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="3"><a><%=problemList.get(probNum).get("ans_3") %></a></div>
+						<div><input type="radio" id="checknum" name="problem<%=probNum%>" value="4"><a><%=problemList.get(probNum).get("ans_4") %></a></div>
 						<%} %>
+						<script>
+						//정답일 경우 class를 추가해줘서 정답표시
+						$('[name=problem<%=probNum%>][value=<%=problemList.get(probNum).get("ans_correct")%>]').next().addClass("astyle")
+						</script>
 					<input type="hidden" name="is_correct<%=probNum%>">
 					<div class="haeseol<%=probNum %>"></div>
 				</td>

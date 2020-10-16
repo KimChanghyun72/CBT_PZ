@@ -1,5 +1,6 @@
 package model;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -155,22 +156,35 @@ public class MemberDAO {
 	
 	
 	
+	/*
+	 * public int delete(MemberVo memberVo) { int r=0; try { conn =
+	 * ConnectionManager.getConnnect(); String sql =
+	 * "DELETE MEMBER WHERE MEMBER_ID=?"; pstmt = conn.prepareStatement(sql);
+	 * pstmt.setString(1, memberVo.getMember_id()); r = pstmt.executeUpdate();
+	 * System.out.println(r + "건이 수정됨"); } catch (Exception e) {
+	 * e.printStackTrace(); } finally { ConnectionManager.close(null, pstmt, conn);
+	 * } return r; } //삭제
+	 */	
+	
+	//멤버 탈퇴
 	public int delete(MemberVo memberVo) {
 		int r=0;
+		CallableStatement cstmt = null;
+		conn = ConnectionManager.getConnnect();
 		try {
-			conn = ConnectionManager.getConnnect();
-			String sql = "DELETE MEMBER WHERE MEMBER_ID=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, memberVo.getMember_id());
-			r = pstmt.executeUpdate();
-			System.out.println(r + "건이 수정됨");
+			cstmt = conn.prepareCall("{call mem_delete(?)}");
+			cstmt.setString(1, memberVo.getMember_id());
+			r = cstmt.executeUpdate();
+			System.out.println(r + "건이 삭제됨");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			ConnectionManager.close(null, pstmt, conn);
 		}
 		return r;
-	} //삭제
+	}
+	
+	
 	
 	
 
@@ -377,4 +391,28 @@ public class MemberDAO {
 			}
 			return list;
 		}
+		
+		
+		// 새 비밀번호 발급
+		public int UpdatePwOne(MemberVo memberVo) {
+			int r=0;
+			MemberVo resultVo = null;
+			ResultSet rs = null;
+			try {
+				conn = ConnectionManager.getConnnect();
+				String sql = "UPDATE MEMBER SET MEMBER_PW = 'v3FeG`Yw' "
+							+ " WHERE MEMBER_ID = ?";
+				pstmt = conn.prepareStatement(sql);
+			/*	pstmt.setString(1, memberVo.getMember_pw());*/
+				pstmt.setString(1, memberVo.getMember_id());
+				r = pstmt.executeUpdate(); // 이때는 executeUpdate()에 sql안들어감.
+				System.out.println(r + "건이 수정됨");
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				ConnectionManager.close(conn);
+			}
+			return r;
+		}
+		
 }

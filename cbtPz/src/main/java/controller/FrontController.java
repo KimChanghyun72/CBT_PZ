@@ -54,11 +54,11 @@ public class FrontController extends HttpServlet {
     	//list.put("/memberPayUpdate.do", new member.MemberUpdateController());
     	list.put("/ajax/probScoringCtrl.do", new study.ProbScoringCtrl());
     	list.put("/payInsertCtrl.do", new pay.PayInsertCtrl());
-    	list.put("/ajax/deleteLecture.do", new member.MemLectureDeleteCtrl());
+    	list.put("/ajax/deleteMemLearn.do", new member.MemLearnDeleteCtrl());
     	list.put("/lecture/lectureDetailSelect.do", new lecture.LectureDetailCtrl());
     	list.put("/ajax/lec_commentList.do", new lecture.Lec_CommentListCtrl());
-    	
-    	
+    	list.put("/ajax/lec_commentDelete.do", new lecture.Lec_CommentDelCtrl());
+    	list.put("/ajax/lec_commentInsert.do", new lecture.Lec_CommentInsertCtrl());
     	
     	
     	
@@ -82,29 +82,32 @@ public class FrontController extends HttpServlet {
     	
     	
     	
-    	list.put("/ajax/myFavoriteInsert.do", new retest.MyFavoriteInsertCtrl());		// 즐겨찾기 등록		
-    	list.put("/ajax/myFavoriteDelete.do", new retest.MyFavoriteDeleteCtrl());		// 즐겨찾기 해제	
-    	list.put("/mypage/myFavorite.do", new retest.MyFavoriteCtrl());					// 즐겨찾기 문제 출력
-    	list.put("/mypage/myRetestList.do", new retest.MyRetestCtrl());					// 오답노트 응시리스트 출력
-    	list.put("/mypage/myRetestSelect.do",new retest.MyRetestSelect());				// 오답노트 재응시 문제조회
-    	list.put("/mypage/myRetest.do",new retest.MyRetestInsert());					// 오답노트 재응시
+    	
     	
     	
     	
     	
     	
     	//양수동
-    	list.put("/study/haederSearch.do", new study.HeaderSelectCtrl());
-    	list.put("/study/problemHead.do", new study.ProblemHeadCtrl());
-    	list.put("/problemSubject.do", new study.ProblemSubCtrl());
-    	list.put("/study/subjectSearch.do", new study.SubjectSelectCtrl());
-    	list.put("/study/hashtagPage.do", new study.HashPageCtrl());
-    	list.put("/hashtagSelect.do", new study.HashSelectCtrl());
-    	list.put("/ajax/hashtagAutoSearch.do", new study.HashAutoSearchCtrl());
+    	list.put("/ajax/myFavoriteInsert.do", new retest.MyFavoriteInsertCtrl());		// 즐겨찾기 등록		
+    	list.put("/ajax/myFavoriteDelete.do", new retest.MyFavoriteDeleteCtrl());		// 즐겨찾기 해제	
+    	list.put("/mypage/myFavorite.do", new retest.MyFavoriteCtrl());					// 즐겨찾기 문제 출력
+    	list.put("/mypage/myRetestList.do", new retest.MyRetestCtrl());					// 오답노트 응시리스트 출력
+    	list.put("/my/myRetestSelect.do",new retest.MyRetestSelect());					// 오답노트 재응시 문제조회
+    	list.put("/my/myRetest.do",new retest.MyRetestInsert());						// 오답노트 재응시
     	
-    	list.put("/ajax/paperUpdate.do", new study.PaperUpdateCtrl());
-    	list.put("/study/problemView.do", new study.ProblemViewCtrl());
     	
+    	list.put("/study/haederSearch.do", new study.HeaderSelectCtrl());				// 기출/모의 리스트 출력
+    	list.put("/study/problemHead.do", new study.ProblemHeadCtrl());					// 기출/모의 문제등록
+    	list.put("/study/subjectSearch.do", new study.SubjectSelectCtrl());				// 과목 리스트 출력
+    	list.put("/problemSubject.do", new study.ProblemSubCtrl());						// 과목 문제등록
+    	list.put("/study/hashtagPage.do", new study.HashPageCtrl());					// 해시태그 검색페이지 이동
+    	list.put("/hashtagSelect.do", new study.HashSelectCtrl());						// 해시태그 문제출력
+    	list.put("/ajax/hashtagAutoSearch.do", new study.HashAutoSearchCtrl());			// 해시태그 페이지 검색창자동완성기능 
+    	
+    	list.put("/ajax/paperUpdate.do", new study.PaperUpdateCtrl());					// 실시간 체크 정답 업데이트
+    	list.put("/study/problemView.do", new study.ProblemViewCtrl());					// 모든 문제 출력 
+    	list.put("/ajax/timeUpdate.do", new study.SolveTimeUpdateCtrl());				// 실시간 응시시간 업데이트
     	
     	
     	
@@ -168,7 +171,7 @@ public class FrontController extends HttpServlet {
     	list.put("/ajax/myRetestStatBarChart.do", new member.myRetestStatBarChartCtrl()); // 개인통계-바차트
     	list.put("/ajax/myRetestStatPieChart.do", new member.myRetestStatPieChartCtrl()); // 개인통계-파이차트
     	
-    	//list.put("/ajax/fullCalendar.do", new member.FullCalendarCtrl()); //풀캘린더실험용
+    	list.put("/nostms/payDatePopup.do", new member.payDatePopupCtrl()); //만료날짜
     	list.put("/mainCtrl.do", new common.MainCtrl()); // main.jsp 구동하는 서블릿 (indexx.jsp)
 	}
 

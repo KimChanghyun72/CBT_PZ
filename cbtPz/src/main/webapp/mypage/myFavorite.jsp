@@ -9,9 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
-	<h1>test/ 즐겨찾기 문제 페이지</h1>
-	<br><br>
+	<br><br><br><br>
 	<div class="container">
 		<form>
 			<div class="table-responsive">
@@ -22,7 +20,7 @@
 					</tr>			
 					<c:forEach items="${problemList}" var="favorite">
 					<tr>
-						<td>${favorite.subject}</td>
+						<td align="center">${favorite.subject_name}</td>
 						<td><h5>${favorite.problem_text}</h5>
 							${favorite.ans_1}<br>
 							${favorite.ans_2}<br>

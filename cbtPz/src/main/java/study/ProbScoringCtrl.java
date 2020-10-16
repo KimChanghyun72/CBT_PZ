@@ -45,12 +45,12 @@ public class ProbScoringCtrl implements Controller {
 			ansList.add(i, ans);
 			}
 		//채점 후 시간,결과 업데이트
-		String a, b;
+		String sid, time;
 			
-		a = request.getParameter("solve_id");
-		b = request.getParameter("testTime");
+		sid = request.getParameter("solve_id");
+		time = request.getParameter("testTime");
 		
-		SolveDAO.getInstance().UpateSolve(a, b);
+		SolveDAO.getInstance().UpateSolve(sid, time);
 		
 		String result = JSONArray.fromObject(ansList).toString();
 		response.getWriter().print(result);

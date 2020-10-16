@@ -31,7 +31,8 @@ public class PaperHeadDAO {
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = "SELECT p.paper_id, NVL(p.is_correct,0) as is_correct, NVL(p.check_num,0) as check_num, p.PROBLEM_ID, s.solve_type_cd, SUBJECT, HAESEOL, PROBLEM_TEXT, ANS_1, ANS_2, ANS_3, " 
-						+ " ANS_4, ANS_CORRECT, PAPERHEAD_ID, PROBLEM_IMAGE, p.solve_id, p.paper_id, s.solve_score, s.solve_cnt,"
+						+ " ANS_4, ANS_CORRECT, PAPERHEAD_ID, PROBLEM_IMAGE, p.solve_id, p.paper_id, s.solve_score, s.solve_cnt, s.solve_time, "
+						+ " SOLVE_TYPE_CHANGE(SOLVE_TYPE_CD) as SOLVE_TYPE_NAME,subject_name(subject),"
 						+ " NVL((select 1 from favorite where member_id = s.member_id and problem_id = b.problem_id),0) as fav "  
 					    + " FROM paper p, PROBLEM b, SOLVE s " 
 					    + " where p.problem_id = b.problem_id "  
@@ -43,7 +44,6 @@ public class PaperHeadDAO {
 			pstmt.setString(1,searchVO.getSolve_id());
 			
 			rs = pstmt.executeQuery();
-			System.out.println(rs);
 			while(rs.next()) {
 				Map<String,Object> map = new HashMap<String,Object>();
 				map.put("paper_id", rs.getString(1));
@@ -65,7 +65,10 @@ public class PaperHeadDAO {
 				map.put("paper_id", rs.getString(17));
 				map.put("solve_score", rs.getString(18));
 				map.put("solve_cnt", rs.getString(19));
-				map.put("fav", rs.getInt(20));
+				map.put("solve_time", rs.getString(20));
+				map.put("solve_type_name", rs.getString(21));
+				map.put("subject_name", rs.getString(22));
+				map.put("fav", rs.getInt(23));
 				list.add(map);
 			}
 			
@@ -74,7 +77,6 @@ public class PaperHeadDAO {
 		} finally {
 			ConnectionManager.close(rs, pstmt, conn);
 		}
-		System.out.println(list);
 		return list;
 	}
 	
@@ -145,6 +147,37 @@ public class PaperHeadDAO {
 		
 		try {
 			conn = ConnectionManager.getConnnect();
+			String sql = "SELECT PAPERHEAD_ID, PAPER_TYPE_CD, PAPER_ROUND, COMMONCODE_NAME "
+						+ " FROM PAPERHEAD p, commoncode c"
+						+ " WHERE p.PAPER_TYPE_CD = c.COMMONCODE_ID "
+						+ " and PAPER_TYPE_CD = ? "
+						+ " ORDER BY PAPER_ROUND";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, paperheadVO.getPaper_type_cd());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				PaperheadVO resultVO = new PaperheadVO();
+				resultVO.setPaperhead_id(rs.getString("paperhead_id"));
+				resultVO.setPaper_type_cd(rs.getString("paper_type_cd"));
+				resultVO.setPaper_round(rs.getString("paper_round"));
+				resultVO.setCommoncode_name(rs.getString("commoncode_name"));
+				list.add(resultVO);
+			}			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}		
+		return list;
+	}
+		
+	
+	// 모의/기출 검색
+	public ArrayList<PaperheadVO> selectAll(PaperheadVO paperheadVO) {
+		ArrayList<PaperheadVO> list = new ArrayList<PaperheadVO>();
+		
+		try {
+			conn = ConnectionManager.getConnnect();
 			String sql = "SELECT PAPERHEAD_ID, PAPER_TYPE_CD, PAPER_ROUND "
 						+ " FROM PAPERHEAD "
 						+ " WHERE PAPER_TYPE_CD = ?";
@@ -165,27 +198,25 @@ public class PaperHeadDAO {
 		}		
 		return list;
 	}
-	
-	
-	
 		
 		
 		
-		
-	public ArrayList<PaperheadVO> selectAll(PaperheadVO paperHeadVO) {
-		ArrayList<PaperheadVO> list = new ArrayList<>();
-		PaperheadVO resultVO = null;
+	// 과목리스트 검색	
+	public ArrayList<CommoncodeVO> subjectList(CommoncodeVO commoncodeVO) {
+		ArrayList<CommoncodeVO> list = new ArrayList<>();
+		CommoncodeVO resultVO = null;
 		ResultSet rs = null;
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "SELECT PAPERHEAD_ID, PAPER_TYPE_CD, PAPER_ROUND" + " FROM MEMBER ORDER BY PAPERHEAD_ID";
+			String sql = "select commoncode_id, COMMONCODE_name " 
+					   +" from COMMONCODE " 
+					   +" where COMMONCODE_ID like 's%'";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				resultVO = new PaperheadVO();
-				resultVO.setPaperhead_id(rs.getString(1));
-				resultVO.setPaper_type_cd(rs.getString(2));
-				resultVO.setPaper_round(rs.getString(3));
+				resultVO = new CommoncodeVO();
+				resultVO.setCommoncode_id(rs.getString(1));
+				resultVO.setCommoncode_name(rs.getString(2));
 				list.add(resultVO);
 			}
 		} catch (Exception e) {

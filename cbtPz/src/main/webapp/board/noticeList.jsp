@@ -28,7 +28,7 @@
 						<tr align="center">
 							<th> </th>
 							<th>NO</th>
-							<th>글제목</th>
+							<th>제목</th>
 							<th>작성자</th>
 							<th>작성일</th>
 						</tr>				
@@ -47,7 +47,7 @@
 											<c:if test="${notice.isNew == '1' }">NEW</c:if>
 										</td>
 										<td>${notice.board_id}</td>
-									<td><a href="${pageContext.request.contextPath}/board/noticeSelect.do?board_id=${notice.board_id}">${notice.board_title}</a></td>
+									<td><a href="${pageContext.request.contextPath}/board/noticeSelect.do?board_id=${notice.board_id}"><img src="../img/사이렌.png">${notice.board_title}</a></td>
 										<td>${notice.member_id}</td>
 										<td>${notice.board_date}</td>
 									  </tr>

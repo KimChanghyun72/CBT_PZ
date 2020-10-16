@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>myRetestStat</title>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 <link rel="css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700">
@@ -62,8 +62,8 @@ p {
   content: "";
   position: absolute;
   display: block;
-  width: 120px;
-  height: 115px;
+  width: 175px;
+  height: 120px;
   left: 440px;
   top: 0;
   background: #FAFAFA;
@@ -110,9 +110,9 @@ p {
         	url :"${pageContext.request.contextPath}/ajax/myRetestStatBarChart.do",
         	dataType : "json",
         	success : function(datas){
-        		console.log(datas);
+        		//console.log(datas);
         		for(i=0; i<datas.length; i++){
-        			datatable.push([datas[i].solve_type_cd, parseInt(datas[i].avg),'color:'+color[i]]);
+        			datatable.push([datas[i].solve_type_name, parseInt(datas[i].avg),'color:'+color[i]]);
         		}
         	}
         });
@@ -179,9 +179,12 @@ p {
         	url :"${pageContext.request.contextPath}/ajax/myRetestStatLineChart.do",
         	dataType : "json",
         	success : function(datas){
-        		//console.log(datas);
+        		//console.log(datas.length);
         		for(i=0; i<datas.length; i++){
         			datatable.push([datas[i].day, parseInt(datas[i].avg1), parseInt(datas[i].avg2)]);
+        		}
+        		if(datas.length==0){
+        			datatable.push(['no data', 0, 0]);
         		}
         	}
         });
@@ -278,7 +281,7 @@ p {
       	url :"${pageContext.request.contextPath}/ajax/myRetestStatPieChart.do",
       	dataType : "json",
       	success : function(datas){
-      		console.log(datas);
+      		//console.log(datas);
       		for(i=0; i<datas.length; i++){
       			datatablepie.push([datas[i].hashtag_name, parseInt(datas[i].cnt)]);
       		}

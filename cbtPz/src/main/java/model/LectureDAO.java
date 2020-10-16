@@ -104,11 +104,15 @@ public class LectureDAO {
 			try {
 				conn = ConnectionManager.getConnnect();
 
-				String sql = "SELECT LECTURE_ID, teacher_id, LECTURE_NAME, LECTURE_INFO, LECTURE_LINK, LECTURE_IMAGE,"
-							+ " LECTURE_LEVEL, LECTURE_SUBJECT"
 
-						+ " FROM LECTURE WHERE teacher_id = ?"; // sql문 + 앞에 " " 공백
+				String sql = "SELECT lecture_on, lecture.LECTURE_ID, teacher_id, LECTURE_NAME, LECTURE_INFO, LECTURE_LINK, LECTURE_IMAGE,"
+						+ " LECTURE_LEVEL, LECTURE_SUBJECT, nvl(lec_cnt.cnts2,0) as cnts"
+					+ " FROM LECTURE, (select  lecture_id, count(learn_id)  as cnts2 from learn group by lecture_id) lec_cnt"
+					+ " WHERE lecture_on = 'Y'"
+					+ " and lecture.lecture_id = lec_cnt.lecture_id(+)"
+					+ " and teacher_id = ?"; // sql문 + 앞에 " " 공백
 
+	
 				pstmt = conn.prepareStatement(sql);
 				
 				pstmt.setString(1, lectureVO.getTeacher_id());
@@ -125,6 +129,10 @@ public class LectureDAO {
 					resultVO.setLecture_image(rs.getString("lecture_image"));
 					resultVO.setLecture_level(rs.getString("lecture_level"));
 					resultVO.setLecture_subject(rs.getString("lecture_subject"));
+					resultVO.setCnts(rs.getString("cnts"));
+
+					resultVO.setLecture_on(rs.getString("lecture_on"));
+
 					list.add(resultVO); //resultVo를 list에 담음
 				} 
 			} catch (Exception e) {
@@ -169,14 +177,12 @@ public class LectureDAO {
 	}
 */
 		
-		public int lectureDelete(LectureVO lectureVO) {
+		public int lectureDeleteB(LectureVO lectureVO) {
 			int r =0;
 			try {
 				conn = ConnectionManager.getConnnect();
 				
-				String sql = "delete from lecture " + 
-						" where teacher_id = ? "+ 
-						"and lecture_id = ? ";
+				String sql = "update lecture set lecture_link = null, lecture_on = 'N' where TEACHER_ID = ? and LECTURE_ID = ?"; 
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, lectureVO.getTeacher_id());
 				pstmt.setString(2, lectureVO.getLecture_id());		
@@ -193,7 +199,7 @@ public class LectureDAO {
 				ConnectionManager.close(conn);
 			}
 			return r;
-		} // 강사 강의 삭제
+		} // 강사 강의 삭제전처리 (완전삭제는 스케줄)
 		
 		
 		
@@ -264,11 +270,12 @@ public class LectureDAO {
 					} else {
 						where += ", 0 lecture_yn ";
 					}
-					String sql = "SELECT LECTURE_ID, LECTURE_NAME, LECTURE_INFO, LECTURE_LINK, LECTURE_IMAGE,"
-								+ " LECTURE_LEVEL, LECTURE_SUBJECT, teacher_name "
+					String sql = "SELECT LECTURE_ON, LECTURE.LECTURE_ID, LECTURE_NAME, LECTURE_INFO, LECTURE_LINK, LECTURE_IMAGE,"
+								+ " LECTURE_LEVEL, LECTURE_SUBJECT, teacher_name, nvl(lec_cnt.cnts2,0) as cnts "
 								+ where
-								+ " FROM LECTURE, teacher_member"
+								+ " FROM LECTURE, teacher_member, (select  lecture_id, count(learn_id) as cnts2 from learn group by lecture_id) lec_cnt"
 								+ " WHERE lecture.teacher_id = teacher_member.teacher_id"
+								+ " AND LECTURE.LECTURE_ID = LEC_CNT.LECTURE_ID(+)"
 								+ " ORDER BY LECTURE_ID"
 								+ "";
 					pstmt = conn.prepareStatement(sql);
@@ -287,6 +294,8 @@ public class LectureDAO {
 						resultVO.setLecture_level(rs.getString("lecture_level"));
 						resultVO.setLecture_subject(rs.getString("lecture_subject"));
 						resultVO.setLecture_yn(rs.getString("lecture_yn"));
+						resultVO.setLecture_on(rs.getString("lecture_on"));
+						resultVO.setCnts(rs.getString("cnts"));
 						list.add(resultVO); //resultVo를 list에 담음
 					} 
 				} catch (Exception e) {
@@ -315,11 +324,12 @@ public class LectureDAO {
 					} else {
 						where += ", 0 lecture_yn ";
 					}
-					String sql = "SELECT LECTURE_ID, LECTURE_NAME, LECTURE_INFO, LECTURE_LINK, LECTURE_IMAGE,"
-								+ " LECTURE_LEVEL, LECTURE_SUBJECT, teacher_name"
+					String sql = "SELECT LECTURE_ON, LECTURE.LECTURE_ID, LECTURE_NAME, LECTURE_INFO, LECTURE_LINK, LECTURE_IMAGE,"
+								+ " LECTURE_LEVEL, LECTURE_SUBJECT, teacher_name, nvl(lec_cnt.cnts2,0) as cnts"
 								+ where
-								+ " FROM LECTURE, teacher_member"
+								+ " FROM LECTURE, teacher_member, (select lecture_id, count(learn_id) as cnts2 from learn group by lecture_id) lec_cnt"
 								+ " WHERE lecture.teacher_id = teacher_member.teacher_id"
+								+ " AND lecture.lecture_id = lec_cnt.lecture_id(+)"
 								+ " AND LECTURE.LECTURE_SUBJECT = ?"
 								+ " ORDER BY LECTURE_NAME"; 
 					pstmt = conn.prepareStatement(sql);
@@ -341,6 +351,7 @@ public class LectureDAO {
 						resultVO.setLecture_level(rs.getString("lecture_level"));
 						resultVO.setLecture_subject(rs.getString("lecture_subject"));
 						resultVO.setLecture_yn(rs.getString("lecture_yn"));
+						resultVO.setCnts(rs.getString("cnts"));
 						list.add(resultVO);
 					} 
 				} catch (Exception e) {
