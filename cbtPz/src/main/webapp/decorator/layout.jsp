@@ -128,6 +128,8 @@
                                         </c:if>
                                         <c:if test="${not empty sessionScope.check && sessionScope.check == 'T'}">
 	                                        <li><a href="${pageContext.request.contextPath}/mypage/insertLecForm.do">강의 등록</a></li>
+	                                    </c:if>
+	                                    <c:if test="${not empty sessionScope.check && sessionScope.check == 'M'}">    
 	                                        <li><a href="${pageContext.request.contextPath}/mypage/myInput.do">나의 작성글</a></li>
                                         </c:if>
                                         <c:if test="${not empty sessionScope.check && sessionScope.check == 'M'}">
