@@ -15,4 +15,5 @@ public class LectureVO {
 	private String teacher_name;
 	private String lecture_yn;
 	private String member_id;
+	private String cnts;
 }

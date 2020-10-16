@@ -33,7 +33,7 @@
 			if(cancelChk){
 				var lecture_id = $(this).prev().children().val();
 				function lecDel(){
-				$.ajax("${pageContext.request.contextPath}/ajax/deleteLecture.do",{
+				$.ajax("${pageContext.request.contextPath}/ajax/deleteMemLearn.do",{
 					dataType : "json",
 					data : {lecture_id : lecture_id},
 					success : function(data){
@@ -98,11 +98,16 @@
                         </div>
                         <!-- Seat Rating Fee -->
                         <div class="seat-rating-fee d-flex justify-content-between">
+                        	 <div class="seat-rating h-100 d-flex align-items-center">
+                        		<div class="seat">
+                                	<i class="fa fa-user" aria-hidden="true"></i> 수강인원 : ${lecture.cnts} 명
+                            	</div>
+                            </div>
                             <div class="course-fee h-100">
                             	<form id="lecDel">
                             		<input type="hidden" name="lecture_id" value="${lecture.lecture_id}">
                                 </form>
-                                	<a class="free">수강취소</a>
+                                	<a class="free">수강취소</a> 
                             </div>
                         </div>
                     </div>

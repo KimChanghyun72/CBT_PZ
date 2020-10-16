@@ -54,11 +54,11 @@ public class FrontController extends HttpServlet {
     	//list.put("/memberPayUpdate.do", new member.MemberUpdateController());
     	list.put("/ajax/probScoringCtrl.do", new study.ProbScoringCtrl());
     	list.put("/payInsertCtrl.do", new pay.PayInsertCtrl());
-    	list.put("/ajax/deleteLecture.do", new member.MemLectureDeleteCtrl());
+    	list.put("/ajax/deleteMemLearn.do", new member.MemLearnDeleteCtrl());
     	list.put("/lecture/lectureDetailSelect.do", new lecture.LectureDetailCtrl());
     	list.put("/ajax/lec_commentList.do", new lecture.Lec_CommentListCtrl());
-    	
-    	
+    	list.put("/ajax/lec_commentDelete.do", new lecture.Lec_CommentDelCtrl());
+    	list.put("/ajax/lec_commentInsert.do", new lecture.Lec_CommentInsertCtrl());
     	
     	
     	

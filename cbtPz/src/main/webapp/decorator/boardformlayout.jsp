@@ -28,6 +28,7 @@
     <link rel="icon" href="${pageContext.request.contextPath}/img/core-img/favicon.ico">
     <!-- Stylesheet -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">
+    
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
     <!-- Favicon -->
@@ -48,6 +49,7 @@
     <!-- hashSelect.jsp 사용. -->
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	
     <script type="text/javascript" src="${pageContext.request.contextPath}/study/fancymetags.jQuery.js"></script>
     
     <!-- studyPaper datatable link -->
