@@ -202,7 +202,7 @@ $(function(){
 					}
 				};
 					alert("제출완료");
-					location.href="${pageContext.request.contextPath}/mypage/myRetestSelect.do?solve_id=" + solve_id; 
+					location.href="${pageContext.request.contextPath}/my/myRetestSelect.do?solve_id=" + solve_id; 
 			}	
 		})
 	}
@@ -265,7 +265,7 @@ $(document).ready(function(){
 </head>
 <body>
 	<div class="header">
-		<h1>${sessionScope.pageName} ${problemList[0].solve_type_cd} </h1>
+		<h1>${problemList[0].solve_type_name} </h1>
 			<div id="ViewTimer"></div>
 	</div>
 <div class="leftcolumn">

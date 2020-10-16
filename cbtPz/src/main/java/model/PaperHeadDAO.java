@@ -32,6 +32,7 @@ public class PaperHeadDAO {
 			conn = ConnectionManager.getConnnect();
 			String sql = "SELECT p.paper_id, NVL(p.is_correct,0) as is_correct, NVL(p.check_num,0) as check_num, p.PROBLEM_ID, s.solve_type_cd, SUBJECT, HAESEOL, PROBLEM_TEXT, ANS_1, ANS_2, ANS_3, " 
 						+ " ANS_4, ANS_CORRECT, PAPERHEAD_ID, PROBLEM_IMAGE, p.solve_id, p.paper_id, s.solve_score, s.solve_cnt, s.solve_time, "
+						+ " SOLVE_TYPE_CHANGE(SOLVE_TYPE_CD) as SOLVE_TYPE_NAME,"
 						+ " NVL((select 1 from favorite where member_id = s.member_id and problem_id = b.problem_id),0) as fav "  
 					    + " FROM paper p, PROBLEM b, SOLVE s " 
 					    + " where p.problem_id = b.problem_id "  
@@ -65,7 +66,8 @@ public class PaperHeadDAO {
 				map.put("solve_score", rs.getString(18));
 				map.put("solve_cnt", rs.getString(19));
 				map.put("solve_time", rs.getString(20));
-				map.put("fav", rs.getInt(21));
+				map.put("solve_type_name", rs.getString(21));
+				map.put("fav", rs.getInt(22));
 				list.add(map);
 			}
 			

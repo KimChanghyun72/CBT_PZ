@@ -21,11 +21,13 @@ public class MyRetestSelect implements Controller {
 		SearchVO searchVO = new SearchVO();
 			
 		String solve_id = request.getParameter("solve_id");
+		String solve_type_name = request.getParameter("solve_type_name");
 		
 		searchVO.setSolve_id(solve_id);
 		System.out.println(searchVO);
 		List<Map<String, Object>> selectproblem = PaperHeadDAO.getInstance().selectAllType(searchVO);
 		request.getSession().setAttribute("problemList", selectproblem);
+		request.getSession().setAttribute("pageName", solve_type_name);
 		request.getRequestDispatcher("/mypage/"+path).forward(request, response);
 	}
 

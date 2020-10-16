@@ -8,8 +8,8 @@
 		<pattern>/ajax/*</pattern>
 		<pattern>/nostms/*</pattern>
 		<pattern>/member/*</pattern>
-		<pattern>/mypage/myRetestSelect.do</pattern>
-		
+		<pattern>/my/myRetestSelect.do</pattern>
+		<pattern>/my/myRetest.do</pattern>
 		
 	</excludes>
 	
@@ -23,7 +23,7 @@
 		<pattern>/study/studymain.jsp</pattern>
 		<pattern>/study/haederSearch.do</pattern>
 		<pattern>/study/subjectSearch.do</pattern>
-		<pattern>/study/hashtagPage.do</pattern>
+		<pattern>/study/hashtagPage.do</pattern>		
 	</decorator>
 	
 	<decorator name="user" page="layout.jsp">
