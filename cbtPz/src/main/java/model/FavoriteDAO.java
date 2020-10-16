@@ -90,15 +90,8 @@ public class FavoriteDAO {
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql ="SELECT A.* FROM(SELECT B.*, ROWNUM RM FROM ( "
-						+ "select p.problem_id, subject,"
-						+ " (CASE "  
-						+"        WHEN SUBSTR(subject,2,1) = '1' then '1과목' "  
-						+"        WHEN SUBSTR(subject,2,1) = '2' then '2과목' "  
-						+"        WHEN SUBSTR(subject,2,1) = '3' then '3과목' "  
-						+"        WHEN SUBSTR(subject,2,1) = '4' then '4과목' "  
-						+"        WHEN SUBSTR(subject,2,1) = '5' then '5과목' "  
-						+"       END) as SUBJECT_NAME"
-						+ ", haeseol, problem_text, ans_1, ans_2, ans_3, ans_4, ans_correct, problem_image " 
+						+ " select p.problem_id, subject, subject_name(subject),"						
+						+ " haeseol, problem_text, ans_1, ans_2, ans_3, ans_4, ans_correct, problem_image " 
 						+ " from problem p, FAVORITE f " 
 						+ " where p.PROBLEM_ID = f.PROBLEM_ID " 
 						+ " and member_id = ?"

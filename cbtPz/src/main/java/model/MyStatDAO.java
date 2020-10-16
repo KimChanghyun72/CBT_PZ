@@ -26,8 +26,8 @@ public class MyStatDAO {
 		ArrayList<MyStatVO> list = new ArrayList<MyStatVO>();
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "select  day, sum(case when PAPER_TYPE_CD='기출' then nvl(round((score/cnt)*100,0), 0) else 0 end) as avg1, "
-						+ "sum(case when PAPER_TYPE_CD='모의' then nvl(round((score/cnt)*100,0), 0) else 0 end) as avg2 "
+			String sql = "select  day, sum(case when PAPER_TYPE_CD='a1' then nvl(round((score/cnt)*100,0), 0) else 0 end) as avg1, "
+						+ "sum(case when PAPER_TYPE_CD='a2' then nvl(round((score/cnt)*100,0), 0) else 0 end) as avg2 "
 						+ "from( "
 						+ "		select PAPERHEAD.PAPER_TYPE_CD PAPER_TYPE_CD, " 
 						+ "				to_char(SOLVE_DATE, 'yyyy-mm-dd') as day, " 
@@ -36,7 +36,7 @@ public class MyStatDAO {
 						+ "		from solve , PAPERHEAD " 
 						+ "		where PAPERHEAD.PAPERHEAD_ID = solve.SOLVE_TYPE_CD "
 						+ "		and solve.SOLVE_SUBMIT = 'Y' " 
-						+ "		and member_id = ? and PAPER_TYPE_CD in ('기출','모의') "
+						+ "		and member_id = ? and PAPER_TYPE_CD in ('a1','a2') "
 						+ "		AND solve.solve_date >= trunc(sysdate)-7 "
 						+ "		group by  PAPERHEAD.PAPER_TYPE_CD, to_char(SOLVE_DATE, 'yyyy-mm-dd') "
 						+ "		order by PAPERHEAD.PAPER_TYPE_CD, day) "
@@ -105,9 +105,10 @@ public class MyStatDAO {
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = "select solve_type_cd, round((score/cnt)*100,0) as avg "
-						+ "from (select solve_type_cd, sum(solve_score) as score, sum(solve_cnt) as cnt "
+						+ "from (select solve_type_cd, sum(solve_score) as score, sum(solve_cnt) as cnt, "
+						+ " SOLVE_TYPE_CHANGE(solve_type_cd) as SOLVE_TYPE_NAME "
 						+ "		from solve "
-						+ "		where member_id=? and solve_type_cd in ( '1과목', '2과목', '3과목', '4과목', '5과목') " 
+						+ "		where member_id=? and solve_type_cd in ( 's1', 's2', 's3', 's4', 's5') " 
 						+ "							and solve.SOLVE_SUBMIT = 'Y' "
 						+ "		group by SOLVE_TYPE_CD " 
 						+ "		order by SOLVE_TYPE_CD)";
@@ -118,9 +119,10 @@ public class MyStatDAO {
 				resultVo = new MyStatVO();
 				resultVo.setAvg(rs.getString("avg"));
 				resultVo.setSolve_type_cd(rs.getString("solve_type_cd"));
+				//resultVo.setSolve_type_name(rs.getString("solve_type_name"));
 				list.add(resultVo);
 			}
-			
+			System.out.println("resultVo:"+resultVo);
 		} catch(Exception e) {
 			e.printStackTrace();
 		} finally {
