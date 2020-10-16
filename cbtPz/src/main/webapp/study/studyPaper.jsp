@@ -278,7 +278,7 @@ $(document).ready(function(){
 		<tbody>
 		<% for(probNum=0; probNum<problemList.size(); probNum++){ %>				
 			<tr>
-				<td><%=problemList.get(probNum).get("subject") %>
+				<td><%=problemList.get(probNum).get("subject_name") %>
 				<td class="probNum<%=probNum %>"><%=probNum+1 %>번
 				</td>
 				<td>
