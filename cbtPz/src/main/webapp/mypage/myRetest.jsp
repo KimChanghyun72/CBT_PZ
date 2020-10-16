@@ -60,7 +60,6 @@ function btnContinueTest(solve_id) {
 </head> 
 <body>
 
-	<h1>test/ 오답문제 페이지</h1>
 	<br><br>	
 	<div class="container">
 			<div class="table-responsive">

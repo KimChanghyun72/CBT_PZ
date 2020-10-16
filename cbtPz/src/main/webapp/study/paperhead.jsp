@@ -40,7 +40,6 @@ var check = "${sessionScope.check}";
 		<th>풀기</th>
 		</tr>
 	<c:forEach items="${headlist}" var="headlist">			
-	<input type="hidden" ${headlist.paperhead_id} />
 	<tr><td>${headlist.commoncode_name} ${headlist.paper_round}</td>
 	<td>
 	
