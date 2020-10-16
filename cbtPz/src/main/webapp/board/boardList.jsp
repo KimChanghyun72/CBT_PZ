@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <meta charset="UTF-8">
 <title>boardList.jsp</title>
 <script>
@@ -37,7 +37,7 @@
 
 	<article>
 		<div class="container">
-			<div class="table-responsive">
+			<div class="table-responsive2">
 				<br> <br>
 				<table class="table table-striped table-sm">
 					<colgroup>

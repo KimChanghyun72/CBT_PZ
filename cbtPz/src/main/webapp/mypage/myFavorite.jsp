@@ -22,7 +22,7 @@
 					</tr>			
 					<c:forEach items="${problemList}" var="favorite">
 					<tr>
-						<td>${favorite.subject}</td>
+						<td>${favorite.subject_name}</td>
 						<td><h5>${favorite.problem_text}</h5>
 							${favorite.ans_1}<br>
 							${favorite.ans_2}<br>

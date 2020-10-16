@@ -80,6 +80,7 @@
 <meta charset="UTF-8">
 <title>결제 페이지</title>
 <script>
+<% request.getSession().setAttribute("pageName", "멤버쉽"); %>
 
 $(function(){
 	var term;

@@ -26,10 +26,8 @@ public class SubjectSelectCtrl implements Controller {
 		
 		//조회결과를 저장후에 결과페이지로 포워드
 		request.setAttribute("subjectlist", subjectlist);
-		
-		request.getSession().setAttribute("pageName", "과목별 학습하기");
+		request.getSession().setAttribute("pageName", "과목별 학습하기");		
 		request.getRequestDispatcher(path).forward(request, response);
-		/* request.getRequestDispatcher("/study/"+path).forward(request, response); */
 	}
 
 }
