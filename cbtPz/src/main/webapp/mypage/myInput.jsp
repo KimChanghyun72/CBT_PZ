@@ -9,6 +9,30 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+<script>
+function ckdel() {
+    var chk_obj = document.getElementsByName("chkDelete");
+    var chk_leng = chk_obj.length;
+    var checked = 0;
+    for (i=0; i < chk_leng; i++) {
+        if (chk_obj[i].checked == true) {
+            checked += 1;
+        }
+    }
+    if (checked < 1 ) {
+        alert("삭제할 게시물을 선택해주십시오.");
+        return;
+    }
+
+    if (confirm ("삭제하시겠습니까?")) {
+    	frm.submit();
+    	
+    }
+}
+      
+
+</script>
+
 </head>
 <body>
 	<%request.getSession().setAttribute("pageName","나의 작성글"); %>
@@ -16,7 +40,7 @@
 		<div class="container">
 			<div class="table-responsive">
 				<br> <br>
-				<form action="/cbtPz/mypage/myInputDel.do">
+				<form action="/cbtPz/mypage/myInputDel.do" name="frm">
 					<table class="table table-hover">
 						<thead>
 							<tr align="center">
@@ -57,7 +81,7 @@
 
 					</table>
 					<p align="right">
-					<button class="btn btn-sm btn-primary">삭제</button>
+					<button type="button" onclick="ckdel()" class="btn btn-sm btn-primary">삭제</button>
 					</p>
 				</form>
 
