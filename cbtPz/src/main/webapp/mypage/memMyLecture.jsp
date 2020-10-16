@@ -97,10 +97,10 @@
                             <p>${lecture.lecture_info}</p>
                         </div>
                         <!-- Seat Rating Fee -->
-                        <div class="seat-rating-fee d-flex justify-content-between">
+                        <div class="seat-rating-fee d-flex justify-content-between"style="margin:200px 0px 0px 0px;">
                             <div class="course-fee h-100">
                             	<form id="lecDel">
-                            		<input type="hidden" name="lecture_id" value="${lecture.lecture_id}">
+                            		<input type="hidden" name="lecture_id" value="${lecture.lecture_id}" >
                                 </form>
                                 	<a class="free">수강취소</a>
                             </div>

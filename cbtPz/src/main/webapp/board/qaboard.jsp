@@ -15,9 +15,12 @@ $(function(){
 			data:{qaboard_id : "${qaboard.qaboard_id}"},
 			success : function(datas){
 				for(i=0; i<datas.length; i++){
-					$("<div>").append($("<b>").append(datas[i].qaboard_ans))
+					if(datas[0].qaboard_ans != ""){
+						console.log(datas[0].qaboard_ans);
+					$("<div>").append($("<img src='../img/관리자.png'>")).append($("<b>").append(datas[i].qaboard_ans))
 							.data("qaboard_id", datas[i].qaboard_id)
 							.appendTo($("#list"))
+					}
 				}
 			}
 		
@@ -137,7 +140,7 @@ $(function(){
 	<h6 class="border-bottom pb-2 mb-0" align='center'><strong>관리자님 답변</strong></h6>
 	<div id="list">
 	
-	<img src="../img/관리자.png">
+	
 	</div>
 	
 	</div>

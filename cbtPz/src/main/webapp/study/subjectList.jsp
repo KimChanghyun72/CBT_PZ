@@ -46,14 +46,14 @@ $(function(){
 		<th>문제 유형</th>
 		<th>&nbsp;&nbsp;&nbsp;</th>
 		</tr>
-	<c:forEach var="i" begin="1" end="5">			
+	<c:forEach items="${subjectlist}" var="subjectlist">			
 	<input type="hidden"/>
-	<tr><td class="tagSub"><b>${i} 과목</b></td>
+	<tr><td class="tagSub"><b>${subjectlist.commoncode_name}</b></td>
 	<td>
 	<form action="${pageContext.request.contextPath}/problemSubject.do">
-		<input type="hidden" name="subject" value="${i}과목">
+		<input type="hidden" name="subject" value="${subjectlist.commoncode_id}">
 	</form>
-	<button name="btnSubmit" value="${i}과목" class="btn btn-sm btn-primary">풀기</button>
+	<button name="btnSubmit" value="${subjectlist.commoncode_id}" class="btn btn-sm btn-primary">풀기</button>
 	</td>
 	</tr>
 	<br>
