@@ -195,7 +195,9 @@ $(function(){ //for문은 번호를 설정해주는 역할만 하고 이벤트�
 					}else{
 						$('input[name=problem'+i+']').closest("td").prev()
 								.append('<div id="ques_ox1"><img src="../img/x1.png" style="width:50px; height:35px;"></div>');
-						$('input[name=problem'+i+']').eq(i).div
+						/*$('input[name=problem'+i+']').eq(i).div()
+						<div style="color:white; background-color:red;">
+						*/
 					}
 				};
 			}
@@ -242,7 +244,7 @@ $(document).ready(function(){
 		<tbody>
 		<% for(probNum=0; probNum<problemList.size(); probNum++){ %>
 			<tr>
-				<td><%=problemList.get(probNum).get("subject") %>
+				<td><%=problemList.get(probNum).get("subject_name") %>
 				<td class="probNum<%=probNum %>">
 					<%=probNum+1 %>번
 					<br>
