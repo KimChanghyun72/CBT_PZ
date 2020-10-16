@@ -158,7 +158,7 @@
                                         	<li><a href="${pageContext.request.contextPath}/mypage/insertLecForm.do">강의 등록</a></li>
                                         </c:if>
                                         
-                                        	<li><a href="${pageContext.request.contextPath}/mypage/myInput.do">작성글</a></li>
+                                        	<li><a href="${pageContext.request.contextPath}/mypage/myInput.do">나의 작성글</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="${pageContext.request.contextPath}/pay/payment.jsp">멤버쉽</a></li>
