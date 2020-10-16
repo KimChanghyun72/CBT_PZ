@@ -38,9 +38,13 @@ public class MemberDAO {
 		ArrayList<MemberVo> list = new ArrayList<MemberVo>();
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "SELECT MEMBER_ID, MEMBER_PW, MEMBER_NAME, MEMBER_AGE, MEMBER_JOB, STUDY_TERM, PHONE_NUMBER, IS_MAJOR, TESTED_NUM, IS_PAY, PAY_ENDDATE, email"
-						+ " FROM MEMBER "
-						+ " ORDER BY MEMBER_ID";
+			String sql = "SELECT MEMBER.MEMBER_ID, MEMBER.MEMBER_PW, MEMBER.MEMBER_NAME, MEMBER.MEMBER_AGE, MEMBER.MEMBER_JOB," 
+			            + " MEMBER.STUDY_TERM, MEMBER.PHONE_NUMBER, MEMBER.IS_MAJOR, MEMBER.TESTED_NUM, MEMBER.IS_PAY," 
+			            + " MEMBER.PAY_ENDDATE, MEMBER.EMAIL, MEMBER.MEMBER_ID, NVL(A.BOARD_CNT2,0) AS BOARD_CNT , NVL(B.SOLVE_CNT2,0) AS SOLVE_CNT"
+						+ " FROM MEMBER, (SELECT MEMBER_ID, COUNT(*) BOARD_CNT2 FROM BOARD GROUP BY MEMBER_ID) A," 
+			            + " (SELECT MEMBER_ID, COUNT(SOLVE_ID) SOLVE_CNT2 FROM SOLVE GROUP BY MEMBER_ID) B "
+						+ " WHERE MEMBER.MEMBER_ID = A.MEMBER_ID(+)"
+			            + " AND MEMBER.MEMBER_ID = B.MEMBER_ID(+)";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while(rs.next()) { //list니까 while문 사용
@@ -56,7 +60,9 @@ public class MemberDAO {
 				resultVo.setTested_num(rs.getString("tested_num"));
 				resultVo.setIs_pay(rs.getString("is_pay"));
 				resultVo.setPay_enddate(rs.getString("pay_enddate"));
-				resultVo.setPay_enddate(rs.getString("email"));
+				resultVo.setEmail(rs.getString("email"));
+				resultVo.setBoard_cnt(rs.getString("board_cnt"));
+				resultVo.setSolve_cnt(rs.getString("solve_cnt"));
 				list.add(resultVo); //resultVo를 list에 담음
 			} 
 		} catch (Exception e) {
