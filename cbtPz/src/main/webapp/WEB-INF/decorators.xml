@@ -20,6 +20,8 @@
 		<pattern>/admin/*</pattern>
 		<pattern>/memberList.do</pattern>
 		
+		<pattern>/lecture/lectureDetailSelect.do</pattern>
+		
 		<pattern>/study/studymain.jsp</pattern>
 		<pattern>/study/haederSearch.do</pattern>
 		<pattern>/study/subjectSearch.do</pattern>

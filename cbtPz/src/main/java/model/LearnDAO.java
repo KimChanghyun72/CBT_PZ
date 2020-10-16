@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import common.ConnectionManager;
 
@@ -19,6 +20,7 @@ public class LearnDAO {
 			instance = new LearnDAO();
 		return instance;
 	}
+	
 	
 	public int learnDelete(LearnVO learnVO) {
 		int r =0;
@@ -60,12 +62,14 @@ public class LearnDAO {
 			String sql = "SELECT" + 
 					" m.member_id," + 
 					"l.lecture_id, l.lecture_name, l.lecture_info, l.lecture_level, l.lecture_subject, l.lecture_image, l.lecture_link," + 
-					"n.learn_id" + 
+					"n.learn_id, lec_cnt.cnts" + 
 					" from learn n" + 
 					" INNER JOIN member m" + 
 					" ON n.member_id = m.member_id" + 
 					" INNER JOIN lecture l" + 
-					" ON n.lecture_id = l.lecture_id"
+					" ON n.lecture_id = l.lecture_id" +
+					" INNER JOIN (select  lecture_id, count(learn_id)  as cnts from learn group by lecture_id) lec_cnt" +
+					" ON lec_cnt.lecture_id = l.lecture_id"
 					+ " WHERE m.member_id = ?";
 			// 띄어쓰기 X -> 붙여쓰기가 됨.
 			pstmt = conn.prepareStatement(sql);
@@ -85,6 +89,7 @@ public class LearnDAO {
 				resultVO.setLecture_image(rs.getString("lecture_image"));
 				resultVO.setLecture_link(rs.getString("lecture_link"));
 				resultVO.setLearn_id(rs.getString("learn_id"));
+				resultVO.setCnts(rs.getString("cnts"));
 				list.add(resultVO); //resultVo를 list에 담음
 			} 
 		} catch (Exception e) {
