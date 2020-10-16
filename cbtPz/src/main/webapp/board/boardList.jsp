@@ -53,7 +53,7 @@
 						<tr align="center">
 							<th></th>
 							<th>NO</th>
-							<th>글제목</th>
+							<th>제목</th>
 							<th>작성자</th>
 							<th>조회수</th>
 							<th>작성일</th>
@@ -75,7 +75,7 @@
 							<td><img src="../img/1등.png"></td>
 							<td><a href="${pageContext.request.contextPath}/board/boardSelect.do?board_id=${best.board_id}"><strong>${best.board_title}</strong></a></td>
 							<td><strong>${best.board_id}</strong></td>
-							<td><strong>${best.board_views}</strong></td>
+							<td><strong style="color: Tomato;">${best.board_views}</strong></td>
 							<td>${best.board_date}</td>
 								<c:if test="${sessionScope.check=='A'}">
 											<td><input id="ck" name="ck" type="checkbox" value="${best.board_id}"></td>

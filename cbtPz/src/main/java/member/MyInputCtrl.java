@@ -19,8 +19,8 @@ public class MyInputCtrl implements Controller {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Parameter 추출
-		MemberVo member = (MemberVo) request.getSession().getAttribute("login");
-		String member_id = member.getMember_id();
+		//MemberVo member = (MemberVo) request.getSession().getAttribute("login");
+		String member_id = (String) request.getSession().getAttribute("loginId"); // 강사 회원, 일반 회원 모두 조회.
 		System.out.println(member_id);
 		// member_id를 기준으로 조회
 		
@@ -60,11 +60,11 @@ public class MyInputCtrl implements Controller {
 		
 		//페이지이름 할당
 		
-		request.getSession().setAttribute("pageName", "작성글");
+		request.getSession().setAttribute("pageName", "나의 작성글");
 		// page 이동
 		request.setAttribute("board_list", board);
 		request.setAttribute("paging", paging);
-		request.getSession().setAttribute("pageName", "작성글");
+		request.getSession().setAttribute("pageName", "나의 작성글");
 		HttpUtil.forward(request, response, "/mypage/myInput.jsp");
 		// request.getRequestDispatcher("/mypage/myInput.jsp").forward(request, response);
 	}

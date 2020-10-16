@@ -14,4 +14,5 @@ public class TeacherVO {
 	private String is_pay;
 	private String member_pw;
 	private String member_id;
+	private String pay_enddate;
 }

@@ -39,6 +39,9 @@
     margin-bottom: 30px !important;
 }
 
+/* [name=btnLink]{
+	display:none;
+} */
 </style>
 
 
@@ -86,7 +89,7 @@
 		
 		
 		
-		$('.blog-content button').on("click", function(){
+		$('.blog-content button[name=btnLearn]').on("click", function(){
 				var btn = $(this)
 				var lecid = $(this).next().val();
 				var lecname = $(this).next().next().val();
@@ -106,7 +109,11 @@
 							        success: function(data){
 							        	if(data == 1){
 							        		btn.text("수강중");
+							        		var link = btn.prev().val();
+							        		btn.parent().append('<a href='+link+'<button type="button" id="btn2" class="btn btn-outline-success" name=btnLink>강의 들으러 가기</button></a>');
+							        		
 							    			alert("수강되었습니다.");
+							    			
 							    		}else if(data == 0){
 							    			alert("이미 등록된 강의입니다.");
 							    		}
@@ -123,8 +130,6 @@
 				
 			
 		});
-		
-		
 		
 		
 	});
@@ -148,10 +153,7 @@
 	                        </div>
 	                      </c:forEach>
 
-						
-                       
                     </div>
-
 
 					<!-- Search Button -->
 					<div class="search-area" style="margin-bottom: 50px;">
@@ -179,9 +181,10 @@
 									data-title="${lecture_list.lecture_name }" data-desc="${lecture_list.lecture_info}">
 								</a>
 								 --%>
-							<form id="frm" action="${pageContext.request.contextPath}/lecture/lectureDetailSelect.do">
+							<%-- <form id="frm" action="${pageContext.request.contextPath}/lecture/lectureDetailSelect.do">
 	                        	<input type="text" name="lecture_id" value="${lecture_list.lecture_id}">
-	                        </form>
+	                        	<input type="text" name="lecture_link" value="${lecture_list.lecture_link}">
+	                        </form> --%>
 							<a href="${pageContext.request.contextPath}/lecture/lectureDetailSelect.do?lecture_id=${lecture_list.lecture_id}">
 	                        <img 
 	                        	src="lectureSelect.do?lecture_image=${lecture_list.lecture_image }"
@@ -204,15 +207,20 @@
 								</c:if>
 								<div class="meta d-flex align-items-center">
 									<span><i class="fa fa-circle" aria-hidden="true"></i></span>
-									<div>${lecture_list.teacher_name}</div>
+									<div>담당 강사 : ${lecture_list.teacher_name}</div>
 								</div>
 								<div class="meta d-flex align-items-center">
-									<p>${lecture_list.lecture_info}</p>
+									<span><i class="fa fa-circle" aria-hidden="true"></i></span>
+									<div>현재 ${lecture_list.cnts} 명이 수강중.</div>
+								</div>
+								<div class="meta d-flex align-items-center">
+									<p><a href="${pageContext.request.contextPath}/lecture/lectureDetailSelect.do?lecture_id=${lecture_list.lecture_id}"><button type="button" id="btn2" class="btn btn-outline-success">강의 상세 정보</button></a></p>
 								</div>
 
 								
+                           		<input type="hidden" name="lecture_link" value="${lecture_list.lecture_link}">
 								<c:if test="${sessionScope.login == null || sessionScope.check == 'M'}">
-									<button type="button" id="btn" class="btn btn-outline-success">
+									<button type="button" id="btn" class="btn btn-outline-success"  name="btnLearn">
 										<c:if test="${lecture_list.lecture_yn == 1}">             
 	                            						수강중
 	                           			 </c:if>
@@ -221,6 +229,9 @@
 	                           			 </c:if>
 									</button>
                            		</c:if>
+                           		<c:if test="${lecture_list.lecture_yn == 1}">
+                         				<a href="${lecture_list.lecture_link}"><button type="button" id="btn2" class="btn btn-outline-success" name="btnLink">강의 들으러 가기</button></a>
+                         		</c:if>
 								<input type="hidden" value="${lecture_list.lecture_id}">
 								<input type="hidden" value="${lecture_list.lecture_name}">
 
