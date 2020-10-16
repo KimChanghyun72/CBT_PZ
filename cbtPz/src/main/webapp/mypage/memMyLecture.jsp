@@ -24,6 +24,12 @@
 	h4{
 		display : inline;
 	}
+	
+	.single-popular-course .course-content .meta span {
+	    color: rgba(255, 255, 255, 1);
+	    font-size: 15px;
+	}
+	
 	</style>
     
     
@@ -100,7 +106,7 @@
                             <h4></h4>
                             <div class="meta d-flex align-items-center">
                             <c:if test="${lecture.lecture_on == 'N'}">
-                            	<p>|| 폐강 ||</p>
+                            	<span class="badge badge-danger">폐강</span>
                             </c:if>
                                 <a>멤버십 만료일 : ${sessionScope.login.pay_enddate}</a>
                                 <span><i class="fa fa-circle" aria-hidden="true"></i></span>
