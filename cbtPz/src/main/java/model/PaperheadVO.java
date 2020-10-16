@@ -8,5 +8,6 @@ public class PaperheadVO {
 	private String paper_type_cd;
 	private String paper_round;
 	private String excel_file;
+	private String commoncode_name;
 }
 

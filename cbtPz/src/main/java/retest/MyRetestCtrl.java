@@ -13,6 +13,7 @@ import model.MemberVo;
 import model.ProblemDAO;
 import model.SolveVO;
 
+//응시이력 페이지 조회
 public class MyRetestCtrl implements Controller {
 
 	@Override
@@ -52,7 +53,7 @@ public class MyRetestCtrl implements Controller {
 		ArrayList<SolveVO> problem = ProblemDAO.getInstance().selectAllRetest(solveVo);
 		
 		// page 이동
-		request.getSession().setAttribute("pageName", "오답노트");
+		request.getSession().setAttribute("pageName", "응시이력");
 		request.setAttribute("paging", paging);
 		request.getSession().setAttribute("solvelist", problem);
 		request.getRequestDispatcher("/mypage/"+path).forward(request, response);

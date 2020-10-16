@@ -127,8 +127,8 @@
                                 <li><a href="${pageContext.request.contextPath}/board/noticeList.do">공지사항</a></li>
                                 <li><a href="${pageContext.request.contextPath}/study/studymain.jsp">학습하기</a>
                                     <ul class="dropdown">
-                                        <li><a href="${pageContext.request.contextPath}/study/haederSearch.do?paper_type_cd=기출">기출문제</a></li>
-                                        <li><a href="${pageContext.request.contextPath}/study/haederSearch.do?paper_type_cd=모의">모의고사</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/study/haederSearch.do?paper_type_cd=a1">기출문제</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/study/haederSearch.do?paper_type_cd=a2">모의고사</a></li>
                                         <li><a href="${pageContext.request.contextPath}/study/subjectSearch.do">과목별</a></li>
                                         <li><a href="${pageContext.request.contextPath}/study/hashtagPage.do">태그별</a></li>
                                     </ul>
@@ -150,7 +150,7 @@
                                         </c:if>
                                         <c:if test="${not empty sessionScope.check && sessionScope.check == 'M'}">
 	                                        <li><a href="${pageContext.request.contextPath}/mypage/memLecture.do">나의 강의</a></li>
-	                                        <li><a href="${pageContext.request.contextPath}/mypage/myRetestList.do">오답노트</a></li>
+	                                        <li><a href="${pageContext.request.contextPath}/mypage/myRetestList.do">응시이력</a></li>
 	                                        <li><a href="${pageContext.request.contextPath}/mypage/myRetestStat.do">개인통계</a></li>
 	                                        <li><a href="${pageContext.request.contextPath}/mypage/myFavorite.do">즐겨찾기문제</a></li>
                                         </c:if>
@@ -201,7 +201,7 @@
     </header>
   
 	<div style=" width: 100%;
-    height: 240px; background-image: url(../img/1.png)" class="  d-flex align-items-center justify-content-center p-3" >
+    height: 240px; background-image: url(../img/2.jpg)" class="  d-flex align-items-center justify-content-center p-3" >
 
         <h1 style="color:#00000">${sessionScope.pageName}</h1>
     </div>

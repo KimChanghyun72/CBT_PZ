@@ -103,9 +103,10 @@
                                 	<i class="fa fa-user" aria-hidden="true"></i> 수강인원 : ${lecture.cnts} 명
                             	</div>
                             </div>
+
                             <div class="course-fee h-100">
                             	<form id="lecDel">
-                            		<input type="hidden" name="lecture_id" value="${lecture.lecture_id}">
+                            		<input type="hidden" name="lecture_id" value="${lecture.lecture_id}" >
                                 </form>
                                 	<a class="free">수강취소</a> 
                             </div>

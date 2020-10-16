@@ -371,4 +371,28 @@ public class MemberDAO {
 			}
 			return list;
 		}
+		
+		
+		// 새 비밀번호 발급
+		public int UpdatePwOne(MemberVo memberVo) {
+			int r=0;
+			MemberVo resultVo = null;
+			ResultSet rs = null;
+			try {
+				conn = ConnectionManager.getConnnect();
+				String sql = "UPDATE MEMBER SET MEMBER_PW = 'v3FeG`Yw' "
+							+ " WHERE MEMBER_ID = ?";
+				pstmt = conn.prepareStatement(sql);
+			/*	pstmt.setString(1, memberVo.getMember_pw());*/
+				pstmt.setString(1, memberVo.getMember_id());
+				r = pstmt.executeUpdate(); // 이때는 executeUpdate()에 sql안들어감.
+				System.out.println(r + "건이 수정됨");
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				ConnectionManager.close(conn);
+			}
+			return r;
+		}
+		
 }
