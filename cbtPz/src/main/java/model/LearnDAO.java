@@ -61,7 +61,7 @@ public class LearnDAO {
 			
 			String sql = "SELECT" + 
 					" m.member_id," + 
-					"l.lecture_id, l.lecture_name, l.lecture_info, l.lecture_level, l.lecture_subject, l.lecture_image, l.lecture_link," + 
+					"l.lecture_id, l.lecture_name, l.lecture_info, l.lecture_level, l.lecture_subject, l.lecture_image, l.lecture_link, l.lecture_on, " + 
 					"n.learn_id, nvl(lec_cnt.cnts2,0) as cnts" + 
 					" from learn n" + 
 					" INNER JOIN member m" + 
@@ -90,6 +90,7 @@ public class LearnDAO {
 				resultVO.setLecture_link(rs.getString("lecture_link"));
 				resultVO.setLearn_id(rs.getString("learn_id"));
 				resultVO.setCnts(rs.getString("cnts"));
+				resultVO.setLecture_on(rs.getString("lecture_on"));
 				list.add(resultVO); //resultVo를 list에 담음
 			} 
 		} catch (Exception e) {

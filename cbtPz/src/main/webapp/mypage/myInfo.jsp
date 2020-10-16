@@ -50,6 +50,30 @@
 		display: none;
 	} */
 	
+	
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+
+
+#member_job
+{
+padding: 10px;
+}
+
+#MemberDeletefont p
+{
+
+}
+
+#MemberDeleteFont2 span
+{
+
+}
+	
+	
+	
 </style>
 
 <script>
@@ -237,28 +261,7 @@
 	});
 	
 </script>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
 
-
-
-#member_job
-{
-padding: 10px;
-}
-
-#MemberDeletefont p
-{
-
-}
-
-#MemberDeleteFont2 span
-{
-
-}
-</style>
 </head>
 <body>
 
