@@ -28,20 +28,25 @@
 
 		$(".free").on("click", function(){
 			var div = $(this).parent().parent().parent().parent();
-			var cancelChk = confirm("강의를 삭제하시겠습니까?");
+			var cntmem = $(this).parent().prev().children().find("span").text();
+			var cancelChk = confirm("수강한 학생이 " + cntmem + " 명 있습니다. 정말 강의를 삭제하시겠습니까?");
 			if(cancelChk){
 				var lecture_id = $(this).prev().children().val();
-				function lecDel(){
-				$.ajax("${pageContext.request.contextPath}/ajax/teacherLectureDelete.do",{
-					dataType : "json",
-					data : {lecture_id : lecture_id},
-					success : function(data){
-						alert("강의가 삭제되었습니다.");
-						div.remove();
+					
+					function lecDel(){
+					$.ajax("${pageContext.request.contextPath}/ajax/teacherLectureDelete.do",{
+						dataType : "json",
+						data : {lecture_id : lecture_id},
+						success : function(data){
+							if(data==1){
+								alert("정상적으로 삭제되었습니다.\n 폐강된 강의는 3~5일 내 내려질 예정입니다.");
+								//div.remove();
+								location.href="${pageContext.request.contextPath}/mypage/myLecture.do"
+							}
+						}
+					
+					});
 					}
-				
-				});
-				}
 				
 				lecDel();
 			}
@@ -97,8 +102,8 @@
                         <div class="course-content">
                             <h4></h4>
                             <div class="meta d-flex align-items-center">
-                            
-                                <span><i class="fa fa-circle" aria-hidden="true"></i></span>
+                            	
+                                <span><i class="fa fa-circle" aria-hidden="true"></i>${lecture.lecture_name}</span>
                             </div>
                             <p>${lecture.lecture_info}</p>
                         </div>
@@ -106,14 +111,14 @@
                         <div class="seat-rating-fee d-flex justify-content-between">
                         	<div class="seat-rating h-100 d-flex align-items-center">
                         		<div class="seat">
-                                	<i class="fa fa-user" aria-hidden="true"></i> 수강인원 : ${lecture.cnts} 명
+                                	<i class="fa fa-user" aria-hidden="true"></i> 수강인원 : <span>${lecture.cnts}</span> 명
                             	</div>
                             </div>
                             <div class="course-fee h-100">
                             	<form id="lecDel">
                             		<input type="hidden" name="lecture_id" value="${lecture.lecture_id}">
                                 </form>
-                                	<a class="free">강의 삭제</a>
+                                <a class="free">강의 삭제</a>
                             </div>
                         </div>
                     </div>

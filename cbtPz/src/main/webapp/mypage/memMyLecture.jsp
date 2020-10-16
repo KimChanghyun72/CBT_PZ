@@ -24,6 +24,12 @@
 	h4{
 		display : inline;
 	}
+	
+	.single-popular-course .course-content .meta span {
+	    color: rgba(255, 255, 255, 1);
+	    font-size: 15px;
+	}
+	
 	</style>
     
     
@@ -97,8 +103,11 @@
                         	onerror="this.src='${pageContext.request.contextPath}/img/cottonbro.jpg'">
                         <!-- Course Content -->
                         <div class="course-content">
-                            <h4></h4>
+                            <h4>강의명 : ${lecture.lecture_name}</h4>
                             <div class="meta d-flex align-items-center">
+                            <c:if test="${lecture.lecture_on == 'N'}">
+                            	<span class="badge badge-danger">폐강</span>
+                            </c:if>
                                 <a>멤버십 만료일 : ${sessionScope.login.pay_enddate}</a>
                                 <span><i class="fa fa-circle" aria-hidden="true"></i></span>
                             </div>
