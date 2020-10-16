@@ -105,8 +105,8 @@ public class LectureDAO {
 				conn = ConnectionManager.getConnnect();
 
 				String sql = "SELECT lecture.LECTURE_ID, teacher_id, LECTURE_NAME, LECTURE_INFO, LECTURE_LINK, LECTURE_IMAGE,"
-							+ " LECTURE_LEVEL, LECTURE_SUBJECT, nvl(lec_cnt.cnts,0) as cnts2"
-						+ " FROM LECTURE, (select  lecture_id, count(learn_id)  as cnts from learn group by lecture_id) lec_cnt"
+							+ " LECTURE_LEVEL, LECTURE_SUBJECT, nvl(lec_cnt.cnts2,0) as cnts"
+						+ " FROM LECTURE, (select  lecture_id, count(learn_id)  as cnts2 from learn group by lecture_id) lec_cnt"
 						+ " WHERE lecture.lecture_id = lec_cnt.lecture_id(+)"
 						+ " and teacher_id = ?"; // sql문 + 앞에 " " 공백
 
@@ -126,7 +126,7 @@ public class LectureDAO {
 					resultVO.setLecture_image(rs.getString("lecture_image"));
 					resultVO.setLecture_level(rs.getString("lecture_level"));
 					resultVO.setLecture_subject(rs.getString("lecture_subject"));
-					resultVO.setCnts(rs.getString("cnts2"));
+					resultVO.setCnts(rs.getString("cnts"));
 					list.add(resultVO); //resultVo를 list에 담음
 				} 
 			} catch (Exception e) {

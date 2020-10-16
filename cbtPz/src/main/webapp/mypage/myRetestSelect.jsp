@@ -203,11 +203,13 @@ $(function(){ //for문은 번호를 설정해주는 역할만 하고 이벤트�
 			}
 		})
 	}
+	submitFunc();//정답, ox 불러오는 함수 실행.
 
+	$(document).on("change", "#foo-table", submitFunc());
+	
 	 $(function(){
 		$("#foo-table").DataTable();
-	}); 
-	submitFunc();//정답, ox 불러오는 함수 실행.
+	});  
 });
 
 </script>
@@ -249,12 +251,12 @@ $(document).ready(function(){
 					<%=probNum+1 %>번
 					<br>
 					<%if(problemList.get(probNum).get("is_correct").equals("1")){ %>
-						
+						<div id="ques_ox1"><img src="../img/o1.png" style="width:300x; height:70px;"></div>
 						<br>
 					<% }else{ %>
-						
+						<div id="ques_ox1"><img src="../img/x1.png" style="width:50px; height:35px;"></div>
 						<br>
-						정답 : <%=problemList.get(probNum).get("ans_correct") %>번
+						
 					<%} %>
 				</td>
 				<td>
