@@ -9,4 +9,6 @@ public class SearchVO {
 	private String hashtag_name;
 	private String member_id;
 	private String solve_id;
+	private String solve_time;
+	private String check_num;
 }

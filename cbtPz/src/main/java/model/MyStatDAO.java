@@ -34,7 +34,8 @@ public class MyStatDAO {
 						+ "				sum(solve.solve_score) as score, "
 						+ "				sum(solve.solve_cnt) as cnt " 
 						+ "		from solve , PAPERHEAD " 
-						+ "		where PAPERHEAD.PAPERHEAD_ID = solve.SOLVE_TYPE_CD " 
+						+ "		where PAPERHEAD.PAPERHEAD_ID = solve.SOLVE_TYPE_CD "
+						+ "		and solve.SOLVE_SUBMIT = 'Y' " 
 						+ "		and member_id = ? and PAPER_TYPE_CD in ('기출','모의') "
 						+ "		AND solve.solve_date >= trunc(sysdate)-7 "
 						+ "		group by  PAPERHEAD.PAPER_TYPE_CD, to_char(SOLVE_DATE, 'yyyy-mm-dd') "
@@ -64,42 +65,35 @@ public class MyStatDAO {
 	
 	
 	//과목별 평균 바차트 (이거보류)
-	public ArrayList<MyStatVO> subjectBarChart1(MyStatVO myStateVo) {
-		MyStatVO resultVo = null;
-		ResultSet rs = null;
-		ArrayList<MyStatVO> list = new ArrayList<MyStatVO>();
-		try {
-			conn = ConnectionManager.getConnnect();
-			String sql = "select sum(case when solve_type_cd = '1과목' then round((score/cnt)*100,0) else 0 end) as subject1, "
-						+ "		sum(case when solve_type_cd = '2과목' then round((score/cnt)*100,0) else 0 end) as subject2, "
-						+ "		sum(case when solve_type_cd = '3과목' then round((score/cnt)*100,0) else 0 end) as subject3, "
-						+ "		sum(case when solve_type_cd = '4과목' then round((score/cnt)*100,0) else 0 end) as subject4, " 
-						+ "		sum(case when solve_type_cd = '5과목' then round((score/cnt)*100,0) else 0 end) as subject5 " 
-						+ "from ( " 
-						+ "		select solve_type_cd, sum(solve_score) as score, sum(solve_cnt) as cnt " 
-						+ "		from solve " 
-						+ "		where member_id=? and solve_type_cd in ( '1과목', '2과목', '3과목', '4과목', '5과목') "
-						+ "		group by SOLVE_TYPE_CD)";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, myStateVo.getMember_id());
-			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				resultVo = new MyStatVO();
-				resultVo.setSubject1(rs.getString("subject1"));
-				resultVo.setSubject2("subject2");
-				resultVo.setSubject3("subject3");
-				resultVo.setSubject4("subject4");
-				resultVo.setSubject5("subject5");
-				list.add(resultVo);
-			}
-			
-		} catch(Exception e) {
-			e.printStackTrace();
-		} finally {
-			ConnectionManager.close(rs, pstmt, conn);
-		}
-		return list;
-	}
+	/*
+	 * public ArrayList<MyStatVO> subjectBarChart1(MyStatVO myStateVo) { MyStatVO
+	 * resultVo = null; ResultSet rs = null; ArrayList<MyStatVO> list = new
+	 * ArrayList<MyStatVO>(); try { conn = ConnectionManager.getConnnect(); String
+	 * sql =
+	 * "select sum(case when solve_type_cd = '1과목' then round((score/cnt)*100,0) else 0 end) as subject1, "
+	 * +
+	 * "		sum(case when solve_type_cd = '2과목' then round((score/cnt)*100,0) else 0 end) as subject2, "
+	 * +
+	 * "		sum(case when solve_type_cd = '3과목' then round((score/cnt)*100,0) else 0 end) as subject3, "
+	 * +
+	 * "		sum(case when solve_type_cd = '4과목' then round((score/cnt)*100,0) else 0 end) as subject4, "
+	 * +
+	 * "		sum(case when solve_type_cd = '5과목' then round((score/cnt)*100,0) else 0 end) as subject5 "
+	 * + "from ( " +
+	 * "		select solve_type_cd, sum(solve_score) as score, sum(solve_cnt) as cnt "
+	 * + "		from solve " +
+	 * "		where member_id=? and solve_type_cd in ( '1과목', '2과목', '3과목', '4과목', '5과목') "
+	 * + "		group by SOLVE_TYPE_CD)"; pstmt = conn.prepareStatement(sql);
+	 * pstmt.setString(1, myStateVo.getMember_id()); rs = pstmt.executeQuery();
+	 * while(rs.next()) { resultVo = new MyStatVO();
+	 * resultVo.setSubject1(rs.getString("subject1"));
+	 * resultVo.setSubject2("subject2"); resultVo.setSubject3("subject3");
+	 * resultVo.setSubject4("subject4"); resultVo.setSubject5("subject5");
+	 * list.add(resultVo); }
+	 * 
+	 * } catch(Exception e) { e.printStackTrace(); } finally {
+	 * ConnectionManager.close(rs, pstmt, conn); } return list; }
+	 */
 	
 	
 	
@@ -114,6 +108,7 @@ public class MyStatDAO {
 						+ "from (select solve_type_cd, sum(solve_score) as score, sum(solve_cnt) as cnt "
 						+ "		from solve "
 						+ "		where member_id=? and solve_type_cd in ( '1과목', '2과목', '3과목', '4과목', '5과목') " 
+						+ "							and solve.SOLVE_SUBMIT = 'Y' "
 						+ "		group by SOLVE_TYPE_CD " 
 						+ "		order by SOLVE_TYPE_CD)";
 			pstmt = conn.prepareStatement(sql);
@@ -148,6 +143,7 @@ public class MyStatDAO {
 						+ "		from solve, paper, problem, problem_hashtag, hashtag "
 						+ "		where solve.solve_id = paper.solve_id "
 						+ "		and solve.member_id = ? "
+						+ "		and solve.SOLVE_SUBMIT = 'Y' "
 						+ " 	and solve.solve_type_cd like '%#%' "
 						+ "		and paper.problem_id = problem.problem_id "
 						+ "		and problem.problem_id = problem_hashtag.PROBLEM_ID "
@@ -185,7 +181,8 @@ public class MyStatDAO {
 			try {
 				conn = ConnectionManager.getConnnect();
 				String sql = "select to_char(min(solve_date),'yyyy-mm-dd') minday, to_char(max(solve_date),'yyyy-mm-dd') maxday "
-							+ "from solve where member_id=? and solve_type_cd in ( '1과목', '2과목', '3과목', '4과목', '5과목')";
+							+ "from solve where member_id=? and solve_type_cd in ( '1과목', '2과목', '3과목', '4과목', '5과목') "
+							+ "								and solve.SOLVE_SUBMIT = 'Y' ";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, myStateVo.getMember_id());
 				rs = pstmt.executeQuery();
@@ -212,7 +209,8 @@ public class MyStatDAO {
 			try {
 				conn = ConnectionManager.getConnnect();
 				String sql = "select to_char(min(solve_date),'yyyy-mm-dd') minday, to_char(max(solve_date),'yyyy-mm-dd') maxday "
-							+ "from solve where member_id=? and solve_type_cd like '%#%'";
+							+ "from solve where member_id=? and solve_type_cd like '%#%'"
+							+ "								and solve.SOLVE_SUBMIT = 'Y' ";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, myStateVo.getMember_id());
 				rs = pstmt.executeQuery();

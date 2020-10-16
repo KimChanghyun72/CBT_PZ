@@ -18,7 +18,7 @@ public class SolveDAO {
 			return instance;
 	}
 	
-	public void UpateSolve(String a,String b) {
+	public void UpateSolve(String sid,String time) {
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = "UPDATE SOLVE " 
@@ -26,16 +26,37 @@ public class SolveDAO {
 						+"			( SELECT sum(NVL(IS_CORRECT,0)) " 
 						+"			  from PAPER " 
 						+"			  where solve_id = ? ), " 
-						+" 			SOLVE_TIME = ? " 						 
+						+" 			SOLVE_TIME = ?, " 
+						+"          SOLVE_SUBMIT='Y'"
 						+" 			WHERE SOLVE_ID = ?";
 					
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, a);
-			pstmt.setString(2, b);
-			pstmt.setString(3, a);
+			pstmt.setString(1, sid);
+			pstmt.setString(2, time);
+			pstmt.setString(3, sid);
 			
 			int r = pstmt.executeUpdate();
 			System.out.println(r + "건이 입력됨");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(conn);
+		}
+	}
+	
+	public void UpdateTime(String time,String sid) {
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "UPDATE SOLVE " 
+						+" 		SET SOLVE_TIME = ? " 						 
+						+" 			WHERE SOLVE_ID = ?";
+					
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, time);
+			pstmt.setString(2, sid);
+			
+			pstmt.executeUpdate();
 
 		} catch (Exception e) {
 			e.printStackTrace();

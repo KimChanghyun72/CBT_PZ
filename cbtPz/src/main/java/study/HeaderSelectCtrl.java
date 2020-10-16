@@ -30,12 +30,12 @@ public class HeaderSelectCtrl implements Controller {
 		//서비스		
 		PaperHeadDAO dao = new PaperHeadDAO();
 		ArrayList<PaperheadVO> headlist = dao.selectPaper_type(type);
-		
+		String page_name = headlist.get(0).getCommoncode_name();
 		
 		//조회결과를 저장후에 결과페이지로 포워드
 		request.setAttribute("headlist", headlist);
 				
-		request.getSession().setAttribute("pageName", paper_type_cd + "별 학습하기");
+		request.getSession().setAttribute("pageName", page_name + "별 학습하기");
 		request.getRequestDispatcher(path).forward(request, response);
 		/* request.getRequestDispatcher("/study/"+path).forward(request, response); */
 		

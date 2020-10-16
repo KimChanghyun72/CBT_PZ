@@ -20,10 +20,6 @@ public class ProblemHeadCtrl implements Controller {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		MemberVo memberVo = new MemberVo();
-		String path = "studyPaper.jsp";
-		String check = (String) request.getSession().getAttribute("check");
-		
-		
 		
 		memberVo= (MemberVo) request.getSession().getAttribute("login");
 		
@@ -39,19 +35,17 @@ public class ProblemHeadCtrl implements Controller {
 		//VO에 담기
 		searchVO.setMember_id(member_id);
 		searchVO.setPaperhead_id(paperhead_id);
-		
+
 		//문제등록 				
 		int next = PaperHeadDAO.getInstance().insert_Proc(searchVO);
-		
-		//문제조회
 		searchVO.setSolve_id(Integer.toString(next)); 
 		List<Map<String, Object>> selectproblem = PaperHeadDAO.getInstance().selectAllType(searchVO);
-		
+
 		//조회결과를 저장후에 결과페이지로 포워드
 		request.getSession().setAttribute("problemList", selectproblem);
-		
-		//request.getRequestDispatcher("/study/"+path).forward(request, response);
-		response.sendRedirect(request.getContextPath()+"/study/studyPaper.jsp");
+
+		response.sendRedirect(request.getContextPath()+"/study/problemView.do?solve_id="+next);
+
 		
 	}
 

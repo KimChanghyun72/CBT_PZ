@@ -26,12 +26,12 @@
             <div class="row">
                 <!-- 기출문제 -->
                 	<div class="col-12 col-lg-6" >
-                	<a href="${pageContext.request.contextPath}/study/haederSearch.do?paper_type_cd=기출">
+                	<a href="${pageContext.request.contextPath}/study/haederSearch.do?paper_type_cd=a1">
                     	<div class="area contact--info mt-30 mb-25" style="text-align : center">
                         	<br><br><br>
                 			<form action = "${pageContext.request.contextPath}/study/haederSearch.do">
-                				<input type="hidden" name="paper_type_cd" value="기출">
-                        	<!-- <button name="paper_type_cd" value="모의">기출문제</button> -->
+                				<input type="hidden" name="paper_type_cd" value="a1">
+                        	<!-- <button name="paper_type_cd" value="a1">기출문제</button> -->
                 			</form>
                         	<h1 class="submit">기출문제</h1>
                         	<br><br><br>
@@ -40,12 +40,12 @@
                 	</div>
                 <!-- 모의고사 -->
                 	<div class="col-12 col-lg-6">
-                	<a href="${pageContext.request.contextPath}/study/haederSearch.do?paper_type_cd=모의">
+                	<a href="${pageContext.request.contextPath}/study/haederSearch.do?paper_type_cd=a2">
                     	<div class="area contact--info mt-30 mb-25" style="text-align : center">
                         	 <br><br><br>
                         	 <form action = "${pageContext.request.contextPath}/study/haederSearch.do">
-                        	 	<input type="hidden" name="paper_type_cd" value="모의">
-                        	<!--  <div><button name="paper_type_cd" value="기출">모의고사</button></div> -->
+                        	 	<input type="hidden" name="paper_type_cd" value="a2">
+                        	<!--  <div><button name="paper_type_cd" value="a2">모의고사</button></div> -->
                      	    	<h1 class="submit">모의고사</h1>
                      	    </form>
                         	<br><br><br>

@@ -156,7 +156,7 @@ public class ProblemDAO {
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = "SELECT A.* FROM(SELECT B.*, ROWNUM RM FROM ( "
-						+ "SELECT member_id, SOLVE_ID, SOLVE_DATE, SOLVE_TIME, SOLVE_TYPE_CD, SOLVE_SCORE, SOLVE_CNT "  
+						+ "SELECT member_id, SOLVE_ID, SOLVE_DATE, SOLVE_TIME, SOLVE_TYPE_CD, SOLVE_SCORE, SOLVE_CNT, SOLVE_SUBMIT "  
 						+" FROM SOLVE "  
 						+" WHERE MEMBER_ID = ? "
 						+" ORDER BY SOLVE_DATE DESC "
@@ -176,6 +176,7 @@ public class ProblemDAO {
 				resultVO.setSolve_type_cd(rs.getString("solve_type_cd"));
 				resultVO.setSolve_score(rs.getString("solve_score"));
 				resultVO.setSolve_cnt(rs.getString("solve_cnt"));
+				resultVO.setSolve_submit(rs.getString("solve_submit"));
 				list.add(resultVO);
 			}
 		} catch (Exception e) {

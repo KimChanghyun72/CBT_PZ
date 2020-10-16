@@ -103,9 +103,9 @@
 
 
 .checkbox-wrap { cursor: pointer; }
-.checkbox-wrap .check-icon  { display: inline-block; width: 20px; height: 18px; background: url(../img/fav0.svg) left center no-repeat; vertical-align: middle; transition-duration: .4s; }
+.checkbox-wrap .check-icon  { display: inline-block; width: 20px; height: 18px; background: url(../img/fav0.png) left center no-repeat; vertical-align: middle; transition-duration: .4s; }
 .checkbox-wrap input[type=checkbox] { display: none; }
-.checkbox-wrap input[type=checkbox]:checked + .check-icon { background-image: url(../img/fav1.svg);}
+.checkbox-wrap input[type=checkbox]:checked + .check-icon { background-image: url(../img/fav1.png);}
  
  
 </style>
