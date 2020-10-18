@@ -53,6 +53,7 @@
     
     <!-- studyPaper datatable link -->
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    
  <decorator:head/>   
 
     
@@ -163,9 +164,9 @@
                                 <li><a href="${pageContext.request.contextPath}/pay/payment.jsp">멤버쉽</a></li>
                               </c:if>
                               <c:if test="${not empty sessionScope.check && sessionScope.check == 'A'}">
-                                <li><a href="/insa/memberList">관리자메뉴</a>
+                                <li><a href="${pageContext.request.contextPath}/problemInsert.do">관리자메뉴</a>
                                 	<ul class="dropdown">
-                                        <li><a href="/insa/insertProForm">개별문제</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/admin/problemList.do">개별문제</a></li>
                                         <li><a href="${pageContext.request.contextPath}/admin/headInsert.jsp">회차문제</a></li>
                                         <li><a href="${pageContext.request.contextPath}/admin/adminChart.jsp">회원통계</a></li>
                                         <li><a href="${pageContext.request.contextPath}/admin/memberList.do">회원관리</a></li>

@@ -53,15 +53,19 @@ public class FrontController extends HttpServlet {
     	//김창현
     	//list.put("/memberPayUpdate.do", new member.MemberUpdateController());
     	list.put("/ajax/probScoringCtrl.do", new study.ProbScoringCtrl());
+    	
     	list.put("/payInsertCtrl.do", new pay.PayInsertCtrl());
+    	
     	list.put("/ajax/deleteMemLearn.do", new member.MemLearnDeleteCtrl());
+    	
     	list.put("/lecture/lectureDetailSelect.do", new lecture.LectureDetailCtrl());
     	list.put("/ajax/lec_commentList.do", new lecture.Lec_CommentListCtrl());
     	list.put("/ajax/lec_commentDelete.do", new lecture.Lec_CommentDelCtrl());
     	list.put("/ajax/lec_commentInsert.do", new lecture.Lec_CommentInsertCtrl());
     	
-    	
-    	
+    	list.put("/admin/problemList.do", new admin.ProblemListCtrl());
+    	list.put("/ajax/problemUpdate.do", new admin.ProblemUpdateCtrl());
+    	list.put("/ajax/problemDelete.do", new admin.ProblemDeleteCtrl());
     	
     	
     	
