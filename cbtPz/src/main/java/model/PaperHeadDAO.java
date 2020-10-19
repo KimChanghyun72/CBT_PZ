@@ -83,7 +83,7 @@ public class PaperHeadDAO {
 	
 	
 	//프로시져로 solve, paper 문제 등록
-	public int insert_Proc(SearchVO searchVO) {			
+	public int insert_Proc(SearchVO searchVO) {			 
 		int next = 0;
 		CallableStatement cstmt = null;
 		try {
@@ -153,7 +153,7 @@ public class PaperHeadDAO {
 						+ " FROM PAPERHEAD p, commoncode c"
 						+ " WHERE p.PAPER_TYPE_CD = c.COMMONCODE_ID "
 						+ " and PAPER_TYPE_CD = ? "
-						+ " ORDER BY PAPER_ROUND";
+						+ " ORDER BY LPAD(PAPER_ROUND, 2)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, paperheadVO.getPaper_type_cd());
 			rs = pstmt.executeQuery();

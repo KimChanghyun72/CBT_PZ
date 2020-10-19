@@ -24,7 +24,13 @@
 	text-decoration: none; 
 	border: rgba(75, 112, 253, 0.3) solid; 
 	border-width: 0 0 6px 0; 
-}
+	}
+	
+	h5 {
+		color : white;
+		text-shadow: 2px 2px 2px gray;
+	}
+
 </style>
 <script>
 var check = "${sessionScope.check}";
@@ -51,8 +57,8 @@ $(function(){
 		<col style="width:800px; " /><!-- 80% -->
 		<col style="width:100px; " />
 	</colgroup>
-		<tr>
-		<th bgcolor="lightblue" colspan="2"><h2>문제 유형</h2></th>
+		<th bgcolor="#99d6ff"><h5>문제 유형</h5></th>
+		<th bgcolor="#99d6ff"><h5>풀기</h5></th>
 		</tr>
 	<c:forEach items="${subjectlist}" var="subjectlist">			
 	<input type="hidden"/>
@@ -61,7 +67,7 @@ $(function(){
 	<form action="${pageContext.request.contextPath}/problemSubject.do">
 		<input type="hidden" name="subject" value="${subjectlist.commoncode_id}">
 	</form>
-	<button name="btnSubmit" value="${subjectlist.commoncode_id}" class="btn btn-sm btn-primary">응시</button>
+	<button name="btnSubmit" value="${subjectlist.commoncode_id}" class="btn btn-sm btn-primary">풀기</button>
 	</td>
 	</tr>
 	<br>
