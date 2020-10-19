@@ -30,7 +30,7 @@ public class LectureDAO {
 			conn = ConnectionManager.getConnnect();
 
 			String sql = "SELECT LECTURE_ID, teacher_id, LECTURE_NAME, LECTURE_INFO, LECTURE_LINK, LECTURE_IMAGE, "
-						+ " LECTURE_LEVEL, LECTURE_SUBJECT"
+						+ " LECTURE_LEVEL, subject_name(lecture_subject) LECTURE_SUBJECT"
 					+ " FROM LECTURE WHERE lecture_id = ?"; // sql문 + 앞에 " " 공백
 
 			pstmt = conn.prepareStatement(sql);
