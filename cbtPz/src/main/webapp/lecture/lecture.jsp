@@ -62,7 +62,8 @@
 		$('.single-catagories').on("click", function(){
 			$('#frmdiv').hide();
 			var cateval = $(this).find("h6").text();
-			location.href="${pageContext.request.contextPath}/lecturePage.do?subject=" + cateval
+			location.href="${pageContext.request.contextPath}/lecturePage.do?subject=s" + cateval.substr(0,1)
+			console.log(cateval.substr(0,1));
 		});
 			
 		

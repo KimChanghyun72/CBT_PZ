@@ -108,11 +108,11 @@ $(function(){
                                 <div class="col-12 col-lg-7">
                                 <div class="form-group">
 	                                <select id="lecture_subject" name="lecture_subject" class="form-control" style ="padding:10px; color:gray;">
-											<option value="1과목">1과목(소프트웨어 설계)</option>
-											<option value="2과목">2과목(소프트웨어 개발)</option>
-											<option value="3과목">3과목(데이터베이스 구축)</option>
-											<option value="4과목">4과목(프로그래밍 언어 활용)</option>
-											<option value="5과목">5과목(정보시스템 구축관리)</option>
+											<option value="s1">1과목(소프트웨어 설계)</option>
+											<option value="s2">2과목(소프트웨어 개발)</option>
+											<option value="s3">3과목(데이터베이스 구축)</option>
+											<option value="s4">4과목(프로그래밍 언어 활용)</option>
+											<option value="s5">5과목(정보시스템 구축관리)</option>
 									</select>
 								</div>
 								</div>
