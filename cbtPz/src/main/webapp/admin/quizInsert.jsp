@@ -57,6 +57,8 @@
 		
 		//-----------------------문제 업데이트 코드 --------------------------
 		$(".btnUpd").on("click", function(){
+			confirm("수정하시겠습니까?");
+			if(confirm==1){
 			var tr = $(this).parents("tr");
 			var problem_id = tr.find(".problem_id");
 			var subject = tr.find(".subject"); var problem_text = tr.find(".problem_text");
@@ -86,22 +88,25 @@
 					haeseol.html(data.haeseol);
 				}
 			})			
-					
+		}		
 		});
 //--------------------------- 업데이트 ajax 끝-------------------------
 //-----------------------------삭제 ajax ----------------------------
 	$(".btnDel").on("click", function(){
-		var tr = $(this).parents("tr");
-		var problem_id = tr.find(".problem_id");
-		$.ajax("${pageContext.request.contextPath}/ajax/problemDelete.do", {
-			dataType : "json",
-			data : {
-				problem_id : problem_id.val()
-			},
-			success : function(data){
-				tr.remove();
-			}
-		})
+		confirm("삭제하시겠습니까?");
+		if(confirm==1){
+			var tr = $(this).parents("tr");
+			var problem_id = tr.find(".problem_id");
+			$.ajax("${pageContext.request.contextPath}/ajax/problemDelete.do", {
+				dataType : "json",
+				data : {
+					problem_id : problem_id.val()
+				},
+				success : function(data){
+					tr.remove();
+				}
+			})
+		}
 	})
 
 		

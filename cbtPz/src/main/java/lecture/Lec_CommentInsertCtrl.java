@@ -27,8 +27,8 @@ public class Lec_CommentInsertCtrl implements Controller {
 		System.out.println(vo.getLec_comments_contents());
 		System.out.println(vo.getLec_comments_poster());
 		System.out.println(vo.getLecture_id());
-		int r = Lec_CommentsDAO.getInstance().insert(vo);
-		System.out.println(r+"건이 입력되었습니다.");
+		vo = Lec_CommentsDAO.getInstance().insert(vo);
+		System.out.println("insert vo" + vo);
 		
 		String result = JSONObject.fromObject(vo).toString();
 		response.getWriter().print(result);

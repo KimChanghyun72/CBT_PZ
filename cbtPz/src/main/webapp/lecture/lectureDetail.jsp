@@ -15,6 +15,24 @@
 	float : "right";
 	width : 40%;
 }
+
+.thumb img {
+    border-radius: 20px;
+    padding: 8px;
+}
+
+.thumb2 img {
+    border-radius: 5px;
+        max-width: 60px;
+}
+
+/* .single-instructor .instructor-thumb {
+    height: 0px;
+} */
+
+.single-instructor {
+    background-color: white;
+}
 </style>
 <script>
 
@@ -118,6 +136,114 @@ $(function(){
 	<div>
 	<div>
 	
+	<br><br>
+	<div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="tab--3">
+                                    <div class="clever-review">
+		
+                                        <!-- 강의정보      Ratings -->
+                                        <div class="clever-ratings d-flex align-items-center mb-30">
+
+                                            <div class="total-ratings text-center d-flex align-items-center justify-content-center">
+                                                <div class="ratings-text">
+                                                   <!--  <h2>4.5</h2>
+														<div class="about-course mb-30"> -->
+													<h3>강의 정보</h3>
+													<div class="thumb">
+                                                    	<img src="${pageContext.request.contextPath}/nostms/profilepicSelect.do?teacher_picture=${lectureInfo.lecture_image}" height="250px" alt="">
+                                                    </div>
+														<!-- </div> -->
+											<!-- <div class="ratings--">
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                                                    </div> -->
+                                                    <!-- <span>Rated 5 out of 3 Ratings</span> -->
+                                                </div>
+                                            </div>
+
+                                            <div class="rating-viewer">
+                                                <!-- Rating -->
+                                                <div class="single-rating mb-15 d-flex align-items-center">
+                                            		<!-- <p>Sed elementum lacus a risus luctus suscipit. Aenean sollicitudin sapien neque, in fermentum lorem dignissim a. Nullam eu mattis quam. Donec porttitor nunc a diam molestie blandit. Maecenas quis ultrices</p> -->
+                                                   	<h5>강의명 : ${lectureInfo.lecture_name}</h5>
+                                                </div>
+                                                <div class="single-rating mb-15 d-flex align-items-center">
+															<div>과목 : ${lectureInfo.lecture_subject}</div>
+												</div>
+												<div class="single-rating mb-15 d-flex align-items-center">
+															<div>강의 정보 : ${lectureInfo.lecture_info}</div>
+												</div>
+												<div class="single-rating mb-15 d-flex align-items-center">
+															<c:choose>
+																<c:when test="${login.is_pay=='Y'}">
+																	<div>
+																		강의 링크 : <a href="#" class="btnLearn">수강하러가기</a>
+																	</div>
+																</c:when>
+																<c:otherwise>
+																	<div>강의 링크 : 수강하러가기</div>
+																</c:otherwise>
+															</c:choose>
+                                                 </div>
+                                            </div>
+                                        </div>
+
+
+                                        <!-- 강사정보    Single Review -->
+                                        <div class="single-review mb-30">
+                                            <div class="d-flex justify-content-between mb-30">
+                                                <!-- Review Admin -->
+                                                <div class="review-admin d-flex">
+	                                                    <div class="thumb2">
+	                                                        <img src="${pageContext.request.contextPath}/nostms/profilepicSelect.do?teacher_picture=${teacherInfo.teacher_picture}" height="50px" alt="">
+	                                                    </div>
+	                                                    <div class="text">
+	                                                        <h6>강사명 :${teacherInfo.teacher_name}</h6>
+	                                                        <!-- <span>Sep 29, 2017 at 9:48 am</span> -->
+	                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div> 약력 : ${teacherInfo.teacher_record}</div>
+											<div> 자격증 : ${teacherInfo.teacher_certificate}</div>
+											<div> 이메일  : ${teacherInfo.teacher_email}</div>
+                                        </div>
+                                    </div>
+                                </div>
+	
+								<%-- <div class="single-review mb-30">
+                                            <div class="d-flex justify-content-between mb-30">
+                                                <!-- Review Admin -->
+                                                <div class="review-admin d-flex">
+                                                    <div class="thumb2">
+                                                        <img src="${pageContext.request.contextPath}/nostms/profilepicSelect.do?teacher_picture=${teacherInfo.teacher_picture}" height="50px" alt="">
+                                                    </div>
+                                                    <div class="text">
+                                                        <h6>Sarah Parker</h6>
+                                                        <span>Sep 29, 2017 at 9:48 am</span>
+                                                    </div>
+                                                </div>
+                                                <!-- Ratings -->
+                                                <div class="ratings">
+                                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                                </div>
+                                            </div>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce enim nulla, mollis eu metus in, sagittis.</p>
+                                        </div> --%>
+	
+	
+	
+	
+	
+	
+	
+	
+	
    <!-- ##### Courses Content Start ##### -->
     <div class="single-course-content section-padding-100">
         <div class="container">
@@ -133,23 +259,10 @@ $(function(){
                                     <div class="clever-description">
 
                                         <!-- About Course -->
-                                        <div class="about-course mb-30">
-                                            <h3>강의 정보</h3>
-                                            <h5>강의명 : ${lectureInfo.lecture_name}</h5>
-											<div> 과목 : ${lectureInfo.lecture_subject}</div>
-                                           	<div>강의 정보 : ${lectureInfo.lecture_info}</div>
-                                           	<c:choose>
-	                                           	<c:when test="${login.is_pay=='Y'}">
-													<div> 강의 링크 : <a href="#" class="btnLearn">수강하러가기</a></div>
-												</c:when>
-												<c:otherwise>
-													<div> 강의 링크 : 수강하러가기</div>
-												</c:otherwise>
-											</c:choose>
-                                        </div>
+                                        
 
                                         <!-- All Instructors -->
-                                        <div class="all-instructors mb-30">
+                                        <%-- <div class="all-instructors mb-30">
                                             <h3>강사 정보</h3>
 
                                             <div class="row">
@@ -183,7 +296,7 @@ $(function(){
                                                 </div> -->
 
                                             </div>
-                                        </div>
+                                        </div> --%>
 
                                         <!-- FAQ -->
                                         <div class="clever-faqs">

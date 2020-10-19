@@ -17,6 +17,29 @@ public class ProblemDAO {
 			instance = new ProblemDAO();
 			return instance;
 	}
+	public ProblemVO selectNewId() {
+		ProblemVO resultVO = new ProblemVO();
+		ResultSet rs = null;
+		try {
+			conn = ConnectionManager.getConnnect(); // sql문 작성시 다음줄 넘어갔을때 공백 넣어야함 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			String sql = "SELECT PROBLEM_ID FROM "
+					+ " (select * from problem order by to_number(problem_id) desc) where rownum = 1";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				resultVO.setProblem_id(rs.getString(1));
+			} else {
+				System.out.println("No data");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return resultVO;
+	}
+	
+	
 	public ProblemVO selectOne(ProblemVO problemVO) {
 		ProblemVO resultVO = null;
 		ResultSet rs = null;
@@ -93,7 +116,7 @@ public class ProblemDAO {
 	public void insert(model.ProblemVO problem) {
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "INSERT INTO PROBLEMS (PROBLEM_ID, SUBJECT, HAESEOL, PROBLEM_TEXT, ANS_1, ANS_2, "
+			String sql = "INSERT INTO PROBLEM (PROBLEM_ID, SUBJECT, HAESEOL, PROBLEM_TEXT, ANS_1, ANS_2, "
 					+ "ANS_3, ANS_4, ANS_CORRECT, PAPERHEAD_ID, PROBLEM_IMAGE) "
 					+ "VALUES (PROBLEM_SEQ.NEXTVAL,?,?,?,?,?,?,?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
