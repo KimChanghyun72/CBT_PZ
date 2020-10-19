@@ -22,7 +22,7 @@ public class BoardUpdateFormCtrl implements Controller {
 			
 		String board_id = request.getParameter("board_id");
 		
-
+		//###유효성검사###
 		if(!board_id.isEmpty()) {
 			BoardVO board = new BoardVO();
 			board.setBoard_id(board_id);

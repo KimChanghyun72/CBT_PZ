@@ -236,6 +236,7 @@ public class BoardDAO {
 			}
 			
 			String sql = "select count(BOARD_ID) from board" + where +"AND BOARD_ID NOT LIKE 'A%'";
+			
 			pstmt = conn.prepareStatement(sql);
 			int pos = 1;
 			if (boardVo.getBoard_title() != null) {

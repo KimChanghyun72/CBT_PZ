@@ -21,9 +21,7 @@ public class CommentInsertCtrl implements Controller {
 		vo.setComment_poster(request.getParameter("comment_poster"));
 		vo.setComment_contents(request.getParameter("comment_contents"));
 		vo.setBoard_id(request.getParameter("board_id"));
-		System.out.println(vo.getComment_poster());
-		System.out.println(vo.getComment_contents());
-		System.out.println(vo.getBoard_id());
+	
 		CommentDAO.getInstance().insert(vo);
 		String result = JSONObject.fromObject(vo).toString();
 		response.getWriter().print(result);

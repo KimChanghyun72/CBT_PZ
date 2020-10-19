@@ -161,7 +161,9 @@
                                         	<li><a href="${pageContext.request.contextPath}/mypage/myInput.do">나의 작성글</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="${pageContext.request.contextPath}/pay/payment.jsp">멤버쉽</a></li>
+                                <c:if test="${not empty sessionScope.check && sessionScope.check == 'M'}">
+                                	<li><a href="${pageContext.request.contextPath}/pay/payment.jsp">멤버쉽</a></li>
+                                </c:if>
                               </c:if>
                               <c:if test="${not empty sessionScope.check && sessionScope.check == 'A'}">
                                 <li><a href="${pageContext.request.contextPath}/problemInsert.do">관리자메뉴</a>
@@ -217,7 +219,7 @@
     </div>
     </c:when>
     <c:when test="${sessionScope.pageName == '멤버쉽'}">
-    <div style=" width: 100%; height: 240px; background-image: url(../img/member.jpg)" class="  d-flex align-items-center justify-content-center p-3" >
+    <div style=" width: 100%; height: 240px; background-image: url(../img/멤버쉽.jpg)" class="  d-flex align-items-center justify-content-center p-3" >
         <h1 style="color:#00000">${sessionScope.pageName}</h1>
     </div>
     </c:when>
