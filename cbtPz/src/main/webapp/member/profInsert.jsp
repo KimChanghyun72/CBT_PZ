@@ -203,7 +203,7 @@ function readURL(input) {
 					<div class="form-group">
 						<label class="col-md-4 control-label" for="Name">ID</label>
 						<div class="col-md-5">
-							<input id="teacher_id" name="teacher_id" type="text" placeholder="username"
+							<input id="teacher_id" name="teacher_id" type="text" placeholder="userid"
 								class="form-control input-md" required="required">
 							<span id="id_check" class="help-block"></span>
 						</div>
