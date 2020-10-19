@@ -216,7 +216,7 @@ public class LectureDAO {
 			ArrayList<String> list = new ArrayList<String>();
 			try {
 				conn = ConnectionManager.getConnnect();
-				String sql = "select DISTINCT lecture_subject from lecture order by 1";
+				String sql = "select DISTINCT subject_name(lecture_subject) lecture_subject from lecture order by 1";
 				pstmt = conn.prepareStatement(sql);
 				rs = pstmt.executeQuery();
 				while(rs.next()) { //list니까 while문 사용
@@ -271,7 +271,7 @@ public class LectureDAO {
 						where += ", 0 lecture_yn ";
 					}
 					String sql = "SELECT LECTURE_ON, LECTURE.LECTURE_ID, LECTURE_NAME, LECTURE_INFO, LECTURE_LINK, LECTURE_IMAGE,"
-								+ " LECTURE_LEVEL, LECTURE_SUBJECT, teacher_name, nvl(lec_cnt.cnts2,0) as cnts "
+								+ " LECTURE_LEVEL, subject_name(lecture_subject) LECTURE_SUBJECT, teacher_name, nvl(lec_cnt.cnts2,0) as cnts "
 								+ where
 								+ " FROM LECTURE, teacher_member, (select  lecture_id, count(learn_id) as cnts2 from learn group by lecture_id) lec_cnt"
 								+ " WHERE lecture.teacher_id = teacher_member.teacher_id"
@@ -325,7 +325,7 @@ public class LectureDAO {
 						where += ", 0 lecture_yn ";
 					}
 					String sql = "SELECT LECTURE_ON, LECTURE.LECTURE_ID, LECTURE_NAME, LECTURE_INFO, LECTURE_LINK, LECTURE_IMAGE,"
-								+ " LECTURE_LEVEL, LECTURE_SUBJECT, teacher_name, nvl(lec_cnt.cnts2,0) as cnts"
+								+ " LECTURE_LEVEL, subject_name(lecture_subject) LECTURE_SUBJECT, teacher_name, nvl(lec_cnt.cnts2,0) as cnts"
 								+ where
 								+ " FROM LECTURE, teacher_member, (select lecture_id, count(learn_id) as cnts2 from learn group by lecture_id) lec_cnt"
 								+ " WHERE lecture.teacher_id = teacher_member.teacher_id"
@@ -377,7 +377,7 @@ public class LectureDAO {
 						where += ", 0 lecture_yn ";
 					}
 					String sql = "SELECT LECTURE_ID, LECTURE_NAME, LECTURE_INFO, LECTURE_LINK, LECTURE_IMAGE,"
-								+ " LECTURE_LEVEL, LECTURE_SUBJECT, teacher_name"
+								+ " LECTURE_LEVEL, substr(subject_name(lecture_subject), 0,1 ) lecture_subject, teacher_name"
 								+ where
 								+ " FROM LECTURE, teacher_member"
 								+ " WHERE lecture.teacher_id = teacher_member.teacher_id"

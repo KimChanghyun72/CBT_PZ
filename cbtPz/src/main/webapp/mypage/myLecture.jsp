@@ -39,7 +39,7 @@
 						data : {lecture_id : lecture_id},
 						success : function(data){
 							if(data==1){
-								alert("정상적으로 삭제되었습니다.\n 폐강된 강의는 다음 달 초에 완전히 내려질 예정입니다.");
+								alert("정상적으로 삭제되었습니다.\n 폐강된 강의는 3일 후 완전히 내려질 예정입니다.");
 								//div.remove();
 								location.href="${pageContext.request.contextPath}/mypage/myLecture.do"
 							}
