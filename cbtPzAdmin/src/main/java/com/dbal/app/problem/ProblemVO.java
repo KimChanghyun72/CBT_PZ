@@ -14,5 +14,4 @@ public class ProblemVO {
 	private String ans_4;
 	private String ans_correct;
 	private String paperhead_id;
-	private String problem_image;
 }

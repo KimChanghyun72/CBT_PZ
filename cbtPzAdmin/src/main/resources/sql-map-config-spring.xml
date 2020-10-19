@@ -9,6 +9,7 @@
 	</settings> -->
 	<typeAliases>
 		<typeAlias type="com.dbal.app.emp.EmpVO" alias="emp"/> 
+		<typeAlias type="com.dbal.app.problem.ProblemVO" alias="Pro"/>
 		<typeAlias type="com.dbal.app.problem.MemberVO" alias="member"/>
 		<typeAlias type="com.dbal.app.problem.HashtagVO" alias="hash"/>
 	</typeAliases>

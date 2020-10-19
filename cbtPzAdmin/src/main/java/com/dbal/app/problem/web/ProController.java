@@ -12,29 +12,44 @@ import com.dbal.app.problem.service.ProService;
 
 @Controller
 public class ProController {
-	
+
 	@Autowired
 	ProService proservice;
 	@Autowired
-	HashService hashservice; 
-	
-	//등록페이지
+	HashService hashservice;
+
+	// 등록페이지
 	@RequestMapping("insertProForm")
-	public String insertProForm(ProblemVO vo, HashtagVO vo1) {
+	public String insertProForm(ProblemVO vo, HashtagVO vo1, Model model) {
+		model.addAttribute("proList", proservice.getProList(vo));
 		return "problem/quizInsert";
 	}
-	
-	//등록처리
+
+	// 등록처리
 	@RequestMapping("insertPro")
 	public String insertPro(ProblemVO vo, HashtagVO vo1) {
 		proservice.insertPro(vo, vo1);
 		return "redirect:insertProForm";
 	}
-	
-	//조회페이지
-	@RequestMapping("getPro")
-	public String getPro(ProblemVO vo, Model model) {
-		model.addAttribute("list", proservice.getPro(vo));
-		return "insertPro";
+
+	// 업데이트
+	@RequestMapping("updatePro")
+	public String updatePro(ProblemVO vo) {
+		proservice.updatePro(vo);
+		return "redirect:insertProForm";
 	}
+
+	// 삭제
+	@RequestMapping("deletePro")
+	public String deletePro(ProblemVO vo) {
+		proservice.deletePro(vo);
+		return "redirect:insertProForm";
+	}
+
+	// 조회페이지
+	/*
+	 * @RequestMapping("getProList") public String getPro(ProblemVO vo, Model model)
+	 * { model.addAttribute("proList", proservice.getPro(vo)); return
+	 * "problem/quizInsert"; }
+	 */
 }
