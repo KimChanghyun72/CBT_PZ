@@ -34,6 +34,11 @@ table {
 
 .btn-outline-primary{width: 106px;}
 
+h5 {
+	color : white;
+	text-shadow: 2px 2px 2px gray;
+	}
+	
 </style>
 <script>
 function btnSelectSolve(solve_id) {
@@ -67,13 +72,13 @@ function btnContinueTest(solve_id) {
 	<div class="container">
 			<div class="table-responsive">
 				<table border="1"  class="table table-hover" id="dev-table">
-				<tr align="center" bgcolor="lightblue">
-					<th width="20%">응시날짜</th>
-					<th width="15%">응시소모시간</th>
-					<th>응시유형</th>
-					<th width="15%">채점결과</th>
-					<th width="15%">문제확인</th>
-					<th width="15%">재응시</th>
+				<tr align="center" bgcolor="#99d6ff">
+					<th width="20%"><h5>응시날짜</h5></th>
+					<th width="15%"><h5>응시소모시간</h5></th>
+					<th><h5>응시유형</h5></th>
+					<th width="15%"><h5>채점결과</h5></th>
+					<th width="15%"><h5>문제확인</h5></th>
+					<th width="15%"><h5>재응시</h5></th>
 				</tr>
 				<c:forEach items="${solvelist}" var="solvelist">
 				<tr align="center">
