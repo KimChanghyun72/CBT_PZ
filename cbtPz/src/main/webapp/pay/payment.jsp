@@ -4,15 +4,12 @@
 <html>
 <head>
 <style>
-#payFrm{
+/* #payFrm{
     box-shadow: 0 3px 20px rgba(0, 0, 0, 0.15);
     padding: 35px 50px;
     border-radius: 6px;
     background:#f7f7f7;
 }
-
-
-
 
 .box {
 	
@@ -21,11 +18,9 @@
 	margin:0 auto;
 	line-height:1em;
 	position:relative;
-	/* margin-top:100px; */
 	background:#fff;
 	border-color: #f1f1f1;
 	box-shadow: 0 3px 20px rgba(0, 0, 0, 0.15);
-	 /* border : #f1f1f1 0.5px solid;  */
 }
 .box p {
 	font-size : 130%;
@@ -37,7 +32,6 @@
 	margin-left:-50%;
 	
 	text-align:center;
-	/* height : auto; */
 	
 	
 }
@@ -56,7 +50,6 @@
 	 position:relative; 
 	 margin-top:100px;   
 	background:#fff;
-	/* border : black 1px solid; */
 }
 .box3 {
 	width:500px;
@@ -64,7 +57,6 @@
 	margin:0 auto;
 	line-height:1em;
 	position:relative;
-	/* margin-top:100px; */
 	background:#fff;
 }
 .box3 p {
@@ -92,17 +84,56 @@
 	color: #fff;
 	background-color: #53A3CD;
 	border-color: #53A3CD;
+} */
+
+
+.single-cool-facts-area {
+border: 1px solid rgba(214, 223, 251, 0.7);
 }
+
 
 </style>
 <meta charset="UTF-8">
 <title>결제 페이지</title>
+
 <script>
  <% request.getSession().setAttribute("pageName", "멤버쉽"); %>
 
 $(function(){
 	var term;
 	var payment;
+	
+	var IMP = window.IMP;
+	IMP.init('imp68502592');
+		
+	$(".btn-login").on("click", function(){
+	IMP.request_pay({
+	    pg : 'inicis', // version 1.1.0부터 지원.
+	    pay_method : 'card',
+	    merchant_uid : 'merchant_' + new Date().getTime(),
+	    name : '주문명:결제테스트',
+	    amount : 100,
+	    buyer_email : 'iamport@siot.do',
+	    buyer_name : '구매자이름',
+	    buyer_tel : '010-1234-5678',
+	    buyer_addr : '서울특별시 강남구 삼성동',
+	    buyer_postcode : '123-456',
+	    //m_redirect_url : 'https://www.yourdomain.com/payments/complete'
+	}, function(rsp) {
+	    if ( rsp.success ) {
+	        var msg = '결제가 완료되었습니다.';
+	        msg += '고유ID : ' + rsp.imp_uid;
+	        msg += '상점 거래ID : ' + rsp.merchant_uid;
+	        msg += '결제 금액 : ' + rsp.paid_amount;
+	        msg += '카드 승인번호 : ' + rsp.apply_num;
+	    } else {
+	        var msg = '결제에 실패하였습니다.';
+	        msg += '에러내용 : ' + rsp.error_msg;
+	    }
+	    alert(msg);
+	});		
+	});
+//결제api 종료
 	
 	$('[name=term]').on("change",function(){
 		console.log($(this).val());
@@ -120,7 +151,7 @@ $(function(){
 		payment = $(this).val();
 	})
 	
-	$(".btn-login").on("click", function(){
+ 	 $(".btn-login").on("dblclick", function(){
 		if($("[name=is_payed]").prop("checked")){ //결제 동의여부 체크
 			var confirmVal = confirm("결제하시겠습니까?");
 			if(confirmVal){
@@ -139,16 +170,154 @@ $(function(){
 		}else{
 			alert("구매에 동의하셔야 합니다.");
 		}
-	})
+	});  
 	
-})
+	
+	
+});
 
 
 </script>
 </head>
 
+<section class="cool-facts-area section-padding-100-0">
+	<div class="container">
+		<div class="row">
+			<!-- Single Cool Facts Area -->
+			<div class="col-12 col-sm-6 col-lg-3">
+				<div class="single-cool-facts-area text-center mb-100 wow fadeInUp"
+					data-wow-delay="150ms">
+					<div class="icon">
+						<img src="img/core-img/docs.png" alt="">
+					</div>
+					<h2>
+						<span class="counter">30,000</span>
+					</h2>
+					<h5>Success Stories</h5>
+				</div>
+			</div>
 
-<div class="container">
+			<!-- Single Cool Facts Area -->
+			<div class="col-12 col-sm-6 col-lg-3">
+				<div class="single-cool-facts-area text-center mb-100 wow fadeInUp"
+					data-wow-delay="500ms">
+					<div class="icon">
+						<img src="img/core-img/star.png" alt="">
+					</div>
+					<h2>
+						<span class="counter">60,000</span>
+					</h2>
+					<h5>Dedicated Tutors</h5>
+				</div>
+			</div>
+
+			<!-- Single Cool Facts Area -->
+			<div class="col-12 col-sm-6 col-lg-3">
+				<div class="single-cool-facts-area text-center mb-100 wow fadeInUp"
+					data-wow-delay="750ms">
+					<div class="icon">
+						<img src="img/core-img/events.png" alt="">
+					</div>
+					<h2>
+						<span class="counter">90,000</span>
+					</h2>
+					<h5>Scheduled Events</h5>
+				</div>
+			</div>
+
+			<!-- Single Cool Facts Area -->
+			<div class="col-12 col-sm-6 col-lg-3">
+				<div class="single-cool-facts-area text-center mb-100 wow fadeInUp"
+					data-wow-delay="1000ms">
+					<div class="icon">
+						<img src="img/core-img/earth.png" alt="">
+					</div>
+					<h2>
+						<span class="counter">180,000</span>
+					</h2>
+					<h5>Available Courses</h5>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+<!-- ##### Register Now Start ##### -->
+    <section class="register-now section-padding-100-0 d-flex justify-content-between align-items-center" style="background-image: url(img/core-img/texture.png);">
+        <!-- Register Contact Form -->
+        <div class="register-contact-form mb-100 wow fadeInUp" data-wow-delay="250ms">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="forms">
+                            <h4>Courses For Free</h4>
+                            <form action="#" method="post">
+                                <div class="row">
+                                    <div class="col-12 col-lg-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="text" placeholder="Name">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-lg-6">
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" id="email" placeholder="Email">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-lg-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="phone" placeholder="Phone">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-lg-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="site" placeholder="Site">
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <button class="btn clever-btn w-100">Send Message</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Register Now Countdown -->
+        <div class="register-now-countdown mb-100 wow fadeInUp" data-wow-delay="500ms">
+            <h3>Register Now</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fermentum laoreet elit, sit amet tincidunt mauris ultrices vitae. Donec bibendum tortor sed mi faucibus vehicula. Sed erat lorem</p>
+            <!-- Register Countdown -->
+            <div class="register-countdown">
+                <div class="events-cd d-flex flex-wrap" data-countdown="2019/03/01"></div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%-- <div class="container">
 <form id="payFrm" name="payFrm" action="<%=application.getContextPath()%>/payInsertCtrl.do">
 	
 	<div class="box2" style = background:#f7f7f7><p><b>선택 옵션</b></p></div>
@@ -199,6 +368,7 @@ $(function(){
 		</div>
 	</div>
 </form>	
-</div>
+</div> --%>
+
 </body>
 </html>
