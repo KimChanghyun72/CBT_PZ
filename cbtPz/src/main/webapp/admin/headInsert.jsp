@@ -38,11 +38,11 @@
 <form method="post" name="frm" id="frm" enctype="multipart/form-data"
    	  action="${pageContext.request.contextPath}/excelInsert.do">
 <h3>문제 분류</h3>
-	<input type="radio" name="paper_type_cd" id="paper_type_cd" value="모의고사">모의고사 &nbsp;&nbsp; 
+	<input type="radio" name="paper_type_cd" id="paper_type_cd" value="a2">모의고사 &nbsp;&nbsp; 
 	<input type="text" name="paper_round" id="paper_round" placeholder="연도회차를 입력하세요."/>&nbsp;&nbsp;
 	<button>등록</button>
 	<br>
-	<input type="radio" name="paper_type_cd" id="paper_type_cd" value="기출문제">기출문제<br>
+	<input type="radio" name="paper_type_cd" id="paper_type_cd" value="a1">기출문제<br>
 	<input type="file" name="file_path" size="20" align="absmiddle"/>
 </form>
 <br>

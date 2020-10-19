@@ -23,6 +23,31 @@ public class PaperHeadDAO {
 			instance = new PaperHeadDAO();
 			return instance;
 	}
+	//엑셀 입력용 PAPERHEAD ID 검색
+	public PaperheadVO selectNewOne() {
+		PaperheadVO resultVO = new PaperheadVO();
+		
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = " SELECT PAPERHEAD_ID "
+					+ "FROM (select * from paperhead ORDER BY TO_NUMBER(PAPERHEAD_ID) DESC) "
+					+ "WHERE ROWNUM = 1"; 
+			
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				resultVO.setPaperhead_id(rs.getString(1));
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		
+		
+		return resultVO;
+	}
 	
 	//모든 문제검색
 	public List<Map<String,Object>> selectAllType(SearchVO searchVO) {

@@ -51,7 +51,7 @@ public class HashtagDAO {
 		ArrayList<HashtagVO> list = new ArrayList<HashtagVO>();
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = " SELECT HASHTAG_NAME "
+			String sql = " SELECT HASHTAG_ID, CLASSIFY_CODE_CD, HASHTAG_NAME "
 						+" FROM HASHTAG "
 						+" WHERE HASHTAG_NAME LIKE '%' || ? || '%' ";
 			pstmt = conn.prepareStatement(sql);
@@ -60,9 +60,9 @@ public class HashtagDAO {
 			while(rs.next()) {
 				HashtagVO resultVO = new HashtagVO();
 				resultVO = new HashtagVO();
-				//resultVO.setHashtag_id(rs.getString(1));
-				//resultVO.setClassify_code_cd(rs.getString(2));
-				resultVO.setHashtag_name(rs.getString(1));
+				resultVO.setHashtag_id(rs.getString(1));
+				resultVO.setClassify_code_cd(rs.getString(2));
+				resultVO.setHashtag_name(rs.getString(3));
 				list.add(resultVO);
 			} 
 			
