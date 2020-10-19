@@ -15,7 +15,7 @@
 			<div class="table-responsive">
 				<table border="1"  class="table table-hover" id="dev-table">
 					<tr style="background-color:lightblue" align="center">
-						<th width="10%">과목</th>
+						<th width="16%">과목</th>
 						<th>문제</th>
 					</tr>			
 					<c:forEach items="${problemList}" var="favorite">
