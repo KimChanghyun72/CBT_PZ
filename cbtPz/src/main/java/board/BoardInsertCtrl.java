@@ -23,9 +23,9 @@ public class BoardInsertCtrl implements Controller {
 		String board_title = request.getParameter("board_title");
 		String board_contents = request.getParameter("board_contents");
 		String member_id = request.getParameter("member_id");
-		String path = "C:/upload";
-		// String views = request.getParameter("views");	
-		System.out.println(path);
+		
+		String path = "C:/upload";//###사진파일 경로###
+
 		BoardVO board = new BoardVO();
 
 		board.setBoard_title(board_title);
@@ -35,8 +35,8 @@ public class BoardInsertCtrl implements Controller {
 		Part part = request.getPart("board_file");
 		String board_file = getFileName(part);
 
-		System.out.println(part);
-
+		
+		//###업로드 사진 유효성검사###
 		if (board_file != null && !board_file.isEmpty()) {
 			File renameFile = FileRenamePolicy.rename(new File(path,board_file));
 			part.write(renameFile.getName());
@@ -51,6 +51,8 @@ public class BoardInsertCtrl implements Controller {
 		System.out.println(path);
 	}
 
+	
+	//###업로드 사진중 중복파일 +1로 만들기###
 	private String getFileName(Part part) throws UnsupportedEncodingException {
 		for (String cd : part.getHeader("Content-Disposition").split(";")) {
 			if (cd.trim().startsWith("filename")) {

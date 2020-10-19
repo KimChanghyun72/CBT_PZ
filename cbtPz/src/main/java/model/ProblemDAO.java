@@ -39,7 +39,7 @@ public class ProblemDAO {
 				resultVO.setAns_3(rs.getString(7));
 				resultVO.setAns_4(rs.getString(8));
 				resultVO.setAns_correct(rs.getString(9));
-				resultVO.setProblem_id(rs.getString(10));
+				resultVO.setPaperhead_id(rs.getString(10));
 				resultVO.setProblem_image(rs.getString(11));
 			} else {
 				System.out.println("No data");
@@ -58,9 +58,13 @@ public class ProblemDAO {
 		ResultSet rs = null;
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "SELECT PROBLEM_ID, SUBJECT, HAESEOL, PROBLEM_TEXT, ANS_1, ANS_2, ANS_3,"
-						+ " ANS_4, ANS_CORRECT, PAPERHEAD_ID, PROBLEM_IMAGE"
-						+ " FROM MEMBER ORDER BY PAPERHEAD_ID";
+			
+			  String sql =
+			  "SELECT PROBLEM_ID, SUBJECT, HAESEOL, PROBLEM_TEXT, ANS_1, ANS_2, ANS_3," +
+			  " ANS_4, ANS_CORRECT, PAPERHEAD_ID, PROBLEM_IMAGE" +
+			  " FROM PROBLEM ORDER BY PAPERHEAD_ID";
+			 
+			
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
@@ -74,7 +78,7 @@ public class ProblemDAO {
 				resultVO.setAns_3(rs.getString(7));
 				resultVO.setAns_4(rs.getString(8));
 				resultVO.setAns_correct(rs.getString(9));
-				resultVO.setProblem_id(rs.getString(10));
+				resultVO.setPaperhead_id(rs.getString(10));
 				resultVO.setProblem_image(rs.getString(11));
 				list.add(resultVO);
 			}
@@ -114,9 +118,37 @@ public class ProblemDAO {
 		}
 	}
 	
+	//관리자 page 문제 업데이트 용 메소드
+	public void updateProblem(ProblemVO problemVO) {
+		try {
+			conn = ConnectionManager.getConnnect();
+			
+			String sql = "UPDATE PROBLEM SET SUBJECT = ?, PROBLEM_TEXT = ?, "
+					+ " ANS_1 = ?, ANS_2 = ?, ANS_3 = ?, ANS_4 = ?, HAESEOL = ?"
+					+ " WHERE PROBLEM_ID = ?";
+			System.out.println("updateProblem : " + problemVO);
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, problemVO.getSubject());
+			pstmt.setString(2, problemVO.getProblem_text());
+			pstmt.setString(3, problemVO.getAns_1());
+			pstmt.setString(4, problemVO.getAns_2());
+			pstmt.setString(5, problemVO.getAns_3());
+			pstmt.setString(6, problemVO.getAns_4());
+			pstmt.setString(7, problemVO.getHaeseol());
+			pstmt.setString(8, problemVO.getProblem_id());
+			int r = pstmt.executeUpdate();
+			System.out.println("문제"+r + "건 수정됨");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(null, pstmt, conn);
+		}
+	}
+	
 	public void update(ProblemVO problemVO) {
 		try {
 			conn = ConnectionManager.getConnnect();
+			
 			String sql = "UPDATE PAPERHEAD SET SUBJECT = ? WHERE PROBLEM_ID = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, problemVO.getSubject());

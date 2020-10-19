@@ -47,13 +47,13 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.relocator.1.0.0.js"></script>
     
     <!-- hashSelect.jsp 사용. -->
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	
     <script type="text/javascript" src="${pageContext.request.contextPath}/study/fancymetags.jQuery.js"></script>
     
     <!-- studyPaper datatable link -->
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    
  <decorator:head/>   
 
     
@@ -166,9 +166,9 @@
                                 </c:if>
                               </c:if>
                               <c:if test="${not empty sessionScope.check && sessionScope.check == 'A'}">
-                                <li><a href="${pageContext.request.contextPath}memberList">관리자메뉴</a>
+                                <li><a href="${pageContext.request.contextPath}/problemInsert.do">관리자메뉴</a>
                                 	<ul class="dropdown">
-                                        <li><a href="${pageContext.request.contextPath}/admin/quizInsert.jsp">개별문제</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/admin/problemList.do">개별문제</a></li>
                                         <li><a href="${pageContext.request.contextPath}/admin/headInsert.jsp">회차문제</a></li>
                                         <li><a href="${pageContext.request.contextPath}/admin/adminChart.jsp">회원통계</a></li>
                                         <li><a href="${pageContext.request.contextPath}/admin/memberList.do">회원관리</a></li>
@@ -219,7 +219,7 @@
     </div>
     </c:when>
     <c:when test="${sessionScope.pageName == '멤버쉽'}">
-    <div style=" width: 100%; height: 240px; background-image: url(../img/member.jpg)" class="  d-flex align-items-center justify-content-center p-3" >
+    <div style=" width: 100%; height: 240px; background-image: url(../img/멤버쉽.jpg)" class="  d-flex align-items-center justify-content-center p-3" >
         <h1 style="color:#00000">${sessionScope.pageName}</h1>
     </div>
     </c:when>
