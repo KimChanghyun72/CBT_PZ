@@ -24,6 +24,7 @@ public class BoardListCtrl implements Controller {
 		String member_id = null ;
 		BoardVO best = null;
 		
+		//###검색어 제목 or 작성자 값을 요청###
 		if(("searchtitle").equals(select)) {
 			board_title = request.getParameter("search");
 		}
@@ -31,6 +32,7 @@ public class BoardListCtrl implements Controller {
 			member_id =  request.getParameter("search");
 		}
 		
+		//###페이징처리###
 		int page = 1;
 		if(p != null) {
 			page = Integer.parseInt(p);
@@ -42,11 +44,11 @@ public class BoardListCtrl implements Controller {
 		
 		BoardVO board = new BoardVO();
 		
-		paging.setTotalRecord(dao.count(board));
 		board.setFirst(paging.getFirst());
 		board.setLast(paging.getLast());
 		board.setBoard_title(board_title);
 		board.setMember_id(member_id);
+		paging.setTotalRecord(dao.count(board));
 		
 		best = dao.bestSelect(board);
 		request.setAttribute("best", best);

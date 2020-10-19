@@ -20,13 +20,16 @@ public class BoardSelectCtrl implements Controller {
 		String board_id = request.getParameter("board_id");
 		BoardVO board = new BoardVO();
 		board.setBoard_id(board_id);
+		//###사진 유효성검사##
 		board.setBoard_file(board_file);
 		if(board_id.isEmpty()) {
 			
 			request.getRequestDispatcher("}/board/"+path).forward(request, response);
 			return;
 		}
+		//###조회수 ###
 		dao.updateBoardCnt(board);
+		//##단일 조회###
 		board = dao.selectOne(board);
 		request.setAttribute("board", board);
 		

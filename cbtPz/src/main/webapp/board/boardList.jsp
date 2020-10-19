@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <meta charset="UTF-8">
 <title>boardList.jsp</title>
 <script>
@@ -22,15 +22,23 @@
 					+ $("input:checkbox[id='ck']:checked").val();
 		}
 	}
-	//체크박스 선택시 라디오박스 처럼 사용 하는 기능
 	$(document).ready(function() {
+		//체크박스 선택시 라디오박스 처럼 사용 하는 기능
 		$('input[type="checkbox"][name="ck"]').click(function() {
 			if ($(this).prop('checked')) {
 				$('input[type="checkbox"][name="ck"]').prop('checked', false);
 				$(this).prop('checked', true);
 			}
 		});
+		
+		//선택값 초기화
+		$('#search').focus(function(){
+			$('#search').val("")
+		})
+		
 	});
+	
+	
 </script>
 </head>
 <body>
@@ -74,7 +82,7 @@
 							<td></td>
 							<td><img src="../img/1등.png"></td>
 							<td><a href="${pageContext.request.contextPath}/board/boardSelect.do?board_id=${best.board_id}"><strong>${best.board_title}</strong></a></td>
-							<td><strong>${best.board_id}</strong></td>
+							<td><strong>${best.member_id}</strong></td>
 							<td><strong style="color: Tomato;">${best.board_views}</strong></td>
 							<td>${best.board_date}</td>
 								<c:if test="${sessionScope.check=='A'}">
@@ -86,7 +94,7 @@
 										<td style="color: Tomato;"><c:if
 												test="${board.isNew == '1' }">NEW</c:if></td>
 										<td>${board.board_id}</td>
-										<td><a href="${pageContext.request.contextPath}/board/boardSelect.do?board_id=${board.board_id}">
+										<td align='left'><a href="${pageContext.request.contextPath}/board/boardSelect.do?board_id=${board.board_id}">
 												${board.board_title}&nbsp;
 										<c:if test="${board.board_file != null}">
 										<img src="../img/사진.png">
@@ -123,16 +131,21 @@
 
 				<!-- 검색 영역 -->
 				<div class="w3-container" align="center">
-					<form method="post">
+					<form method="post" name='searchfrm'>
+					<input type="hidden" name='p' value='1'>
 						<table style="text-align: center; width: 600px; height: 100px;">
 							<tr>
 								<td><SELECT name="select" id="select" style="height: 30px; padding: 5px 10px; font-size: 12px;">
+												<OPTION value="">선택</OPTION>
 												<OPTION value="searchtitle">제목</OPTION>
 												<OPTION value="searchposter">작성자</OPTION>
 											</SELECT>
+											<script>
+											    $('#select').val('${param.select}')
+											</script>
 									<input name="search" id = "search" placeholder="검색어를 입력하세요"
 									style="height: 30px; padding: 5px 10px; font-size: 12px; line-height: 1.5; "
-									type="text" /> 
+									type="text" value='${param.search}' /> 
 								<input class="btn btn-sm btn-primary" type="submit" value=" 검색 " />
 								</td>
 							</tr>
@@ -144,8 +157,8 @@
 				<!-- 페이징 처리 영역 -->
 				<script>
 					function gopage(p) {
-						location.href = "${pageContext.request.contextPath}/board/boardList.do?p="
-								+ p;
+						searchfrm.p.value = p;
+						searchfrm.submit();
 					};
 				</script>
 				<!-- 페이징 처리 영역 -->
