@@ -143,8 +143,10 @@
 
                                     </ul>
                                 </li>
-                                <li><a href="${pageContext.request.contextPath}/pay/payment.jsp">멤버쉽</a></li>
                               </c:if>
+					          <c:if test="${not empty sessionScope.check && sessionScope.check == 'M'}">
+                                <li><a href="${pageContext.request.contextPath}/pay/payment.jsp">멤버쉽</a></li>
+                              </c:if>  
                               <c:if test="${not empty sessionScope.check && sessionScope.check == 'A'}">
                                 <li><a href="${pageContext.request.contextPath}\
                                 \">관리자메뉴</a>
