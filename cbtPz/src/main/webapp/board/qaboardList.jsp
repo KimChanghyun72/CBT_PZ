@@ -74,7 +74,7 @@
 										</td>
 								
 										<td>${qaboard.qaboard_id}</td>
-										<td><a href="${pageContext.request.contextPath}/board/qaboardSelect.do?qaboard_id=${qaboard.qaboard_id}"><Strong>Q.</Strong>${qaboard.qaboard_title}</a>
+										<td align='left'><a href="${pageContext.request.contextPath}/board/qaboardSelect.do?qaboard_id=${qaboard.qaboard_id}"><Strong>Q.</Strong>${qaboard.qaboard_title}</a>
 											<a style="color:Tomato;"><c:if test="${qaboard.cnt == '1'}"><strong>A</strong></c:if></a></td>
 										<td>${qaboard.member_id}</td>
 										<td>${qaboard.qaboard_views}</td>

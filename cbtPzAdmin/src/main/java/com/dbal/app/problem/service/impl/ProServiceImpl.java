@@ -15,15 +15,16 @@ public class ProServiceImpl implements ProService {
 	@Autowired ProblemMapper proDAO;
 	@Autowired HashMapper hashDAO;
 
-	@Override
-	public ProblemVO getPro(ProblemVO problemVO) {
-		return proDAO.getPro(problemVO);
-	}
 
 	@Override
 	public void insertPro(ProblemVO problemVO, HashtagVO vo1) {
 		proDAO.insertPro(problemVO);	
+		vo1.setProblem_id(problemVO.getProblem_id());
 		hashDAO.insertHash(vo1);
 	}
 
+	@Override
+	public ProblemVO getPro(ProblemVO problemVO) {
+		return proDAO.getPro(problemVO);
+	}
 }

@@ -19,6 +19,8 @@ public class MemberVo {
 	private String teacher_password;
 	private String teacher_id;
 	private String cnt;
+	private String board_cnt;
+	private String solve_cnt;
 	
 	public Object get(String string) {
 		return null;

@@ -20,6 +20,7 @@ public class CommentDeleteCtrl implements Controller {
 		CommentVO vo = new CommentVO();
 		vo.setComment_id(comment_id);
 		
+		//###댓글 삭제시 결과를 바로 조회###
 		CommentVO resultVO = CommentDAO.getInstance().selectOne(vo);
 		String result = JSONObject.fromObject(resultVO).toString();
 		response.getWriter().print(result);

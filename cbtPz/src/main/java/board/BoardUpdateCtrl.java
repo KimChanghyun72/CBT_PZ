@@ -24,7 +24,7 @@ public class BoardUpdateCtrl implements Controller {
 		String member_id = request.getParameter("member_id");
 		String original_board_file = request.getParameter("board_file");
 		String path = "C:/upload";
-		System.out.println(original_board_file);
+	
 		BoardVO board = new BoardVO();
 
 		board.setBoard_title(board_title);
@@ -35,7 +35,7 @@ public class BoardUpdateCtrl implements Controller {
 		Part part = request.getPart("file");
 		String board_file = getFileName(part);
 		
-		System.out.println(board_file);
+		//###유효성 검사###
 		if (board_file != null && !board_file.isEmpty()) {
 				 
 			File renameFile = FileRenamePolicy.rename(new File(board_file));

@@ -112,7 +112,7 @@ p {
         	success : function(datas){
         		//console.log(datas);
         		for(i=0; i<datas.length; i++){
-        			datatable.push([datas[i].solve_type_cd, parseInt(datas[i].avg),'color:'+color[i]]);
+        			datatable.push([datas[i].solve_type_name, parseInt(datas[i].avg),'color:'+color[i]]);
         		}
         	}
         });

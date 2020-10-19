@@ -104,9 +104,9 @@ public class MyStatDAO {
 		ArrayList<MyStatVO> list = new ArrayList<MyStatVO>();
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "select solve_type_cd, round((score/cnt)*100,0) as avg "
-						+ "from (select solve_type_cd, sum(solve_score) as score, sum(solve_cnt) as cnt, "
-						+ " SOLVE_TYPE_CHANGE(solve_type_cd) as SOLVE_TYPE_NAME "
+			String sql = "select SOLVE_TYPE_CHANGE(solve_type_cd) as SOLVE_TYPE_NAME, solve_type_cd, round((score/cnt)*100,0) as avg "
+						+ "from (select solve_type_cd, sum(solve_score) as score, sum(solve_cnt) as cnt "
+						//+ " SOLVE_TYPE_CHANGE(solve_type_cd) as SOLVE_TYPE_NAME "
 						+ "		from solve "
 						+ "		where member_id=? and solve_type_cd in ( 's1', 's2', 's3', 's4', 's5') " 
 						+ "							and solve.SOLVE_SUBMIT = 'Y' "
@@ -119,7 +119,7 @@ public class MyStatDAO {
 				resultVo = new MyStatVO();
 				resultVo.setAvg(rs.getString("avg"));
 				resultVo.setSolve_type_cd(rs.getString("solve_type_cd"));
-				//resultVo.setSolve_type_name(rs.getString("solve_type_name"));
+				resultVo.setSolve_type_name(rs.getString("solve_type_name"));
 				list.add(resultVo);
 			}
 			System.out.println("resultVo:"+resultVo);

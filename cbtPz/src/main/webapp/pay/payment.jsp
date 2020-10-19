@@ -4,10 +4,14 @@
 <html>
 <head>
 <style>
-
 #payFrm{
-	border : 1px grey;
+    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.15);
+    padding: 35px 50px;
+    border-radius: 6px;
+    background:#f7f7f7;
 }
+
+
 
 
 .box {
@@ -18,7 +22,9 @@
 	position:relative;
 	/* margin-top:100px; */
 	background:#fff;
-	border : black 1px solid;
+	border-color: #f1f1f1;
+	box-shadow: 0 3px 20px rgba(0, 0, 0, 0.15);
+	 /* border : #f1f1f1 0.5px solid;  */
 }
 .box p {
 	position:absolute;
@@ -34,7 +40,7 @@
 	width:500px;
 	height:30px;
 	margin:0 auto;
-	 line-height:1em; 
+	line-height:1em; 
 	 position:relative; 
 	 margin-top:100px;   
 	background:#fff;
@@ -80,7 +86,7 @@
 <meta charset="UTF-8">
 <title>결제 페이지</title>
 <script>
-<% request.getSession().setAttribute("pageName", "멤버쉽"); %>
+ <% request.getSession().setAttribute("pageName", "멤버쉽"); %>
 
 $(function(){
 	var term;
@@ -128,12 +134,12 @@ $(function(){
 
 </script>
 </head>
-<body>
+
 
 <div class="container">
 <form id="payFrm" name="payFrm" action="<%=application.getContextPath()%>/payInsertCtrl.do">
 	
-	<div class="box2"><p><b>선택 옵션</b></p></div>
+	<div class="box2" style = background:#f7f7f7><p><b>선택 옵션</b></p></div>
 	<div class="box">
 	<p>
 	<!-- 유료회원 기간 선택 -->
@@ -143,13 +149,13 @@ $(function(){
 	<input type="radio" name="term" value="180">6개월(165000원)
 	</div>
 	<!-- 지불 가격 선택 -->
-	<div class="box2"><p><b>결제 가격</b></p></div>
+	<div class="box2" style = background:#f7f7f7><p><b>결제 가격</b></p></div>
 	<div class="box">
 	<p class="price"></p>
 	<input type="hidden" name="price">
 	</div>
 	
-	<div class="box2"><p><b>결제 수단</b></p></div>
+	<div class="box2" style = background:#f7f7f7><p><b>결제 수단</b></p></div>
 	<div class="box">
 	<p>
 	<span class="aaa"></span>
@@ -160,18 +166,18 @@ $(function(){
 		<input type="radio" name="payment" value="kakaopay">카카오페이
 	
 	</p></div>
-	<div class="box2">
+	<div class="box2"  style = background:#f7f7f7;>
 		<p>
 			구매 및 주문 처리에 대한 모든 약관에 동의합니다(필수)
 			<input type="checkbox" name="is_payed" value="YES">
 		</p>
 	</div>
-	<div class="box3">
+	<div class="box3" style = background:#f7f7f7 >
 	<input type="hidden" name ="payCheck" value="pay">
 	<!-- 선택옵션은 회원정보에 결제여부가 no이면 yes로 바꾸고 만료기간을 sysdate+30일로 업데이트. 만약 유료회원이 결제한다면 만료일에 결제기간 + -->
 	<!-- <input type="button" class="btnSubmit" value="결제하기"> -->
 	<br>
-		<div class="form-group">
+		<div class="form-group" >
 			<!-- <div class="row">
 				<div class="col-sm-6 col-sm-offset-3"> -->
 					<input type="button" name="login-submit" id="tin-submit" tabindex="4" class="form-control btn btn-login" value="결제하기">
