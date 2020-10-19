@@ -68,7 +68,7 @@
 
 				</div>
 				
-				<div class="board_content" style="white-space:pre;"> <c:out value="${board.board_contents}"/></div>
+				<div class="board_content" style="white-space:pre;"> <c:out value="${board.board_contents}" escapeXml="false"/></div>
 			<c:if test="${board.board_file != null}">
 				<div class="board_file"><img src="${pageContext.request.contextPath}/filenameDownload.do?board_file=${board.board_file}" style="width:1000px"/></div>
 			</c:if>

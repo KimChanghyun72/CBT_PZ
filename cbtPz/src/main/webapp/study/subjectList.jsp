@@ -19,6 +19,12 @@
 	.tagSub{
 		font-size : 30px;
 	}
+	
+	#fa { 
+	text-decoration: none; 
+	border: rgba(75, 112, 253, 0.3) solid; 
+	border-width: 0 0 6px 0; 
+}
 </style>
 <script>
 var check = "${sessionScope.check}";
@@ -34,7 +40,10 @@ $(function(){
 </script>
 </head>
 <body>
-	
+	<br><br><br>
+	<div align="center">
+		<a id="fa"><img src="../img/prob.png">&nbsp;&nbsp;문제는 랜덤으로 10개씩 출제 됩니다.</a>
+	</div>
 	<article>
 	<div class="container" align="center">
 		<table class="table-striped table-sm">
@@ -52,7 +61,7 @@ $(function(){
 	<form action="${pageContext.request.contextPath}/problemSubject.do">
 		<input type="hidden" name="subject" value="${subjectlist.commoncode_id}">
 	</form>
-	<button name="btnSubmit" value="${subjectlist.commoncode_id}" class="btn btn-sm btn-primary">풀기</button>
+	<button name="btnSubmit" value="${subjectlist.commoncode_id}" class="btn btn-sm btn-primary">응시</button>
 	</td>
 	</tr>
 	<br>

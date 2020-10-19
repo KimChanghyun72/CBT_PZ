@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="//cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
 	<script>
 	<!--공백 체크 및 비밀번호 확인  -->
 	function inputCheck() {
@@ -22,11 +23,6 @@
 		if (frm.member_id.value == "") {
 			window.alert("작성자를 입력하세요");
 			frm.member_id.focus();
-			return false;
-		}
-		if (frm.qaboard_contents.value == "") {
-			window.alert("내용을 입력하세요");
-			frm.qaboard_contents.focus();
 			return false;
 		}
 		
@@ -69,7 +65,7 @@
 			</form>
 		
 		</div>	
-
+<script>CKEDITOR.replace('qaboard_contents');</script>
 </body>
 
 </html>
