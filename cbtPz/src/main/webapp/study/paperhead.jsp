@@ -11,6 +11,11 @@ th , td {
 	text-align : center;
 }
 
+h5 {
+	color : white;
+	text-shadow: 2px 2px 2px gray;
+	}
+
 </style>
 <script>
 var check = "${sessionScope.check}";
@@ -29,6 +34,7 @@ var check = "${sessionScope.check}";
 
 
 <article>
+	<br><br><br>
 	<div class="container" align="center">
 		<table class="table-striped table-sm">
 	<colgroup>
@@ -36,8 +42,8 @@ var check = "${sessionScope.check}";
 		<col style="width: 100px" />
 	</colgroup>
 		<tr>
-		<th>문제 유형</th>
-		<th>풀기</th>
+		<th bgcolor="#99d6ff"><h5>문제 유형</h5></th> 
+		<th bgcolor="#99d6ff"><h5>풀기</h5></th>
 		</tr>
 	<c:forEach items="${headlist}" var="headlist">			
 	<tr><td>${headlist.commoncode_name} ${headlist.paper_round}</td>
@@ -49,7 +55,6 @@ var check = "${sessionScope.check}";
 	<button  name="btnSubmit" value="${headlist.paperhead_id}" class="btn btn-sm btn-primary">풀기</button>
 	</td>
 	</tr>
-	<br>
 	</c:forEach>
 	
 	</table>
