@@ -254,10 +254,15 @@ $(document).ready(function(){
 		      	
 		      	
 		         if (leng.length == 2){
+			            if(leng == '00'){
+			            	alert("정확한 날짜를 입력하세요");
+				            $('#member_age3').val("");
+			            }
 			            if(leng > age3day){
+			               console.log($('#member_age3').val());
 			               alert("정확한 날짜를 입력하세요");
 			               $('#member_age3').val("");
-			               console.log(age3day);
+			               //console.log(age3day);
 			            }
 			         } //2자리인데 31일 넘기면 알림
 		      	
@@ -408,7 +413,7 @@ function nCheck(){
 					<div class="form-group">
 						<label class="col-md-4 control-label" for="Name">ID</label>
 						<div class="col-md-5">
-							<input id="member_id" name="member_id" type="text" placeholder="username"
+							<input id="member_id" name="member_id" type="text" placeholder="userid"
 								class="form-control input-md" required="required">
 							<span id="id_check" class="help-block"></span>
 						</div>

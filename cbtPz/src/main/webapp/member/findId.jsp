@@ -201,9 +201,20 @@ $(function() {
 	        	console.log(data);
 	        	if(data != null){
 	        		if(data.member_pw != ""){
-			    		$('#findmyidmodal').text("새로 발급받은 비밀번호는 " + data.member_pw + " 입니다." + " 로그인 후 비밀번호를 변경해주시기 바랍니다.");
+	        			var r = confirm("가입한 이력이 있습니다. 임시비밀번호를 발급받아 로그인하시겠습니까?");
+	        			if (r == true) {
+				    		$('#findmyidmodal').text("새로 발급받은 비밀번호는 " + data.member_pw + " 입니다." + " 로그인 후 비밀번호를 변경해주시기 바랍니다.");
+	        			}else{
+				    		$('#findmyidmodal').text("아직 임시비밀번호는 발급되지않았습니다.다시 시도해주세요.");
+	        			}
+	        			
 	        		} else if(data.teacher_password != "") {
-			    		$('#findmyidmodal').text("새로 발급받은 비밀번호는 " + data.teacher_password + " 입니다." + " 로그인 후 비밀번호를 변경해주시기 바랍니다.");
+	        			var r = confirm("가입한 이력이 있습니다. 임시비밀번호를 발급받아 로그인하시겠습니까?");
+	        			if (r == true) {
+			    			$('#findmyidmodal').text("새로 발급받은 비밀번호는 " + data.teacher_password + " 입니다." + " 로그인 후 비밀번호를 변경해주시기 바랍니다.");
+	        			}else{
+				    		$('#findmyidmodal').text("아직 임시비밀번호는 발급되지않았습니다.다시 시도해주세요.");
+	        			}
 	        		}
 	        	} else {
 		    		//$('#myModal').modal();
