@@ -182,7 +182,7 @@ public class LectureDAO {
 			try {
 				conn = ConnectionManager.getConnnect();
 				
-				String sql = "update lecture set lecture_link = null, lecture_on = 'N' where TEACHER_ID = ? and LECTURE_ID = ?"; 
+				String sql = "update lecture set lecture_link = null, lecture_on = 'N', lecture_n_date = sysdate where TEACHER_ID = ? and LECTURE_ID = ?"; 
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, lectureVO.getTeacher_id());
 				pstmt.setString(2, lectureVO.getLecture_id());		
