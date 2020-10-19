@@ -39,6 +39,17 @@
     margin-bottom: 30px !important;
 }
 
+.blog-content .badge {
+	font-size: 20px;
+	padding-top: .35em;
+	margin-right: 10px;
+}
+
+.blog-c {
+	padding-bottom: .25em;
+}
+
+
 /* [name=btnLink]{
 	display:none;
 } */
@@ -93,6 +104,8 @@
 				var btn = $(this)
 				var lecid = $(this).next().val();
 				var lecname = $(this).next().next().val();
+				
+				var cnt = $(this).prev().prev().prev().children().eq(1).children(); //수강인원 카운트
 				var mempay = "${sessionScope.login.is_pay}";
 				var check = "${sessionScope.check}";
 				console.log(lecid);
@@ -111,7 +124,9 @@
 							        		btn.text("수강중");
 							        		var link = btn.prev().val();
 							        		btn.parent().append('<a href='+link+'<button type="button" id="btn2" class="btn btn-outline-success" name=btnLink>강의 들으러 가기</button></a>');
-							        		
+							        		var cntUpd = cnt.html();
+							        		cntUpd++;
+							        		cnt.html(cntUpd);
 							    			alert("수강되었습니다.");
 							    			
 							    		}else if(data == 0){
@@ -194,24 +209,29 @@
                 
                 		<!-- Blog Content -->
 							<div class="blog-content">
-								<c:if
-									test="${sessionScope.login != null && sessionScope.login.is_pay == 'Y' || sessionScope.check == 'A' || sessionScope.check == 'T'}">
-									<a href="${lecture_list.lecture_link}" class="blog-headline"
-										target="_blank">
+								<div class="blog-c row">
+									<c:if test="${lecture_list.lecture_on == 'N'}">
+		                            	<span class="badge badge-danger">폐강</span>
+		                            </c:if>
+									<c:if
+										test="${sessionScope.login != null && sessionScope.login.is_pay == 'Y' || sessionScope.check == 'A' || sessionScope.check == 'T'}">
+										<a href="${lecture_list.lecture_link}" class="blog-headline"
+											target="_blank">
+											<h4>${lecture_list.lecture_name}</h4>
+										</a>
+									</c:if>
+									<c:if
+										test="${sessionScope.login == null || sessionScope.check == 'M' && sessionScope.login.is_pay != 'Y'}">
 										<h4>${lecture_list.lecture_name}</h4>
-									</a>
-								</c:if>
-								<c:if
-									test="${sessionScope.login == null || sessionScope.check == 'M' && sessionScope.login.is_pay != 'Y'}">
-									<h4>${lecture_list.lecture_name}</h4>
-								</c:if>
+									</c:if>
+								</div>
 								<div class="meta d-flex align-items-center">
 									<span><i class="fa fa-circle" aria-hidden="true"></i></span>
 									<div>담당 강사 : ${lecture_list.teacher_name}</div>
 								</div>
 								<div class="meta d-flex align-items-center">
 									<span><i class="fa fa-circle" aria-hidden="true"></i></span>
-									<div>현재 ${lecture_list.cnts} 명이 수강중.</div>
+									<div>현재 <a>${lecture_list.cnts}</a>명이 수강중.</div>
 								</div>
 								<div class="meta d-flex align-items-center">
 									<p><a href="${pageContext.request.contextPath}/lecture/lectureDetailSelect.do?lecture_id=${lecture_list.lecture_id}"><button type="button" id="btn2" class="btn btn-outline-success">강의 상세 정보</button></a></p>
@@ -234,7 +254,7 @@
                          		</c:if>
 								<input type="hidden" value="${lecture_list.lecture_id}">
 								<input type="hidden" value="${lecture_list.lecture_name}">
-
+	
 							</div>
 						</div>
 					</div>

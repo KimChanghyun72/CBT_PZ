@@ -202,7 +202,7 @@ $(function(){
 					}
 				};
 					alert("제출완료");
-					location.href="${pageContext.request.contextPath}/mypage/myRetestSelect.do?solve_id=" + solve_id; 
+					location.href="${pageContext.request.contextPath}/my/myRetestSelect.do?solve_id=" + solve_id; 
 			}	
 		})
 	}
@@ -265,7 +265,7 @@ $(document).ready(function(){
 </head>
 <body>
 	<div class="header">
-		<h1>${sessionScope.pageName} ${problemList[0].solve_type_cd} </h1>
+		<h1>${problemList[0].solve_type_name} </h1>
 			<div id="ViewTimer"></div>
 	</div>
 <div class="leftcolumn">
@@ -278,7 +278,7 @@ $(document).ready(function(){
 		<tbody>
 		<% for(probNum=0; probNum<problemList.size(); probNum++){ %>				
 			<tr>
-				<td><%=problemList.get(probNum).get("subject") %>
+				<td><%=problemList.get(probNum).get("subject_name") %>
 				<td class="probNum<%=probNum %>"><%=probNum+1 %>번
 				</td>
 				<td>

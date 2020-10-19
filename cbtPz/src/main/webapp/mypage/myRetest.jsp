@@ -35,7 +35,7 @@ table {
 <script>
 function btnSelectSolve(solve_id) {
 	if( confirm("응시문제를 확인 하시겠습니까?")) {
-		location.href="${pageContext.request.contextPath}/mypage/myRetestSelect.do?solve_id="+solve_id;
+		location.href="${pageContext.request.contextPath}/my/myRetestSelect.do?solve_id="+solve_id;
 	} else {
 		alert("취소 되었습니다.");
 	}  
@@ -43,7 +43,7 @@ function btnSelectSolve(solve_id) {
 		
 function btnRetest(solve_id) {
 	if( confirm("재응시 하시겠습니까?")) {
-		location.href="${pageContext.request.contextPath}/mypage/myRetest.do?solve_id="+solve_id;
+		location.href="${pageContext.request.contextPath}/my/myRetest.do?solve_id="+solve_id;
 	} else {
 		alert("취소 되었습니다.");
 	}  
@@ -60,8 +60,7 @@ function btnContinueTest(solve_id) {
 </head> 
 <body>
 
-	<h1>test/ 오답문제 페이지</h1>
-	<br><br>	
+	<br><br><br><br>	
 	<div class="container">
 			<div class="table-responsive">
 				<table border="1"  class="table table-hover" id="dev-table">
@@ -81,7 +80,7 @@ function btnContinueTest(solve_id) {
 					<fmt:parseNumber var="percent" value="65.153454" integerOnly="true" />
 					
 					<td><fmt:formatNumber value="${solvelist.solve_time/60}" pattern="0"/>분 ${solvelist.solve_time%60}초</td>
-					<td>${solvelist.solve_type_cd}</td>
+					<td>${solvelist.solve_type_name}</td>
 					<td>
 						<c:if test="${solvelist.solve_submit=='Y'}">
 						${solvelist.solve_score}/${solvelist.solve_cnt}

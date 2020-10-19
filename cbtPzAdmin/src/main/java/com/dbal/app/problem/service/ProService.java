@@ -5,6 +5,11 @@ import com.dbal.app.problem.HashtagVO;
 import com.dbal.app.problem.ProblemVO;
 
 public interface ProService {
-	public ProblemVO getPro(ProblemVO problemVO);
 	public void insertPro(ProblemVO problemVO, HashtagVO vo1);
+	public ProblemVO getPro(ProblemVO problemVO);
 }
+
+
+
+
+

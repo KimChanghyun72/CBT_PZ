@@ -43,8 +43,7 @@ $(function(){
 		<col style="width:100px; " />
 	</colgroup>
 		<tr>
-		<th>문제 유형</th>
-		<th>&nbsp;&nbsp;&nbsp;</th>
+		<th bgcolor="lightblue" colspan="2"><h2>문제 유형</h2></th>
 		</tr>
 	<c:forEach items="${subjectlist}" var="subjectlist">			
 	<input type="hidden"/>
@@ -62,17 +61,5 @@ $(function(){
 	</table>
 	</div>
 	</article>
-	
-	
-	
-	
-	<%-- <form action="${pageContext.request.contextPath}/problemSubject.do">	
-	1과목<button type="submit" name="subject" value="1과목">풀기</button><br>
-	2과목<button type="submit" name="subject" value="2과목">풀기</button><br>
-	3과목<button type="submit" name="subject" value="3과목">풀기</button><br>
-	4과목<button type="submit" name="subject" value="4과목">풀기</button><br>
-	5과목<button type="submit" name="subject" value="5과목">풀기</button><br>
-	</form>
-	<br> --%>
 </body>
 </html>

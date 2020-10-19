@@ -1,28 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
+
 <mapper namespace="com.dbal.app.problem.mapper.HashMapper">
-  <insert id="insertHash1"  statementType="CALLABLE" parameterType="hash">
-  	{ call INS_HASHTAG(?,?,?,?) }
-  </insert>
-  <insert id="insertHash1"  statementType="CALLABLE" parameterType="hash">
- 	{ call INS_HASHTAG(
- 					 	#{p_id, mode=IN, jdbcType=VARCHAR, javaType=string},
- 						#{p_hashcd, mode=IN, jdbcType=VARCHAR, javaType=string},
- 						#{p_hash, mode=IN, jdbcType=VARCHAR, javaType=string},
- 						#{p_seq, mode=OUT, jdbcType=VARCHAR, javaType=string}
- 					  )
- 	}
-  </insert>
+<insert id="insertHash" statementType="CALLABLE" parameterType="hash">
+		{ call INS_HASHTAG(
+				#{problem_id, 		mode=IN,  jdbcType=VARCHAR, javaType=string},
+				#{classify_code_cd, mode=IN,  jdbcType=VARCHAR, javaType=string},
+				#{hashtag_name, 	mode=IN,  jdbcType=VARCHAR, javaType=string},
+				#{hashtag_id, 		mode=OUT, jdbcType=VARCHAR, javaType=string}
+			)
+		}
+</insert>
 </mapper>
-  	<!-- INSERT INTO HASHTAG	(
-  						  HASHTAG_ID, 
-  						  hashtag_name,
-  						  CLASSIFY_CODE_CD
-  						)
-				VALUES 	(
-						  HASH_SEQ.nextval,
-						  #{hashtag_name},
-						  #{classify_code_cd}
-						) -->

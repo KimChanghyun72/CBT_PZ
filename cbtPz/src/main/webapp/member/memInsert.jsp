@@ -524,7 +524,7 @@ function nCheck(){
 
 					<!-- Multiple Radios (inline) --> 
 					<div class="form-group">
-						<label class="col-md-4 control-label" for="is_major">전공확인</label>
+						<label class="col-md-4 control-label" for="is_major">전공자 여부</label>
 						<div class="col-md-5">
 							<label class="radio-inline" for="is_major">
 								<input type="radio" name="is_major" id="gender-0" value="Y" checked="checked"> 예
@@ -538,7 +538,7 @@ function nCheck(){
 
 					<!-- Multiple Radios (inline) --> 
 					<div class="form-group">
-						<label class="col-md-4 control-label" for="study_term">공부기간</label>
+						<label class="col-md-4 control-label" for="study_term">공부 기간</label>
 						<div class="col-md-5">
 							<label class="radio-inline" for="study_term"> 
 								<input type="radio" name="study_term" id="study_term-0" value="1개월 미만" checked="checked">1개월 미만
@@ -557,7 +557,7 @@ function nCheck(){
 
 					<!-- Multiple Radios (inline) --> 
 					<div class="form-group">
-						<label class="col-md-4 control-label" for="tested_num">시험횟수</label>
+						<label class="col-md-4 control-label" for="tested_num">시험 횟수</label>
 						<div class="col-md-5">
 							<label class="radio-inline" for="tested_num"> 
 								<input type="radio" name="tested_num" id="tested_num-0" value="0" checked="checked"> 0회

@@ -45,7 +45,7 @@
 
 	<article>
 		<div class="container">
-			<div class="table-responsive">
+			<div class="table-responsive2">
 				<br> <br>
 				<table class="table table-striped table-sm">
 					<colgroup>

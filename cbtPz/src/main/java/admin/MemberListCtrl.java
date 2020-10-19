@@ -21,6 +21,8 @@ public class MemberListCtrl implements Controller{
 		
 		request.setAttribute("list", list);
 		
+		System.out.println(list);
+		
 		request.getRequestDispatcher("/admin/memberList.jsp").forward(request, response);
 	
 		

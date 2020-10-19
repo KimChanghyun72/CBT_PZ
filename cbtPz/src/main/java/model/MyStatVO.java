@@ -21,7 +21,7 @@ public class MyStatVO {
 	private String hashtag_name;
 	private String minday;
 	private String maxday;
-	
+	private String solve_type_name;
 	
 	
 	

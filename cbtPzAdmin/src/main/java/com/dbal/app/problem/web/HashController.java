@@ -13,15 +13,15 @@ public class HashController {
 	HashService hashService;
 	
 		//등록페이지
-		@RequestMapping("insertHashForm")
+		@RequestMapping("inserHashtagtForm")
 		public String insertHashForm(HashtagVO vo) {
-			return "hash/headInsert";
+			return "problem/quizInsert";
 		}
 		
 		//등록처리
 		@RequestMapping("insertHash")
 		public String insertHash(HashtagVO vo) {
 			hashService.insertHash(vo);
-			return "redirect:insertHashForm";
+			return "redirect:insertProForm";
 		}
 }

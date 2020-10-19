@@ -47,13 +47,13 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.relocator.1.0.0.js"></script>
     
     <!-- hashSelect.jsp 사용. -->
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	
     <script type="text/javascript" src="${pageContext.request.contextPath}/study/fancymetags.jQuery.js"></script>
     
     <!-- studyPaper datatable link -->
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    
  <decorator:head/>   
 
     
@@ -158,15 +158,15 @@
                                         	<li><a href="${pageContext.request.contextPath}/mypage/insertLecForm.do">강의 등록</a></li>
                                         </c:if>
                                         
-                                        	<li><a href="${pageContext.request.contextPath}/mypage/myInput.do">작성글</a></li>
+                                        	<li><a href="${pageContext.request.contextPath}/mypage/myInput.do">나의 작성글</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="${pageContext.request.contextPath}/pay/payment.jsp">멤버쉽</a></li>
                               </c:if>
                               <c:if test="${not empty sessionScope.check && sessionScope.check == 'A'}">
-                                <li><a href="${pageContext.request.contextPath}memberList">관리자메뉴</a>
+                                <li><a href="${pageContext.request.contextPath}/problemInsert.do">관리자메뉴</a>
                                 	<ul class="dropdown">
-                                        <li><a href="${pageContext.request.contextPath}/admin/quizInsert.jsp">개별문제</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/admin/problemList.do">개별문제</a></li>
                                         <li><a href="${pageContext.request.contextPath}/admin/headInsert.jsp">회차문제</a></li>
                                         <li><a href="${pageContext.request.contextPath}/admin/adminChart.jsp">회원통계</a></li>
                                         <li><a href="${pageContext.request.contextPath}/admin/memberList.do">회원관리</a></li>
