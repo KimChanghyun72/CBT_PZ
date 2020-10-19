@@ -7,6 +7,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+#tr_font h5{
+	color : white;
+	text-shadow: 2px 2px 2px gray;
+	}
+</style>
 </head>
 <body>
 	<br><br><br><br>
@@ -14,9 +20,9 @@
 		<form>
 			<div class="table-responsive">
 				<table border="1"  class="table table-hover" id="dev-table">
-					<tr style="background-color:lightblue" align="center">
-						<th width="16%">과목</th>
-						<th>문제</th>
+					<tr id="tr_font" bgcolor="#99d6ff" align="center">
+						<th width="16%"><h5>과목</h5></th>
+						<th><h5>문제</h5></th>
 					</tr>			
 					<c:forEach items="${problemList}" var="favorite">
 					<tr>
