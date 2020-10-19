@@ -106,7 +106,7 @@ $(function(){
 
 				</div>
 				
-				<div class="board_content" style="white-space:pre;"><c:out value="${qaboard.qaboard_contents}"/></div>
+				<div class="board_content" style="white-space:pre;"><c:out value="${qaboard.qaboard_contents}" escapeXml="false"/></div>
 							
 				</div>
 			<div style="margin-top : 20px">
