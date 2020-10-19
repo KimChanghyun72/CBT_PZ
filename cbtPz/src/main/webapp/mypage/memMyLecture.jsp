@@ -99,8 +99,8 @@
                 <!-- Single Popular Course -->
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="single-popular-course mb-100 wow fadeInUp" data-wow-delay="250ms">
-                        <img src="${pageContext.request.contextPath}/lectureSelect.do?lecture_image=${lecture.lecture_image}"
-                        	onerror="this.src='${pageContext.request.contextPath}/img/cottonbro.jpg'">
+                        <a href="${lecture.lecture_link}"><img src="${pageContext.request.contextPath}/lectureSelect.do?lecture_image=${lecture.lecture_image}"
+                        	onerror="this.src='${pageContext.request.contextPath}/img/cottonbro.jpg'"></a>
                         <!-- Course Content -->
                         <div class="course-content">
                             <h4>강의명 : ${lecture.lecture_name}</h4>

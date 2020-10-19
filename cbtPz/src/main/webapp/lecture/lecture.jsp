@@ -102,8 +102,8 @@
 		
 		$('.blog-content button[name=btnLearn]').on("click", function(){
 				var btn = $(this)
-				var lecid = $(this).next().val();
-				var lecname = $(this).next().next().val();
+				var lecid = $(this).next().next().val();
+				var lecname = $(this).next().next().next().val();
 				
 				var cnt = $(this).prev().prev().prev().children().eq(1).children(); //수강인원 카운트
 				var mempay = "${sessionScope.login.is_pay}";
@@ -123,7 +123,7 @@
 							        	if(data == 1){
 							        		btn.text("수강중");
 							        		var link = btn.prev().val();
-							        		btn.parent().append('<a href='+link+'<button type="button" id="btn2" class="btn btn-outline-success" name=btnLink>강의 들으러 가기</button></a>');
+							        		btn.parent().append('<a href='+link+' target="_blank"><button type="button" id="btn2" class="btn btn-outline-success" name=btnLink>강의 들으러 가기</button></a>');
 							        		var cntUpd = cnt.html();
 							        		cntUpd++;
 							        		cnt.html(cntUpd);
@@ -250,9 +250,9 @@
 									</button>
                            		</c:if>
                            		<c:if test="${lecture_list.lecture_yn == 1}">
-                         				<a href="${lecture_list.lecture_link}"><button type="button" id="btn2" class="btn btn-outline-success" name="btnLink">강의 들으러 가기</button></a>
+                         				<a href="${lecture_list.lecture_link}" target="_blank"><button type="button" id="btn2" class="btn btn-outline-success" name="btnLink" >강의 들으러 가기</button></a>
                          		</c:if>
-								<input type="hidden" value="${lecture_list.lecture_id}">
+								<input type="hidden" value="${lecture_list.lecture_id}" name="lecid">
 								<input type="hidden" value="${lecture_list.lecture_name}">
 	
 							</div>
