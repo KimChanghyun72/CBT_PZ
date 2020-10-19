@@ -34,6 +34,7 @@ var check = "${sessionScope.check}";
 
 
 <article>
+	<br><br><br>
 	<div class="container" align="center">
 		<table class="table-striped table-sm">
 	<colgroup>
@@ -41,7 +42,7 @@ var check = "${sessionScope.check}";
 		<col style="width: 100px" />
 	</colgroup>
 		<tr>
-		<th bgcolor="#99d6ff"><h5>문제 유형</h5></th>
+		<th bgcolor="#99d6ff"><h5>문제 유형</h5></th> 
 		<th bgcolor="#99d6ff"><h5>풀기</h5></th>
 		</tr>
 	<c:forEach items="${headlist}" var="headlist">			
@@ -54,7 +55,6 @@ var check = "${sessionScope.check}";
 	<button  name="btnSubmit" value="${headlist.paperhead_id}" class="btn btn-sm btn-primary">풀기</button>
 	</td>
 	</tr>
-	<br>
 	</c:forEach>
 	
 	</table>

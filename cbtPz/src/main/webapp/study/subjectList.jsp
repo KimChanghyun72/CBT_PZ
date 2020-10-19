@@ -50,6 +50,7 @@ $(function(){
 	<div align="center">
 		<a id="fa"><img src="../img/prob.png">&nbsp;&nbsp;문제는 랜덤으로 10개씩 출제 됩니다.</a>
 	</div>
+	<br><br>
 	<article>
 	<div class="container" align="center">
 		<table class="table-striped table-sm">
@@ -70,7 +71,6 @@ $(function(){
 	<button name="btnSubmit" value="${subjectlist.commoncode_id}" class="btn btn-sm btn-primary">풀기</button>
 	</td>
 	</tr>
-	<br>
 	</c:forEach>
 	
 	</table>
