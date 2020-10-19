@@ -35,6 +35,7 @@
 }
 </style>
 <script>
+<% request.getSession().setAttribute("pageName", "동영상 강의 상세"); %>
 
 	function inputCheck() {
 		
@@ -118,7 +119,8 @@ $(function(){
 	
 	$(".btnLearn").on("click", function(){
 		if("${login.is_pay}"=="Y"){
-			location.href="${lectureInfo.lecture_link}";			
+			var newWindow = window.open("about:blank");
+			newWindow.location.href="${lectureInfo.lecture_link}";			
 		}else{
 			alert("유료회원 전용 서비스입니다.");
 		}
@@ -129,37 +131,32 @@ $(function(){
 </script>
 </head>
 <body>
-<article>
-	<div class="container" role="main">
-	<!-- <div class="my-3 p-3 bg-white rounded shadow-sm" style="padding-top: 10px"> -->
-	<div>
-	<div>
-	<div>
-	
-	<br><br>
-	<div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="tab--3">
+
+
+<!-- ##### Courses Content Start ##### -->
+    <div class="single-course-content section-padding-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-8">
+                    <div class="course--content">
+
+                     <!--    <div class="clever-tabs-content">
+
+                            <div class="tab-content" id="myTabContent"> -->
+
+                                <!-- Tab Text -->
+                                <div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="tab--3">
                                     <div class="clever-review">
-		
-                                        <!-- 강의정보      Ratings -->
+
+                                        <!-- Ratings -->
                                         <div class="clever-ratings d-flex align-items-center mb-30">
 
                                             <div class="total-ratings text-center d-flex align-items-center justify-content-center">
                                                 <div class="ratings-text">
-                                                   <!--  <h2>4.5</h2>
-														<div class="about-course mb-30"> -->
-													<h3>강의 정보</h3>
-													<div class="thumb">
+                                                    <h3>강의정보</h3>
+                                                    <div class="thumb">
                                                     	<img src="${pageContext.request.contextPath}/nostms/profilepicSelect.do?teacher_picture=${lectureInfo.lecture_image}" height="250px" alt="">
                                                     </div>
-														<!-- </div> -->
-											<!-- <div class="ratings--">
-                                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                                        <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                                                    </div> -->
-                                                    <!-- <span>Rated 5 out of 3 Ratings</span> -->
                                                 </div>
                                             </div>
 
@@ -173,79 +170,87 @@ $(function(){
 															<div>과목 : ${lectureInfo.lecture_subject}</div>
 												</div>
 												<div class="single-rating mb-15 d-flex align-items-center">
-															<div>강의 정보 : ${lectureInfo.lecture_info}</div>
+															<div>강의 정보 : </div>
 												</div>
 												<div class="single-rating mb-15 d-flex align-items-center">
-															<c:choose>
-																<c:when test="${login.is_pay=='Y'}">
-																	<div>
-																		강의 링크 : <a href="#" class="btnLearn">수강하러가기</a>
-																	</div>
-																</c:when>
-																<c:otherwise>
-																	<div>강의 링크 : 수강하러가기</div>
-																</c:otherwise>
-															</c:choose>
-                                                 </div>
+															<div>${lectureInfo.lecture_info}</div>
+												</div>
                                             </div>
                                         </div>
 
 
-                                        <!-- 강사정보    Single Review -->
-                                        <div class="single-review mb-30">
-                                            <div class="d-flex justify-content-between mb-30">
-                                                <!-- Review Admin -->
-                                                <div class="review-admin d-flex">
-	                                                    <div class="thumb2">
-	                                                        <img src="${pageContext.request.contextPath}/nostms/profilepicSelect.do?teacher_picture=${teacherInfo.teacher_picture}" height="50px" alt="">
-	                                                    </div>
-	                                                    <div class="text">
-	                                                        <h6>강사명 :${teacherInfo.teacher_name}</h6>
-	                                                        <!-- <span>Sep 29, 2017 at 9:48 am</span> -->
-	                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div> 약력 : ${teacherInfo.teacher_record}</div>
-											<div> 자격증 : ${teacherInfo.teacher_certificate}</div>
-											<div> 이메일  : ${teacherInfo.teacher_email}</div>
-                                        </div>
+									<c:choose>
+										<c:when test="${login.is_pay=='Y'}">
+											<div>
+												<!-- 강의 링크 : <a href="#" class="btnLearn">수강하러가기</a> -->
+												<a href="#" class="btnLearn btn clever-btn mb-30 w-100">수강하러가기</a>
+											</div>
+										</c:when>
+										<c:otherwise>
+											<a href="#" class="btnLearn btn clever-btn mb-30 w-100">수강하러가기</a>
+										</c:otherwise>
+									</c:choose>
+                                        
+                                        
                                     </div>
                                 </div>
-	
-								<%-- <div class="single-review mb-30">
-                                            <div class="d-flex justify-content-between mb-30">
-                                                <!-- Review Admin -->
-                                                <div class="review-admin d-flex">
-                                                    <div class="thumb2">
-                                                        <img src="${pageContext.request.contextPath}/nostms/profilepicSelect.do?teacher_picture=${teacherInfo.teacher_picture}" height="50px" alt="">
-                                                    </div>
-                                                    <div class="text">
-                                                        <h6>Sarah Parker</h6>
-                                                        <span>Sep 29, 2017 at 9:48 am</span>
-                                                    </div>
-                                                </div>
-                                                <!-- Ratings -->
-                                                <div class="ratings">
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                </div>
-                                            </div>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce enim nulla, mollis eu metus in, sagittis.</p>
-                                        </div> --%>
-	
-	
-	
-	
+                                
+                        <!--     </div>
+                        </div> -->
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-4">
+                    <div class="course-sidebar">
+                        
+                        <!-- Widget -->
+                        <div class="sidebar-widget">
+                            <h4>강사 정보</h4>
+
+                            <!-- Single Courses -->
+                            <div class="single--courses d-flex align-items-center">
+                                <div class="thumb">
+                                    <img src="${pageContext.request.contextPath}/nostms/profilepicSelect.do?teacher_picture=${teacherInfo.teacher_picture}" height="50px" alt="">
+                                </div>
+                                <div class="content">
+                                    <h5>강사명 :${teacherInfo.teacher_name}</h5>
+                                    <h6>${teacherInfo.teacher_email}</h6>
+                                </div>
+                            </div>
+
+                            <!-- Single Courses -->
+                            <div class="single--courses d-flex align-items-center">
+                                <div class="content">
+                                	<div> 약력 : ${teacherInfo.teacher_record}</div>
+                                    <!-- <h5>Expository writing</h5>
+                                    <h6>$45</h6> -->
+                                </div>
+                            </div>
+
+                            <!-- Single Courses -->
+                            <div class="single--courses d-flex align-items-center">
+                                <div class="content">
+                                    <div> 자격증 : ${teacherInfo.teacher_certificate}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Courses Content End ##### -->
+
+
+
+
 	
 	
 	
 	
 	
    <!-- ##### Courses Content Start ##### -->
-    <div class="single-course-content section-padding-100">
+    <div class="single-course-content section-padding-50">
         <div class="container">
             <div class="row">
                 <div class="col-12 col-lg-12">
@@ -262,41 +267,7 @@ $(function(){
                                         
 
                                         <!-- All Instructors -->
-                                        <%-- <div class="all-instructors mb-30">
-                                            <h3>강사 정보</h3>
-
-                                            <div class="row">
-                                                <!-- Single Instructor -->
-                                                <div class="col-lg-6">
-                                                    <div class="single-instructor d-flex align-items-center mb-30">
-                                                        <div class="instructor-thumb">
-                                                            <img src="${pageContext.request.contextPath}/nostms/profilepicSelect.do?teacher_picture=${teacherInfo.teacher_picture}" height="250px" alt="">
-                                                        </div>
-                                                        <div class="instructor-info">
-                                                            <h5>강사명 :${teacherInfo.teacher_name} </h5>
-                                                            <span>Teacher</span>
-                                                        </div>
-                                                        
-                                                    </div>
-                                                    <div> 약력 : ${teacherInfo.teacher_record}</div>
-													<div> 자격증 : ${teacherInfo.teacher_certificate}</div>
-													<div> 이메일  : ${teacherInfo.teacher_email}</div>
-													<br><br>
-                                                </div>
-
-                                                <!-- Single Instructor -->
-                                                <!-- <div class="col-lg-6">
-                                                        <div class="instructor-thumb">
-                                                            <img src="img/bg-img/t2.png" alt="">
-                                                        </div>
-                                                        <div class="instructor-info">
-                                                            <h5>Sarah Parker</h5>
-                                                            <span>Teacher</span>
-                                                        </div>
-                                                </div> -->
-
-                                            </div>
-                                        </div> --%>
+                                        
 
                                         <!-- FAQ -->
                                         <div class="clever-faqs">
@@ -360,13 +331,7 @@ $(function(){
                 </div>
             </div>
 		<div class="lec_comments"></div>
-		</div>
-	</div>
-	</div>
-	
-	
-</div>
-</article>			
+		
 	
 </body>
 </html>
