@@ -26,7 +26,7 @@
 
     <!-- Favicon -->
     <link rel="icon" href="${pageContext.request.contextPath}/img/core-img/favicon.ico">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">    
+    <link rel="stylesheet" href="/cbtPz/style.css"> 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     
 <!-- studyPaper datatable link -->
