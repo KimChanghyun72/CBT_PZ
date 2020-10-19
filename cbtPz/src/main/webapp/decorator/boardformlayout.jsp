@@ -54,6 +54,10 @@
     <!-- studyPaper datatable link -->
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     
+    <!-- 결제api -->
+    <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script> -->
+	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+    
  <decorator:head/>   
 
     

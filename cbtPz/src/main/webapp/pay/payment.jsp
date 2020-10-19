@@ -97,12 +97,45 @@
 </style>
 <meta charset="UTF-8">
 <title>결제 페이지</title>
+
 <script>
  <% request.getSession().setAttribute("pageName", "멤버쉽"); %>
 
 $(function(){
 	var term;
 	var payment;
+	
+	var IMP = window.IMP;
+	IMP.init('imp68502592');
+		
+	$(".btn-login").on("click", function(){
+	IMP.request_pay({
+	    pg : 'inicis', // version 1.1.0부터 지원.
+	    pay_method : 'card',
+	    merchant_uid : 'merchant_' + new Date().getTime(),
+	    name : '주문명:결제테스트',
+	    amount : 100,
+	    buyer_email : 'iamport@siot.do',
+	    buyer_name : '구매자이름',
+	    buyer_tel : '010-1234-5678',
+	    buyer_addr : '서울특별시 강남구 삼성동',
+	    buyer_postcode : '123-456',
+	    //m_redirect_url : 'https://www.yourdomain.com/payments/complete'
+	}, function(rsp) {
+	    if ( rsp.success ) {
+	        var msg = '결제가 완료되었습니다.';
+	        msg += '고유ID : ' + rsp.imp_uid;
+	        msg += '상점 거래ID : ' + rsp.merchant_uid;
+	        msg += '결제 금액 : ' + rsp.paid_amount;
+	        msg += '카드 승인번호 : ' + rsp.apply_num;
+	    } else {
+	        var msg = '결제에 실패하였습니다.';
+	        msg += '에러내용 : ' + rsp.error_msg;
+	    }
+	    alert(msg);
+	});		
+	});
+//결제api 종료
 	
 	$('[name=term]').on("change",function(){
 		console.log($(this).val());
@@ -120,7 +153,7 @@ $(function(){
 		payment = $(this).val();
 	})
 	
-	$(".btn-login").on("click", function(){
+ 	 $(".btn-login").on("dblclick", function(){
 		if($("[name=is_payed]").prop("checked")){ //결제 동의여부 체크
 			var confirmVal = confirm("결제하시겠습니까?");
 			if(confirmVal){
@@ -139,9 +172,11 @@ $(function(){
 		}else{
 			alert("구매에 동의하셔야 합니다.");
 		}
-	})
+	});  
 	
-})
+	
+	
+});
 
 
 </script>
