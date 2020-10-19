@@ -46,6 +46,7 @@ public class ExcInsertCtrl implements Controller {
 		PaperheadVO paperhead_idVO = PaperHeadDAO.getInstance().selectNewOne();
 		paperhead_id = paperhead_idVO.getPaperhead_id();
 		
+		String[] split_target = null;
 		
 		// problem table insert
 		String problem_id = request.getParameter("problem_id");
@@ -154,12 +155,17 @@ public class ExcInsertCtrl implements Controller {
 					if (null != cell) problem1.setProblem_image(Double.toString(cell.getNumericCellValue()));
 
 					cell = row.getCell(10);
-					if (null != cell) hashVO.setHashtag_name(cell.getStringCellValue());
-					
+					if (null != cell) {
+						String target = cell.getStringCellValue();
+						split_target = target.split(",");
+						System.out.println("split_target : " + split_target);
+						
+					}
+						
 					cell = row.getCell(1);
-					if (null != cell) hashVO.setClassify_code_cd(cell.getStringCellValue());
+					if (null != cell) hashVO.setClassify_code_cd(cell.getStringCellValue()); 
 					
-					System.out.println("hashVO : " + hashVO);
+					
 					problem1.setPaperhead_id(paperhead_id);
 					
 					System.out.println(problem1);
@@ -167,19 +173,33 @@ public class ExcInsertCtrl implements Controller {
 					dao.insert(problem1);
 					problem1.setProblem_id((dao.selectNewId()).getProblem_id());
 					
-					ArrayList<HashtagVO> hashList = hashDao.selectHashtag(hashVO);
-					System.out.println("hashList : " + hashList);
 					
-					if(hashList.size()==0) {  //hashTag가 새로운 태그라면 태그를 insert 하고 해당 태그를 다시 list에 담음.
-						hashDao.insert(hashVO);
-						hashList = hashDao.selectHashtag(hashVO);
+					for(int j=0; j<split_target.length; j++) {
+						
+						hashVO.setHashtag_name(split_target[j]);
+						System.out.println("split_target 요소" + split_target[j]);
+						
+						ArrayList<HashtagVO> hashList = hashDao.selectHashtag(hashVO);
+						System.out.println("hashList : " + hashList);
+						
+						if(hashList.size()==0) {  //hashTag가 새로운 태그라면 태그를 insert 하고 해당 태그를 다시 list에 담음.
+							hashDao.insert(hashVO);
+							hashList = hashDao.selectHashtag(hashVO);
+						}
+						
+							System.out.println("hashList : " + hashList);
+							//해시태그에 한 개만 들어간다고 가정함.
+							hashList.get(0).getHashtag_id();
+							prob_hashVO.setHashtag_id(hashList.get(0).getHashtag_id());
+							System.out.println("hashid last : " + hashList.get(0).getHashtag_id());
+							prob_hashVO.setProblem_id(problem1.getProblem_id());
+							System.out.println("problem1 last : " + problem1);
+							Problem_HashtagDAO.getInstance().insert(prob_hashVO);
+							System.out.println("======================================================");
+						
+						
 					}
-					System.out.println("hashList : " + hashList);
-					//해시태그에 한 개만 들어간다고 가정함.
-					hashList.get(0).getHashtag_id();
-					prob_hashVO.setHashtag_id(hashList.get(0).getHashtag_id());
-					prob_hashVO.setProblem_id(problem1.getProblem_id());
-					Problem_HashtagDAO.getInstance().insert(prob_hashVO);
+					
 					
 				}
 
