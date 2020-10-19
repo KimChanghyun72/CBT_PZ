@@ -25,27 +25,39 @@ public class Lec_CommentsDAO {
 
 		}//###싱글톤###
 	
+	
 	//###입력###
-	public int insert(Lec_CommentsVO lec_CommentsVO) {
+	public Lec_CommentsVO insert(Lec_CommentsVO lec_CommentsVO) {
+		ResultSet rs = null;
 		int r= 0;
 		try {
 			conn = ConnectionManager.getConnnect();
+	
+			String sql2 = " SELECT LEC_COMMENTS_SEQ.NEXTVAL FROM DUAL ";
+			pstmt = conn.prepareStatement(sql2);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				System.out.println("rsgetString"+rs.getString("NEXTVAL"));
+				lec_CommentsVO.setLec_comments_id(rs.getString("NEXTVAL"));
+			}
 			
 			String sql = "INSERT INTO Lec_Comments (Lec_COMMENTS_ID, LEC_COMMENTS_DATE, LEC_COMMENTS_CONTENTS,LEC_COMMENTS_POSTER, LECTURE_ID)"
-						 + " VALUES(Lec_comments_seq.NEXTVAL,sysdate,?,?,?)";
+						 + " VALUES(?,sysdate,?,?,?)";
 			
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, lec_CommentsVO.getLec_comments_contents());
-			pstmt.setString(2, lec_CommentsVO.getLec_comments_poster());
-			pstmt.setString(3, lec_CommentsVO.getLecture_id());
+			pstmt.setString(1, lec_CommentsVO.getLec_comments_id());
+			pstmt.setString(2, lec_CommentsVO.getLec_comments_contents());
+			pstmt.setString(3, lec_CommentsVO.getLec_comments_poster());
+			pstmt.setString(4, lec_CommentsVO.getLecture_id());
 			r = pstmt.executeUpdate();
+			
 		
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
 			ConnectionManager.close(null,pstmt,conn);
 		}
-		return r;
+		return lec_CommentsVO;
 	}//###입력###
 	
 
