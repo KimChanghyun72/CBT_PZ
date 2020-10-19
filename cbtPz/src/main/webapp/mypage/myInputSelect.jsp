@@ -12,19 +12,26 @@
 <meta charset="UTF-8">
 <title>board.jsp</title>
 <script>
-/*-----------------------댓글 리스트 출력 기능 --------------------- */
+//*-----------------------댓글 리스트 출력 기능 --------------------- */
 $(function(){
 	function boardList(){
-		$.ajax("./ajax/commentList.do",{
+		$.ajax("${pageContext.request.contextPath}/ajax/commentList.do",{
 			dataType : "json",
 			data:{board_id : "${board.board_id}"},
 			success : function(datas){
 				for(i=0; i<datas.length; i++){
+							var del = "";
+							if(datas[i].comment_poster =="${sessionScope.login.member_id}"){
+								del=$("<a style='color:#007bff;'>").html("삭제").addClass("btnDel")
+							}
+					
 					$("<div>").append($("<b>").append(datas[i].comment_poster))
 							.append($("<br>"))
 							.append(datas[i].comment_contents)
 							.data("comment_id", datas[i].comment_id)
-							.append($("<a href='javascript:void(0)'>").html("삭제").addClass("btnDel"))
+							.append("&emsp;")
+							.append(del)
+							.append($("<h6 class='border-bottom pb-2 mb-0'/>"))
 							.appendTo($("#list"))
 				}
 			}
@@ -37,7 +44,7 @@ $(function(){
 	$("#list").on("click",".btnDel", function(){
 		comment_id = $(this).parent().data("comment_id");
 		div = $(this).parent();
-		$.ajax("./commentDelete.do", {
+		$.ajax("${pageContext.request.contextPath}/ajax/commentDelete.do", {
 			method : "get",
 			dataType : "json",
 			data : {comment_id : comment_id},//"no="+no + "&name=" + name 
@@ -47,24 +54,10 @@ $(function(){
 			}
 		});
 	});
-/*-----------------------댓글 저장 버튼 기능 --------------------- */	
-		 $("#btnSave").on("click", function(){
-				$.ajax("./commentInsert.do", {
-					dataType:"json",
-					data : $("form").serialize(),
-					success : function(data){
-						$("<div>").append($("<b>").append(data.comment_poster))
-						.append($("<br>"))
-						.append(data.comment_contents)
-						.data("comment_id", data.comment_id)
-						.append($("<a href='javascript:void(0)'>").html("삭제").addClass("btnDel"))
-						.appendTo($("#list"))
-					}
-				});
-			}) 
-			
-		});	
-</script>	
+});
+
+</script>
+
 <style>
 body {
 
@@ -122,9 +115,7 @@ body {
 <article>
 
 		<div class="container" role="main">
-
-			<h2 align="right" onclick="location.href='boardList.do'">자유게시판</h2>
-			
+		
 			<div class="bg-white rounded shadow-sm">
 
 				<div class="board_title"><c:out value="${board.board_title}"/></div>
