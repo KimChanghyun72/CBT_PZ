@@ -3,7 +3,7 @@ package admin;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -18,10 +18,14 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
   
 import common.FileRenamePolicy;   
 import controller.Controller;
+import model.HashtagDAO;
+import model.HashtagVO;
 import model.PaperHeadDAO;
 import model.PaperheadVO;
 import model.ProblemDAO;
 import model.ProblemVO;
+import model.Problem_HashtagDAO;
+import model.Problem_HashtagVO;
 
 public class ExcInsertCtrl implements Controller {
 
@@ -38,9 +42,11 @@ public class ExcInsertCtrl implements Controller {
 		paper.setPaperhead_id(paperhead_id);
 		paper.setPaper_type_cd(paper_type_cd); paper.setPaper_round(paper_round);
 		PaperHeadDAO.getInstance().insert(paper);
-		 
 		
-
+		PaperheadVO paperhead_idVO = PaperHeadDAO.getInstance().selectNewOne();
+		paperhead_id = paperhead_idVO.getPaperhead_id();
+		
+		
 		// problem table insert
 		String problem_id = request.getParameter("problem_id");
 		String subject = request.getParameter("subject");
@@ -51,7 +57,7 @@ public class ExcInsertCtrl implements Controller {
 		String ans_3 = request.getParameter("ans_3");
 		String ans_4 = request.getParameter("ans_4");
 		String ans_correct = request.getParameter("ans_correct");
-		paperhead_id = request.getParameter("paperhead_id");
+		//paperhead_id = request.getParameter("paperhead_id");
 		String problem_image = request.getParameter("problem_image");
 
 		String path = "C:/upload";
@@ -82,6 +88,8 @@ public class ExcInsertCtrl implements Controller {
 			System.out.println(renameFile.getName());
 
 			ProblemDAO dao = new ProblemDAO();
+			new HashtagDAO();
+			HashtagDAO hashDao = HashtagDAO.getInstance();
 
 			// List<ProblemVO> list = new ArrayList<ProblemVO>();
 
@@ -93,14 +101,19 @@ public class ExcInsertCtrl implements Controller {
 
 				// 첫번째 시트 불러오기
 				XSSFSheet sheet = workbook.getSheetAt(0);
-
+				
+				System.out.println(sheet.getLastRowNum());
+				
 				for (int i = 0; i < sheet.getLastRowNum(); i++) {
 					ProblemVO problem1 = new ProblemVO();
+					//해시태그 등록.
+					HashtagVO hashVO = new HashtagVO(); 
+					Problem_HashtagVO prob_hashVO = new Problem_HashtagVO();
 					problem1.setProblem_id(renameFile.getName());
 					XSSFRow row = sheet.getRow(i);
 
 					// 행이 존재하지 않으면 패스
-					if (null == row) {
+					if (null == row.getCell(0)) {
 						continue;
 					}
 					
@@ -132,15 +145,42 @@ public class ExcInsertCtrl implements Controller {
 					cell = row.getCell(8);
 					if (null != cell) problem1.setAns_correct(Double.toString(cell.getNumericCellValue())); 
 																								
-					cell = row.getCell(9);
-					if (null != cell) problem1.setPaperhead_id(Double.toString(cell.getNumericCellValue()));
+					/*
+					 * cell = row.getCell(9); if (null != cell)
+					 * problem1.setPaperhead_id(Double.toString(cell.getNumericCellValue()));
+					 */
 					
-					cell = row.getCell(10);
+					cell = row.getCell(9);
 					if (null != cell) problem1.setProblem_image(Double.toString(cell.getNumericCellValue()));
 
+					cell = row.getCell(10);
+					if (null != cell) hashVO.setHashtag_name(cell.getStringCellValue());
+					
+					cell = row.getCell(1);
+					if (null != cell) hashVO.setClassify_code_cd(cell.getStringCellValue());
+					
+					System.out.println("hashVO : " + hashVO);
+					problem1.setPaperhead_id(paperhead_id);
+					
 					System.out.println(problem1);
 
 					dao.insert(problem1);
+					problem1.setProblem_id((dao.selectNewId()).getProblem_id());
+					
+					ArrayList<HashtagVO> hashList = hashDao.selectHashtag(hashVO);
+					System.out.println("hashList : " + hashList);
+					
+					if(hashList.size()==0) {  //hashTag가 새로운 태그라면 태그를 insert 하고 해당 태그를 다시 list에 담음.
+						hashDao.insert(hashVO);
+						hashList = hashDao.selectHashtag(hashVO);
+					}
+					System.out.println("hashList : " + hashList);
+					//해시태그에 한 개만 들어간다고 가정함.
+					hashList.get(0).getHashtag_id();
+					prob_hashVO.setHashtag_id(hashList.get(0).getHashtag_id());
+					prob_hashVO.setProblem_id(problem1.getProblem_id());
+					Problem_HashtagDAO.getInstance().insert(prob_hashVO);
+					
 				}
 
 			} catch (Exception e) {

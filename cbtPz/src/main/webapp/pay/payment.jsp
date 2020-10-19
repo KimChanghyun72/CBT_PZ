@@ -15,6 +15,7 @@
 
 
 .box {
+	
 	width:500px;
 	height:200px;
 	margin:0 auto;
@@ -27,13 +28,24 @@
 	 /* border : #f1f1f1 0.5px solid;  */
 }
 .box p {
+	font-size : 130%;
 	position:absolute;
 	top:50%;
 	left:50%;
 	width:100%;
-	margin-top:-0.5em;
+	margin-top:-0.5em;  
 	margin-left:-50%;
+	
 	text-align:center;
+	/* height : auto; */
+	
+	
+}
+.box p.p1 {
+	
+	margin-top:-2.0em;  
+	
+	
 }
 
 .box2{
@@ -141,12 +153,13 @@ $(function(){
 	
 	<div class="box2" style = background:#f7f7f7><p><b>선택 옵션</b></p></div>
 	<div class="box">
-	<p>
+	<p class="p1">
 	<!-- 유료회원 기간 선택 -->
 	<input type="radio" name="term" value="30">1개월(30000원)
-	<input type="radio" name="term" value="60">2개월(58000원)
-	<input type="radio" name="term" value="90">3개월(85000원)<br><br>
+	<input type="radio" name="term" value="60">2개월(58000원)<br><br>
+	<input type="radio" name="term" value="90">3개월(85000원)
 	<input type="radio" name="term" value="180">6개월(165000원)
+	</p>
 	</div>
 	<!-- 지불 가격 선택 -->
 	<div class="box2" style = background:#f7f7f7><p><b>결제 가격</b></p></div>
