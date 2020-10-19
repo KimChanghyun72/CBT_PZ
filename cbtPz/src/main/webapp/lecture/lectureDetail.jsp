@@ -138,7 +138,14 @@ $(function(){
                                             <h5>강의명 : ${lectureInfo.lecture_name}</h5>
 											<div> 과목 : ${lectureInfo.lecture_subject}</div>
                                            	<div>강의 정보 : ${lectureInfo.lecture_info}</div>
-											<div> 강의 링크 : <a href="#" class="btnLearn">수강하러가기</a></div>
+                                           	<c:choose>
+	                                           	<c:when test="${login.is_pay=='Y'}">
+													<div> 강의 링크 : <a href="#" class="btnLearn">수강하러가기</a></div>
+												</c:when>
+												<c:otherwise>
+													<div> 강의 링크 : 수강하러가기</div>
+												</c:otherwise>
+											</c:choose>
                                         </div>
 
                                         <!-- All Instructors -->

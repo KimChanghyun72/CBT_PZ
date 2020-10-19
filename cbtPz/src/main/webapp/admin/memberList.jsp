@@ -13,6 +13,16 @@
 <%request.getSession().setAttribute("pageName", "회원 관리");%>
 	
 </script>
+<style>
+	.container{
+		width : auto;
+		box-shadow: 0 3px 20px rgba(0, 0, 0, 0.15);
+	    padding: 35px 50px;
+    	border-radius: 6px;
+    	background:#f7f7f7;
+	}
+
+</style>
 <script>
 	$(function() {
 
@@ -23,6 +33,7 @@
 </script>
 </head>
 <body>
+	<div class="container">
 	<h3>회원목록</h3>
 	<table id="listTable" class="display">
 		<thead>
@@ -48,5 +59,6 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	</div>
 </body>
 </html>
