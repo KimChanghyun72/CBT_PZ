@@ -5,6 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="//cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
+
 			<!--공백 체크 및 비밀번호 확인  -->
 <script>
 	
@@ -20,12 +22,7 @@
 			frm.member_id.focus();
 			return false;
 		}
-		if (frm.board_contents.value == "") {
-			window.alert("내용을 입력하세요");
-			frm.board_contents.focus();
-			return false;
-		}
-
+		
 		return true;
 	}
 </script> 
@@ -48,7 +45,7 @@
 				</div>
 
 				<div class="mb-3">
-					<textarea class="form-control" rows="10" name="board_contents" id="board_contents" placeholder="내용을 입력하세요"></textarea>
+					<textarea  rows="10" name="board_contents" id="board_contents" placeholder="내용을 입력하세요"></textarea>
 				</div>
 				
 			<div>
@@ -57,12 +54,9 @@
 				<button type="button" class="btn btn-sm btn-primary" onclick="history.back(-1);">취소</button>
 			</p>
 			</div>
-			</form>
-		
-			
-		
+			</form>					
 		</div>	
 
+<script>CKEDITOR.replace('board_contents');</script>
 </body>
-
 </html>

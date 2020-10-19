@@ -31,6 +31,9 @@
 					if(data.comment_poster =="${sessionScope.login.member_id}"){
 						del=$("<a style='color:#007bff;'>").html("삭제").addClass("btnDel")
 					}
+					if(data.comment_poster =="${sessionScope.login.teacher_id}"){
+						del=$("<a style='color:#007bff;'>").html("삭제").addClass("btnDel")
+					}
 					$("<div>").append($("<b>").append(data.comment_poster))
 					.append($("<br>"))
 					.append(data.comment_contents)
@@ -54,6 +57,9 @@ $(function(){
 				for(i=0; i<datas.length; i++){
 							var del = "";
 							if(datas[i].comment_poster =="${sessionScope.login.member_id}"){
+								del=$("<a style='color:#007bff;'>").html("삭제").addClass("btnDel")
+							}
+							if(datas[i].comment_poster =="${sessionScope.login.teacher_id}"){
 								del=$("<a style='color:#007bff;'>").html("삭제").addClass("btnDel")
 							}
 					
@@ -154,7 +160,7 @@ $(function(){
 
 				</div>
 				
-				<div class="board_content" style="white-space:pre;"><c:out value="${board.board_contents}"/></div>
+				<div class="board_content" style="white-space:pre;"><c:out value="${board.board_contents}" escapeXml="false"/></div>
 				<c:if test="${board.board_file != null}">
 				<div class="board_file"><img src="${pageContext.request.contextPath}/filenameDownload.do?board_file=${board.board_file}" style="width:500px"/></div>
 				</c:if>	

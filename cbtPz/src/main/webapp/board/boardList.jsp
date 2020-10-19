@@ -70,14 +70,18 @@
 							</c:if>
 						</tr>
 					</thead>
-					<tbody id="tbody" align="center">
+					<tbody id="tbody" align="center">					
+					<!--데이터가 없을시 조회 될 페이지  -->
 						<c:choose>
 							<c:when test="${empty list}">
-								<tr>
-									<td colspan="5" align="center">데이터가 없습니다.</td>
-								</tr>
+							<tr>
+							<td colspan="10" style="background-color:#FFFF" align="center" ><a style="color:#d31900">"${param.search}"</a>에 대한 검색 결과가 없습니다.</td>	
+							</tr>
 							</c:when>
 							<c:when test="${!empty list}">
+					<!--데이터가 없을시 조회 될 페이지  -->
+						
+						
 							<!-- 조회수 1위글  -->
 							<td></td>
 							<td><img src="../img/1등.png"></td>
@@ -88,7 +92,9 @@
 								<c:if test="${sessionScope.check=='A'}">
 											<td><input id="ck" name="ck" type="checkbox" value="${best.board_id}"></td>
 							    </c:if>
-							<!-- 조회수 1위글  -->			
+							<!-- 조회수 1위글  -->	
+							
+							<!-- 리스트 목록 -->		
 								<c:forEach var="board" items="${list}">
 									<tr>
 										<td style="color: Tomato;"><c:if
@@ -110,14 +116,14 @@
 												value="${board.board_id}"></td>
 										</c:if>
 									</tr>
-
 								</c:forEach>
+								<!-- 리스트 목록 -->
 							</c:when>
 						</c:choose>
 					</tbody>
-
 				</table>
-
+					
+				<!--세션에 접근에 따른 "글쓰기" "삭제" 버튼-->
 				<div style="float: right;">
 					<c:if test="${sessionScope.check=='M'||sessionScope.check=='T'}">
 						<button class="btn btn-sm btn-primary"
@@ -127,8 +133,14 @@
 						<button id="del" class="btn btn-sm btn-primary" onclick="check()">삭제</button>
 					</c:if>
 				</div>
+				<!--세션에 접근에 따른 "글쓰기" "삭제" 버튼-->
+				
+				
+				<!-- 페이징 버튼 -->
 				<my:paging paging="${paging}" jsfunc="gopage" />
-
+				<!-- 페이징 버튼 -->
+				
+				
 				<!-- 검색 영역 -->
 				<div class="w3-container" align="center">
 					<form method="post" name='searchfrm'>
@@ -152,16 +164,17 @@
 						</table>
 					</form>
 				</div>
+				
 				<!-- 검색 영역 -->
 
-				<!-- 페이징 처리 영역 -->
+				<!-- 페이징 처리 기능 -->
 				<script>
 					function gopage(p) {
 						searchfrm.p.value = p;
 						searchfrm.submit();
 					};
 				</script>
-				<!-- 페이징 처리 영역 -->
+				<!-- 페이징 처리 기능 -->
 			</div>
 		</div>
 	</article>

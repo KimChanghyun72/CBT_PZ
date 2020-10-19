@@ -1,8 +1,6 @@
 package study;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -40,10 +38,6 @@ public class ProblemSubCtrl implements Controller {
 		
 		//문제조회
 		searchVO.setSolve_id(Integer.toString(next)); 
-		List<Map<String, Object>> selectproblem = PaperHeadDAO.getInstance().selectAllType(searchVO);
-
-		request.getSession().setAttribute("problemList", selectproblem);
-		
 		response.sendRedirect(request.getContextPath()+"/study/problemView.do?solve_id="+next);
 
 		} else {
