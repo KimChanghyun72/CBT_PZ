@@ -7,9 +7,27 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+	.test {
+    width: 30%;
+    border-radius: 6px;
+    border: 1px solid #ebebeb;
+    height: 40px;
+    padding: 15px 20px;
+    color: rgba(0, 0, 0, 0.25);
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 20px;
+   
+
+
 	.container{
 		width : auto;
 		padding : 20px;
+		box-shadow: 0 3px 20px rgba(0, 0, 0, 0.15);
+/* 	    padding: 35px 50px; */
+    	border-radius: 6px;
+    	background:#f7f7f7;
+	
 	}
 </style>
 <script type="text/javascript">
@@ -97,24 +115,48 @@
 <form method="post" name="frm" id="frm" 
    	  action="${pageContext.request.contextPath}/problemInsert.do"
    	  onsubmit = "return inputCheck()">
-	<select name="subject" id="subject">
-		<option value="0" selected>과목</option>
-		<option value="1" >1과목</option>
-		<option value="2" >2과목</option>
-		<option value="3" >3과목</option>
-		<option value="4" >4과목</option>
-		<option value="5" >5과목</option>
-	</select>
+   	  
+   	  <div class="col-12 col-lg-5">
+		<div class="form-group" style="text-align: center;">
+				<p>Job</p>
+			</div>
+			</div>
+		<div class="col-12 col-lg-7">
+	        <div class="form-group">
+				<select name="subject" id="subject">
+					<option value="0" selected>과목</option>
+					<option value="1" >1과목</option>
+					<option value="2" >2과목</option>
+					<option value="3" >3과목</option>
+					<option value="4" >4과목</option>
+					<option value="5" >5과목</option>
+				</select>
+			</div>
+			</div>
+		
+		<div class="col-12">
+           <div class="form-group" >
+              <p>문제</p>
+           </div>
+        </div>
+           <div class="col-12">
+               <div class="form-group">
+                  <textarea name="problem_text" placeholder="문제를 입력하세요." class="form-control" id="problem_text" cols="30" rows="10"></textarea>
+               </div>
+           </div>
+           
 		<p></p>
-	<label>문제</label>
-		<p><textarea cols="50" rows="10" placeholder="문제를 입력하세요." name="problem_text" id="problem_text"></textarea></p>
+	<!-- <label>문제</label>
+		<p><textarea cols="50" rows="10" placeholder="문제를 입력하세요." name="problem_text" id="problem_text"></textarea></p> -->
+	
 	<label>정답</label>
 	<ol list-style-type:decimal;>
-		<li><input placeholder="내용을 입력해주세요." name="ans_1" id="ans_1"><input type="checkbox" name="ans_correct" id="ans_correct" value="1">
-		<li><input placeholder="내용을 입력해주세요." name="ans_2" id="ans_2"><input type="checkbox" name="ans_correct" id="ans_correct" value="2">
-		<li><input placeholder="내용을 입력해주세요." name="ans_3" id="ans_3"><input type="checkbox" name="ans_correct" id="ans_correct" value="3">
-		<li><input placeholder="내용을 입력해주세요." name="ans_4" id="ans_4"><input type="checkbox" name="ans_correct" id="ans_correct" value="4">
+		<li><input placeholder="내용을 입력해주세요." name="ans_1" id="ans_1" class="test"><input type="checkbox" name="ans_correct" id="ans_correct" value="1"></li>
+		<li><input placeholder="내용을 입력해주세요." name="ans_2" id="ans_2" class="test"><input type="checkbox" name="ans_correct" id="ans_correct" value="2"></li>
+		<li><input placeholder="내용을 입력해주세요." name="ans_3" id="ans_3" class="test"><input type="checkbox" name="ans_correct" id="ans_correct" value="3"></li>
+		<li><input placeholder="내용을 입력해주세요." name="ans_4" id="ans_4" class="test"><input type="checkbox" name="ans_correct" id="ans_correct" value="4"></li>
 	</ol>
+	
 	<label>해설</label>
 		<p><textarea cols="50" rows="10" placeholder="해설를 입력하세요." name="haeseol" id="haeseol"></textarea></p>
 		<input type="text" id="paperhead_id" name="paperhead_id"/>

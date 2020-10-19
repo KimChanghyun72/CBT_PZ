@@ -10,8 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import controller.Controller;
 import model.ProblemDAO;
 import model.ProblemVO;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 
 public class ProblemListCtrl implements Controller {
 

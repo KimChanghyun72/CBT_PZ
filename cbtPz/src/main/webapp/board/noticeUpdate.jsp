@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="//cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
 <meta charset="UTF-8">
 	<script>
 	<!--공백 체크 확인  -->
@@ -15,12 +16,6 @@
 			return false;
 		}
 		
-		if (frm.board_contents.value == "") {
-			window.alert("내용을 입력하세요");
-			frm.title.focus();
-			return false;
-		}
-	
 		return true;
 	}
 </script> 
@@ -50,7 +45,7 @@
 			</div>
 			</form>
 		</div>
-	
+<script>CKEDITOR.replace('board_contents');</script>
 </body>
 
 </html>

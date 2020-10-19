@@ -31,6 +31,9 @@ table {
  height: 45px; 
  background-image: url(&quot;./img/re_o.gif&quot;);
 }
+
+.btn-outline-primary{width: 106px;}
+
 </style>
 <script>
 function btnSelectSolve(solve_id) {
@@ -44,7 +47,7 @@ function btnSelectSolve(solve_id) {
 function btnRetest(solve_id) {
 	if( confirm("재응시 하시겠습니까?")) {
 		location.href="${pageContext.request.contextPath}/my/myRetest.do?solve_id="+solve_id;
-	} else {
+	} else {	
 		alert("취소 되었습니다.");
 	}  
 }		

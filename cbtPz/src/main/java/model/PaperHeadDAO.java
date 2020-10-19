@@ -80,6 +80,8 @@ public class PaperHeadDAO {
 		return list;
 	}
 	
+	
+	
 	//프로시져로 solve, paper 문제 등록
 	public int insert_Proc(SearchVO searchVO) {			
 		int next = 0;
@@ -112,33 +114,33 @@ public class PaperHeadDAO {
 	}
 	
 	//프로시져로 solve_id로 오답노트 재응시
-		public int retest_Proc(SearchVO searchVO) {			
-			int next = 0;
-			CallableStatement cstmt = null;
+	public int retest_Proc(SearchVO searchVO) {			
+		int next = 0;
+		CallableStatement cstmt = null;
+		try {
+			conn = ConnectionManager.getConnnect();
+			conn.setAutoCommit(false);
+			
+			cstmt = conn.prepareCall("{call RETEST_SOLVE_PAPER(?,?,?)}");
+			cstmt.setString(1,searchVO.getSolve_id());
+			cstmt.setString(2,searchVO.getMember_id());		
+			cstmt.registerOutParameter(3, java.sql.Types.NUMERIC);
+			cstmt.executeUpdate();
+			conn.commit();
+			next = cstmt.getInt(3);
+			
+		} catch(Exception e) {
 			try {
-				conn = ConnectionManager.getConnnect();
-				conn.setAutoCommit(false);
-				
-				cstmt = conn.prepareCall("{call RETEST_SOLVE_PAPER(?,?,?)}");
-				cstmt.setString(1,searchVO.getSolve_id());
-				cstmt.setString(2,searchVO.getMember_id());		
-				cstmt.registerOutParameter(3, java.sql.Types.NUMERIC);
-				cstmt.executeUpdate();
-				conn.commit();
-				next = cstmt.getInt(3);
-				
-			} catch(Exception e) {
-				try {
-					conn.rollback();
-				} catch (SQLException e1) {
-					e1.printStackTrace();
-				}
-				e.printStackTrace();
-			} finally {
-				ConnectionManager.close(rs, pstmt, conn);
+				conn.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
 			}
-			return next;
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
 		}
+		return next;
+	}
 	
 			
 	// 모의/기출 검색

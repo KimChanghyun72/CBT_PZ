@@ -273,7 +273,7 @@ $(document).ready(function(){
 <table id="foo-table" class="table table-bordered">
 	
 		<thead>
-			<tr><th width="7%">과목</th><th width="7%">번호</th><th>문제</th></tr>
+			<tr><th width="13%">과목</th><th width="7%">번호</th><th>문제</th></tr>
 		</thead>
 		<tbody>
 		<% for(probNum=0; probNum<problemList.size(); probNum++){ %>				
