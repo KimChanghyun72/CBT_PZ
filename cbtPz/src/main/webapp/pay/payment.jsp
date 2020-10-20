@@ -319,7 +319,7 @@ $(function(){
 
         <!-- Register Now Countdown -->
         <div class="register-now-countdown mb-100 wow fadeInUp" data-wow-delay="500ms">
-            <h4>YDCBT의 프리미엄 회원이 되어 훌륭한 서비스를 누리십시오.</h4>
+            <h4>쪽제비-CBT의 프리미엄 회원이 되어 훌륭한 서비스를 누리십시오.</h4>
             <p>다양한 유형의 문제들을 손쉽게 검색해서 풀 수 있는 일반회원의 혜택에서 과목별, 테마별 맞춤식으로 제공되는 인터넷 강의 서비스와 시험에 대비하여 요점만 콕 찝어주는 족집게 강의를 제공받으실 수 있습니다.</p>
             <!-- Register Countdown -->
             
