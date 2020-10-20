@@ -47,7 +47,7 @@
 </script>
 <script>
 	$(function() {
-		$(document).on("autocomplete", "#testInput", function(){
+		$("#testInput").autocomplete({
 			source : function(request, response) {
 				$.ajax({
 					url : "${pageContext.request.contextPath}/ajax/hashtagAutoSearch.do",
@@ -77,13 +77,20 @@
 			},
 			minLength : 1,
 			autoFocus : false,
+			/* select : function(evt, ui) {
+				
+				$("#tag-list").append("<li class='tag-item'><span class='hashtext'>"+ui.item.value+"</span><span class='del-btn' idx='"+ui.item.idx+"'>x</span></li>");
+				console.log("전체 data: " + JSON.stringify(ui));
+				console.log("db Index : " + ui.item.idx);
+				console.log("검색 데이터 : " + ui.item.value);
+			}, */
 			focus : function(evt, ui) {
 				return false;
 			},
 			close : function(evt) {
 
 			}
-		};
+		});
 
 	});
 </script>
