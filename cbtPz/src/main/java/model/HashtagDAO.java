@@ -53,7 +53,7 @@ public class HashtagDAO {
 			conn = ConnectionManager.getConnnect();
 			String sql = " SELECT HASHTAG_ID, CLASSIFY_CODE_CD, HASHTAG_NAME "
 						+" FROM HASHTAG "
-						+" WHERE HASHTAG_NAME LIKE '%' || ? || '%' ";
+						+"  WHERE upper(HASHTAG_NAME) LIKE '%' || upper(?) || '%' "; 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, hashtagVO.getHashtag_name());
 			rs = pstmt.executeQuery();
