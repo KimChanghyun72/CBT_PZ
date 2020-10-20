@@ -276,7 +276,7 @@ public class LectureDAO {
 								+ " FROM LECTURE, teacher_member, (select  lecture_id, count(learn_id) as cnts2 from learn group by lecture_id) lec_cnt"
 								+ " WHERE lecture.teacher_id = teacher_member.teacher_id"
 								+ " AND LECTURE.LECTURE_ID = LEC_CNT.LECTURE_ID(+)"
-								+ " ORDER BY LECTURE_ID"
+								+ " ORDER BY LECTURE_NAME"
 								+ "";
 					pstmt = conn.prepareStatement(sql);
 					if(learnVO.getMember_id() != null) {

@@ -25,9 +25,9 @@ public class MemberUpdateController implements Controller {
 		HttpSession session = request.getSession();
 		
 		//유료 결제에 대한 정보 받기
-		String payCheck = request.getParameter("payCheck");
+		String payCheck = (String) request.getAttribute("payCheck");
+		System.out.println("payCheck : " + payCheck);
 		String pay="pay";
-		System.out.println(payCheck);
 		String term = request.getParameter("term");
 		MemberVo pay_member = (MemberVo) request.getSession().getAttribute("login");
 		System.out.println("pay_member"+pay_member);

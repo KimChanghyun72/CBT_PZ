@@ -155,7 +155,8 @@ $(function(){
                                                 <div class="ratings-text">
                                                     <h3>강의정보</h3>
                                                     <div class="thumb">
-                                                    	<img src="${pageContext.request.contextPath}/nostms/profilepicSelect.do?teacher_picture=${lectureInfo.lecture_image}" height="250px" alt="">
+                                                    	<img src="${pageContext.request.contextPath}/nostms/profilepicSelect.do?teacher_picture=${lectureInfo.lecture_image}" height="250px"
+                                                    		onerror="this.src='${pageContext.request.contextPath}/img/cottonbro.jpg'">
                                                     </div>
                                                 </div>
                                             </div>
