@@ -13,42 +13,48 @@
 	text-shadow: 2px 2px 2px gray;
 	}
 </style>
+<script>
+$(document).ready(function() {
+	$("#foo-table").DataTable({
+		lengthMenu: [ 5, 10, 20, 30, 50 ],
+	
+	   	// 기본 표시 건수를 50건으로 설정
+	   	displayLength: 5, 
+   	});
+});
+
+</script>
 </head>
 <body>
 	<br><br><br><br>
 	<div class="container">
 		<form>
 			<div class="table-responsive">
-				<table border="1"  class="table table-hover" id="dev-table">
-					<tr id="tr_font" bgcolor="#99d6ff" align="center">
-						<th width="16%"><h5>과목</h5></th>
-						<th><h5>문제</h5></th>
-					</tr>			
+				<table border="1"  id="foo-table" class="table table-bordered">
+					<thead align="center">
+						<tr id="tr_font" bgcolor="#99d6ff">
+							<th width="16%"><h5>과목</h5></th>
+							<th><h5>문제</h5></th>
+						</tr>	
+					</thead>		
+					<tbody>
 					<c:forEach items="${problemList}" var="favorite">
-					<tr>
-						<td align="center">${favorite.subject_name}</td>
-						<td><h5>${favorite.problem_text}</h5>
-							${favorite.ans_1}<br>
-							${favorite.ans_2}<br>
-							${favorite.ans_3}<br>
-							${favorite.ans_4}<br>
-							정답 : ${favorite.ans_correct}<br>
-	     				 	해설 : ${favorite.haeseol}
-						</td>
-					</tr>
+						<tr>
+							<td align="center">${favorite.subject_name}</td>
+							<td><h5>${favorite.problem_text}</h5>
+								${favorite.ans_1}<br>
+								${favorite.ans_2}<br>
+								${favorite.ans_3}<br>
+								${favorite.ans_4}<br>
+								정답 : ${favorite.ans_correct}<br>
+		     				 	해설 : ${favorite.haeseol}
+							</td>
+						</tr>
 					</c:forEach>
+					</tbody>
 				</table>
 			</div>
 		</form>
-		<!-- 페이징 처리 영역 -->	
-   		<my:paging paging="${paging}" jsfunc="gopage"/>
-	    	<script>
-	    	function gopage(p){
-	
-	    		location.href="${pageContext.request.contextPath}/mypage/myFavorite.do?p="+ p;
-	    	
-	    	};
-	    	</script>	
 	</div>
 </body>
 </html>

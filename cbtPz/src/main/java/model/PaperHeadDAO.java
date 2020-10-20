@@ -178,7 +178,7 @@ public class PaperHeadDAO {
 						+ " FROM PAPERHEAD p, commoncode c"
 						+ " WHERE p.PAPER_TYPE_CD = c.COMMONCODE_ID "
 						+ " and PAPER_TYPE_CD = ? "
-						+ " ORDER BY LPAD(PAPER_ROUND, 2)";
+						+ " ORDER BY SUBSTR(PAPER_ROUND, -2,1)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, paperheadVO.getPaper_type_cd());
 			rs = pstmt.executeQuery();

@@ -89,19 +89,19 @@ public class FavoriteDAO {
 		List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql ="SELECT A.* FROM(SELECT B.*, ROWNUM RM FROM ( "
-						+ " select p.problem_id, subject, subject_name(subject),"						
+			String sql =//"SELECT A.* FROM(SELECT B.*, ROWNUM RM FROM ( " +
+						 " select p.problem_id, subject, subject_name(subject),"						
 						+ " haeseol, problem_text, ans_1, ans_2, ans_3, ans_4, ans_correct, problem_image " 
 						+ " from problem p, FAVORITE f " 
 						+ " where p.PROBLEM_ID = f.PROBLEM_ID " 
 						+ " and member_id = ?"
-						+" ORDER BY p.problem_id "
-						+" ) B) A WHERE RM BETWEEN ? AND ? "; 
+						+" ORDER BY p.problem_id ";
+						//+" ) B) A WHERE RM BETWEEN ? AND ? "; 
 			// problem, paper 조회
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, favoriteVO.getMember_id());
-			pstmt.setInt(2, favoriteVO.getFirst());
-			pstmt.setInt(3, favoriteVO.getLast());
+			//pstmt.setInt(2, favoriteVO.getFirst());
+			//pstmt.setInt(3, favoriteVO.getLast());
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
