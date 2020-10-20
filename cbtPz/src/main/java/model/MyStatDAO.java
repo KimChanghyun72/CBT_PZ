@@ -183,7 +183,7 @@ public class MyStatDAO {
 			try {
 				conn = ConnectionManager.getConnnect();
 				String sql = "select to_char(min(solve_date),'yyyy-mm-dd') minday, to_char(max(solve_date),'yyyy-mm-dd') maxday "
-							+ "from solve where member_id=? and solve_type_cd in ( '1과목', '2과목', '3과목', '4과목', '5과목') "
+							+ "from solve where member_id=? and solve_type_cd in ( 's1', 's2', 's3', 's4', 's5') "
 							+ "								and solve.SOLVE_SUBMIT = 'Y' ";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, myStateVo.getMember_id());
