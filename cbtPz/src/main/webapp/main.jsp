@@ -160,8 +160,8 @@
 				<div class="carousel-item active"
 					style="background-image: url(./img/computer1920.jpg)">
 					<div class="carousel-caption d-none d-md-block">
-						<h3>YDCBT</h3>
-						<p style="text-shadow: 1px -1px white;">Hi, We are YeDamCBT!</p>
+						<img src="img/core-img/JJlogo.png" alt="" style="max-width: 28%;">
+						<p style="text-shadow: 1px -1px white;">Hi, We are JJOCKJAEBI-CBT!</p>
 					</div>
 				</div>
 				<!-- Slide Two - Set the background image for this slide in the line below -->
@@ -273,8 +273,7 @@
 					<div class="col-12">
 						<!-- Footer Logo -->
 						<div class="footer-logo">
-							<a href="${pageContext.request.contextPath}/indexx.jsp"
-								style="color: white;">YDCBT</a>
+							<a class="nav-brand" href="${pageContext.request.contextPath}/indexx.jsp"><img src="img/core-img/JJlogo_w.png" alt="" style="max-width: 12%;"></a>
 						</div>
 						<!-- Copywrite -->
 						<p>

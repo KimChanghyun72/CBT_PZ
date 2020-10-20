@@ -41,6 +41,8 @@
 		<!-- studyPaper datatable link -->
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     
+    <!-- bootstrap -->
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     
 <decorator:head/>   
 
@@ -80,7 +82,7 @@
                 <nav class="classy-navbar justify-content-between" id="cleverNav">
 
                     <!-- Logo -->
-                    <a class="nav-brand" href="${pageContext.request.contextPath}/indexx.jsp">YDCBT</a>
+                    <a class="nav-brand" href="${pageContext.request.contextPath}/indexx.jsp"><img src="img/core-img/JJlogo.png" alt="" style="max-width: 35%;"></a>
 
                      <!-- Navbar Toggler -->
                     <div class="classy-navbar-toggler">
