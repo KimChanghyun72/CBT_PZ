@@ -3,6 +3,7 @@ package model;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import common.ConnectionManager;
@@ -99,14 +100,21 @@ import common.ConnectionManager;
 				
 				try {
 					conn = ConnectionManager.getConnnect();
+					String seqSql = "SELECT comment_id_seq.NEXTVAL FROM dual";
+					Statement stmt = conn.createStatement();
+					ResultSet rs = stmt.executeQuery(seqSql);
+					rs.next();
+					String no = rs.getString(1);
+					commentVo.setComment_id(no);
 					
 					String sql = "INSERT INTO Comments (COMMENT_ID,BOARD_ID,COMMENT_DATE,COMMENT_CONTENTS,COMMENT_POSTER)"
-								 + " VALUES(comment_id_seq.NEXTVAL,?,sysdate,?,?)";
+								 + " VALUES(?,?,sysdate,?,?)";
 					
 					PreparedStatement pstmt = conn.prepareStatement(sql);
-					pstmt.setString(1, commentVo.getBoard_id());
-					pstmt.setString(2, commentVo.getComment_contents());
-					pstmt.setString(3, commentVo.getComment_poster());
+					pstmt.setString(1, commentVo.getComment_id());
+					pstmt.setString(2, commentVo.getBoard_id());
+					pstmt.setString(3, commentVo.getComment_contents());
+					pstmt.setString(4, commentVo.getComment_poster());
 					pstmt.executeUpdate();
 				
 				}catch(Exception e) {

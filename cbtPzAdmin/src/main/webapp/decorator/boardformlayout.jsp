@@ -169,7 +169,7 @@
                                 <li><a href="/cbtPz/admin/memberList.do">관리자메뉴</a>
                                 	<ul class="dropdown">
                                         <li><a href="/insa/insertProForm">개별문제</a></li>
-                                        <li><a href="/insa/insertPheadForm">회차문제</a></li>
+                                        <li><a href="/cbtPz/admin/headInsert.jsp">회차문제</a></li>
                                         <li><a href="/cbtPz/admin/adminChart.jsp">회원통계</a></li>
                                         <li><a href="/cbtPz/admin/memberList.do">회원관리</a></li>
                                         <li><a href="/cbtPz/admin/scheduler.jsp">일정관리</a></li>

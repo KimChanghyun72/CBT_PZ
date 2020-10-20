@@ -35,9 +35,10 @@ $(function(){
 					data : $("form").serialize(),
 					success : function(data){
 						$("#text").val("")
+						$("img").remove();
 						$("b").remove();
-						boardList();
 					
+						boardList();
 					}
 				});
 			}) 

@@ -164,6 +164,8 @@ img {
 		<p><p>
 			<input type="file" name="file_path" size="20" align="absmiddle" /> <br>
 			<p><p>
+			<input type="submit" id="submit" value="등록"> 
+			<input type="reset" id="reset" value="초기화">
 			<h3>해시 태그</h3>
 	 code : <select name="classify_code_cd" id="classify_code_cd">
 				<option value="0" selected>소분류</option>
@@ -172,15 +174,13 @@ img {
 				<option value="데이터베이스 구축">데이터베이스 구축</option>
 				<option value="프로그래밍 언어 활용">프로그래밍 언어 활용</option>
 				<option value="정보시스템 구축관리">정보시스템 구축관리</option>
-			</select><p> 
-	 name : <input type="text" name="hashtag_name" id="hashtag_name" /><p>
+			</select><p><p>
+	 name : <input type="text" name="hashtag_name" id="hashtag_name"/>
 		   	<input type="text" id="testInput" placeholder="Search">
 			<!-- <button type="button">
 				<i class="fa fa-search" aria-hidden="true"></i>
 			</button> -->
 		<p>
-			<input type="submit" id="submit" value="등록"> 
-			<input type="reset" id="reset" value="초기화">
 	</form>
 </div>
 </body>

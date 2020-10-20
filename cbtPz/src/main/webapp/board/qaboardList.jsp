@@ -44,6 +44,7 @@
 						<col style="width: 10%;" />
 						<col style="width: 10%;" />
 						<col style="width: 10%;" />
+						<col style="width: 5%;" />
 					</colgroup>
 					<thead>
 						<tr align="center">
