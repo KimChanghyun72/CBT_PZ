@@ -47,7 +47,7 @@
 </script>
 <script>
 	$(function() {
-		$("#testInput").autocomplete({
+		$(document).on("autocomplete", "#testInput", function(){
 			source : function(request, response) {
 				$.ajax({
 					url : "${pageContext.request.contextPath}/ajax/hashtagAutoSearch.do",
@@ -83,7 +83,7 @@
 			close : function(evt) {
 
 			}
-		});
+		};
 
 	});
 </script>
