@@ -49,10 +49,10 @@ public class PaperController {
 	public String insertPhead(ProblemVO problemVO, HttpServletRequest request) throws IOException {
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest)request;
 		MultipartFile multipartFile = multipartRequest.getFile("file_path");
-		multipartFile.transferTo(new File("c:/upload1", multipartFile.getOriginalFilename()));
+		multipartFile.transferTo(new File("c:/upload/", multipartFile.getOriginalFilename()));
 		
 		try {
-			OPCPackage opcPackage = OPCPackage.open("c:/upload1/" + multipartFile.getOriginalFilename()); // opcPackage : 대용량 파일?(zip파일) 읽기
+			OPCPackage opcPackage = OPCPackage.open("c:/upload/" + multipartFile.getOriginalFilename()); // opcPackage : 대용량 파일?(zip파일) 읽기
 			@SuppressWarnings("resource")
 			XSSFWorkbook workbook = new XSSFWorkbook(opcPackage); // xssfWorkbook : 엑셀 파일 전용
 
@@ -100,11 +100,8 @@ public class PaperController {
 																							
 				cell = row.getCell(9); 
 				if (null != cell) problem1.setPaperhead_id(Double.toString(cell.getNumericCellValue()));
-				 
-				
-				System.out.println(problem1);
 
-				proservice.insertPro(problemVO, null);
+				proservice.insertPro(problem1, null);
 			}
 
 		} catch (Exception e) {

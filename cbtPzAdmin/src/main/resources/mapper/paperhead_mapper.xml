@@ -11,8 +11,8 @@
 						  )
 				 VALUES   (
 					 			PAPERHEAD_SEQ.NEXTVAL,
-					 			#{PAPER_TYPE_CD},
-					 			#{PAPER_ROUND}
+					 			#{paper_type_cd},
+					 			#{paper_round}
 					 	  )
 	</insert>
 </mapper>
