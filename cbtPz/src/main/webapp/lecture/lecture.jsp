@@ -103,8 +103,9 @@
 		
 		$('.blog-content button[name=btnLearn]').on("click", function(){
 				var btn = $(this)
-				var lecid = $(this).next().next().val();
-				var lecname = $(this).next().next().next().val();
+				var lecid = $(this).prev().prev().prev().val();
+				var lecname = $(this).prev().prev().val();
+				
 				
 				var cnt = $(this).prev().prev().prev().children().eq(1).children(); //수강인원 카운트
 				var mempay = "${sessionScope.login.is_pay}";
@@ -205,7 +206,7 @@
 	                        <img 
 	                        	src="lectureSelect.do?lecture_image=${lecture_list.lecture_image }"
 								data-title="${lecture_list.lecture_name }" data-desc="${lecture_list.lecture_info}"
-								onerror="this.src='${pageContext.request.contextPath}/img/cottonbro.jpg'">
+								onerror="this.src='${pageContext.request.contextPath}/img/basicimage.png'">
 							</a>
                 
                 		<!-- Blog Content -->
@@ -238,6 +239,8 @@
 									<p><a href="${pageContext.request.contextPath}/lecture/lectureDetailSelect.do?lecture_id=${lecture_list.lecture_id}"><button type="button" id="btn2" class="btn btn-outline-success">강의 상세 정보</button></a></p>
 								</div>
 
+								<input type="hidden" value="${lecture_list.lecture_id}" name="lecid">
+								<input type="hidden" value="${lecture_list.lecture_name}">
 								
                            		<input type="hidden" name="lecture_link" value="${lecture_list.lecture_link}">
 								<c:if test="${sessionScope.login == null || sessionScope.check == 'M'}">
@@ -253,8 +256,6 @@
                            		<c:if test="${lecture_list.lecture_yn == 1}">
                          				<a href="${lecture_list.lecture_link}" target="_blank"><button type="button" id="btn2" class="btn btn-outline-success" name="btnLink" >강의 들으러 가기</button></a>
                          		</c:if>
-								<input type="hidden" value="${lecture_list.lecture_id}" name="lecid">
-								<input type="hidden" value="${lecture_list.lecture_name}">
 	
 							</div>
 						</div>
