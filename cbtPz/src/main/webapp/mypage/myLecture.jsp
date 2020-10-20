@@ -97,7 +97,7 @@
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="single-popular-course mb-100 wow fadeInUp" data-wow-delay="250ms">
                         <a href="${lecture.lecture_link}"><img src="${pageContext.request.contextPath}/lectureSelect.do?lecture_image=${lecture.lecture_image}"
-                        	onerror="this.src='${pageContext.request.contextPath}/img/cottonbro.jpg'"></a>
+                        	onerror="this.src='${pageContext.request.contextPath}/img/basicimage.png'"></a>
                         <!-- Course Content -->
                         <div class="course-content">
                             <h4></h4>

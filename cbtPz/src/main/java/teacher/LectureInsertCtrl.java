@@ -25,8 +25,13 @@ public class LectureInsertCtrl implements Controller {
 		String lecture_info = request.getParameter("lecture_info");
 		String lecture_link = request.getParameter("lecture_link");
 		String lecture_subject = request.getParameter("lecture_subject");
-		String path = "D:/upload"; // 썸네일 이미지 추가
+		String path = "c:/upload"; // 썸네일 이미지 추가
 
+		
+		
+		
+		
+		
 		TeacherVO teacher = (TeacherVO) request.getSession().getAttribute("login");
 		String teacher_id = teacher.getTeacher_id(); // teacher_member table teacher_id column에서 가져옴
 

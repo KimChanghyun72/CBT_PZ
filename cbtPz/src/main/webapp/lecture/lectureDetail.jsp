@@ -156,7 +156,7 @@ $(function(){
                                                     <h3>강의정보</h3>
                                                     <div class="thumb">
                                                     	<img src="${pageContext.request.contextPath}/nostms/profilepicSelect.do?teacher_picture=${lectureInfo.lecture_image}" height="250px"
-                                                    		onerror="this.src='${pageContext.request.contextPath}/img/cottonbro.jpg'">
+                                                    		onerror="this.src='${pageContext.request.contextPath}/img/basicimage.png'">
                                                     </div>
                                                 </div>
                                             </div>
@@ -164,7 +164,6 @@ $(function(){
                                             <div class="rating-viewer">
                                                 <!-- Rating -->
                                                 <div class="single-rating mb-15 d-flex align-items-center">
-                                            		<!-- <p>Sed elementum lacus a risus luctus suscipit. Aenean sollicitudin sapien neque, in fermentum lorem dignissim a. Nullam eu mattis quam. Donec porttitor nunc a diam molestie blandit. Maecenas quis ultrices</p> -->
                                                    	<h5>강의명 : ${lectureInfo.lecture_name}</h5>
                                                 </div>
                                                 <div class="single-rating mb-15 d-flex align-items-center">
@@ -211,7 +210,8 @@ $(function(){
                             <!-- Single Courses -->
                             <div class="single--courses d-flex align-items-center">
                                 <div class="thumb">
-                                    <img src="${pageContext.request.contextPath}/nostms/profilepicSelect.do?teacher_picture=${teacherInfo.teacher_picture}" height="50px" alt="">
+                                    <img src="${pageContext.request.contextPath}/nostms/profilepicSelect.do?teacher_picture=${teacherInfo.teacher_picture}" height="50px"
+                                    	onerror="this.src='${pageContext.request.contextPath}/img/bg-img/t5.png'">
                                 </div>
                                 <div class="content">
                                     <h5>강사명 :${teacherInfo.teacher_name}</h5>
