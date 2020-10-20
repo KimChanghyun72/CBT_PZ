@@ -51,12 +51,19 @@ $(function(){
 		});
 		
 		if(cnt==0){
-			$('#lecfrm').submit();
+			var r = confirm("등록하시겠습니까?");
+			if (r == true) {
+				$('#lecfrm').submit();
+				alert("등록되었습니다");
+			}
 		} else {
 			alert("모든 값을 입력하세요");
 		}
 		
 	}); 
+	
+	
+	
 	
 	
 });
