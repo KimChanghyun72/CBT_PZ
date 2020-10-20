@@ -55,7 +55,7 @@
 						<col style="width: 15%;" />
 						<col style="width: 10%;" />
 						<col style="width: 10%;" />
-						<col style="width: 10%;" />
+						<col style="width: 3.8%;" />
 					</colgroup>
 					<thead>
 						<tr align="center">

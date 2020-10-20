@@ -123,6 +123,8 @@ public class BoardDAO {
 		}
 		return resultVO;
 	}// ###단건조회###
+	
+	
 	// ###최고조회수###
 		public BoardVO bestSelect(BoardVO boardVo) {
 
@@ -157,7 +159,9 @@ public class BoardDAO {
 			}
 			return resultVO;
 		}// ###최고조회수###
-	// ###입력###
+	
+		
+		// ###입력###
 	public int insert(BoardVO boardVo) {
 		int r = 0;
 		try {
@@ -186,6 +190,7 @@ public class BoardDAO {
 		return r;
 	}// ###입력###
 
+	
 	// ###삭제###
 	public void delete(BoardVO boardVo) {
 		CallableStatement cstmt = null;
@@ -202,6 +207,7 @@ public class BoardDAO {
 		}	
 	}// ###삭제###
 
+	
 	// ###갱신###
 	public void update(BoardVO boardVo) {
 
@@ -223,6 +229,7 @@ public class BoardDAO {
 		}
 	}// ###갱신###
 
+	
 	// ###페이징 카운터###
 	public int count(BoardVO boardVo) {
 		int cnt = 0;
@@ -333,6 +340,8 @@ public class BoardDAO {
 		}
 		return list;
 	}// 회원 작성글 조회
+	
+	
 	// ###작성글 페이징 카운터###
 		public int mycount(BoardVO boardVo) {
 			int cnt = 0;

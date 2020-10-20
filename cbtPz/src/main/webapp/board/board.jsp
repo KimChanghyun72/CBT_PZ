@@ -33,7 +33,7 @@
 					}
 					if(data.comment_poster =="${sessionScope.login.teacher_id}"){
 						del=$("<a style='color:#007bff;'>").html("삭제").addClass("btnDel")
-					}
+					}			
 					$("<div>").append($("<b>").append(data.comment_poster))
 					.append($("<br>"))
 					.append(data.comment_contents)
@@ -42,6 +42,7 @@
 					.append(del)
 					.append($("<h6 class='border-bottom pb-2 mb-0'/>"))
 					.appendTo($("#list"))
+					console.log(data)
 				}
 			});
 		}
@@ -92,6 +93,7 @@ $(function(){
 			}
 		});
 	});
+				
 });
 
 </script>
