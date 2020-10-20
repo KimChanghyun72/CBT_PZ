@@ -130,7 +130,7 @@
     <!-- ##### Popular Course Area End ##### -->
 
     <!-- ##### Footer Area Start ##### -->
-    <footer class="footer-area">
+<%--     <footer class="footer-area">
         <!-- Top Footer Area -->
         <div class="top-footer-area">
             <div class="container">
@@ -149,7 +149,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
             </div>
         </div>
 
-    </footer>
+    </footer> --%>
     <!-- ##### Footer Area End ##### -->
 
     
