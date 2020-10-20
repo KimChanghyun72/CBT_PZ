@@ -156,7 +156,7 @@ $(function(){
                                                     <h3>강의정보</h3>
                                                     <div class="thumb">
                                                     	<img src="${pageContext.request.contextPath}/nostms/profilepicSelect.do?teacher_picture=${lectureInfo.lecture_image}" height="250px"
-                                                    		onerror="this.src='${pageContext.request.contextPath}/img/cottonbro.jpg'">
+                                                    		onerror="this.src='${pageContext.request.contextPath}/img/basicimage.png'">
                                                     </div>
                                                 </div>
                                             </div>

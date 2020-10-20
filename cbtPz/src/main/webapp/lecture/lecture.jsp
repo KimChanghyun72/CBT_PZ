@@ -205,7 +205,7 @@
 	                        <img 
 	                        	src="lectureSelect.do?lecture_image=${lecture_list.lecture_image }"
 								data-title="${lecture_list.lecture_name }" data-desc="${lecture_list.lecture_info}"
-								onerror="this.src='${pageContext.request.contextPath}/img/cottonbro.jpg'">
+								onerror="this.src='${pageContext.request.contextPath}/img/basicimage.png'">
 							</a>
                 
                 		<!-- Blog Content -->
