@@ -202,6 +202,15 @@
 </script>
 </head>
 <body>
+
+	<div
+		style="width: 100%; height: 240px; background-image: url(./images/학습.jpg)"
+		class="  d-flex align-items-center justify-content-center p-3">
+		<h1 style="color: #00000">개별문제</h1>
+	</div>
+	
+	<br><br>
+
 	<div class="container">
 	<form method="post" name="frm" id="frm" class="test" action="insertPro" onsubmit="return check_submit();">
 		<div class="col-12 col-lg-5">
@@ -265,6 +274,10 @@
 			<input type="reset" id="reset" value="초기화">
 </form>
 	</div>
+	
+	<br><br><br><br>
+	
+	
 	<div class="container">
 		<table id="listTable" class="display">
 			<thead>

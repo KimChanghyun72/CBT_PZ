@@ -40,7 +40,8 @@
 	
 		<!-- studyPaper datatable link -->
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-    
+    <!-- bootstrap -->
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     
 <decorator:head/>   
 
@@ -162,18 +163,8 @@
 
                             <!-- Register / Login -->
                             <div class="register-login-area">
-                                <c:if test="${not empty sessionScope.name}">
-	                                <c:if test="${sessionScope.check=='M'}">
-	                                	<c:if test="${sessionScope.login.is_pay == 'Y' }">
-	                                		<span class="badge badge-pill badge-warning">VIP</span>
-	                                	</c:if>
-	                                </c:if>
-	                                ${sessionScope.name}님  
+	                               	 관리자1님  
 	                                <a href="/cbtPz/logout.do" class="btn active">Logout</a>
-                                </c:if>
-	                            <c:if test="${ empty sessionScope.name}">   
-	                                <a href="/cbtPz/member/login.jsp" class="btn active">Login</a>
-                                </c:if>
                             </div>
 
                         </div>
