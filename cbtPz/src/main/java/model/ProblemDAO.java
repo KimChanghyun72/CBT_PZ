@@ -117,8 +117,8 @@ public class ProblemDAO {
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = "INSERT INTO PROBLEM (PROBLEM_ID, SUBJECT, HAESEOL, PROBLEM_TEXT, ANS_1, ANS_2, "
-					+ "ANS_3, ANS_4, ANS_CORRECT, PAPERHEAD_ID, PROBLEM_IMAGE) "
-					+ "VALUES (PROBLEM_SEQ.NEXTVAL,?,?,?,?,?,?,?,?,?,?)";
+					+ "ANS_3, ANS_4, ANS_CORRECT, PAPERHEAD_ID) "
+					+ "VALUES (PROBLEM_SEQ.NEXTVAL,?,?,?,?,?,?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, problem.getSubject());
 			pstmt.setString(2, problem.getHaeseol());
@@ -129,7 +129,6 @@ public class ProblemDAO {
 			pstmt.setString(7, problem.getAns_4());
 			pstmt.setString(8, problem.getAns_correct());
 			pstmt.setString(9, problem.getPaperhead_id());
-			pstmt.setString(10, problem.getProblem_image());
 		
 			int r = pstmt.executeUpdate();
 			System.out.println(r + "건이 입력됨");
