@@ -161,7 +161,7 @@
 					style="background-image: url(./img/computer1920.jpg)">
 					<div class="carousel-caption d-none d-md-block">
 						<img src="img/core-img/JJlogo.png" alt="" style="max-width: 28%;">
-						<p style="text-shadow: 1px -1px white;">Hi, We are JJOCKJAEBI-CBT!</p>
+						<p style="text-shadow: 1px -1px white;">Hi, We are JJOCKJEBI-CBT!</p>
 					</div>
 				</div>
 				<!-- Slide Two - Set the background image for this slide in the line below -->

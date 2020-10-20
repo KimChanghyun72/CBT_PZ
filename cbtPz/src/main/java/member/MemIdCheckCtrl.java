@@ -41,7 +41,6 @@ public class MemIdCheckCtrl implements Controller {
 
 			if (memberVo == null) {
 				mememJVo = false;
-				System.out.println("null임");
 			}
 		}
 		
@@ -50,7 +49,6 @@ public class MemIdCheckCtrl implements Controller {
 			teacherVO.setTeacher_id(id);;
 			teacherVO = TeacherDAO.getInstance().selectOne(teacherVO);
 			if (teacherVO == null) {
-				System.out.println("이거됨?");
 				mememNVo = false;
 			}
 		}
