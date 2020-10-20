@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -117,7 +121,16 @@ zoom: 1.5;
  .checkArea2 span{
  	color: #fff;
  }
-​
+ .priceForm {
+ 	font-size : 25px;
+ }
+​.enddate2 {
+	
+}
+ .new {
+ 	width : 800px;
+ 	height : 150px;
+ }
 </style>
 <meta charset="UTF-8">
 <title>결제 페이지</title>
@@ -132,7 +145,7 @@ $(function(){
 	var IMP = window.IMP;
 	IMP.init('imp68502592');
 		
-	/* $(".btnSubmit").on("click", function(){
+	 $(".btnSubmit").on("click", function(){
 	IMP.request_pay({
 	    pg : 'inicis', // version 1.1.0부터 지원.
 	    pay_method : 'card',
@@ -159,43 +172,57 @@ $(function(){
 	    alert(msg);
 	});
 		
-	}); */
-//결제api 종료
+	}); 
+
 	
  	 $(document).on("click",".btnSubmit", function(){
- 		 if($("input[name=price]").val()==""){
- 			 alert("멤버십 기간을 선택하세요.");
- 		 }else{
- 			 if($("[name=is_pay]").prop("checked")){
- 				 var confirmVal = confirm("결제 하시겠습니까?");
- 				 if(confirmVal==1){
- 					$("#payFrm").submit();
- 				 }
- 			 }else{
- 				 alert("결제 조건에 동의하십시오.");
- 			 }
- 		 }
-		/* if($("[name=is_payed]").prop("checked")){ //결제 동의여부 체크
-			var confirmVal = confirm("결제하시겠습니까?");
-			if(confirmVal){
-				if(term != null && payment != null){//결제성공
-					$("#payFrm").submit();
-				}else if(payment != null){
-					alert("가입기간 선택");
-				}else if(term != null){
-					alert("결제수단 선택");
-				}else{
-					alert("결제수단과 가입기간 선택");
-				}
-			}else{
-				alert("결제 정보를 입력해주세요.")
-			}
-		}else{
-			alert("구매에 동의하셔야 합니다.");
-		} */
+ 			/* 결제 api 시작 */
+ 			IMP.request_pay({
+ 			    pg : 'inicis', // version 1.1.0부터 지원.
+ 			    pay_method : 'card',
+ 			    merchant_uid : 'merchant_' + new Date().getTime(),
+ 			    name : '주문명:결제테스트',
+ 			    amount : 100,
+ 			    buyer_email : 'iamport@siot.do',
+ 			    buyer_name : '구매자이름',
+ 			    buyer_tel : '010-2953-6675',
+ 			    buyer_addr : '서울특별시 강남구 삼성동',
+ 			    buyer_postcode : '123-456',
+ 			    //m_redirect_url : 'https://www.yourdomain.com/payments/complete'
+ 			}, function(rsp) {
+ 			    if ( rsp.success ) {
+ 			        var msg = '결제가 완료되었습니다.';
+ 			        msg += '고유ID : ' + rsp.imp_uid;
+ 			        msg += '상점 거래ID : ' + rsp.merchant_uid;
+ 			        msg += '결제 금액 : ' + rsp.paid_amount;
+ 			        msg += '카드 승인번호 : ' + rsp.apply_num;
+ 			    } else {
+ 			        var msg = '결제에 실패하였습니다.';
+ 			        msg += '에러내용 : ' + rsp.error_msg;
+ 			    }
+ 			    alert(msg);
+ 			 //결제api 종료
+ 			    
+ 			   if($("input[name=price]").val()==""){
+ 		 			 alert("멤버십 기간을 선택하세요.");
+ 		 		 }else{
+ 		 			 if($("[name=is_pay]").prop("checked")){
+ 		 				 var confirmVal = confirm("결제 하시겠습니까?");
+ 		 				 if(confirmVal==1){
+ 		 					alert("결제가 완료되었습니다.");
+ 		 					$("#payFrm").submit();
+ 		 				 }
+ 		 			 }else{
+ 		 				 alert("결제 조건에 동의하십시오.");
+ 		 			 }
+ 		 		 }
+ 			});
+ 				
+ 			/* }); */ 
+ 		 
 	});  
-	
-	
+	var enddate = '${sessionScope.login.pay_enddate}';
+	$(".enddateVal").html(enddate);
 	
 });
 	$(document).on("click",".checkArea", function(){
@@ -206,7 +233,8 @@ $(function(){
 		var term = $(this).find("input").val();
 		$("input[name=price]").val(price);
 		$("input[name=term]").val(term);
-	})
+		$(".priceForm").html(price);
+	});
 
 </script>
 </head>
@@ -271,6 +299,7 @@ $(function(){
                     <div class="col-12">
                         <div class="forms">
                             <h4>상품 결제</h4>
+                            	<p>선택 멤버쉽 :<a class="priceForm" > &nbsp;&nbsp;&nbsp;&nbsp;</a> 원</p>
                             <form id="payFrm" name="payFrm" action="${pageContext.request.contextPath}/payInsertCtrl.do">
                             	<input type="hidden" name="price">
                             	<input type="hidden" name="term">
@@ -293,10 +322,27 @@ $(function(){
             <h4>YDCBT의 프리미엄 회원이 되어 훌륭한 서비스를 누리십시오.</h4>
             <p>다양한 유형의 문제들을 손쉽게 검색해서 풀 수 있는 일반회원의 혜택에서 과목별, 테마별 맞춤식으로 제공되는 인터넷 강의 서비스와 시험에 대비하여 요점만 콕 찝어주는 족집게 강의를 제공받으실 수 있습니다.</p>
             <!-- Register Countdown -->
-            <div class="register-countdown">
-                <div class="events-cd d-flex flex-wrap" data-countdown="2019/03/01"></div>
-            </div>
+            
+            <!-- <div class="register-countdown">
+                <div class="events-cd d-flex flex-wrap" data-countdown="2020/03/03"></div>
+            </div> -->
+            	<fmt:formatDate value='${toDay}' pattern='yyyyMMdd' var="nowDate"/>
+            	<br><br><br><br><p align="center">
+					<c:if test="${sessionScope.check=='M' && sessionScope.login.is_pay=='Y'}">
+					<div class="new" align="center"><h5>멤버십 만료일</h5>
+					<h2>
+						<span class="enddateVal"></span>
+					</h2></div>
+            <!-- <div class="enddate col-12 col-sm-6 col-lg-3">
+				<div class="enddate2  single-cool-facts-area text-center mb-100 wow fadeInUp"
+					data-wow-delay="150ms">
+					
+				</div>
+			</div> -->
+					</c:if>
+				</p>
         </div>
+        	
     </section>
 
 
