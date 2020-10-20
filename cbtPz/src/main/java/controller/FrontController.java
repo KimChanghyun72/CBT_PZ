@@ -50,6 +50,7 @@ public class FrontController extends HttpServlet {
     	list.put("/board/noticeUpdate.do", new board.NoticeUpdateCtrl());		//공지사항 수정
     	list.put("/board/noticeUpdateForm.do", new board.NoticeUpdateFormCtrl());//공지사항 수정입력폼
     	
+    	
     	//김창현
     	//list.put("/memberPayUpdate.do", new member.MemberUpdateController());
     	list.put("/ajax/probScoringCtrl.do", new study.ProbScoringCtrl());

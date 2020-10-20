@@ -248,22 +248,20 @@ $(document).ready(function(){
 <div>&emsp;&emsp;<a id="fa"><img src="../img/fav0.png">클릭시 즐겨찾기 추가</a></div><br><br>		
 	<form id="testResult" name="testResult" action="ScoreInsert.do">
 <table id="foo-table" class="table table-bordered">
-		<thead>
+		<thead align="center">
 			<tr><th width="13%">&nbsp;&nbsp;과목&nbsp;&nbsp;</th><th width="10%">번호</th><th>문제</th></tr>
 		</thead>
 		<tbody>
 		<% for(probNum=0; probNum<problemList.size(); probNum++){ %>
 			<tr>
-				<td><%=problemList.get(probNum).get("subject_name") %>
-				<td class="probNum<%=probNum %>">
+				<td align="center"><%=problemList.get(probNum).get("subject_name") %>
+				<td class="probNum<%=probNum %>" align="center" width="6%">
 					<%=probNum+1 %>번
-					<br>
+					<br><br>
 					<%if(problemList.get(probNum).get("is_correct").equals("1")){ %>
-						<div id="ques_ox1"><img src="../img/o1.png" style="width:300x; height:70px;"></div>
-						<br>
+						<div id="ques_ox1" align="center"><img src="../img/o1.png" style="width:300x; height:70px;"></div>
 					<% }else{ %>
-	 					<div id="ques_ox1"><img src="../img/x1.png" style="width:50px; height:35px;"></div>
-						<br>
+	 					<div id="ques_ox1" align="center"><img src="../img/x1.png" style="width:50px; height:35px;"></div>
 						
 					<%} %>
 				</td>

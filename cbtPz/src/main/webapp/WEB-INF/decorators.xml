@@ -10,7 +10,6 @@
 		<pattern>/member/*</pattern>
 		<pattern>/my/myRetestSelect.do</pattern>
 		<pattern>/my/myRetest.do</pattern>
-		
 	</excludes>
 	
 	<decorator name="boardform" page="boardformlayout.jsp">
@@ -19,6 +18,8 @@
 		<pattern>/pay/*</pattern>
 		<pattern>/admin/*</pattern>
 		<pattern>/memberList.do</pattern>
+		<pattern>/views/*</pattern>
+		<pattern>/insa/*</pattern>
 		
 		<pattern>/lecture/lectureDetailSelect.do</pattern>
 		

@@ -52,7 +52,7 @@ public class PaperController {
 		multipartFile.transferTo(new File("c:/upload1", multipartFile.getOriginalFilename()));
 		
 		try {
-			OPCPackage opcPackage = OPCPackage.open("c:/upload/" + multipartFile.getOriginalFilename()); // opcPackage : 대용량 파일?(zip파일) 읽기
+			OPCPackage opcPackage = OPCPackage.open("c:/upload1/" + multipartFile.getOriginalFilename()); // opcPackage : 대용량 파일?(zip파일) 읽기
 			@SuppressWarnings("resource")
 			XSSFWorkbook workbook = new XSSFWorkbook(opcPackage); // xssfWorkbook : 엑셀 파일 전용
 
@@ -61,7 +61,7 @@ public class PaperController {
 
 			for (int i = 0; i < sheet.getLastRowNum(); i++) {
 				ProblemVO problem1 = new ProblemVO();
-				problem1.setProblem_id(multipartFile.getName());
+				problem1.setProblem_id(multipartFile.getOriginalFilename());
 				XSSFRow row = sheet.getRow(i);
 
 				// 행이 존재하지 않으면 패스
@@ -70,9 +70,10 @@ public class PaperController {
 				}
 				
 				// 행과 열 불러오기
-				XSSFCell cell = row.getCell(0);
+
+				XSSFCell cell = row.getCell(0); 
 				if (null != cell) problem1.setProblem_id(Double.toString(cell.getNumericCellValue()));
-				
+								
 				cell = row.getCell(1);
 				if (null != cell) problem1.setSubject(cell.getStringCellValue());
 				
@@ -97,12 +98,10 @@ public class PaperController {
 				cell = row.getCell(8);
 				if (null != cell) problem1.setAns_correct(Double.toString(cell.getNumericCellValue())); 
 																							
-				cell = row.getCell(9);
+				cell = row.getCell(9); 
 				if (null != cell) problem1.setPaperhead_id(Double.toString(cell.getNumericCellValue()));
+				 
 				
-				cell = row.getCell(10);
-				if (null != cell) problem1.setProblem_image(Double.toString(cell.getNumericCellValue()));
-
 				System.out.println(problem1);
 
 				proservice.insertPro(problemVO, null);

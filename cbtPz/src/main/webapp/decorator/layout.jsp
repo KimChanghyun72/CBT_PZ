@@ -26,7 +26,7 @@
 
     <!-- Favicon -->
     <link rel="icon" href="${pageContext.request.contextPath}/img/core-img/favicon.ico">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">    
+    <link rel="stylesheet" href="/cbtPz/style.css"> 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     
 <!-- studyPaper datatable link -->
@@ -41,6 +41,8 @@
 		<!-- studyPaper datatable link -->
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     
+    <!-- bootstrap -->
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     
 <decorator:head/>   
 
@@ -80,7 +82,7 @@
                 <nav class="classy-navbar justify-content-between" id="cleverNav">
 
                     <!-- Logo -->
-                    <a class="nav-brand" href="${pageContext.request.contextPath}/indexx.jsp">YDCBT</a>
+                    <a class="nav-brand" href="${pageContext.request.contextPath}/indexx.jsp"><img src="img/core-img/JJlogo.png" alt="" style="max-width: 35%;"></a>
 
                      <!-- Navbar Toggler -->
                     <div class="classy-navbar-toggler">
@@ -147,10 +149,10 @@
                                 <li><a href="${pageContext.request.contextPath}/pay/payment.jsp">멤버쉽</a></li>
                               </c:if>  
                               <c:if test="${not empty sessionScope.check && sessionScope.check == 'A'}">
-                                <li><a href="/insa/memberList">관리자메뉴</a>
+                                <li><a href="${pageContext.request.contextPath}/admin/memberList.do">관리자메뉴</a>
                                  	<ul class="dropdown">
-                                        <li><a href="${pageContext.request.contextPath}/admin/problemList.do">개별문제</a></li>
-                                        <li><a href="${pageContext.request.contextPath}/admin/headInsert.jsp">회차문제</a></li>
+                                        <li><a href="/insa/insertProForm">개별문제</a></li>
+                                        <li><a href="/insa/insertPheadForm">회차문제</a></li>
                                         <li><a href="${pageContext.request.contextPath}/admin/adminChart.jsp">회원통계</a></li>
                                         <li><a href="${pageContext.request.contextPath}/admin/memberList.do">회원관리</a></li>
                                         <li><a href="${pageContext.request.contextPath}/admin/scheduler.jsp">일정관리</a></li>

@@ -4,13 +4,12 @@
 
 	
 	<excludes>
-		<pattern>/memberList/</pattern>
+		
 		<pattern>/ajax/*</pattern>
 		<pattern>/nostms/*</pattern>
 		<pattern>/member/*</pattern>
-		<pattern>/mypage/myRetestSelect.do</pattern>
-		
-		
+		<pattern>/my/myRetestSelect.do</pattern>
+		<pattern>/my/myRetest.do</pattern>
 	</excludes>
 	
 	<decorator name="boardform" page="boardformlayout.jsp">
@@ -19,11 +18,14 @@
 		<pattern>/pay/*</pattern>
 		<pattern>/admin/*</pattern>
 		<pattern>/memberList.do</pattern>
+		<pattern>/insa/*</pattern>
+		
+		<pattern>/lecture/lectureDetailSelect.do</pattern>
 		
 		<pattern>/study/studymain.jsp</pattern>
 		<pattern>/study/haederSearch.do</pattern>
 		<pattern>/study/subjectSearch.do</pattern>
-		<pattern>/study/hashtagPage.do</pattern>
+		<pattern>/study/hashtagPage.do</pattern>		
 	</decorator>
 	
 	<decorator name="user" page="layout.jsp">

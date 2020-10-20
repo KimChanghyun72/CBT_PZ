@@ -27,7 +27,7 @@ public class LoginFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		System.out.println("login filter ����");
+		//System.out.println("login filter ����");
 		
 		String uri = ((HttpServletRequest) request).getRequestURI();
 		String path = uri.substring(((HttpServletRequest) request).getContextPath().length());
@@ -53,7 +53,7 @@ public class LoginFilter implements Filter {
 						//System.out.println(session.isNew());
 					}
 					//chain.doFilter(request, response);
-					System.out.println("login filter end ���� ����");
+					//System.out.println("login filter end ���� ����");
 				//}
 				
 			}

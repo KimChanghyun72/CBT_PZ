@@ -23,6 +23,31 @@ public class PaperHeadDAO {
 			instance = new PaperHeadDAO();
 			return instance;
 	}
+	//엑셀 입력용 PAPERHEAD ID 검색
+	public PaperheadVO selectNewOne() {
+		PaperheadVO resultVO = new PaperheadVO();
+		
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = " SELECT PAPERHEAD_ID "
+					+ "FROM (select * from paperhead ORDER BY TO_NUMBER(PAPERHEAD_ID) DESC) "
+					+ "WHERE ROWNUM = 1"; 
+			
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				resultVO.setPaperhead_id(rs.getString(1));
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		
+		
+		return resultVO;
+	}
 	
 	//모든 문제검색
 	public List<Map<String,Object>> selectAllType(SearchVO searchVO) {
@@ -83,7 +108,7 @@ public class PaperHeadDAO {
 	
 	
 	//프로시져로 solve, paper 문제 등록
-	public int insert_Proc(SearchVO searchVO) {			
+	public int insert_Proc(SearchVO searchVO) {			 
 		int next = 0;
 		CallableStatement cstmt = null;
 		try {
@@ -153,7 +178,7 @@ public class PaperHeadDAO {
 						+ " FROM PAPERHEAD p, commoncode c"
 						+ " WHERE p.PAPER_TYPE_CD = c.COMMONCODE_ID "
 						+ " and PAPER_TYPE_CD = ? "
-						+ " ORDER BY PAPER_ROUND";
+						+ " ORDER BY LPAD(PAPER_ROUND, 2)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, paperheadVO.getPaper_type_cd());
 			rs = pstmt.executeQuery();

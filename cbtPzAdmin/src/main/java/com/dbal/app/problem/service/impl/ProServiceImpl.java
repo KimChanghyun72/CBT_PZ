@@ -1,5 +1,7 @@
 package com.dbal.app.problem.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,5 +28,20 @@ public class ProServiceImpl implements ProService {
 	@Override
 	public ProblemVO getPro(ProblemVO problemVO) {
 		return proDAO.getPro(problemVO);
+	}
+
+	@Override
+	public void updatePro(ProblemVO problemVO) {
+		proDAO.updatePro(problemVO);
+	}
+
+	@Override
+	public void deletePro(ProblemVO problemVO) {
+		proDAO.deletePro(problemVO);
+	}
+
+	@Override
+	public List<ProblemVO> getProList(ProblemVO problemVO) {
+		return proDAO.getProList();
 	}
 }

@@ -272,15 +272,14 @@ $(document).ready(function(){
 	<form id="testResult" name="testResult" action="ScoreInsert.do">
 <table id="foo-table" class="table table-bordered">
 	
-		<thead>
+		<thead align="center">
 			<tr><th width="13%">과목</th><th width="7%">번호</th><th>문제</th></tr>
 		</thead>
 		<tbody>
 		<% for(probNum=0; probNum<problemList.size(); probNum++){ %>				
 			<tr>
 				<td><%=problemList.get(probNum).get("subject_name") %>
-				<td class="probNum<%=probNum %>"><%=probNum+1 %>번
-				</td>
+				<td class="probNum<%=probNum %>" align="center"><%=probNum+1%>번</td>
 				<td>
 					<div id="div<%=probNum%>"><%=problemList.get(probNum).get("problem_text") %>&nbsp;&nbsp;</div>
 					<input type="hidden" id="paper_id" value="<%=problemList.get(probNum).get("paper_id") %>">

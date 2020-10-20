@@ -54,6 +54,10 @@
     <!-- studyPaper datatable link -->
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     
+    <!-- 결제api -->
+    <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script> -->
+	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+    
  <decorator:head/>   
 
     
@@ -105,7 +109,7 @@
                 <nav class="classy-navbar justify-content-between" id="cleverNav">
 
                     <!-- Logo -->
-                    <a class="nav-brand" href="${pageContext.request.contextPath}/indexx.jsp">YDCBT</a>
+                    <a class="nav-brand" href="${pageContext.request.contextPath}/indexx.jsp"><img src="${pageContext.request.contextPath}/img/core-img/JJlogo.png" alt="" style="max-width: 35%;"></a>
 
                     <!-- Navbar Toggler -->
                     <div class="classy-navbar-toggler">
@@ -166,10 +170,10 @@
                                 </c:if>
                               </c:if>
                               <c:if test="${not empty sessionScope.check && sessionScope.check == 'A'}">
-                                <li><a href="${pageContext.request.contextPath}/problemInsert.do">관리자메뉴</a>
+                                <li><a href="${pageContext.request.contextPath}/admin/memberList.do">관리자메뉴</a>
                                 	<ul class="dropdown">
-                                        <li><a href="${pageContext.request.contextPath}/admin/problemList.do">개별문제</a></li>
-                                        <li><a href="${pageContext.request.contextPath}/admin/headInsert.jsp">회차문제</a></li>
+                                        <li><a href="/insa/insertProForm">개별문제</a></li>
+                                        <li><a href="/insa/insertPheadForm">회차문제</a></li>
                                         <li><a href="${pageContext.request.contextPath}/admin/adminChart.jsp">회원통계</a></li>
                                         <li><a href="${pageContext.request.contextPath}/admin/memberList.do">회원관리</a></li>
                                         <li><a href="${pageContext.request.contextPath}/admin/scheduler.jsp">일정관리</a></li>

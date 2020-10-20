@@ -38,7 +38,7 @@ public class LecturePageCtrl implements Controller {
 		}
 		List<LectureVO> lecturelist = new ArrayList<LectureVO>();
 		String subject = request.getParameter("subject");
-		if(subject == null || subject.equals("전체")) {			
+		if(subject == null || subject.equals("s전")) {			
 			lecturelist = LectureDAO.getInstance().selectLectureAll(vo); //강의전체
 		} else {
 			LectureVO lectureVO = new LectureVO();
