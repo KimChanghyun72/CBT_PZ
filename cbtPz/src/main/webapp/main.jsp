@@ -238,13 +238,13 @@
 				</div>
 
 			</div>
-			<div class="section-heading">
+<!-- 			<div class="section-heading">
 				<h3></h3>
-			</div>
+			</div> -->
 
 		</section>
 
-		<section class="popular-courses-area section-padding-100-0">
+<!-- 		<section class="popular-courses-area section-padding-100-0">
 			<div class="container">
 				<div class="row">
 					<div class="col-12">
@@ -252,7 +252,7 @@
 					</div>
 				</div>
 			</div>
-		</section>
+		</section> -->
 		<!-- 	<section class="popular-courses-area section-padding-100-0">
 		<div class="container">
 			<div class="row">
@@ -298,21 +298,21 @@
 
 
 	<!-- ##### Cool Facts Area Start ##### -->
-	<section class="cool-facts-area section-padding-100-0">
+<!-- 	<section class="cool-facts-area section-padding-100-0">
 		<div class="container">
 			<div class="row">
-				<!-- Single Cool Facts Area -->
+				Single Cool Facts Area
 				<div class="col-12 col-sm-6 col-lg-3"></div>
 			</div>
 		</div>
 	</section>
-	<!-- ##### Cool Facts Area End ##### -->
+	##### Cool Facts Area End #####
 
-	<!-- ##### Footer Area Start ##### -->
+	##### Footer Area Start #####
 	<footer class="footer-area">
 		<div></div>
 	</footer>
-	<!-- ##### Footer Area End ##### -->
+	##### Footer Area End ##### -->
 
 
 

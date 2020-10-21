@@ -13,7 +13,7 @@
     <!-- The above 4 meta tags *Must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title><decorator:title/></title>
+    <title>JJOKJEBI</title>
 
 
 	<!-- Bootstrap core CSS -->
@@ -25,7 +25,9 @@
   	<link href="/cbtPz/css/modern-business.css" rel="stylesheet">
 
     <!-- Favicon -->
-    <link rel="icon" href="/cbtPz/img/core-img/favicon.ico">
+	<link rel="shortcut icon" href="./images/JJlogoicon.ico">
+	
+	
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">    
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     
@@ -46,6 +48,12 @@
 <decorator:head/>   
 
 <style>
+	.blank{
+	height : 150px;
+
+	//clear:both;
+	
+}
 	
 	ul {
         padding: 16px 0;
@@ -81,7 +89,7 @@
                 <nav class="classy-navbar justify-content-between" id="cleverNav">
 
                     <!-- Logo -->
-                    <a class="nav-brand" href="/cbtPz/indexx.jsp">YDCBT</a>
+                    <a class="nav-brand" href="/cbtPz/indexx.jsp"><img src="./images/JJlogo.png" alt="" style="max-width: 35%;"></a>
 
                      <!-- Navbar Toggler -->
                     <div class="classy-navbar-toggler">
@@ -163,8 +171,13 @@
 
                             <!-- Register / Login -->
                             <div class="register-login-area">
-	                               	 관리자1님  
+                            	<c:if test="${ not empty sessionScope.name}">
+	                               	 ${name}님  
 	                                <a href="/cbtPz/logout.do" class="btn active">Logout</a>
+	                         	</c:if>
+                            	<c:if test="${ empty sessionScope.name}">   
+	                                <a href="${pageContext.request.contextPath}/member/login.jsp" class="btn active">Login</a>
+                                </c:if>
                             </div>
 
                         </div>
@@ -175,7 +188,42 @@
         </div>
     </header>
     <!-- ##### Header Area End ##### -->
+    
+
 <decorator:body/>
+
+<div class = "blank">
+   </div>
+
+		<div class="top-footer-area">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<!-- Footer Logo -->
+						<div class="footer-logo">
+							<a class="nav-brand"
+								href="${pageContext.request.contextPath}/indexx.jsp"><img
+								src="./images/JJlogo_w.png"
+								alt="" style="max-width: 12%;"></a>
+						</div>
+						<!-- Copywrite -->
+						<p>
+							<a href="#"> <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+								Copyright &copy;2020 yedam vocational training institute | This
+								template is made with <i class="fa fa-heart-o"
+								aria-hidden="true"></i> by <a href="https://colorlib.com"
+								target="_blank">Colorlib</a> <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+   
+   
+
     <!-- ##### All Javascript Script ##### -->
 
     <!-- All Plugins js -->

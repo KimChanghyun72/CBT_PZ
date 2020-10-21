@@ -1,8 +1,12 @@
 package com.dbal.app.problem.web;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.dbal.app.problem.HashtagVO;
@@ -20,8 +24,11 @@ public class ProController {
 
 	// 등록페이지
 	@RequestMapping("insertProForm")
-	public String insertProForm(ProblemVO vo, HashtagVO vo1, Model model) {
+	public String insertProForm(ProblemVO vo, HashtagVO vo1, Model model, 
+			@CookieValue(value="name", required=false) Cookie name,
+			HttpServletRequest request) {
 		model.addAttribute("proList", proservice.getProList(vo));
+		request.getSession().setAttribute("name", name.getValue());
 		return "problem/quizInsert";
 	}
 

@@ -13,7 +13,7 @@
     <!-- The above 4 meta tags *Must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title><decorator:title/></title>
+    <title>JJOKJEBI</title>
 
 
 	<!-- Bootstrap core CSS -->
@@ -24,15 +24,15 @@
   	<!-- Custom styles for this template -->
   	<link href="${pageContext.request.contextPath}/css/modern-business.css" rel="stylesheet">
 	<!-- hashSelect.jsp 사용. -->
-        <!-- Favicon -->
-    <link rel="icon" href="${pageContext.request.contextPath}/img/core-img/favicon.ico">
+       
     <!-- Stylesheet -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">
     
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
     <!-- Favicon -->
-    <link rel="icon" href="${pageContext.request.contextPath}/img/core-img/favicon.ico">
+	<link rel="shortcut icon" href="${pageContext.request.contextPath}/img/core-img/JJlogoicon.ico">
+	
     <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">    
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <!-- studyPaper datatable link -->
@@ -62,19 +62,24 @@
 
     
 <style>
-	.top-footer-area {
+	/* .top-footer-area {
 
     width:100%;
     height : 140px;
-    
+    //position : fixed;
+	bottom: 0;
+	
+}*/
+
+	.blank{
+	height : 150px;
+
+	//clear:both;
 	
 }
-/* study의 모의, 기출 유형이 늘어나면 160px로 변경 */
-	.blank{
-	height : 450px;
-	/*float 속성을 건 뒤 clear:both로 해제해줘야 길이가 제대로 먹는다.*/
-	clear:both;
-	
+
+.table-responsive{
+	min-height: 350px;
 }
 	
 	ul {
@@ -236,13 +241,13 @@
     </c:otherwise>
 	</c:choose>
 
-	<div>
 	
+	<section class="hero-area bg-img bg-overlay-2by 5">
 
 
 
 <decorator:body/>
-   </div>
+   
    <div class = "blank">
    </div>
     <!-- ##### All Javascript Script ##### -->
@@ -270,7 +275,31 @@
 			</div>
 		</div> --%>
 	
-
+		<div class="top-footer-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<!-- Footer Logo -->
+					<div class="footer-logo">
+						<a class="nav-brand"
+							href="${pageContext.request.contextPath}/indexx.jsp"><img
+							src="${pageContext.request.contextPath}/img/core-img/JJlogo_w.png" alt="" style="max-width: 12%;"></a>
+					</div>
+					<!-- Copywrite -->
+					<p>
+						<a href="#"> <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+							Copyright &copy;2020 yedam vocational training institute | This
+							template is made with <i class="fa fa-heart-o" aria-hidden="true"></i>
+							by <a href="https://colorlib.com" target="_blank">Colorlib</a> <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	</section>
     <!-- All Plugins js -->
     <script src="${pageContext.request.contextPath}/js/plugins/plugins.js"></script>
     <!-- Active js -->

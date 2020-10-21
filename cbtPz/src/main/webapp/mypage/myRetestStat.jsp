@@ -23,10 +23,10 @@ main {
   background: #FFF;
   box-shadow: 0 3px 5px rgba(0,0,0,0.2);
 }
-p {
+/* p {
   margin-top: 2rem;
   font-size: 13px;
-}
+} */
 #bar-chart {
   width: 700px;
   height: 500px;
@@ -343,8 +343,8 @@ p {
 						<br><br>
 						</div>
 					</div>
-						<div class="single-course-content section-padding-100">
-						</div>
+						<!-- <div class="single-course-content section-padding-100">
+						</div> -->
 				</div>
 			</div>
 		</div>

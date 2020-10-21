@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-	.container {
+	#d1, #d2 {
 		width: auto;
 		padding: 20px;
 		box-shadow: 0 3px 20px rgba(0, 0, 0, 0.15);
@@ -211,7 +211,7 @@
 	
 	<br><br>
 
-	<div class="container">
+	<div class="container" id="d1">
 	<form method="post" name="frm" id="frm" class="test" action="insertPro" onsubmit="return check_submit();">
 		<div class="col-12 col-lg-5">
 				<div class="form-group" style="text-align: center;">
@@ -278,7 +278,7 @@
 	<br><br><br><br>
 	
 	
-	<div class="container">
+	<div class="container" id="d2">
 		<table id="listTable" class="display">
 			<thead>
 				<tr bgcolor="skyblue">
@@ -312,5 +312,7 @@
 			</tbody>
 		</table>
 	</div>
+	
+	<br><br><br><br>
 </body>
 </html>

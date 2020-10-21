@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-.container {
+#d1 {
 		width: auto;
 		padding: 20px;
 		box-shadow: 0 3px 20px rgba(0, 0, 0, 0.15);
@@ -97,7 +97,7 @@
 <body>
 <br>
 <br>
-<div class="container">
+<div class="container" id="d1">
 <form method="post" name="frm" id="frm" enctype="multipart/form-data" align="center"
    	  action="${pageContext.request.contextPath}/excelInsert.do">
 <h3>문제 분류</h3>

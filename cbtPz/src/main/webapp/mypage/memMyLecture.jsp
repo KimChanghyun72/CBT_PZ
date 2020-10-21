@@ -16,9 +16,10 @@
     <!-- Title -->
     <title>Clever - Education &amp; Courses Template | Courses</title>
 
-    <style>
+<style>
 	div.row2 {
 		text-align: center;
+		min-height: 100px;
 	}
 	
 	h4{
@@ -30,7 +31,7 @@
 	    font-size: 15px;
 	}
 	
-	</style>
+</style>
     
     
 	<script>
