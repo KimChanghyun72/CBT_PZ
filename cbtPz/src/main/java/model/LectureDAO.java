@@ -110,7 +110,9 @@ public class LectureDAO {
 					+ " FROM LECTURE, (select  lecture_id, count(learn_id)  as cnts2 from learn group by lecture_id) lec_cnt"
 					+ " WHERE lecture_on = 'Y'"
 					+ " and lecture.lecture_id = lec_cnt.lecture_id(+)"
-					+ " and teacher_id = ?"; // sql문 + 앞에 " " 공백
+					+ " and teacher_id = ?"
+					+ " order by lecture.lecture_name"; // sql문 + 앞에 " " 공백
+				
 
 	
 				pstmt = conn.prepareStatement(sql);
