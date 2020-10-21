@@ -20,7 +20,6 @@
 <script type="text/javascript">
 	<%request.getSession().setAttribute("pageName", "회차 문제");%>
 </script>
-</head>
 <script>
 	function checkForm() {
 		if (upload.file_path.value == "") {
@@ -46,8 +45,9 @@
 	}
 </script>
 <script>
-	$(function() {
-		$("#testInput").autocomplete({
+	$(function(){
+			console.log("hi");
+		$("[name=testInput]").autocomplete({
 			source : function(request, response) {
 				$.ajax({
 					url : "${pageContext.request.contextPath}/ajax/hashtagAutoSearch.do",
@@ -77,13 +77,13 @@
 			},
 			minLength : 1,
 			autoFocus : false,
-			/* select : function(evt, ui) {
+			 select : function(evt, ui) {
 				
-				$("#tag-list").append("<li class='tag-item'><span class='hashtext'>"+ui.item.value+"</span><span class='del-btn' idx='"+ui.item.idx+"'>x</span></li>");
+				/* $("#tag-list").append("<li class='tag-item'><span class='hashtext'>"+ui.item.value+"</span><span class='del-btn' idx='"+ui.item.idx+"'>x</span></li>");
 				console.log("전체 data: " + JSON.stringify(ui));
 				console.log("db Index : " + ui.item.idx);
-				console.log("검색 데이터 : " + ui.item.value);
-			}, */
+				console.log("검색 데이터 : " + ui.item.value); */
+			}, 
 			focus : function(evt, ui) {
 				return false;
 			},
@@ -94,6 +94,7 @@
 
 	});
 </script>
+</head>
 <body>
 <br>
 <br>
@@ -125,7 +126,7 @@ code : <select name="classify_code_cd" id="classify_code_cd">
 				<option value="정보시스템 구축관리">정보시스템 구축관리</option>
 	   </select><p><p>
 name : <input type="text" name="hashtag_name" id="hashtag_name"/><p>
-		   	<input type="text" id="testInput" placeholder="Search">
+		   	<input type="text" id="testInput" placeholder="Search" name="testInput">
 			<button type="button">
 				<i class="fa fa-search" aria-hidden="true"></i>
 			</button>
