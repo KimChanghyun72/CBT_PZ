@@ -19,6 +19,13 @@
 	div.row2 {
 		text-align: center;
 	}
+	
+	.single-popular-course .course-content .meta span {
+    color: rgba(0, 0, 0, 0.4);
+    font-size: 14px;
+    margin-right: 10px;
+}
+	
 	</style>
 	
     
@@ -103,7 +110,7 @@
                             <h4></h4>
                             <div class="meta d-flex align-items-center">
                             	
-                                <span><i class="fa fa-circle" aria-hidden="true"></i>${lecture.lecture_name}</span>
+                                <span><i class="fa fa-circle" aria-hidden="true"></i> ${lecture.lecture_name}</span>
                             </div>
                             <p>${lecture.lecture_info}</p>
                         </div>
