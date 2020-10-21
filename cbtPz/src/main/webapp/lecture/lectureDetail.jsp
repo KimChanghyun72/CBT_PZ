@@ -118,7 +118,7 @@ $(function(){
 	});
 	
 	$(".btnLearn").on("click", function(){
-		if("${login.is_pay}"=="Y"){
+		if("${login.is_pay}"=="Y" || "${check}"=="T" || "${check}"=="A"){
 			var newWindow = window.open("about:blank");
 			newWindow.location.href="${lectureInfo.lecture_link}";			
 		}else{
@@ -180,7 +180,7 @@ $(function(){
 
 
 									<c:choose>
-										<c:when test="${login.is_pay=='Y'}">
+										<c:when test="${login.is_pay=='Y' || check == 'T' || check == 'A'}">
 											<div>
 												<!-- 강의 링크 : <a href="#" class="btnLearn">수강하러가기</a> -->
 												<a href="#" class="btnLearn btn clever-btn mb-30 w-100">수강하러가기</a>

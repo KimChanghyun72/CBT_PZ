@@ -23,10 +23,10 @@ main {
   background: #FFF;
   box-shadow: 0 3px 5px rgba(0,0,0,0.2);
 }
-p {
+/* p {
   margin-top: 2rem;
   font-size: 13px;
-}
+} */
 #bar-chart {
   width: 700px;
   height: 500px;
@@ -41,7 +41,19 @@ p {
   margin: auto;
 
 }
-#bar-chart::before, #line-chart::before {
+#bar-chart::before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 250px;
+  height: 30px;
+  left: 250px;
+  top: 430px;
+  background: #FAFAFA;
+  box-shadow: 1px 1px 0 0 #DDD;
+}
+
+#line-chart::before {
   content: "";
   position: absolute;
   display: block;
@@ -52,6 +64,9 @@ p {
   background: #FAFAFA;
   box-shadow: 1px 1px 0 0 #DDD;
 }
+
+
+
 #pie-chart {
   width: 700px;
   height: 350px;
@@ -328,8 +343,8 @@ p {
 						<br><br>
 						</div>
 					</div>
-						<div class="single-course-content section-padding-100">
-						</div>
+						<!-- <div class="single-course-content section-padding-100">
+						</div> -->
 				</div>
 			</div>
 		</div>

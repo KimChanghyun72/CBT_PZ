@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>findId.jsp</title>
+<title>JJOKJEBI</title>
 <style>
 body {
     padding-top: 90px;
@@ -113,6 +113,8 @@ body {
 
 
 </style>
+<!-- Favicon -->
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/img/core-img/JJlogoicon.ico">
 
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>

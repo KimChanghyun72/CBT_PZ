@@ -1,14 +1,13 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-.container {
+#d1 {
 		width: auto;
 		padding: 20px;
 		box-shadow: 0 3px 20px rgba(0, 0, 0, 0.15);
@@ -16,69 +15,8 @@
 		border-radius: 6px;
 		background: #f7f7f7;
 		}
-		
-.container1 {
-		width: auto;
-		padding: 20px;
-		box-shadow: 0 3px 20px rgba(0, 0, 0, 0.15);
-		/* 	    padding: 35px 50px; */
-		border-radius: 6px;
-		background: #f7f7f7;
-		}
-		
-input[type=text], select {
-  width: 50%;
-  padding: 6px 10px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-
-input[type=submit] {
-  width: 10%;
-  background-color: #4CAF50;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-input[type=reset] {
-  width: 10%;
-  background-color: #4CAF50;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-
-input[type=submit]:hover {
-  background-color: #45a049;
-}
-
-textarea {
-  width: 100%;
-  height: 150px;
-  padding: 12px 20px;
-  box-sizing: border-box;
-  border: 2px solid #ccc;
-  border-radius: 4px;
-  background-color: #f8f8f8;
-  resize: none;
-}
-img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 70%;
-} 
 </style>
+
 <script type="text/javascript">
 	<%request.getSession().setAttribute("pageName", "회차 문제");%>
 </script>
@@ -107,57 +45,60 @@ img {
 	}
 </script>
 <script>
-$(function() {
-	$("#testInput").autocomplete({
-		source : function(request, response) {
-			$.ajax({
-				url : "${pageContext.request.contextPath}/ajax/hashtagAutoSearch.do",
-				type : "GET",
-				dataType : "json",
-				data : {
-					hashtag_name : $("#testInput").val()
-				}, // 검색 키워드
-				success : function(data) { // 성공
-					response($.map(data, function(item) {
-						return {
-							label : item.hashtag_name, //목록에 표시되는 값
-							value : item.hashtag_name, //선택 시 input창에 표시되는 값	
-							idx : item.testIdx
-						};
-					})); //response
-				},//success
-				error : function() { //실패
-					//alert("통신에 실패했습니다."); 
-				}
-			});
-		},
-		open : function(evt, ui) {
-			$(this).autocomplete("widget").css({
-				"width" : 1000
-			});
-		},
-		minLength : 1,
-		autoFocus : false,
-		/* select : function(evt, ui) {
-			
-			$("#tag-list").append("<li class='tag-item'><span class='hashtext'>"+ui.item.value+"</span><span class='del-btn' idx='"+ui.item.idx+"'>x</span></li>");
-			console.log("전체 data: " + JSON.stringify(ui));
-			console.log("db Index : " + ui.item.idx);
-			console.log("검색 데이터 : " + ui.item.value);
-		}, */
-		focus : function(evt, ui) {
-			return false;
-		},
-		close : function(evt) {
+	$(function(){
+			console.log("hi");
+		$("[name=testInput]").autocomplete({
+			source : function(request, response) {
+				$.ajax({
+					url : "${pageContext.request.contextPath}/ajax/hashtagAutoSearch.do",
+					type : "GET",
+					dataType : "json",
+					data : {
+						hashtag_name : $("#testInput").val()
+					}, // 검색 키워드
+					success : function(data) { // 성공
+						response($.map(data, function(item) {
+							return {
+								label : item.hashtag_name, //목록에 표시되는 값
+								value : item.hashtag_name, //선택 시 input창에 표시되는 값	
+								idx : item.testIdx
+							};
+						})); //response
+					},//success
+					error : function() { //실패
+						//alert("통신에 실패했습니다."); 
+					}
+				});
+			},
+			open : function(evt, ui) {
+				$(this).autocomplete("widget").css({
+					"width" : 1000
+				});
+			},
+			minLength : 1,
+			autoFocus : false,
+			 select : function(evt, ui) {
+				
+				/* $("#tag-list").append("<li class='tag-item'><span class='hashtext'>"+ui.item.value+"</span><span class='del-btn' idx='"+ui.item.idx+"'>x</span></li>");
+				console.log("전체 data: " + JSON.stringify(ui));
+				console.log("db Index : " + ui.item.idx);
+				console.log("검색 데이터 : " + ui.item.value); */
+			}, 
+			focus : function(evt, ui) {
+				return false;
+			},
+			close : function(evt) {
 
-		}
+			}
+		});
+
 	});
-
-});
 </script>
 </head>
 <body>
-<div class="container">
+<br>
+<br>
+<div class="container" id="d1">
 <form method="post" name="frm" id="frm" enctype="multipart/form-data" align="center"
    	  action="${pageContext.request.contextPath}/excelInsert.do">
 <h3>문제 분류</h3>
@@ -171,13 +112,11 @@ $(function() {
 	<input type="submit" id="submit" value="등록"> 
 	<input type="reset" id="reset" value="초기화">
 </form>
-</div>
-<p>
-<div class="container1">
+<br>
 <form method="post" name="frm" id="frm" align="center"
    	  action="${pageContext.request.contextPath}/hashInsert.do"
    	  onsubmit = "return inputCheck()">
-	  <h3>해쉬태그 등록</h3>
+ <h3>해쉬태그 등록</h3>
 code : <select name="classify_code_cd" id="classify_code_cd">
 				<option value="0" selected>소분류</option>
 				<option value="소프트웨어 설계">소프트웨어 설계</option>
@@ -187,10 +126,10 @@ code : <select name="classify_code_cd" id="classify_code_cd">
 				<option value="정보시스템 구축관리">정보시스템 구축관리</option>
 	   </select><p><p>
 name : <input type="text" name="hashtag_name" id="hashtag_name"/><p>
-		   	<input type="text" id="testInput" placeholder="Search" style="width:500px;">
+		   	<input type="text" id="testInput" placeholder="Search" name="testInput">
 			<button type="button">
 				<i class="fa fa-search" aria-hidden="true"></i>
-			</button><p>
+			</button>
 	<input type="submit" id="submit" value="등록"> 
 	<input type="reset" id="reset" value="초기화">
 </form>

@@ -14,7 +14,7 @@
 	
 </script>
 <style>
-	.container{
+	#d1{
 		width : auto;
 		box-shadow: 0 3px 20px rgba(0, 0, 0, 0.15);
 	    padding: 35px 50px;
@@ -33,7 +33,9 @@
 </script>
 </head>
 <body>
-	<div class="container">
+<br>
+<br>
+	<div class="container" id="d1">
 	<h3>회원목록</h3>
 	<table id="listTable" class="display">
 		<thead>

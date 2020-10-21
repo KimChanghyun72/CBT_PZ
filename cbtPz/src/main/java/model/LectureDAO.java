@@ -110,7 +110,9 @@ public class LectureDAO {
 					+ " FROM LECTURE, (select  lecture_id, count(learn_id)  as cnts2 from learn group by lecture_id) lec_cnt"
 					+ " WHERE lecture_on = 'Y'"
 					+ " and lecture.lecture_id = lec_cnt.lecture_id(+)"
-					+ " and teacher_id = ?"; // sql문 + 앞에 " " 공백
+					+ " and teacher_id = ?"
+					+ " order by lecture.lecture_name"; // sql문 + 앞에 " " 공백
+				
 
 	
 				pstmt = conn.prepareStatement(sql);
@@ -376,11 +378,12 @@ public class LectureDAO {
 					} else {
 						where += ", 0 lecture_yn ";
 					}
-					String sql = "SELECT LECTURE_ID, LECTURE_NAME, LECTURE_INFO, LECTURE_LINK, LECTURE_IMAGE,"
-								+ " LECTURE_LEVEL, substr(subject_name(lecture_subject), 0,1 ) lecture_subject, teacher_name"
+					String sql = "SELECT lecture_on, lecture.LECTURE_ID, LECTURE_NAME, LECTURE_INFO, LECTURE_LINK, LECTURE_IMAGE,"
+								+ " LECTURE_LEVEL, substr(subject_name(lecture_subject), 0,1 ) lecture_subject, teacher_name, nvl(lec_cnt.cnts2,0) as cnts"
 								+ where
-								+ " FROM LECTURE, teacher_member"
+								+ " FROM LECTURE, teacher_member, (select lecture_id, count(learn_id) as cnts2 from learn group by lecture_id) lec_cnt"
 								+ " WHERE lecture.teacher_id = teacher_member.teacher_id"
+								+ " AND lecture.lecture_id = lec_cnt.lecture_id(+)"
 								+ " AND LECTURE.LECTURE_NAME LIKE '%'||?||'%'"
 								+ " ORDER BY LECTURE_NAME"; 
 					//System.out.println(sql);
@@ -401,8 +404,10 @@ public class LectureDAO {
 						resultVO.setLecture_link(rs.getString("lecture_link"));
 						resultVO.setLecture_image(rs.getString("lecture_image"));
 						resultVO.setLecture_level(rs.getString("lecture_level"));
+						resultVO.setLecture_on(rs.getString("lecture_on"));
 						resultVO.setLecture_subject(rs.getString("lecture_subject"));
 						resultVO.setLecture_yn(rs.getString("lecture_yn"));
+						resultVO.setCnts(rs.getString("cnts"));
 						list.add(resultVO);
 					} 
 				} catch (Exception e) {

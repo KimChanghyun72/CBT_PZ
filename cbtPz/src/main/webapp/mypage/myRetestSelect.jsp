@@ -80,10 +80,6 @@
 	margin-top: 20px;
 }
 
-
-.haeseol {
-	visibility:hidden;
-}
 .probChk {
 	visibility:hidden;
 }
@@ -115,7 +111,11 @@
 .checkbox-wrap input[type=checkbox] { display: none; }
 .checkbox-wrap input[type=checkbox]:checked + .check-icon { background-image: url(../img/fav1.png);}
  
- 
+#haeseol{
+	color : #679467;
+	font-weight: bold;
+}
+
 </style>
 
 <script>
@@ -194,7 +194,7 @@ $(function(){ //for문은 번호를 설정해주는 역할만 하고 이벤트�
 			success : function(datas){
 				for(i=0; i<datas.length; i++){
 					console.log(datas.length)       //데이터 길이 콘솔출력
-					$(".haeseol"+i).html(datas[i].haeseol); //헤설 출력
+					//$(".haeseol"+i).html(datas[i].haeseol); //해설 출력
 					if(datas[i].ans_correct == $('input[name=problem'+i+']:checked').val()){
 						$('input[name=problem'+i+']').closest("td").prev()
 								/*.append('<div id="ques_ox1"><img src="../img/o1.png" style="width:300x; height:70px;"></div>');*/
@@ -310,13 +310,15 @@ $(document).ready(function(){
 						//정답일 경우 class를 추가해줘서 정답표시
 						$('[name=problem<%=probNum%>][value=<%=problemList.get(probNum).get("ans_correct")%>]').next().addClass("astyle")
 						</script>
-					<input type="hidden" name="is_correct<%=probNum%>">
-					<div class="haeseol<%=probNum %>"></div>
+					<input type="hidden" name="is_correct<%=probNum%>" >
+					<br>
+					<!--해설 출력 -->
+					<div id="haeseol" class="haeseol<%=probNum %>">해설) <br> <%=problemList.get(probNum).get("haeseol")%></div>	
 				</td>
 			</tr>
 			<% } %>
 		</tbody>
-    </table>
+    </table>	
 	</form>
 </div>
 

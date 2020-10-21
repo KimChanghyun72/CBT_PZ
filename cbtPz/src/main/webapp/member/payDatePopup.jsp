@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>payDatePopup.jsp</title>
+<title>JJOKJEBI_Popup</title>
 <style>
 h3{
 	color: tomato;
@@ -43,6 +43,11 @@ function closePopup() {
 
 
 </script>
+
+
+<!-- Favicon -->
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/img/core-img/JJlogoicon.ico">
+
 
 </head>
 

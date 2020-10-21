@@ -663,7 +663,8 @@ padding: 10px;
                                     <div class="form-group">
                                     	 <img id="preImage"
                                     	 	src="${pageContext.request.contextPath}/nostms/profilepicSelect.do?teacher_picture=${teacher.teacher_picture }"
-											data-title="${teacher.teacher_name }" >
+											data-title="${teacher.teacher_name }" 
+											onerror="this.src='${pageContext.request.contextPath}/img/bg-img/t5.png'">
 									</div>
                                 </div>
                                 <div class="col-12 col-lg-5">

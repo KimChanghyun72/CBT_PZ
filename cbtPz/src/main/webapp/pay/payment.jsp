@@ -207,11 +207,9 @@ $(function(){
  		 			 alert("멤버십 기간을 선택하세요.");
  		 		 }else{
  		 			 if($("[name=is_pay]").prop("checked")){
- 		 				 var confirmVal = confirm("결제 하시겠습니까?");
- 		 				 if(confirmVal==1){
+ 		 				 
  		 					alert("결제가 완료되었습니다.");
  		 					$("#payFrm").submit();
- 		 				 }
  		 			 }else{
  		 				 alert("결제 조건에 동의하십시오.");
  		 			 }
@@ -238,6 +236,7 @@ $(function(){
 
 </script>
 </head>
+
 
 <section class="cool-facts-area section-padding-100-0">
 	<div class="container">
@@ -287,8 +286,8 @@ $(function(){
 			</div>
 		</div>
 	</div>
-</section>
 
+</section>
 
 <!-- ##### Register Now Start ##### -->
     <section class="register-now section-padding-100-0 d-flex justify-content-between align-items-center" style="background-image: url(img/core-img/texture.png);">
@@ -345,6 +344,7 @@ $(function(){
         	
     </section>
 
+	
 
 
 

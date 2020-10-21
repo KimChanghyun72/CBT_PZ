@@ -172,13 +172,21 @@ public class PaperHeadDAO {
 	public ArrayList<PaperheadVO> selectPaper_type(PaperheadVO paperheadVO) {
 		ArrayList<PaperheadVO> list = new ArrayList<PaperheadVO>();
 		
+		String orderby = "";
+		if(paperheadVO.getPaper_type_cd().equals("a2")) {
+			orderby = "ORDER BY SUBSTR(PAPER_ROUND, 1,2)";
+		}else {
+			orderby = "ORDER BY SUBSTR(PAPER_ROUND, 1,2) DESC,SUBSTR(PAPER_ROUND, -2,1) DESC";
+		}
+		
 		try {
 			conn = ConnectionManager.getConnnect();
+			
 			String sql = "SELECT PAPERHEAD_ID, PAPER_TYPE_CD, PAPER_ROUND, COMMONCODE_NAME "
 						+ " FROM PAPERHEAD p, commoncode c"
 						+ " WHERE p.PAPER_TYPE_CD = c.COMMONCODE_ID "
 						+ " and PAPER_TYPE_CD = ? "
-						+ " ORDER BY LPAD(PAPER_ROUND, 2)";
+						+ orderby;
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, paperheadVO.getPaper_type_cd());
 			rs = pstmt.executeQuery();

@@ -236,7 +236,7 @@
 									<div>현재 <a>${lecture_list.cnts}</a>명이 수강중.</div>
 								</div>
 								<div class="meta d-flex align-items-center">
-									<p><a href="${pageContext.request.contextPath}/lecture/lectureDetailSelect.do?lecture_id=${lecture_list.lecture_id}"><button type="button" id="btn2" class="btn btn-outline-success">강의 상세 정보</button></a></p>
+									<p><a href="${pageContext.request.contextPath}/lecture/lectureDetailSelect.do?lecture_id=${lecture_list.lecture_id}"><button type="button" id="btn2" class="btn btn-info">강의 상세 정보</button></a></p>
 								</div>
 
 								<input type="hidden" value="${lecture_list.lecture_id}" name="lecid">
