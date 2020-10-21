@@ -9,6 +9,17 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+<style>
+.table-responsive{
+	min-height: 350px;
+}
+
+
+</style>
+
+
+
+
 <script>
 function ckdel() {
     var chk_obj = document.getElementsByName("chkDelete");
@@ -36,7 +47,7 @@ function ckdel() {
 </head>
 <body>
 	<%request.getSession().setAttribute("pageName","나의 작성글"); %>
-	<article>
+	
 		<div class="container">
 			<div class="table-responsive">
 				<br> <br>
@@ -97,6 +108,6 @@ function ckdel() {
 			</div>
 		</div>
 
-	</article>
+	
 </body>
 </html>

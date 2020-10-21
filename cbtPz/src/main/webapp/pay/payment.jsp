@@ -237,6 +237,7 @@ $(function(){
 </script>
 </head>
 
+
 <section class="cool-facts-area section-padding-100-0">
 	<div class="container">
 		<div class="row">
@@ -285,8 +286,8 @@ $(function(){
 			</div>
 		</div>
 	</div>
-</section>
 
+</section>
 
 <!-- ##### Register Now Start ##### -->
     <section class="register-now section-padding-100-0 d-flex justify-content-between align-items-center" style="background-image: url(img/core-img/texture.png);">
@@ -343,6 +344,7 @@ $(function(){
         	
     </section>
 
+	
 
 
 

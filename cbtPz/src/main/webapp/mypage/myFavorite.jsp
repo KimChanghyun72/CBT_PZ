@@ -12,6 +12,12 @@
 	color : white;
 	text-shadow: 2px 2px 2px gray;
 	}
+	
+	
+.table-responsive{
+	min-height: 350px;
+}
+
 </style>
 <script>
 $(document).ready(function() {

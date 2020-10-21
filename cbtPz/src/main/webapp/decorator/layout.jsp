@@ -13,7 +13,8 @@
     <!-- The above 4 meta tags *Must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title><decorator:title/></title>
+    <title>JJOKJEBI</title>
+
 
 
 	<!-- Bootstrap core CSS -->
@@ -25,7 +26,8 @@
   	<link href="${pageContext.request.contextPath}/css/modern-business.css" rel="stylesheet">
 
     <!-- Favicon -->
-    <link rel="icon" href="${pageContext.request.contextPath}/img/core-img/favicon.ico">
+	<link rel="shortcut icon" href="${pageContext.request.contextPath}/img/core-img/JJlogoicon.ico">
+	
     <link rel="stylesheet" href="/cbtPz/style.css"> 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     
