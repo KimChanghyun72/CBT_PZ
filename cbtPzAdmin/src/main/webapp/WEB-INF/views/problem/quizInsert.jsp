@@ -270,11 +270,11 @@ textarea {
 				<div class="form-group">
 					<select name="subject" id="subject">
 						<option value="0" selected>과목</option>
-						<option value="1">1과목</option>
-						<option value="2">2과목</option>
-						<option value="3">3과목</option>
-						<option value="4">4과목</option>
-						<option value="5">5과목</option>
+						<option value="s1">1과목</option>
+						<option value="s2">2과목</option>
+						<option value="s3">3과목</option>
+						<option value="s4">4과목</option>
+						<option value="s5">5과목</option>
 					</select>
 				</div>
 			</div>
