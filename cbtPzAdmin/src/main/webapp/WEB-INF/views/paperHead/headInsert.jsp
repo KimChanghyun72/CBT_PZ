@@ -16,7 +16,7 @@
 		background: #f7f7f7;
 }
 
-/* input[type=text], select {
+ input[type=text], select {
   width: 50%;
   padding: 6px 10px;
   margin: 8px 0;
@@ -52,11 +52,6 @@ input[type=submit]:hover {
   background-color: #45a049;
 }
 
-div {
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 20px;
-}
 textarea {
   width: 100%;
   height: 150px;
@@ -72,7 +67,7 @@ img {
   margin-left: auto;
   margin-right: auto;
   width: 70%;
-} */
+} 
 </style>
 <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
 <!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
