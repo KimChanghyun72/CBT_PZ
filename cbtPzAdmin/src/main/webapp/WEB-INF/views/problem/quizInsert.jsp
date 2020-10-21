@@ -7,19 +7,66 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-	#d1, #d2 {
-		width: auto;
-		padding: 20px;
-		box-shadow: 0 3px 20px rgba(0, 0, 0, 0.15);
-		/* 	    padding: 35px 50px; */
-		border-radius: 6px;
-		background: #f7f7f7;
+	#d1 , #d2 { 
+	width : auto;
+	padding: 20px;
+	box-shadow: 0 3px 20px rgba(0, 0, 0, 0.15);
+	/* 	    padding: 35px 50px; */
+	border-radius: 6px;
+	background: #f7f7f7;
+}
+
+input[type=text], select {
+	width: 70%;
+	padding: 6px 10px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+
+input[type=submit] {
+	width: 10%;
+	background-color: #4CAF50;
+	color: white;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+input[type=reset] {
+	width: 10%;
+	background-color: #4CAF50;
+	color: white;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+input[type=submit]:hover {
+	background-color: #45a049;
+}
+
+textarea {
+	width: 100%;
+	height: 150px;
+	padding: 12px 20px;
+	box-sizing: border-box;
+	border: 2px solid #ccc;
+	border-radius: 4px;
+	background-color: #f8f8f8;
+	resize: none;
 }
 </style>
 <script>
 	$(document).ready(function() {
 		$("#submit").click(function() {
-			if($("#subject").val()==0){
+			if ($("#subject").val() == 0) {
 				alert("과목을 선택하세요.");
 				$("#subject").focus();
 				return false;
@@ -55,16 +102,16 @@
 				$("#haeseol").focus();
 				return false;
 			}
-			if ($("#classify_code_cd").val()== 0) {
+			if ($("#classify_code_cd").val() == 0) {
 				alert("소분류를 선택하세요.");
 				$("#classify_code_cd").focus();
 				return false;
 			}
-		/* 	if ($("#hashtag_name").val().length == 0) {
-				alert("해시태그를 입력하세요.");
-				$("#hashtag_name").focus();
-				return false;
-			} */
+			/* 	if ($("#hashtag_name").val().length == 0) {
+					alert("해시태그를 입력하세요.");
+					$("#hashtag_name").focus();
+					return false;
+				} */
 		});
 	});
 </script>
@@ -203,19 +250,21 @@
 </head>
 <body>
 
+
 	<div
 		style="width: 100%; height: 240px; background-image: url(./images/학습.jpg)"
 		class="  d-flex align-items-center justify-content-center p-3">
 		<h1 style="color: #00000">개별문제</h1>
 	</div>
-	
-	<br><br>
+
+	<br>
+	<br>
 
 	<div class="container" id="d1">
-	<form method="post" name="frm" id="frm" class="test" action="insertPro" onsubmit="return check_submit();">
-		<div class="col-12 col-lg-5">
-				<div class="form-group" style="text-align: center;">
-				</div>
+		<form method="post" name="frm" id="frm" class="test"
+			action="insertPro" onsubmit="return check_submit();">
+			<div class="col-12 col-lg-5">
+				<div class="form-group" style="text-align: center;"></div>
 			</div>
 			<div class="col-12 col-lg-7">
 				<div class="form-group">
@@ -243,41 +292,49 @@
 			</div>
 
 			<p></p>
-			<!-- <label>문제</label>
-		<p><textarea cols="50" rows="10" placeholder="문제를 입력하세요." name="problem_text" id="problem_text"></textarea></p> -->
 			<label>정답</label>
-	<ol list-style-type: decimal;>
-		<li><input placeholder="내용을 입력해주세요." name="ans_1" id="ans_1"><input type="checkbox" name="ans_correct" id="ans_correct" value="1">
-		<li><input placeholder="내용을 입력해주세요." name="ans_2" id="ans_2"><input type="checkbox" name="ans_correct" id="ans_correct" value="2">
-		<li><input placeholder="내용을 입력해주세요." name="ans_3" id="ans_3"><input type="checkbox" name="ans_correct" id="ans_correct" value="3">
-		<li><input placeholder="내용을 입력해주세요." name="ans_4" id="ans_4"><input type="checkbox" name="ans_correct" id="ans_correct" value="4">
-	</ol><p>
-	<label>해설</label>
-		<p><textarea cols="50" rows="10" placeholder="해설를 입력하세요." name="haeseol" id="haeseol"></textarea></p>
-	<label>해쉬태그</label><p>
-	 code : <select name="classify_code_cd" id="classify_code_cd">
-	 			<option value="0" selected>소분류</option>
-				<option value="소프트웨어 설계">소프트웨어 설계</option>
-				<option value="소프트웨어 개발">소프트웨어 개발</option>
-				<option value="데이터베이스 구축">데이터베이스 구축</option>
-				<option value="프로그래밍 언어 활용">프로그래밍 언어 활용</option>
-				<option value="정보시스템 구축관리">정보시스템 구축관리</option>
-		    </select><p>
-	 name : <input type="text" name="hashtag_name" id="hashtag_name" />
-		<p>
-			<input type="text" id="testInput" placeholder="Search">
-			<button type="button">
-				<i class="fa fa-search" aria-hidden="true"></i>
-			</button>
-		<p>
-			<input type="submit" id="submit" value="등록"> 
-			<input type="reset" id="reset" value="초기화">
-</form>
+			<ol list-style-type:decimal;>
+				<li><input type="text" placeholder="내용을 입력해주세요." name="ans_1" id="ans_1"><input
+					type="checkbox" name="ans_correct" id="ans_correct" value="1">
+				<li><input type="text" placeholder="내용을 입력해주세요." name="ans_2" id="ans_2"><input
+					type="checkbox" name="ans_correct" id="ans_correct" value="2">
+				<li><input type="text" placeholder="내용을 입력해주세요." name="ans_3" id="ans_3"><input
+					type="checkbox" name="ans_correct" id="ans_correct" value="3">
+				<li><input type="text" placeholder="내용을 입력해주세요." name="ans_4" id="ans_4"><input
+					type="checkbox" name="ans_correct" id="ans_correct" value="4">
+			</ol>
+			<p>
+				<label>해설</label>
+			<p>
+			<div class="col-12">
+				<div class="form-group">
+					<textarea cols="30" rows="10" placeholder="해설를 입력하세요." class="form-control"
+					name="haeseol" id="haeseol"></textarea>
+				</div>
+			</div>
+			</p>
+			<label>해쉬태그</label>
+			<p>
+				code : <select name="classify_code_cd" id="classify_code_cd">
+					<option value="0" selected>소분류</option>
+					<option value="소프트웨어 설계">소프트웨어 설계</option>
+					<option value="소프트웨어 개발">소프트웨어 개발</option>
+					<option value="데이터베이스 구축">데이터베이스 구축</option>
+					<option value="프로그래밍 언어 활용">프로그래밍 언어 활용</option>
+					<option value="정보시스템 구축관리">정보시스템 구축관리</option>
+				</select>
+			<p>
+				name : <input type="text" name="hashtag_name" id="hashtag_name" />
+			<p>
+				<input type="text" id="testInput" placeholder="Search">
+				<button type="button">
+					<i class="fa fa-search" aria-hidden="true"></i>
+				</button>
+			<p>
+				<input type="submit" id="submit" value="등록"> <input
+					type="reset" id="reset" value="초기화">
+		</form>
 	</div>
-	
-	<br><br><br><br>
-	
-	
 	<div class="container" id="d2">
 		<table id="listTable" class="display">
 			<thead>
@@ -296,7 +353,7 @@
 			<tbody>
 				<c:forEach items="${proList}" var="problemList">
 					<tr>
-						<td><input type="hidden" class="problem_id"
+						<td width="13%"><input type="hidden" class="problem_id"
 							value="${problemList.problem_id}">
 							<div contenteditable="true" class="subject">${problemList.subject}</div></td>
 						<td><div contenteditable="true" class="problem_text">${problemList.problem_text}</div></td>
@@ -312,7 +369,10 @@
 			</tbody>
 		</table>
 	</div>
-	
-	<br><br><br><br>
+
+	<br>
+	<br>
+	<br>
+	<br>
 </body>
 </html>
