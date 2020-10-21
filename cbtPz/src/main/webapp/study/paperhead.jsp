@@ -15,6 +15,12 @@ h5 {
 	color : white;
 	text-shadow: 2px 2px 2px gray;
 	}
+	
+#di{
+	min-height: 350px;
+}
+
+	
 
 </style>
 <script>
@@ -35,7 +41,7 @@ var check = "${sessionScope.check}";
 
 <article>
 	<br><br><br>
-	<div class="container" align="center">
+	<div class="container" align="center" id="d1">
 		<table class="table-striped table-sm">
 	<colgroup>
 		<col style="width: 800px" /><!-- 80% -->
