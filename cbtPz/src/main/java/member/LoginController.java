@@ -3,9 +3,9 @@ package member;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 
 import controller.Controller;
 import model.AdminDAO;
@@ -36,6 +36,12 @@ public class LoginController implements Controller {
 			request.getSession().setAttribute("loginId", resultaVO.getAdmin_id());
 			request.getSession().setAttribute("name", resultaVO.getAdmin_name());
 			request.getSession().setAttribute("check", "A"); //어드민 체크
+			
+			//spring(어드민)에서 세션 옮길수없으니 쿠키에 담음
+			Cookie c1 = new Cookie ("name", resultaVO.getAdmin_name());
+			c1.setPath("/");
+			response.addCookie(c1);
+			
 			response.sendRedirect(request.getContextPath() + "/indexx.jsp");
 			
 		} else {

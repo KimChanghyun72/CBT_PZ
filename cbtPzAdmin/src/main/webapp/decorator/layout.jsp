@@ -163,8 +163,13 @@
 
                             <!-- Register / Login -->
                             <div class="register-login-area">
-	                               	 관리자1님  
+                            	<c:if test="${ not empty sessionScope.name}">
+	                               	 ${name}님  
 	                                <a href="/cbtPz/logout.do" class="btn active">Logout</a>
+	                         	</c:if>
+                            	<c:if test="${ empty sessionScope.name}">   
+	                                <a href="${pageContext.request.contextPath}/member/login.jsp" class="btn active">Login</a>
+                                </c:if>
                             </div>
 
                         </div>
