@@ -256,7 +256,7 @@ $(document).ready(function(){
 <div>&emsp;&emsp;<a id="fa"><img src="../img/fav0.png">클릭시 즐겨찾기 추가</a></div><br><br>	
 	
 	
-<input id="solve_type_cd" type="text" value="${problemList[0].solve_type_cd}">
+<input id="solve_type_cd" type="hidden" value="${problemList[0].solve_type_cd}">
 
 
 	<form id="testResult" name="testResult" action="ScoreInsert.do">
