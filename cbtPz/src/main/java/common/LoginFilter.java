@@ -60,7 +60,7 @@ public class LoginFilter implements Filter {
 			
 		}
 		 chain.doFilter(request, response); 
-		System.out.println("login filter end ���� ����");
+		//System.out.println("login filter end ���� ����");
 	}
 
 	@Override
