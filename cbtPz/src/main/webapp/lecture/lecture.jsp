@@ -105,15 +105,18 @@
 				var btn = $(this)
 				var lecid = $(this).prev().prev().prev().val();
 				var lecname = $(this).prev().prev().val();
-				
+				var lecon = $(this).prev().val();
 				
 				var cnt = $(this).prev().prev().prev().children().eq(1).children(); //수강인원 카운트
 				var mempay = "${sessionScope.login.is_pay}";
 				var check = "${sessionScope.check}";
-				console.log(lecid);
-				console.log(mempay);
+				//console.log(lecid);
+				//console.log(mempay);
+				console.log(lecon);
 				//if(check == "M"){
 					if( mempay == "Y" ){
+						
+						if( lecon == "Y"){
 							var r = confirm("선택하신 강의는 ' " + lecname + " ' 입니다  \n" + "해당 강의를 수강하시겠습니까?");
 			    			if (r == true) {
 								$.ajax({
@@ -137,6 +140,9 @@
 							        }
 							    });
 			    			}
+						  }else if(lecon == "N"){
+							  alert("폐강된 강의입니다.");
+						  }
 						} else {
 							alert("                      동영상강의는 유료회원 전용입니다. \n                            멤버쉽 가입을 해주세요!");
 						}
@@ -243,6 +249,7 @@
 								<input type="hidden" value="${lecture_list.lecture_name}">
 								
                            		<input type="hidden" name="lecture_link" value="${lecture_list.lecture_link}">
+                           		<input type="hidden" name="lecture_on" value="${lecture_list.lecture_on}">
 								<c:if test="${sessionScope.login == null || sessionScope.check == 'M'}">
 									<button type="button" id="btn" class="btn btn-outline-success"  name="btnLearn">
 										<c:if test="${lecture_list.lecture_yn == 1}">             
