@@ -216,7 +216,16 @@ $(function(){ //for문은 번호를 설정해주는 역할만 하고 이벤트�
 	$(document).on("change", "#foo-table", submitFunc());
 	
 	 $(function(){
-		$("#foo-table").DataTable();
+		//해시태그 문제 등록시 정렬 다르게
+		   var solve_cd = new Array(${problemList[0].solve_type_cd});
+		   if(solve_cd[0].indexOf('#') != -1){
+		      $("#foo-table").DataTable({
+		         order: [ [ 1, "asc" ] ]
+		      });       
+		   } else {
+		      $("#foo-table").DataTable()
+		   }
+		/* $("#foo-table").DataTable(); */
 	});  
 });
 

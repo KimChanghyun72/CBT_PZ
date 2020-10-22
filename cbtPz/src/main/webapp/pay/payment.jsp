@@ -8,88 +8,6 @@
 <html>
 <head>
 <style>
-/* #payFrm{
-    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.15);
-    padding: 35px 50px;
-    border-radius: 6px;
-    background:#f7f7f7;
-}
-
-.box {
-	
-	width:500px;
-	height:200px;
-	margin:0 auto;
-	line-height:1em;
-	position:relative;
-	background:#fff;
-	border-color: #f1f1f1;
-	box-shadow: 0 3px 20px rgba(0, 0, 0, 0.15);
-}
-.box p {
-	font-size : 130%;
-	position:absolute;
-	top:50%;
-	left:50%;
-	width:100%;
-	margin-top:-0.5em;  
-	margin-left:-50%;
-	
-	text-align:center;
-	
-	
-}
-.box p.p1 {
-	
-	margin-top:-2.0em;  
-	
-	
-}
-
-.box2{
-	width:500px;
-	height:30px;
-	margin:0 auto;
-	line-height:1em; 
-	 position:relative; 
-	 margin-top:100px;   
-	background:#fff;
-}
-.box3 {
-	width:500px;
-	height:100px;
-	margin:0 auto;
-	line-height:1em;
-	position:relative;
-	background:#fff;
-}
-.box3 p {
-	position:absolute;
-	top:50%;
-	left:50%;
-	width:100%;
-	margin-top:-0.5em;
-	margin-left:-50%;
-	text-align:center;
-}
-.btn-login {
-	background-color: #007BFF;
-	outline: none;
-	color: #fff;
-	font-size: 14px;
-	height: auto;
-	font-weight: normal;
-	padding: 14px 0;
-	text-transform: uppercase;
-	border-color: #59B2E6;
-}
-.btn-login:hover,
-.btn-login:focus {
-	color: #fff;
-	background-color: #53A3CD;
-	border-color: #53A3CD;
-} */
-
 
 .single-cool-facts-area {
 border: 1px solid rgba(214, 223, 251, 0.7);
@@ -147,7 +65,7 @@ $(function(){
 		
 	 $(".btnSubmit").on("click", function(){
 	IMP.request_pay({
-	    pg : 'inicis', // version 1.1.0부터 지원.
+		pg : 'kakaopay', // version 1.1.0부터 지원.
 	    pay_method : 'card',
 	    merchant_uid : 'merchant_' + new Date().getTime(),
 	    name : '주문명:결제테스트',
@@ -178,7 +96,7 @@ $(function(){
  	 $(document).on("click",".btnSubmit", function(){
  			/* 결제 api 시작 */
  			IMP.request_pay({
- 			    pg : 'inicis', // version 1.1.0부터 지원.
+ 			    pg : 'inisis', // version 1.1.0부터 지원.
  			    pay_method : 'card',
  			    merchant_uid : 'merchant_' + new Date().getTime(),
  			    name : '주문명:결제테스트',

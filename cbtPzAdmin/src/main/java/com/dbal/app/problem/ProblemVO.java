@@ -6,6 +6,7 @@ import lombok.Data;
 public class ProblemVO {
 	private String problem_id;
 	private String subject;
+	private String subject_name;
 	private String haeseol;
 	private String problem_text;
 	private String ans_1;
