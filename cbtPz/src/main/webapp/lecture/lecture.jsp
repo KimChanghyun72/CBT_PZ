@@ -105,14 +105,14 @@
 				var btn = $(this)
 				var lecid = $(this).prev().prev().prev().val();
 				var lecname = $(this).prev().prev().val();
-				var lecon = $(this).prev().val();
+				var lecon = $(this).prev().prev().prev().prev().val();
 				
 				var cnt = $(this).prev().prev().prev().children().eq(1).children(); //수강인원 카운트
 				var mempay = "${sessionScope.login.is_pay}";
 				var check = "${sessionScope.check}";
 				//console.log(lecid);
 				//console.log(mempay);
-				console.log(lecon);
+				//console.log(lecon);
 				//if(check == "M"){
 					if( mempay == "Y" ){
 						
@@ -245,11 +245,11 @@
 									<p><a href="${pageContext.request.contextPath}/lecture/lectureDetailSelect.do?lecture_id=${lecture_list.lecture_id}"><button type="button" id="btn2" class="btn btn-info">강의 상세 정보</button></a></p>
 								</div>
 
+                           		<input type="hidden" name="lecture_on" value="${lecture_list.lecture_on}">
 								<input type="hidden" value="${lecture_list.lecture_id}" name="lecid">
 								<input type="hidden" value="${lecture_list.lecture_name}">
 								
                            		<input type="hidden" name="lecture_link" value="${lecture_list.lecture_link}">
-                           		<input type="hidden" name="lecture_on" value="${lecture_list.lecture_on}">
 								<c:if test="${sessionScope.login == null || sessionScope.check == 'M'}">
 									<button type="button" id="btn" class="btn btn-outline-success"  name="btnLearn">
 										<c:if test="${lecture_list.lecture_yn == 1}">             
