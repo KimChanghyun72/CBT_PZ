@@ -45,6 +45,36 @@ p {
   box-shadow: 1px 1px 0 0 #DDD;
 }
 
+#pie-chart {
+  width: 700px;
+  height: 350px;
+  position: relative;
+  margin: auto;
+}
+#pie-chart::before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 175px;
+  height: 120px;
+  left: 440px;
+  top: 0;
+  background: #FAFAFA;
+  box-shadow: 1px 1px 0 0 #DDD;
+}
+
+#pie-chart::after {
+  content: "";
+  position: absolute;
+  display: block;
+  top: 370px;
+  left: 140px;
+  width: 170px;
+  height: 2px;
+  background: rgba(0,0,0,0.1);
+  border-radius: 50%;
+  box-shadow: 0 0 3px 4px rgba(0,0,0,0.1);
+}
 </style> 
  
       <!--Load the AJAX API-->
@@ -126,7 +156,12 @@ p {
         // Instantiate and draw our chart, passing in some options.
         var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
         chart.draw(data, options);
-      }
+        
+     
+  	  
+  	}	
+      
+      
       </script>
      
      
@@ -216,6 +251,67 @@ p {
         chart1.draw(data, options1);
       }
       </script>
+      
+      <!-- 해시차트 -->
+      <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+  	  google.setOnLoadCallback(drawCharts3);
+  	  function drawCharts3() {
+  		  console.log("jsp해시")
+		  // BEGIN PIE CHART
+		  
+		  // pie chart data
+		
+		  var pieOptions = {
+		    backgroundColor: 'transparent',
+		    pieHole: 0.4,
+		    colors: [ "cornflowerblue", 
+		              "olivedrab", 
+		              "orange", 
+		              "tomato", 
+		              "crimson", 
+		              "purple", 
+		              "turquoise", 
+		              "forestgreen", 
+		              "navy", 
+		              "gray"],
+		    pieSliceText: 'key',
+		    tooltip: {
+		      text: 'percentage'
+		    },
+		    fontName: 'Open Sans',
+		    chartArea: {
+		      width: '100%',
+		      height: '94%'
+		    },
+		    legend: {
+		      textStyle: {
+		        fontSize: 13
+		      }
+		    }
+		  };
+		  
+		  var datatablepie = [];
+		  datatablepie.push(['hash_tag', 'cnt']);
+	      
+	     	$.ajax({
+	      	async : false,
+	      	url :"../ajax/hashChart.do",
+	      	dataType : "json",
+	      	success : function(datas){
+	      		console.log(datas);
+	      		for(i=0; i<datas.length; i++){
+	      			datatablepie.push([datas[i].hashtag_name, parseInt(datas[i].cnt)]);
+	      		}
+	      	}
+	      });
+	     	var pieData = google.visualization.arrayToDataTable(datatablepie);
+		  
+	     	var pieChart = new google.visualization.PieChart(document.getElementById('pie-chart'));
+	  	  pieChart.draw(pieData, pieOptions);
+  	  }
+      </script>
+      
       <script type="text/javascript">
 		<%request.getSession().setAttribute("pageName", "회원 통계");%>
 	  </script>
@@ -238,8 +334,11 @@ p {
 							<br><br>
 							<h5>전공별 인원수 차트 </h5>
 							<div id="chart_div2"></div>
+							<br><br>
+							<h5>회원별 해시태그 선호도통계</h5>
+							<div id="pie-chart"></div>
 						<br><br>
-						</div>
+						  </div>
 					</div>
 						<div class="single-course-content section-padding-100">
 						</div>

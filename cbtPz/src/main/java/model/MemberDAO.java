@@ -4,15 +4,9 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import common.ConnectionManager;
-import net.sf.json.JSONArray;
 
 public class MemberDAO {
 	Connection conn;
@@ -391,7 +385,46 @@ public class MemberDAO {
 			}
 			return list;
 		}
-		
+		//hashChart
+		public ArrayList<MyStatVO> selectHash() {
+			MyStatVO resultVo = null;
+			ResultSet rs = null;
+			ArrayList<MyStatVO> list = new ArrayList<MyStatVO>();
+			System.out.println("try전");
+			try {
+				conn = ConnectionManager.getConnnect();
+				String sql = "select rownum, cnt , hashtag_name "
+							+ "from ( "
+							+ "		select count(paper.paper_id) cnt, hashtag.HASHTAG_name hashtag_name "
+							+ "		from solve, paper, problem, problem_hashtag, hashtag "
+							+ "		where solve.solve_id = paper.solve_id "
+							+ "		and solve.SOLVE_SUBMIT = 'Y' "
+							+ " 	and solve.solve_type_cd like '%#%' "
+							+ "		and paper.problem_id = problem.problem_id "
+							+ "		and problem.problem_id = problem_hashtag.PROBLEM_ID "
+							+ "		and problem_hashtag.HASHTAG_ID = hashtag.hashtag_id "
+							+ "		group by hashtag.hashtag_name " 
+							+ "		order by cnt DESC "
+							+ " 	) " 
+							+ " where rownum<=5 ";
+				pstmt = conn.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				while(rs.next()) {
+					resultVo = new MyStatVO();
+					resultVo.setRownum(rs.getString("rownum"));
+					resultVo.setCnt(rs.getString("cnt"));
+					resultVo.setHashtag_name(rs.getString("hashtag_name"));
+					list.add(resultVo);
+					System.out.println("aaaaaaaaa");
+				}
+				
+			} catch(Exception e) {
+				e.printStackTrace();
+			} finally {
+				ConnectionManager.close(rs, pstmt, conn);
+			}
+			return list;
+		}
 		
 		// 새 비밀번호 발급
 		public int UpdatePwOne(MemberVo memberVo) {

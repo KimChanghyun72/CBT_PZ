@@ -21,7 +21,8 @@ public class MemberVo {
 	private String cnt;
 	private String board_cnt;
 	private String solve_cnt;
-	
+	private String rownum;
+	private String hashtag_name;
 	public Object get(String string) {
 		return null;
 	}

@@ -161,7 +161,8 @@ function UpdateTime(){
 	
 
 $(function(){
-	//해시태그 문제 등록시 정렬 다르게
+	$("#foo-table").DataTable()
+	/* //해시태그 문제 등록시 정렬 다르게
 	   var solve_cd = new Array(${problemList[0].solve_type_cd});
 	   if(solve_cd[0].indexOf('#') != -1){
 	      $("#foo-table").DataTable({
@@ -169,7 +170,7 @@ $(function(){
 	      });       
 	   } else {
 	      $("#foo-table").DataTable()
-	   }
+	   } */
 	/* var 
 	$("#foo-table").DataTable();
  */
