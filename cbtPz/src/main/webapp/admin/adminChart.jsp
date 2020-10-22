@@ -338,7 +338,7 @@ p {
 							<h5>회원별 해시태그 선호도통계</h5>
 							<div id="pie-chart"></div>
 						<br><br>
-						</div>
+						  </div>
 					</div>
 						<div class="single-course-content section-padding-100">
 						</div>
