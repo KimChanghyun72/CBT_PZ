@@ -206,7 +206,7 @@ textarea {
 				dataType : "json",
 				data : {
 					problem_id : problem_id.val(),
-					subject : subject.html(),
+					subject : subject.val(),
 					problem_text : problem_text.html(),
 					ans_1 : ans_1.html(),
 					ans_2 : ans_2.html(),
@@ -270,11 +270,11 @@ textarea {
 				<div class="form-group">
 					<select name="subject" id="subject">
 						<option value="0" selected>과목</option>
-						<option value="s1">1과목</option>
-						<option value="s2">2과목</option>
-						<option value="s3">3과목</option>
-						<option value="s4">4과목</option>
-						<option value="s5">5과목</option>
+						<option value="s1">1과목(소프트웨어 설계)</option>
+						<option value="s2">2과목(소프트웨어 개발)</option>
+						<option value="s3">3과목(데이터베이스 구축)</option>
+						<option value="s4">4과목(프로그래밍 언어 활용)</option>
+						<option value="s5">5과목(정보시스템 구축관리)</option>
 					</select>
 				</div>
 			</div>
@@ -317,11 +317,11 @@ textarea {
 			<p>
 				code : <select name="classify_code_cd" id="classify_code_cd">
 					<option value="0" selected>소분류</option>
-					<option value="소프트웨어 설계">소프트웨어 설계</option>
-					<option value="소프트웨어 개발">소프트웨어 개발</option>
-					<option value="데이터베이스 구축">데이터베이스 구축</option>
-					<option value="프로그래밍 언어 활용">프로그래밍 언어 활용</option>
-					<option value="정보시스템 구축관리">정보시스템 구축관리</option>
+					<option value="s1">소프트웨어 설계</option>
+					<option value="s2">소프트웨어 개발</option>
+					<option value="s3">데이터베이스 구축</option>
+					<option value="s4">프로그래밍 언어 활용</option>
+					<option value="s5">정보시스템 구축관리</option>
 				</select>
 			<p>
 				name : <input type="text" name="hashtag_name" id="hashtag_name" />
@@ -346,6 +346,7 @@ textarea {
 					<th>보기3</th>
 					<th>보기4</th>
 					<th>정답</th>
+					<th>해설</th>
 					<th>수정</th>
 					<th>삭제</th>
 				</tr>
@@ -355,12 +356,14 @@ textarea {
 					<tr>
 						<td width="13%"><input type="hidden" class="problem_id"
 							value="${problemList.problem_id}">
-							<div contenteditable="true" class="subject">${problemList.subject}</div></td>
+							<div contenteditable="true">${problemList.subject_name}<input type="hidden" name="subject" class="subject" value="${problemList.subject}">
+							</div></td>
 						<td><div contenteditable="true" class="problem_text">${problemList.problem_text}</div></td>
 						<td><div contenteditable="true" class="ans_1">${problemList.ans_1}</div></td>
 						<td><div contenteditable="true" class="ans_2">${problemList.ans_2}</div></td>
 						<td><div contenteditable="true" class="ans_3">${problemList.ans_3}</div></td>
 						<td><div contenteditable="true" class="ans_4">${problemList.ans_4}</div></td>
+						<td><div contenteditable="true" class="ans_correct">${problemList.ans_correct}</div></td>
 						<td><div contenteditable="true" class="haeseol">${problemList.haeseol}</div></td>
 						<td><button class="btnUpd">수정</button>
 						<td><button class="btnDel">삭제</button>

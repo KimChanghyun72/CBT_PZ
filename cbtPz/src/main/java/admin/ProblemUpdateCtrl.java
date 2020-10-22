@@ -33,6 +33,7 @@ public class ProblemUpdateCtrl implements Controller {
 		resultVO.setAns_3(request.getParameter("ans_3"));
 		resultVO.setAns_4(request.getParameter("ans_4"));
 		resultVO.setHaeseol(request.getParameter("haeseol"));
+		resultVO.setAns_correct(request.getParameter("ans_correct"));
 		
 		System.out.println("UPDATE : " + resultVO);
 		

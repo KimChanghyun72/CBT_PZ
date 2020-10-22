@@ -187,7 +187,8 @@
 			<tbody>
 			<c:forEach  items="${problemList}" var="problemList">
 				<tr>
-					<td><input type="hidden" class="problem_id" value="${problemList.problem_id}"><div contenteditable="true" class="subject">${problemList.subject}</div></td>
+					<td><input type="hidden" class="problem_id" value="${problemList.problem_id}"><div contenteditable="true" class="subject">${problemList.subject_name}
+					<input type="text" class="subject" value="${problemList.subject}"></div></td>
 					<td><div contenteditable="true" class="problem_text">${problemList.problem_text}</div></td>
 					<td><div contenteditable="true" class="ans_1">${problemList.ans_1}</div></td>
 					<td><div contenteditable="true" class="ans_2">${problemList.ans_2}</div></td>

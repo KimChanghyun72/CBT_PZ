@@ -18,6 +18,7 @@ public class ProblemListCtrl implements Controller {
 		// TODO Auto-generated method stub
 		ArrayList<ProblemVO> problemList = ProblemDAO.getInstance().selectAll(null);
 		System.out.println(problemList);
+		for(int i=0; i< problemList.size())
 		
 		String path = "/admin/quizInsert.jsp";
 		request.setAttribute("problemList", problemList);

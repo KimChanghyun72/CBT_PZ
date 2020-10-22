@@ -6,7 +6,8 @@
 	<select id="getProList"  parameterType="Pro" resultType="Pro">
 		 SELECT 
 				 problem_id,
-		 		 subject_name(subject) AS subject,
+				 subject,
+		 		 subject_name(subject) AS subject_name,
 		 		 haeseol,
 		 		 problem_text,
 		 		 ans_1,
