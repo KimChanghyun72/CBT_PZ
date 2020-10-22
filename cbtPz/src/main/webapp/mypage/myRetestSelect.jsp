@@ -215,19 +215,17 @@ $(function(){ //for문은 번호를 설정해주는 역할만 하고 이벤트�
 
 	$(document).on("change", "#foo-table", submitFunc());
 	
-	 $(function(){
-		 $("#foo-table").DataTable()
-		//해시태그 문제 등록시 정렬 다르게
-		  /*  var solve_cd = new Array(${problemList[0].solve_type_cd});
-		   if(solve_cd[0].indexOf('#') != -1){
-		      $("#foo-table").DataTable({
-		         order: [ [ 1, "asc" ] ]
-		      });       
-		   } else {
-		      $("#foo-table").DataTable()
-		   } */
-		/* $("#foo-table").DataTable(); */
-	});  
+	//$("#foo-table").DataTable()
+	//해시태그 문제 등록시 정렬 다르게
+	var solve_cd = $("#solve_type_cd").val();	
+	console.log(solve_cd);
+    if(solve_cd.indexOf('#') != -1){
+ 	   $("#foo-table").DataTable({
+         order: []
+       });       
+    } else {
+       $("#foo-table").DataTable();
+    } 
 });
 
 </script>
@@ -255,7 +253,12 @@ $(document).ready(function(){
 			<div id="ViewTimer"></div>
 	</div>
 <div class="leftcolumn">
-<div>&emsp;&emsp;<a id="fa"><img src="../img/fav0.png">클릭시 즐겨찾기 추가</a></div><br><br>		
+<div>&emsp;&emsp;<a id="fa"><img src="../img/fav0.png">클릭시 즐겨찾기 추가</a></div><br><br>	
+	
+	
+<input id="solve_type_cd" type="text" value="${problemList[0].solve_type_cd}">
+
+
 	<form id="testResult" name="testResult" action="ScoreInsert.do">
 <table id="foo-table" class="table table-bordered">
 		<thead align="center">
